@@ -6,6 +6,8 @@ un système de commande en ligne et un espace d'administration.
 
 Sujet de labo : voir `docs/sujet.pdf` (à ajouter) — synthèse ci-dessous.
 
+📄 [Cahier des charges](docs/Cahier_des_charges_GSB.docx) — historique des versions dans les commits de ce fichier.
+
 ## Stack imposée
 
 | Couche | Techno |
