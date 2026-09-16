@@ -13,18 +13,32 @@ Sujet de labo : voir `docs/sujet.pdf` (à ajouter) — synthèse ci-dessous.
 | Front-end | React |
 | Back-end | Node.js + API REST |
 | Base de données | SGBD relationnel (MCD/MLD/MPD — méthode Merise) |
-| Gestion de projet | GitHub Issues + Projects (remplace Trello/Jira) |
+| Gestion de projet | GitHub Issues + Projects |
 
-## Feuille de route (4 phases)
+## Calendrier
+
+Début : 16 septembre 2026 — Remise : **31 décembre 2026** (3,5 mois).
+
+## Feuille de route (6 phases)
 
 Le détail de chaque phase (tâches, sous-tâches, critères de fin) est dans les
-[Milestones](../../milestones) et les [Issues](../../issues) du dépôt.
+[Milestones](../../milestones) et les [Issues](../../issues) du dépôt. Ce découpage reprend
+exactement celui du cahier des charges (section "Organisation du projet").
+
+| # | Phase | Part | Échéance |
+|---|---|---|---|
+| 1 | Analyse | 15% | 02/10/2026 |
+| 2 | Conception | 20% | 23/10/2026 |
+| 3 | Développement du socle | 20% | 13/11/2026 |
+| 4 | Développement métier | 25% | 09/12/2026 |
+| 5 | Tests et corrections | 15% | 25/12/2026 |
+| 6 | Livraison | 5% | 31/12/2026 |
 
 ### 1. Analyse
 Recueillir les exigences et besoins.
 - Rédiger / finaliser le cahier des charges (`docs/cahier-des-charges.md`)
 - Lister les besoins fonctionnels et non fonctionnels
-- Identifier les profils utilisateurs (visiteur médical, pharmacien/médecin, fournisseur, administrateur)
+- Identifier les profils utilisateurs (professionnel de santé, fournisseur, administrateur)
 - Définir les contraintes techniques et organisationnelles
 
 ### 2. Conception
@@ -36,18 +50,23 @@ Architecturer et maquettiser.
 - Architecture technique (arborescence front/back, routes API)
 - Diagramme de Gantt
 
-### 3. Développement
-Coder, tester, intégrer.
-- Back-end : API Node.js (auth, produits, panier, commandes, administration, fournisseurs)
-- Front-end : React (catalogue, panier, espace perso, admin)
-- Base de données : mise en place du schéma + jeu de données de test
-- Tests fonctionnels
+### 3. Développement du socle
+Authentification, rôles, base MySQL, structure React/Express.
+- Setup back-end Node.js + API, setup front-end React
+- Authentification sécurisée
+- Espace personnel
 
-### 4. Production
-Déployer et surveiller.
-- Déploiement de l'application
-- Démonstration fonctionnelle
-- Documentation finale et livrables
+### 4. Développement métier
+Catalogue, panier, commandes, administration, fournisseurs, recherche.
+- Catalogue de médicaments, panier et commandes, historique
+- Interface d'administration, gestion des fournisseurs
+- Recherche et filtrage
+
+### 5. Tests et corrections
+Tests fonctionnels, sécurité, intégration, correction des anomalies.
+
+### 6. Livraison
+Jeu de données, documentation, démonstration, préparation de la soutenance.
 
 ## Fonctionnalités attendues (epics)
 
