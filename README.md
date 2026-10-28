@@ -48,7 +48,7 @@ Recueillir les exigences et besoins.
 Architecturer et maquettiser.
 - ✅ Modèle Conceptuel de Données (MCD)
 - ✅ Modèle Logique de Données (MLD)
-- ⬜ Modèle Physique de Données (MPD) + script SQL
+- ✅ Modèle Physique de Données (MPD) + script SQL ([`docs/MPD.md`](docs/MPD.md), [`database/schema.sql`](database/schema.sql))
 - Maquettes des écrans principaux (catalogue, panier, admin)
 - Architecture technique (arborescence front/back, routes API)
 - Diagramme de Gantt
@@ -86,7 +86,7 @@ Jeu de données, documentation, démonstration, préparation de la soutenance.
 
 - [ ] Code source complet (front + back + script BDD)
 - [x] ✅ Cahier des charges
-- [ ] Modèles Merise (MCD ✅, MLD ✅, MPD ⬜)
+- [x] ✅ Modèles Merise (MCD, MLD, MPD)
 - [ ] Diagramme de Gantt
 - [ ] Démonstration de l'application
 
