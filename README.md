@@ -91,6 +91,18 @@ Jeu de données, documentation, démonstration, préparation de la soutenance.
 - [ ] Diagramme de Gantt
 - [ ] Démonstration de l'application
 
+## Aperçu des maquettes
+
+Prototype interactif : ouvrir [`docs/maquettes/GSB_Canva_Prototype_interactif.html`](docs/maquettes/GSB_Canva_Prototype_interactif.html) dans un navigateur (aucune installation nécessaire).
+
+**Ordinateur** (43 pages)
+
+![Aperçu maquette ordinateur](docs/maquettes/apercu-canva-desktop.png)
+
+**Mobile** (16 pages)
+
+![Aperçu maquette mobile](docs/maquettes/apercu-canva-mobile.png)
+
 ## Structure du dépôt (à venir)
 
 ```
