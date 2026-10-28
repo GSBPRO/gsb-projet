@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suivi équipe GSB</title>
+<style>
+  :root { --bg:#f7f6f2; --fg:#1d1d1b; --muted:#6b6b66; --line:#dcdad2; --ok:#2e7d4f; --todo:#b26a00; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#161614; --fg:#ecebe6; --muted:#9a998f; --line:#34332e; --ok:#5fbf85; --todo:#e0a040; }
+  }
+  body { margin:0; padding:16px; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui, sans-serif; }
+  h1 { font-size:1.4rem; margin:0 0 4px; }
+  p.note { color:var(--muted); margin:0 0 16px; font-size:.9rem; }
+  table { width:100%; border-collapse:collapse; }
+  th, td { text-align:left; padding:10px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:.8rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  .ok { color:var(--ok); font-weight:600; }
+  .todo { color:var(--todo); font-weight:600; }
+  code { font-size:.9em; }
+  @media (max-width:600px) {
+    table, thead, tbody, tr, td { display:block; }
+    thead { display:none; }
+    tr { border-bottom:1px solid var(--line); padding:8px 0; }
+    td { border:0; padding:2px 0; }
+    td::before { content:attr(data-label) " : "; color:var(--muted); font-size:.85rem; }
+  }
+</style>
+</head>
+<body>
+<h1>Suivi du code — équipe GSB</h1>
+<p class="note">Chaque membre pousse son code dans son propre dossier de la branche à son prénom. Pour mettre à jour : modifiez la liste <code>MEMBRES</code> ci-dessous, puis committez.</p>
+
+<table>
+  <thead>
+    <tr><th>Membre</th><th>Dossier de code</th><th>Branche</th><th>Statut</th><th>Dernière mise à jour</th></tr>
+  </thead>
+  <tbody id="corps"></tbody>
+</table>
+
+<script>
+  // Modifier ici : un objet par membre.
+  // statut : "fait" (code poussé) ou "en cours" (pas encore poussé).
+  const MEMBRES = [
+    { nom: "Membre 1", dossier: "frontend/src", branche: "membre-1", statut: "en cours", maj: "2026-10-28" },
+    { nom: "Membre 2", dossier: "frontend/src", branche: "membre-2", statut: "en cours", maj: "2026-10-28" },
+    { nom: "Membre 3", dossier: "frontend/src", branche: "membre-3", statut: "en cours", maj: "2026-10-28" }
+  ];
+
+  const corps = document.getElementById("corps");
+  for (const m of MEMBRES) {
+    const ok = m.statut === "fait";
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td data-label="Membre">${m.nom}</td>
+      <td data-label="Dossier"><code>${m.dossier}</code></td>
+      <td data-label="Branche"><code>${m.branche}</code></td>
+      <td data-label="Statut" class="${ok ? "ok" : "todo"}">${ok ? "✔ fait" : "● en cours"}</td>
+      <td data-label="Mise à jour">${m.maj}</td>`;
+    corps.appendChild(tr);
+  }
+</script>
+</body>
+</html>
