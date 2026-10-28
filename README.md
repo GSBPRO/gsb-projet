@@ -37,18 +37,18 @@ exactement celui du cahier des charges (section "Organisation du projet").
 | 5 | Tests et corrections | 15% | 25/12/2026 |
 | 6 | Livraison | 5% | 31/12/2026 |
 
-### 1. Analyse
+### 1. Analyse ✅
 Recueillir les exigences et besoins.
-- Rédiger / finaliser le cahier des charges (`docs/cahier-des-charges.md`)
-- Lister les besoins fonctionnels et non fonctionnels
-- Identifier les profils utilisateurs (professionnel de santé, fournisseur, administrateur)
-- Définir les contraintes techniques et organisationnelles
+- ✅ Rédiger / finaliser le cahier des charges (`docs/Cahier_des_charges_GSB.docx`)
+- ✅ Lister les besoins fonctionnels et non fonctionnels
+- ✅ Identifier les profils utilisateurs (professionnel de santé, fournisseur, administrateur)
+- ✅ Définir les contraintes techniques et organisationnelles
 
 ### 2. Conception
 Architecturer et maquettiser.
-- Modèle Conceptuel de Données (MCD)
-- Modèle Logique de Données (MLD)
-- Modèle Physique de Données (MPD) + script SQL
+- ✅ Modèle Conceptuel de Données (MCD)
+- ✅ Modèle Logique de Données (MLD)
+- ⬜ Modèle Physique de Données (MPD) + script SQL
 - Maquettes des écrans principaux (catalogue, panier, admin)
 - Architecture technique (arborescence front/back, routes API)
 - Diagramme de Gantt
@@ -85,8 +85,8 @@ Jeu de données, documentation, démonstration, préparation de la soutenance.
 ## Livrables
 
 - [ ] Code source complet (front + back + script BDD)
-- [ ] Cahier des charges
-- [ ] Modèles Merise (MCD, MLD, MPD)
+- [x] ✅ Cahier des charges
+- [ ] Modèles Merise (MCD ✅, MLD ✅, MPD ⬜)
 - [ ] Diagramme de Gantt
 - [ ] Démonstration de l'application
 
