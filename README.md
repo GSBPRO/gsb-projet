@@ -103,6 +103,10 @@ Prototype interactif : ouvrir [`docs/maquettes/GSB_Canva_Prototype_interactif.ht
 
 ![Aperçu maquette mobile](docs/maquettes/apercu-canva-mobile.png)
 
+## Développement
+
+Plan étape par étape : [`docs/FEUILLE_DE_ROUTE_CODE.md`](docs/FEUILLE_DE_ROUTE_CODE.md). On commence par le front avec des données fictives, puis on branche le back-end.
+
 ## Structure du dépôt (à venir)
 
 ```
