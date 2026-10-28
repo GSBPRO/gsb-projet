@@ -1,0 +1,30 @@
+GSB — Maquette et prototype
+
+OUVRIR LE PROTOTYPE
+Décompresser le ZIP puis ouvrir GSB_Canva_Prototype_interactif.html dans
+un navigateur. Aucun serveur ni installation n'est nécessaire.
+Les comptes et valeurs préremplis servent uniquement à la démonstration.
+
+LES AUTRES FICHIERS
+GSB_Canva_desktop.html : les 43 pages de la maquette ordinateur.
+GSB_Canva_mobile.html : les 16 pages de la maquette mobile.
+Les fichiers PNG sont des aperçus du résultat dans Canva.
+
+MODIFIER LA MAQUETTE DANS CANVA
+Les documents Canva éditables restent enregistrés dans ton compte.
+Ce ZIP contient leur source HTML portable, pas un format natif Canva.
+
+Dossier des trois livrables :
+https://www.canva.com/folder/FAHZH6Rt5k8
+
+Maquette ordinateur, éléments modifiables :
+https://www.canva.com/d/Kv9eBi6adDgmH2u
+
+Maquette mobile, éléments modifiables :
+https://www.canva.com/d/EKsViTekSAE_DjW
+
+Prototype interactif dans Canva (bouton Aperçu) :
+https://www.canva.com/d/zylcli1SteD2O32
+
+Paiement, livraison, stock et connexion sont des simulations pédagogiques.
+Aucune donnée bancaire ni donnée personnelle réelle ne doit être saisie.

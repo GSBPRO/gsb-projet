@@ -1,0 +1,1043 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142D4E">
+  <title>GSB — E-boutique professionnelle · Maquette</title>
+  <style>/* GSB — E-boutique professionnelle. Échelle d’espacement de 8 px. */
+:root {
+  --navy: #142d4e;
+  --teal: #159a9c;
+  --teal-dark: #0c7476;
+  --bg: #f5f7fa;
+  --ink: #1f2937;
+  --muted: #64748b;
+  --line: #dce4ec;
+  --radius: 12px;
+  --success: #176745;
+  --warning: #8a4c04;
+  --danger: #b12d3e;
+  --shadow: 0 8px 28px rgba(20, 45, 78, .045);
+  --font: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font: 15px/1.55 var(--font); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font: inherit; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
+button { cursor: pointer; }
+button:disabled, input:disabled, select:disabled { cursor: not-allowed; }
+a { color: var(--teal-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
+img { display: block; max-width: 100%; }
+svg { display: block; flex-shrink: 0; }
+button svg, a svg { width: 20px; height: 20px; }
+h1, h2, h3, h4, p { margin-top: 0; }
+h1, h2, h3, h4 { color: var(--navy); line-height: 1.22; }
+h1 { margin-bottom: 16px; font-size: 36px; letter-spacing: -1.2px; font-weight: 700; }
+h2 { margin-bottom: 16px; font-size: 24px; letter-spacing: -.6px; }
+h3 { margin-bottom: 8px; font-size: 18px; letter-spacing: -.25px; }
+h4 { margin-bottom: 8px; font-size: 15px; }
+p { margin-bottom: 16px; }
+small { font-size: 12px; }
+hr { margin: 24px 0; border: 0; border-top: 1px solid var(--line); }
+ul { padding-left: 20px; }
+[hidden] { display: none !important; }
+.app-shell { min-height: 100vh; }
+.shell { width: min(1312px, calc(100% - 96px)); margin-inline: auto; }
+.row { display: flex; align-items: center; gap: 16px; }
+.row.between, .between { justify-content: space-between; }
+.row.wrap, .wrap { flex-wrap: wrap; }
+.row.start { align-items: flex-start; }
+.row.end { justify-content: flex-end; }
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.stack > :last-child { margin-bottom: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.full-width { width: 100%; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.section-gap { margin-top: 32px; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.strong { font-weight: 650; color: var(--navy); }
+.nowrap { white-space: nowrap; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* Navigation boutique */
+.shop-header { min-height: 88px; border-bottom: 1px solid var(--line); background: #fff; }
+.shop-header > .shell { min-height: 88px; display: flex; align-items: center; gap: 40px; }
+.logo { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: var(--navy); text-decoration: none !important; }
+.logo-mark { width: 40px; height: 40px; display: grid; place-items: center; color: #fff; background: var(--navy); border-radius: 10px; font-size: 14px; font-weight: 750; letter-spacing: -.6px; }
+.logo strong { display: block; color: var(--navy); font-size: 25px; line-height: 1; letter-spacing: -1px; }
+.logo span small, .logo small { display: block; margin-top: 5px; color: var(--muted); font-size: 10px; line-height: 1.1; letter-spacing: .15px; }
+.nav-links { display: flex; align-self: stretch; align-items: stretch; gap: 32px; }
+.nav-links a { display: inline-flex; position: relative; align-items: center; color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; }
+.nav-links a:hover, .nav-links a.is-active { color: var(--navy); }
+.nav-links a.is-active::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--teal); }
+.header-actions { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+.user-pill { display: flex; gap: 10px; align-items: center; padding-left: 20px; border-left: 1px solid var(--line); color: var(--navy); font-size: 13px; }
+.user-pill strong { display: block; font-size: 13px; line-height: 1.4; }
+.user-pill small { display: block; color: var(--muted); font-size: 11px; }
+.avatar { display: inline-grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; border: 1px solid #cae7e7; border-radius: 50%; color: var(--teal-dark); background: #e8f6f5; font-size: 12px; font-weight: 700; }
+.cart-count { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 4px; border-radius: 10px; color: #fff; background: var(--teal-dark); font-size: 11px; }
+.breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 24px 0; color: var(--muted); font-size: 12px; }
+.breadcrumb a { color: var(--muted); }
+.breadcrumb svg { width: 14px; height: 14px; }
+.page-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin: 32px 0; }
+.page-heading h1 { margin-bottom: 8px; }
+.page-heading p { max-width: 680px; margin-bottom: 0; color: var(--muted); }
+.eyebrow { display: block; margin-bottom: 12px; color: var(--teal-dark); font-size: 11px; font-weight: 750; letter-spacing: 1.6px; text-transform: uppercase; }
+
+/* Catalogue, recherche et cartes produits */
+.hero { position: relative; display: flex; align-items: center; overflow: hidden; isolation: isolate; min-height: 224px; padding: 40px 48px; margin: 24px 0 32px; border-radius: 16px; color: #dbe8ef; background: var(--navy); }
+.hero > div:first-child { position: relative; z-index: 2; max-width: 660px; }
+.hero h1, .hero h2 { margin-bottom: 12px; color: #fff; font-size: 36px; letter-spacing: -1.2px; }
+.hero p { margin-bottom: 0; max-width: 590px; color: #cedce8; font-size: 15px; }
+.hero .eyebrow { color: #8cddda; }
+.hero-orbit { position: absolute; z-index: 0; right: 60px; top: -64px; width: 340px; height: 340px; border: 1px solid rgba(150, 223, 219, .22); border-radius: 50%; }
+.hero-orbit::before { content: ""; position: absolute; inset: 48px; border: 1px solid rgba(150, 223, 219, .24); border-radius: 50%; }
+.hero-orbit::after { content: "+"; position: absolute; inset: 106px; display: grid; place-items: center; border-radius: 28px; color: #a5e9e3; background: #1d5265; font-size: 74px; font-weight: 300; line-height: 1; }
+.catalog-layout { display: grid; grid-template-columns: 224px minmax(0, 1fr); gap: 32px; align-items: start; }
+.filters { padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.filters h3 { margin-bottom: 24px; font-size: 16px; }
+.filters h4 { margin: 24px 0 12px; font-size: 12px; letter-spacing: .7px; text-transform: uppercase; }
+.filter-option { display: flex; align-items: center; gap: 10px; min-height: 44px; color: #465568; font-size: 13px; }
+.filter-option input { width: 16px; height: 16px; margin: 0; accent-color: var(--teal-dark); }
+.filter-option .count { margin-left: auto; color: var(--muted); font-size: 11px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.chip { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 22px; color: #4a5b70; background: #fff; font-size: 12px; font-weight: 550; white-space: nowrap; }
+.chip:hover { border-color: #82c7c6; }
+.chip.is-active { border-color: #b6dddd; color: var(--teal-dark); background: #e7f5f3; }
+.toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin: 0 0 24px; }
+.toolbar > p { margin: 0; color: var(--muted); font-size: 13px; }
+.toolbar strong { color: var(--navy); }
+.toolbar select { min-height: 44px; padding: 10px 32px 10px 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: #fff; font-size: 13px; }
+.search-field { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 16px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--muted); }
+.search-field:focus-within { border-color: var(--teal); outline: 3px solid #d7efed; }
+.search-field svg { width: 20px; height: 20px; }
+.search-field input { flex: 1; min-width: 0; width: 100%; min-height: 46px; padding: 8px 0; border: 0; outline: none; color: var(--ink); background: transparent; font-size: 13px; }
+.search-field input::placeholder { color: #64748b; opacity: 1; }
+.product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.product-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; transition: box-shadow .18s ease, border-color .18s ease; }
+.product-card:hover { border-color: #a9cdcf; box-shadow: var(--shadow); }
+.product-card > .product-art { min-height: 208px; }
+.product-art { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; min-height: 160px; background: #edf2f5; }
+.product-art.mint { background: #eaf3ef; }
+.product-art.blue { background: #edf2f9; }
+.product-art.sand { background: #f6f1e9; }
+.product-art.lilac { background: #f1eff7; }
+.product-art > .badge { position: absolute; z-index: 2; left: 16px; top: 16px; }
+.pack { position: relative; width: 132px; min-height: 100px; padding: 18px 12px 14px; overflow: hidden; border: 1px solid #d5dfe4; border-radius: 3px; color: var(--navy); background: #fff; box-shadow: 7px 10px 0 rgba(20, 45, 78, .05); transform: rotate(-6deg); }
+.pack::before { content: "+"; position: absolute; top: 8px; right: 10px; color: var(--pack-color, var(--teal-dark)); font-size: 18px; }
+.pack strong { display: block; max-width: 96px; margin-bottom: 5px; font-size: 15px; letter-spacing: -.5px; line-height: 1.15; }
+.pack small { display: block; max-width: 100px; color: #526274; font-size: 7px; line-height: 1.4; }
+.pack-band { height: 20px; margin: 12px -12px -14px; padding: 3px 12px; color: #fff; background: var(--pack-color, var(--teal-dark)); font-size: 7px; font-weight: 650; letter-spacing: 1px; }
+.product-content, .product-card > .product-meta { padding: 20px; }
+.product-meta { display: flex; flex-direction: column; gap: 10px; }
+.product-meta .eyebrow { margin: 0; font-size: 9px; letter-spacing: 1px; }
+.product-meta h3 { min-height: 44px; margin: 0; font-size: 16px; line-height: 1.4; }
+.product-meta h3 a { color: var(--navy); }
+.product-meta p { margin: 0; font-size: 12px; }
+.product-meta .btn { margin-top: 4px; width: 100%; }
+.price { color: var(--navy); font-size: 22px; line-height: 1.2; font-weight: 700; letter-spacing: -.6px; font-variant-numeric: tabular-nums; }
+.price small { margin-left: 3px; color: var(--muted); font-size: 11px; font-weight: 500; letter-spacing: 0; }
+.product-subprice { color: var(--muted); font-size: 11px; }
+.stock { display: inline-flex; align-items: center; gap: 6px; color: var(--success); font-size: 11px; font-weight: 600; }
+.stock::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.stock.low { color: var(--warning); }
+.stock.out { color: var(--danger); }
+.product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.product-detail > .product-art { min-height: 460px; border-radius: 16px; }
+.product-detail > .product-art .pack { transform: rotate(-6deg) scale(1.8); }
+.product-detail .price { margin: 16px 0 8px; font-size: 36px; }
+.product-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.product-facts div { border-top: 1px solid var(--line); padding-top: 16px; }
+.product-facts dt { color: var(--muted); font-size: 12px; }
+.product-facts dd { margin: 4px 0 0; color: var(--navy); font-size: 14px; font-weight: 600; }
+
+/* Composants, états et formulaires */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 11px 18px; border: 1px solid transparent; border-radius: 8px; color: var(--navy); background: #fff; font-size: 13px; font-weight: 650; line-height: 1.4; text-align: center; text-decoration: none !important; transition: background .16s ease, border-color .16s ease, box-shadow .16s ease; }
+.btn.primary, .btn-primary { color: #fff; background: var(--teal-dark); border-color: var(--teal-dark); }
+.btn.primary:hover, .btn-primary:hover { background: #095f61; border-color: #095f61; }
+.btn.secondary, .btn-secondary { border-color: var(--line); color: var(--navy); background: #fff; }
+.btn.secondary:hover, .btn-secondary:hover { border-color: #a7b9cb; background: #f4f7fa; }
+.btn.ghost, .btn-ghost { color: var(--teal-dark); background: transparent; }
+.btn.ghost:hover, .btn-ghost:hover { background: #e9f5f3; }
+.btn.danger, .btn-danger { border-color: #f0c6cd; color: var(--danger); background: #fff2f4; }
+.btn.danger:hover { background: #fce5e9; }
+.btn.small, .btn-small { min-height: 44px; padding: 8px 12px; font-size: 12px; }
+.btn.icon, .btn-icon { min-width: 44px; width: 44px; padding: 10px; }
+.btn:disabled, .btn[aria-disabled="true"], .btn.is-disabled { color: #59697a; border-color: #dce3e9; background: #e8edf2; opacity: 1; pointer-events: none; }
+.btn.is-loading::before { content: ""; width: 16px; height: 16px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; }
+.badge { display: inline-flex; align-items: center; gap: 5px; align-self: flex-start; max-width: 100%; padding: 4px 9px; border: 1px solid transparent; border-radius: 5px; color: #45566c; background: #edf1f6; font-size: 10px; font-weight: 650; line-height: 1.5; white-space: nowrap; }
+.badge.success { color: var(--success); border-color: #d6eadf; background: #eaf5ee; }
+.badge.warning { color: var(--warning); border-color: #efdcb4; background: #fff4dd; }
+.badge.danger { color: var(--danger); border-color: #f0d1d7; background: #fcedef; }
+.badge.neutral { color: #4e6076; border-color: #dce4ec; background: #eef2f7; }
+.badge.teal { color: var(--teal-dark); border-color: #cae4e2; background: #e7f4f2; }
+.field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.field > label, .field > .label { color: var(--navy); font-size: 13px; font-weight: 600; }
+.field label span { font-weight: 400; color: var(--muted); }
+.field input:not([type="checkbox"]):not([type="radio"]), .field select, .field textarea { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid #cdd8e3; border-radius: 8px; outline-offset: 2px; color: var(--ink); background: #fff; font-size: 14px; }
+.field input::placeholder, .field textarea::placeholder { color: #6b7889; opacity: 1; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--teal); }
+.field textarea { min-height: 128px; resize: vertical; }
+.field > small, .field .help { color: var(--muted); font-size: 11px; }
+.field.is-error input, .field.is-error select, .field.is-error textarea, .field input[aria-invalid="true"] { border-color: var(--danger); background: #fffafb; }
+.field.is-error > small, .field .error { color: var(--danger); }
+.field.is-success input { border-color: var(--success); }
+.input-wrap { position: relative; display: flex; align-items: center; }
+.input-wrap input { padding-right: 50px !important; }
+.input-wrap .btn { position: absolute; right: 2px; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.form-grid .span-2, .form-grid > .full-width { grid-column: 1 / -1; }
+.form-actions { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px; padding-top: 24px; margin-top: 24px; border-top: 1px solid var(--line); }
+.checkbox-line { display: flex; align-items: flex-start; gap: 10px; color: #526174; font-size: 13px; }
+.checkbox-line input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--teal-dark); }
+.panel { min-width: 0; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.panel-title { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.panel-title h2, .panel-title h3, h2.panel-title, h3.panel-title { margin-bottom: 0; }
+.panel-title + p { color: var(--muted); }
+.tabs { display: flex; gap: 24px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+.tabs button, .tabs a { min-height: 48px; padding: 12px 0; border: 0; border-bottom: 2px solid transparent; color: var(--muted); background: transparent; font-size: 13px; font-weight: 600; }
+.tabs .is-active { color: var(--teal-dark); border-bottom-color: var(--teal-dark); }
+.upload-area { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 184px; gap: 12px; padding: 24px; border: 1px dashed #acbdca; border-radius: 10px; color: var(--muted); background: #f8fafb; text-align: center; font-size: 12px; }
+.upload-area svg { color: var(--teal-dark); width: 32px; height: 32px; }
+
+/* Espaces fournisseur et administrateur */
+.backoffice { display: grid; grid-template-columns: 240px minmax(0, 1fr); min-height: 100vh; }
+.sidebar { position: sticky; top: 0; display: flex; flex-direction: column; gap: 8px; align-self: start; height: 100vh; padding: 32px 20px 24px; border-right: 1px solid var(--line); background: #fff; }
+.sidebar .logo { padding-inline: 8px; margin-bottom: 32px; }
+.sidebar .eyebrow { padding-inline: 12px; margin-bottom: 8px; color: var(--muted); font-size: 9px; }
+.sidebar-link { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 12px; border-radius: 8px; color: #586a80; font-size: 13px; font-weight: 550; text-decoration: none !important; }
+.sidebar-link svg { width: 20px; height: 20px; }
+.sidebar-link .badge { margin-left: auto; }
+.sidebar-link:hover { color: var(--teal-dark); background: #f0f7f7; }
+.sidebar-link.is-active { color: var(--teal-dark); background: #e8f4f2; font-weight: 650; }
+.sidebar-footer { display: flex; flex-direction: column; gap: 16px; margin-top: auto; padding-top: 24px; border-top: 1px solid var(--line); }
+.sidebar-footer .user-pill { padding-left: 0; border-left: 0; }
+.backoffice-main { min-width: 0; padding: 32px 40px 48px; }
+.backoffice-topbar { display: flex; justify-content: space-between; align-items: center; min-height: 40px; gap: 16px; margin-bottom: 32px; color: var(--muted); font-size: 12px; }
+.backoffice-main .page-heading { margin-top: 0; }
+.backoffice-main h1 { font-size: 30px; }
+.stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin-bottom: 32px; }
+.stat-card { min-width: 0; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.stat-card > .row { justify-content: space-between; gap: 8px; margin-bottom: 16px; }
+.stat-card .stat-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 9px; color: var(--teal-dark); background: #eaf5f3; }
+.stat-card p, .stat-card label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; }
+.stat-card strong { display: block; margin: 8px 0; color: var(--navy); font-size: 32px; line-height: 1.15; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.stat-card small { color: var(--muted); font-size: 11px; }
+.stat-card small.positive { color: var(--success); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+.panel .table-wrap { border: 0; border-radius: 0; margin-inline: -4px; }
+.data-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
+.data-table th { padding: 14px 16px; border-bottom: 1px solid var(--line); color: #5b6d82; background: #f7f9fb; font-size: 10px; font-weight: 650; letter-spacing: .5px; text-transform: uppercase; white-space: nowrap; }
+.data-table td { padding: 16px; border-bottom: 1px solid #e9eef3; color: #425369; vertical-align: middle; }
+.data-table tbody tr:last-child td { border-bottom: 0; }
+.data-table tbody tr:hover { background: #f9fbfc; }
+.data-table td strong { display: block; color: var(--navy); font-size: 12px; font-weight: 650; }
+.data-table td small { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; }
+.data-table .product-art { width: 48px; min-height: 48px; height: 48px; border-radius: 6px; }
+.data-table .pack { width: 28px; min-height: 26px; padding: 4px; box-shadow: 2px 2px 0 rgba(20, 45, 78, .06); }
+.data-table .pack strong { font-size: 4px; }
+.data-table .pack small, .data-table .pack::before { display: none; }
+.data-table .pack-band { height: 5px; padding: 0; margin: 5px -4px -4px; font-size: 0; }
+.table-actions { display: flex; align-items: center; justify-content: flex-end; gap: 4px; }
+.table-actions .btn { min-width: 44px; }
+.table-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding: 20px 0 0; color: var(--muted); font-size: 12px; }
+.pagination { display: flex; gap: 4px; }
+.pagination .btn { min-width: 40px; min-height: 44px; padding: 8px; }
+.pagination .is-active { color: var(--teal-dark); border-color: #c4e3e1; background: #e8f5f3; }
+.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 320px; padding: 48px 24px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; text-align: center; }
+.empty-state > svg { width: 48px; height: 48px; margin-bottom: 24px; padding: 10px; border-radius: 12px; color: var(--teal-dark); background: #e9f5f3; }
+.empty-state p { max-width: 380px; margin-bottom: 24px; color: var(--muted); font-size: 14px; }
+
+/* Panier, commande et suivi */
+.cart-layout { display: grid; grid-template-columns: minmax(0, 1fr) 352px; align-items: start; gap: 32px; }
+.cart-line { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto auto; gap: 24px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.cart-line:first-child { padding-top: 0; }
+.cart-line:last-child { padding-bottom: 0; border-bottom: 0; }
+.cart-line .product-art { min-height: 96px; border-radius: 8px; }
+.cart-line .pack { transform: rotate(-5deg) scale(.55); flex-shrink: 0; }
+.cart-line h3 { margin-bottom: 4px; font-size: 14px; }
+.cart-line p { margin-bottom: 4px; color: var(--muted); font-size: 11px; }
+.cart-line .price { font-size: 18px; white-space: nowrap; }
+.quantity { display: inline-flex; align-items: center; width: fit-content; min-height: 44px; border: 1px solid #cdd8e3; border-radius: 8px; overflow: hidden; background: #fff; }
+.quantity button { display: grid; place-items: center; width: 44px; min-height: 44px; padding: 0; border: 0; color: var(--navy); background: #fff; font-size: 18px; }
+.quantity button:hover { background: #edf5f4; }
+.quantity button:disabled { color: #8a97a5; background: #f5f7fa; }
+.quantity input { width: 44px; height: 44px; padding: 0; border: 0; border-right: 1px solid var(--line); border-left: 1px solid var(--line); border-radius: 0; color: var(--navy); background: #fff; text-align: center; font-size: 13px; font-weight: 600; appearance: textfield; }
+.quantity input::-webkit-inner-spin-button { appearance: none; }
+.quantity.is-error { border-color: var(--danger); }
+.summary { position: sticky; top: 24px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.summary h2 { margin-bottom: 24px; font-size: 20px; }
+.summary-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin: 14px 0; color: #536478; font-size: 13px; }
+.summary-row strong { color: var(--navy); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.summary-row.total { padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--line); color: var(--navy); font-size: 15px; font-weight: 650; }
+.summary-row.total strong { font-size: 25px; letter-spacing: -.5px; }
+.summary .btn { width: 100%; margin-top: 16px; }
+.summary > small { display: block; margin-top: 16px; color: var(--muted); font-size: 10px; text-align: center; }
+.steps { display: flex; align-items: center; justify-content: center; gap: 24px; margin: 32px 0 40px; }
+.step { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; white-space: nowrap; }
+.step::after { content: ""; width: 56px; height: 1px; margin-left: 16px; background: #cdd8e3; }
+.step:last-child::after { display: none; }
+.step > span:first-child { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid #cbd6e1; border-radius: 50%; color: #5e7188; background: #fff; font-size: 11px; font-weight: 650; }
+.step.is-active { color: var(--teal-dark); font-weight: 650; }
+.step.is-active > span:first-child, .step.is-complete > span:first-child { border-color: var(--teal-dark); color: #fff; background: var(--teal-dark); }
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.timeline-item { position: relative; padding: 0 0 24px 32px; border-left: 1px solid #d6e1e7; }
+.timeline-item:last-child { padding-bottom: 0; border-left-color: transparent; }
+.timeline-item::before { content: ""; position: absolute; top: 3px; left: -5px; width: 9px; height: 9px; border-radius: 50%; background: #b8c8d6; box-shadow: 0 0 0 4px #fff; }
+.timeline-item.is-complete::before, .timeline-item.is-active::before { background: var(--teal-dark); }
+.timeline-item.is-active::before { box-shadow: 0 0 0 4px #e0f1ee; }
+.timeline-item strong { display: block; color: var(--navy); font-size: 13px; }
+.timeline-item p, .timeline-item time { display: block; margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+.simulation-banner { display: flex; align-items: flex-start; gap: 10px; padding: 14px 18px; border: 1px solid #e8d8b8; border-radius: 8px; color: #795319; background: #fff8e9; font-size: 12px; }
+.simulation-banner svg { width: 18px; height: 18px; margin-top: 1px; }
+.simulation-banner p { margin: 0; }
+.notice { display: flex; gap: 12px; padding: 16px; border: 1px solid #cfe3e8; border-radius: 8px; color: #275568; background: #f0f8fa; font-size: 12px; }
+.notice svg { width: 20px; height: 20px; }
+.notice p { margin: 0; }
+.notice.success { border-color: #cfe5d7; color: var(--success); background: #edf7f1; }
+.notice.warning { border-color: #ecd8b4; color: var(--warning); background: #fff6e6; }
+.notice.danger, .notice.error { border-color: #edcdd3; color: var(--danger); background: #fff0f3; }
+.toast { position: fixed; z-index: 40; right: 32px; bottom: 32px; display: flex; align-items: flex-start; gap: 12px; width: min(400px, calc(100% - 32px)); padding: 20px; border: 1px solid #b9d9c6; border-radius: 10px; color: var(--success); background: #fff; box-shadow: 0 12px 32px rgba(20, 45, 78, .13); font-size: 13px; }
+.toast > svg { width: 20px; height: 20px; }
+.toast p { margin: 0; }
+.toast .btn { margin: -10px -10px -10px auto; }
+.modal-backdrop { position: fixed; z-index: 50; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(11, 30, 52, .5); }
+.modal { width: min(480px, 100%); max-height: calc(100vh - 48px); overflow: auto; padding: 32px; border: 1px solid #dce4ec; border-radius: 16px; background: #fff; box-shadow: 0 24px 64px rgba(5, 28, 47, .16); }
+.modal h2 { margin: 0 0 12px; font-size: 24px; }
+.modal p { color: var(--muted); font-size: 14px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+.confirmation-icon { display: grid; place-items: center; width: 64px; height: 64px; margin: 0 auto 24px; border-radius: 50%; color: var(--success); background: #e5f4eb; }
+.confirmation-icon svg { width: 30px; height: 30px; }
+.confirmation-icon.danger { color: var(--danger); background: #fce9ed; }
+
+/* Connexion et changement de mot de passe */
+.login-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; background: #fff; }
+.login-brand { position: relative; display: flex; flex-direction: column; overflow: hidden; padding: 56px 64px; color: #d2e2ec; background: var(--navy); }
+.login-brand .logo { align-self: flex-start; color: #fff; }
+.login-brand .logo strong, .login-brand .logo small { color: #fff; }
+.login-brand .logo-mark { border: 1px solid #5d8296; color: #a2e0db; background: #1e425b; }
+.login-brand > .login-copy { position: relative; z-index: 2; margin-top: auto; margin-bottom: auto; padding: 80px 0; }
+.login-brand h1 { max-width: 500px; margin-bottom: 24px; color: #fff; font-size: 46px; line-height: 1.12; letter-spacing: -1.9px; }
+.login-brand h1 span { color: #8fdbd5; }
+.login-brand p { max-width: 420px; color: #c2d4e0; font-size: 15px; }
+.login-brand .hero-orbit { top: auto; right: -160px; bottom: -130px; width: 460px; height: 460px; }
+.login-quote { position: relative; z-index: 2; padding-top: 24px; border-top: 1px solid #35516a; font-size: 12px; }
+.login-quote p { margin-bottom: 8px; font-size: 13px; }
+.login-quote small { color: #a7c0cf; font-size: 11px; }
+.login-card { align-self: center; width: min(400px, calc(100% - 64px)); padding: 56px 0; margin-inline: auto; }
+.login-card h1 { margin: 16px 0 12px; font-size: 32px; }
+.login-card > p { margin-bottom: 32px; color: var(--muted); font-size: 14px; }
+.login-card .field { margin-bottom: 20px; }
+.login-card .btn.primary { width: 100%; margin-top: 8px; }
+.login-card .form-actions { padding: 0; border: 0; }
+.login-card .simulation-banner { margin-top: 24px; }
+.demo-roles { padding-top: 24px; margin-top: 32px; border-top: 1px solid var(--line); }
+.demo-roles > p { margin-bottom: 12px; color: var(--muted); font-size: 11px; }
+.demo-roles .row { gap: 8px; }
+.demo-roles .btn { flex: 1; padding-inline: 8px; font-size: 10px; }
+.password-rules { display: flex; flex-direction: column; gap: 8px; padding: 0; list-style: none; color: var(--muted); font-size: 12px; }
+.password-rules li { display: flex; align-items: center; gap: 8px; }
+.password-rules .is-valid { color: var(--success); }
+
+/* Page de présentation et bibliothèque de composants */
+.cover { position: relative; overflow: hidden; padding: 64px; margin: 32px 0; border-radius: 20px; color: #cbdbe7; background: var(--navy); }
+.cover .logo { margin-bottom: 64px; }
+.cover .logo strong, .cover .logo small { color: #fff; }
+.cover .logo-mark { border: 1px solid #5a8293; background: #21516a; color: #9be1db; }
+.cover .eyebrow { color: #8bdbd4; }
+.cover h1 { max-width: 840px; color: #fff; font-size: 60px; line-height: 1.06; letter-spacing: -2.8px; }
+.cover p { max-width: 650px; color: #c0d3df; font-size: 17px; }
+.cover .row { gap: 48px; margin-top: 48px; }
+.cover-stat strong { display: block; color: #fff; font-size: 28px; letter-spacing: -1px; }
+.cover-stat span { font-size: 11px; color: #afc8d7; }
+.screen-directory { margin: 40px 0 64px; }
+.screen-directory > p { color: var(--muted); }
+.directory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.directory-card { display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: #fff; text-decoration: none !important; }
+.directory-card:hover { border-color: #9cc7cb; }
+.directory-card .eyebrow { font-size: 10px; }
+.directory-card h3 { margin-bottom: 12px; }
+.directory-card p { flex: 1; color: var(--muted); font-size: 13px; }
+.directory-card > .row:last-child { justify-content: space-between; color: var(--teal-dark); font-size: 12px; font-weight: 650; }
+.component-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.component-grid > .panel { display: flex; flex-direction: column; gap: 20px; }
+.component-grid .panel-title { margin-bottom: 0; }
+.color-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.swatch { min-height: 120px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+.swatch-color { min-height: 80px; background: var(--swatch, var(--navy)); }
+.swatch p { margin: 12px 12px 2px; color: var(--navy); font-size: 12px; font-weight: 600; }
+.swatch code { display: block; margin: 0 12px 12px; color: var(--muted); font-size: 10px; }
+.skeleton { min-height: 16px; border-radius: 6px; background: #e7edf2; animation: pulse 1.5s ease-in-out infinite alternate; }
+.skeleton.card { min-height: 240px; }
+.skeleton.short { width: 60%; }
+.mobile-nav, .mobile-only { display: none; }
+.footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 24px 0; margin-top: 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+.footer a { color: var(--muted); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { from { opacity: .55; } to { opacity: 1; } }
+
+@media (min-width: 1600px) {
+  .backoffice-main { max-width: 1536px; width: 100%; margin-inline: auto; padding-inline: 48px; }
+}
+
+@media (max-width: 1199px) {
+  .shell { width: calc(100% - 64px); }
+  .shop-header > .shell { gap: 24px; }
+  .nav-links { gap: 20px; }
+  .catalog-layout { grid-template-columns: 208px minmax(0, 1fr); gap: 24px; }
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-orbit { right: -80px; opacity: .65; }
+  .user-pill { padding-left: 12px; }
+  .user-pill > div:not(.avatar) { display: none; }
+  .backoffice-main { padding: 32px 24px; }
+  .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cart-layout { grid-template-columns: minmax(0, 1fr) 304px; gap: 24px; }
+  .cart-line { grid-template-columns: 72px minmax(0, 1fr) auto; gap: 16px; }
+  .cart-line > .price { grid-column: 2; }
+  .cart-line .product-art { min-height: 80px; }
+  .login-brand { padding: 40px; }
+  .login-brand h1 { font-size: 40px; }
+  .product-detail { gap: 32px; }
+}
+
+@media (max-width: 899px) {
+  .shop-header > .shell { gap: 16px; }
+  .nav-links { gap: 16px; }
+  .logo small { display: none; }
+  .header-actions { gap: 8px; }
+  .backoffice { grid-template-columns: 208px minmax(0, 1fr); }
+  .sidebar { padding: 24px 12px; }
+  .sidebar .logo { padding-inline: 10px; }
+  .backoffice-main h1 { font-size: 28px; }
+  .page-heading { flex-wrap: wrap; }
+  .page-heading .btn { align-self: flex-start; }
+  .directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cart-layout { grid-template-columns: minmax(0, 1fr); }
+  .summary { position: static; }
+  .product-detail { grid-template-columns: 1fr; }
+  .product-detail > .product-art { min-height: 360px; }
+  .login-brand { padding: 32px; }
+  .login-brand h1 { font-size: 34px; }
+  .login-card { width: calc(100% - 48px); }
+  .cover { padding: 48px; }
+  .cover h1 { font-size: 48px; }
+  .color-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 699px) {
+  body { font-size: 16px; padding-bottom: 76px; }
+  h1 { font-size: 28px; letter-spacing: -.9px; }
+  h2 { font-size: 22px; }
+  .shell { width: calc(100% - 32px); }
+  .shop-header, .shop-header > .shell { min-height: 72px; }
+  .shop-header > .shell { justify-content: space-between; gap: 12px; }
+  .logo { gap: 9px; }
+  .logo-mark { width: 36px; height: 36px; border-radius: 9px; font-size: 12px; }
+  .logo strong { font-size: 24px; }
+  .shop-header .nav-links, .shop-header .user-pill, .shop-header .desktop-only { display: none; }
+  .header-actions { margin-left: auto; }
+  .header-actions .btn { font-size: 12px; }
+  .header-actions .btn span.label { display: none; }
+  .breadcrumb { gap: 6px; margin: 20px 0; font-size: 11px; }
+  .page-heading { gap: 16px; margin: 24px 0; }
+  .page-heading h1 { margin-bottom: 8px; }
+  .page-heading p { font-size: 13px; }
+  .page-heading > .btn { width: 100%; }
+  .eyebrow { font-size: 10px; }
+  .hero { min-height: 232px; padding: 28px 24px; margin: 20px 0 24px; border-radius: 12px; }
+  .hero h1, .hero h2 { max-width: 270px; font-size: 28px; line-height: 1.15; letter-spacing: -.8px; }
+  .hero p { max-width: 270px; font-size: 12px; line-height: 1.65; }
+  .hero-orbit { top: -20px; right: -200px; opacity: .45; }
+  .catalog-layout { display: block; }
+  .filters { display: none; }
+  .filters.is-open { position: fixed; z-index: 45; inset: 0 0 0 auto; display: block; width: min(340px, 100%); padding: 24px; overflow-y: auto; border: 0; border-radius: 0; box-shadow: -40px 0 0 100vw rgba(11, 30, 52, .4); }
+  .filter-option { min-height: 44px; font-size: 14px; }
+  .filter-option input { width: 20px; height: 20px; }
+  .mobile-only { display: flex; }
+  .desktop-only { display: none !important; }
+  .toolbar { gap: 12px; margin-bottom: 16px; }
+  .toolbar .search-field { width: 100%; flex: 1 1 100%; }
+  .toolbar > p { font-size: 12px; }
+  .toolbar select { max-width: 175px; font-size: 12px; }
+  .search-field input, .field input:not([type="checkbox"]):not([type="radio"]), .field select, .field textarea { font-size: 16px; }
+  .chips { gap: 8px; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; }
+  .chip { min-height: 44px; padding-inline: 14px; font-size: 11px; }
+  .product-grid { gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .product-card { border-radius: 10px; }
+  .product-card > .product-art { min-height: 152px; }
+  .product-art > .badge { left: 8px; top: 8px; font-size: 8px; padding: 3px 6px; }
+  .product-card .pack { transform: rotate(-6deg) scale(.82); }
+  .product-content, .product-card > .product-meta { padding: 12px; }
+  .product-meta { gap: 8px; }
+  .product-meta .eyebrow { font-size: 8px; }
+  .product-meta h3 { min-height: 40px; font-size: 13px; line-height: 1.45; }
+  .product-meta p { font-size: 10px; }
+  .product-meta .btn { gap: 4px; min-height: 44px; padding: 10px 6px; font-size: 10px; }
+  .product-meta .btn svg { width: 15px; height: 15px; }
+  .price { font-size: 20px; }
+  .price small { font-size: 9px; }
+  .product-subprice, .stock { font-size: 9px; }
+  .product-detail { gap: 24px; }
+  .product-detail > .product-art { min-height: 300px; }
+  .product-detail > .product-art .pack { transform: rotate(-6deg) scale(1.55); }
+  .product-detail h1 { font-size: 28px; }
+  .product-detail .price { font-size: 30px; }
+  .product-facts { gap: 16px; }
+  .product-detail .row.purchase { flex-wrap: wrap; }
+  .product-detail .row.purchase .btn { flex: 1; }
+  .panel { padding: 20px; border-radius: 10px; }
+  .panel-title { margin-bottom: 20px; }
+  .panel-title h2, .panel-title h3 { font-size: 18px; }
+  .grid-2, .grid-3, .component-grid, .directory-grid, .form-grid { grid-template-columns: 1fr; gap: 20px; }
+  .form-grid .span-2 { grid-column: auto; }
+  .form-actions { gap: 8px; }
+  .form-actions .btn { flex: 1; }
+  .tabs { gap: 20px; overflow-x: auto; }
+  .tabs button, .tabs a { flex-shrink: 0; }
+  .backoffice { display: block; }
+  .sidebar { display: none; }
+  .backoffice-main { padding: 20px 16px 32px; }
+  .backoffice-topbar { margin-bottom: 24px; }
+  .backoffice-main h1 { font-size: 27px; }
+  .backoffice-main .page-heading { margin-bottom: 24px; }
+  .stat-grid { gap: 12px; margin-bottom: 24px; }
+  .stat-card { padding: 16px; border-radius: 10px; }
+  .stat-card p { font-size: 10px; min-height: 30px; }
+  .stat-card strong { font-size: 26px; }
+  .stat-card small { font-size: 9px; }
+  .stat-card .stat-icon { width: 28px; height: 28px; }
+  .stat-card .stat-icon svg { width: 16px; height: 16px; }
+  .table-wrap { overflow: visible; border: 0; background: transparent; }
+  .data-table, .data-table tbody, .data-table tr, .data-table td { display: block; width: 100%; }
+  .data-table thead { display: none; }
+  .data-table tr { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .data-table tr:first-child { padding-top: 0; }
+  .data-table tr:last-child { border-bottom: 0; padding-bottom: 0; }
+  .data-table td { min-height: 32px; padding: 6px 0; border: 0; text-align: left; font-size: 13px; }
+  .data-table td[data-label] { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .data-table td[data-label]::before { content: attr(data-label); flex: 0 0 104px; color: var(--muted); font-size: 11px; }
+  .data-table td strong { font-size: 13px; }
+  .data-table td small { font-size: 11px; }
+  .data-table .table-actions { justify-content: flex-start; margin-top: 4px; }
+  .data-table .table-actions .btn { min-height: 44px; }
+  .table-footer { font-size: 11px; }
+  .cart-layout { gap: 24px; }
+  .cart-line { grid-template-columns: 72px minmax(0, 1fr); gap: 12px 16px; padding: 20px 0; }
+  .cart-line .product-art { min-height: 80px; }
+  .cart-line h3 { font-size: 13px; }
+  .cart-line .quantity { grid-column: 2; }
+  .cart-line > .price { grid-column: 2; margin-top: -4px; font-size: 18px; }
+  .cart-line .remove { grid-column: 1; grid-row: 2; }
+  .cart-line .quantity input, .cart-line .quantity button { width: 40px; }
+  .summary { padding: 24px; }
+  .summary h2 { font-size: 20px; }
+  .steps { justify-content: space-between; gap: 8px; margin: 24px 0; }
+  .step { flex-direction: column; gap: 6px; font-size: 9px; }
+  .step::after { display: none; }
+  .step > span:first-child { width: 28px; height: 28px; }
+  .timeline-item { padding-left: 24px; }
+  .simulation-banner, .notice { padding: 12px; font-size: 11px; }
+  .toast { bottom: 88px; right: 16px; padding: 16px; font-size: 12px; }
+  .modal-backdrop { align-items: flex-end; padding: 16px; }
+  .modal { padding: 24px; max-height: calc(100vh - 32px); border-radius: 16px; }
+  .modal-actions { flex-wrap: wrap; }
+  .modal-actions .btn { flex: 1; }
+  .login-layout { display: block; min-height: calc(100vh - 76px); }
+  .login-brand { padding: 28px 24px; min-height: 224px; }
+  .login-brand > .login-copy { padding: 24px 0 0; margin: 0; }
+  .login-brand h1 { max-width: 300px; margin-bottom: 12px; font-size: 29px; letter-spacing: -1px; }
+  .login-brand p { max-width: 320px; margin-bottom: 0; font-size: 12px; }
+  .login-brand .login-quote { display: none; }
+  .login-brand .hero-orbit { width: 320px; height: 320px; right: -220px; bottom: -120px; }
+  .login-card { width: calc(100% - 48px); padding: 32px 0 40px; }
+  .login-card h1 { font-size: 27px; }
+  .login-card > p { font-size: 13px; margin-bottom: 24px; }
+  .demo-roles .btn { font-size: 9px; }
+  .cover { padding: 32px 24px; margin: 20px 0 32px; border-radius: 12px; }
+  .cover .logo { margin-bottom: 40px; }
+  .cover h1 { font-size: 38px; letter-spacing: -1.7px; }
+  .cover p { font-size: 14px; }
+  .cover .row { flex-wrap: wrap; gap: 24px; margin-top: 32px; }
+  .cover-stat strong { font-size: 23px; }
+  .cover-stat span { font-size: 10px; }
+  .screen-directory { margin: 32px 0; }
+  .directory-card { padding: 24px; }
+  .color-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .mobile-nav { position: fixed; z-index: 30; bottom: 0; left: 0; right: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; min-height: 72px; padding: 8px 8px max(8px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: #fff; }
+  .mobile-nav a, .mobile-nav button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 48px; padding: 4px; border: 0; border-radius: 8px; color: #64748b; background: transparent; text-decoration: none; font-size: 9px; font-weight: 600; }
+  .mobile-nav svg { width: 20px; height: 20px; }
+  .mobile-nav .is-active { color: var(--teal-dark); background: #edf7f5; }
+  .footer { gap: 12px; padding: 24px 0; margin-top: 32px; font-size: 10px; }
+}
+
+@media (max-width: 359px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .product-card > .product-art { min-height: 208px; }
+  .product-content, .product-card > .product-meta { padding: 20px; }
+  .product-meta h3 { min-height: 0; font-size: 16px; }
+  .product-meta p { font-size: 12px; }
+  .product-meta .btn { font-size: 13px; }
+  .product-meta .eyebrow { font-size: 10px; }
+  .product-subprice, .stock { font-size: 11px; }
+  .stat-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+@media print {
+  @page { size: A4; margin: 12mm; }
+  body { padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .shop-header, .sidebar, .mobile-nav, .toast, .modal-backdrop, .footer, .no-print { display: none !important; }
+  .shell { width: 100%; }
+  .backoffice { display: block; }
+  .backoffice-main { padding: 0; }
+  .summary { position: static; }
+  .panel, .product-card, .stat-card, .cart-line, .timeline-item { break-inside: avoid; }
+  a { color: inherit; }
+}
+
+/* Composition des écrans : contrat avec les composants du prototype. */
+.shop-header { display: flex; align-items: center; justify-content: space-between; gap: 40px; padding-inline: max(32px, calc((100% - 1312px) / 2)); }
+.shop-header > .row:last-child { margin-left: auto; gap: 20px; }
+.shop-header .nav-links { margin-left: 16px; }
+.shop-header .btn.icon { position: relative; }
+.shop-header .cart-count { position: absolute; right: -6px; top: -6px; border: 2px solid #fff; }
+.logo > span:last-child { color: var(--navy); font-size: 28px; font-weight: 750; line-height: 1; letter-spacing: -1px; }
+.logo-subtitle { display: block; margin-top: 5px; color: var(--muted); font-size: 8px; font-weight: 500; line-height: 1.1; letter-spacing: 1.2px; }
+.user-pill > span:not(.avatar) { color: var(--navy); font-size: 12px; font-weight: 600; }
+.user-pill:hover { text-decoration: none; }
+.footer { padding-inline: max(32px, calc((100% - 1312px) / 2)); }
+.backoffice-main .footer { padding-inline: 0; }
+.center { justify-content: center; text-align: center; }
+.center-column { width: min(624px, 100%); margin: 0 auto; }
+.center-column > .simulation-banner { margin-bottom: 24px; }
+.field { margin-bottom: 20px; }
+.form-grid > .field { margin-bottom: 0; }
+.field > span:first-child { color: var(--navy); font-size: 13px; font-weight: 600; }
+.field input[readonly] { color: #526174; background: #f3f6f9 !important; }
+.form-error { margin: 8px 0 16px; color: var(--danger); font-size: 12px; }
+.form-error:empty { display: none; }
+.checkbox-label { display: flex; align-items: flex-start; gap: 12px; min-height: 44px; margin-top: 24px; color: #536478; font-size: 12px; }
+.checkbox-label input { width: 18px; height: 18px; flex-shrink: 0; margin: 1px 0 0; accent-color: var(--teal-dark); }
+select:not(.field select):not(.toolbar select) { min-height: 44px; padding: 10px 32px 10px 12px; border: 1px solid #cdd8e3; border-radius: 8px; color: var(--ink); background: #fff; font-size: 13px; }
+.btn.is-hover { color: #fff; background: #095f61; border-color: #095f61; }
+.btn.is-focus { outline: 3px solid var(--teal); outline-offset: 4px; }
+.badge svg { width: 13px; height: 13px; }
+.toast.danger { color: var(--danger); border-color: #ecc8cf; }
+.catalog-results { min-width: 0; }
+.catalog-results .toolbar { gap: 16px; flex-wrap: nowrap; }
+.catalog-results .toolbar h2 { margin: 0 0 4px; font-size: 22px; }
+.catalog-results .toolbar p { margin: 0; font-size: 11px; }
+.catalog-results .toolbar .search-field { min-width: 220px; flex: 1; max-width: 360px; }
+.sort-label { flex-shrink: 0; }
+.filters h2 { margin: 0; font-size: 13px; }
+.filters > .row { margin-bottom: 24px; color: var(--muted); }
+.filters .field { margin-bottom: 20px; }
+.filters .field select { min-height: 44px; padding: 10px 8px; font-size: 11px; }
+.filters .field > span { font-size: 11px; }
+.filter-help { padding-top: 24px; margin-top: 24px; border-top: 1px solid var(--line); }
+.filter-help > svg { color: var(--teal-dark); margin-bottom: 16px; }
+.filter-help h3 { font-size: 12px; }
+.filter-help p { margin-bottom: 0; color: var(--muted); font-size: 11px; }
+.catalog-note { margin: 24px 0 0; font-size: 10px; }
+.hero-proof { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 24px; color: #c5dce2; font-size: 10px; }
+.hero-proof svg { color: #8bdbd4; }
+.hero-proof > span { margin-inline: 4px; opacity: .6; }
+.hero .hero-orbit { right: 24px; top: -56px; width: 340px; height: 340px; }
+.hero .hero-orbit::before, .hero .hero-orbit::after { display: none; }
+.orbit-ring { position: absolute; inset: 40px; border: 1px solid #376175; border-radius: 50%; }
+.orbit-plus { position: absolute; display: grid; place-items: center; top: 94px; right: 43px; width: 80px; height: 80px; border-radius: 20px; color: #b4eeea; background: #1f5b6c; font-size: 64px; font-weight: 300; line-height: 1; transform: rotate(8deg); }
+.hero-pill { position: absolute; left: 48px; top: 124px; width: 120px; height: 48px; border: 1px solid #a7dcd4; border-radius: 32px; overflow: hidden; background: #ebf7f0; transform: rotate(-35deg); }
+.hero-pill span { display: block; width: 50%; height: 100%; background: #76bdb6; }
+.hero-dot { position: absolute; bottom: 44px; left: 56px; width: 12px; height: 12px; border-radius: 50%; background: #8bdbd4; }
+.hero-orbit-label { position: absolute; right: 98px; bottom: 44px; color: #d4e8ea; font-size: 20px; font-weight: 600; line-height: 1; text-align: center; letter-spacing: 1px; }
+.hero-orbit-label small { font-size: 7px; letter-spacing: 2px; }
+.product-card-art { position: relative; display: block; color: inherit; text-decoration: none !important; }
+.product-card-art > .product-art { min-height: 208px; }
+.product-card-body { display: flex; flex-direction: column; gap: 8px; padding: 20px; }
+.product-card-body > .product-meta { display: block; padding: 0; margin: 0; color: var(--teal-dark); font-size: 9px; font-weight: 650; letter-spacing: .5px; }
+.product-card-body > a { color: var(--navy); }
+.product-card-body h3 { min-height: 43px; margin: 0; font-size: 15px; line-height: 1.4; }
+.product-format { margin: 0 0 8px; font-size: 11px; }
+.product-card-body > .row { gap: 8px; align-items: flex-end; margin-bottom: 8px; }
+.product-card-body > .btn { width: 100%; font-size: 12px; }
+.product-card-body .price { font-size: 22px; white-space: nowrap; }
+.price-ttc { margin: 5px 0 0; font-size: 10px; }
+.stock-label { display: inline-flex; align-items: center; gap: 5px; padding-bottom: 3px; color: var(--success); font-size: 9px; white-space: nowrap; }
+.stock-label i { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.stock-label.muted { color: var(--muted); }
+.art-badge { position: absolute; left: 16px; top: 16px; }
+.product-art { isolation: isolate; background: var(--pack-accent, #eaf2f4); }
+.art-circle { position: absolute; z-index: -1; width: 164px; height: 164px; border: 1px solid rgba(79, 111, 123, .08); border-radius: 50%; background: rgba(255, 255, 255, .25); }
+.pack { width: 140px; min-height: 134px; padding: 14px 12px 12px; border-color: #d9e2e7; border-radius: 3px; transform: rotate(-7deg); box-shadow: 8px 9px 0 rgba(20, 45, 78, .055); }
+.pack::before { display: none; }
+.pack > span { display: block; }
+.pack-lab { color: #4e5f74; font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.pack .pack-band { position: absolute; inset: 35px 0 auto; display: block; height: 19px; margin: 0; padding: 0; background: var(--pack-color, var(--teal-dark)); }
+.pack-cross { position: absolute; right: 10px; top: 7px; color: var(--pack-color, var(--teal-dark)); font-size: 22px; font-weight: 600; }
+.pack-name { margin-top: 35px; color: var(--navy); font-size: 12px; font-weight: 700; line-height: 1.15; letter-spacing: -.3px; }
+.pack-format { margin-top: 6px; color: #6b7889; font-size: 6px; }
+.pack-foot { padding-top: 8px; margin-top: 8px; border-top: 1px solid #e4e9ee; color: #778595; font-size: 5px; font-weight: 650; letter-spacing: .6px; }
+.product-detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 56px; margin: 32px 0; }
+.product-detail-grid .product-art.large { min-height: 480px; border-radius: 16px; }
+.product-art.large .pack { transform: rotate(-7deg) scale(1.9); }
+.product-art.large .art-circle { width: 360px; height: 360px; }
+.product-detail-content { min-width: 0; }
+.product-detail-content h1 { font-size: 36px; }
+.product-detail-content > p.muted { font-size: 12px; }
+.product-detail-content > .row .muted { font-size: 11px; }
+.product-description { margin: 24px 0; color: #536478; font-size: 14px; line-height: 1.75; }
+.detail-price { display: flex; flex-direction: column; gap: 8px; padding-top: 24px; border-top: 1px solid var(--line); }
+.detail-price > strong { color: var(--navy); font-size: 36px; letter-spacing: -1px; line-height: 1.2; }
+.detail-price small { color: var(--muted); font-size: 12px; font-weight: 500; letter-spacing: 0; }
+.detail-price > span { color: var(--muted); font-size: 12px; }
+.stock-line { display: flex; align-items: center; gap: 8px; margin-top: 24px; color: var(--success); font-size: 12px; }
+.quantity output { display: grid; place-items: center; width: 44px; height: 44px; border-inline: 1px solid var(--line); color: var(--navy); font-size: 13px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.product-detail-content > .row.section-gap + p { margin-top: 12px; }
+.cart-line { grid-template-columns: 80px minmax(0, 1fr) auto auto 44px; gap: 16px; }
+.cart-thumb .product-art { width: 80px; height: 88px; min-height: 88px; border-radius: 8px; }
+.cart-thumb .pack { transform: rotate(-7deg) scale(.5); flex-shrink: 0; }
+.cart-thumb .art-circle { width: 70px; height: 70px; }
+.cart-line p.product-meta { display: block; padding: 0; margin-bottom: 6px; color: var(--teal-dark); font-size: 9px; }
+.cart-line > div > strong { color: var(--navy); font-size: 11px; }
+.summary-note { display: flex; align-items: flex-start; gap: 8px; padding-top: 16px; margin: 20px 0 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; }
+.summary-note svg { width: 14px; height: 14px; }
+.steps { padding: 0; list-style: none; }
+.step > span:first-child { flex-shrink: 0; }
+.timeline { padding: 0; list-style: none; }
+.timeline-item::before { display: none; }
+.timeline-dot { position: absolute; top: 0; left: -12px; display: grid; place-items: center; width: 24px; height: 24px; border: 4px solid #fff; border-radius: 50%; color: #fff; background: var(--teal-dark); }
+.timeline-dot svg { width: 12px; height: 12px; }
+.delivery-steps { display: flex; align-items: center; gap: 8px; padding: 24px 0; }
+.delivery-steps > span { display: flex; flex: 1; flex-direction: column; align-items: center; gap: 8px; padding: 12px 4px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); background: #f6f8fb; font-size: 10px; text-align: center; }
+.delivery-steps > span.is-active { border-color: #cbe3df; color: var(--teal-dark); background: #eaf5f2; }
+.payment-panel { padding: 40px; text-align: center; }
+.payment-panel h2 { margin-bottom: 8px; font-size: 40px; }
+.payment-icon { display: grid; place-items: center; width: 72px; height: 72px; margin: 0 auto 24px; border-radius: 18px; color: var(--teal-dark); background: #e9f5f3; }
+.payment-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.confirmation { max-width: 800px; padding: 48px; margin: 32px auto; text-align: center; }
+.confirmation-symbol { display: grid; place-items: center; width: 80px; height: 80px; margin: 0 auto 24px; border-radius: 50%; color: var(--success); background: #e8f5ed; }
+.confirmation-symbol.danger { color: var(--danger); background: #fcedf0; }
+.confirmation h1 { font-size: 32px; }
+.confirmation-reference { display: grid; grid-template-columns: 1fr auto; gap: 12px 24px; max-width: 400px; padding: 24px; margin: 32px auto; border: 1px solid var(--line); border-radius: 10px; background: #f7f9fb; font-size: 13px; text-align: left; }
+.confirmation-reference span { color: var(--muted); }
+.confirmation-reference strong { color: var(--navy); text-align: right; }
+.account-panel { max-width: 880px; margin: 0 auto; }
+.login-brand .logo > span:last-child, .login-brand .logo-subtitle { color: #fff; }
+.login-brand-content { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; flex: 1; padding-top: 56px; }
+.login-brand .eyebrow { color: #8bdbd4; font-size: 9px; }
+.login-brand-content h1 { max-width: 500px; font-size: 46px; }
+.login-brand-content > p:not(.eyebrow) { max-width: 440px; color: #bfd4df; font-size: 14px; }
+.login-visual { position: relative; min-height: 232px; margin-top: 24px; }
+.login-circle { position: absolute; top: -24px; right: -52px; width: 280px; height: 280px; border: 1px solid #345b70; border-radius: 50%; }
+.login-cross { position: absolute; right: 72px; top: 12px; width: 112px; height: 112px; border-radius: 24px; color: #ace6df; background: #1e5266; font-size: 100px; font-weight: 250; line-height: 1.08; text-align: center; transform: rotate(10deg); }
+.login-mini-card { position: absolute; top: 88px; left: 8px; display: flex; align-items: center; gap: 16px; padding: 24px; border: 1px solid #456a7b; border-radius: 12px; background: #204457; color: #e0ecef; box-shadow: 0 10px 24px rgba(0, 0, 0, .1); }
+.login-mini-card svg { color: #86d5c9; }
+.login-mini-card strong { font-size: 12px; font-weight: 500; }
+.login-brand-foot { position: relative; margin: 24px 0 0; color: #9db9c9 !important; font-size: 10px !important; }
+.login-card { width: min(408px, calc(100% - 64px)); padding-block: 32px; }
+.login-card h2 { margin: 20px 0 12px; font-size: 32px; letter-spacing: -1px; line-height: 1.2; }
+.login-card > div > p.muted { margin-bottom: 28px; font-size: 13px; }
+.login-card form > p.muted { font-size: 11px; }
+.login-back { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; margin-bottom: 24px; color: var(--muted); font-size: 11px; }
+.login-back svg { transform: rotate(180deg); }
+.password-input { position: relative; display: flex; align-items: center; }
+.password-input input { padding-right: 48px !important; }
+.password-input .btn { position: absolute; right: 2px; top: 2px; }
+.login-copyright { margin: 24px 0 0; font-size: 10px; }
+.sidebar-lab { padding: 16px 12px 24px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.sidebar-lab > small { display: block; margin-bottom: 6px; color: var(--muted); font-size: 8px; font-weight: 650; letter-spacing: 1px; }
+.sidebar-lab > strong { display: block; margin-bottom: 12px; color: var(--navy); font-size: 15px; }
+.sidebar-lab .badge { font-size: 8px; }
+.sidebar-bottom { margin-top: auto; padding-top: 24px; }
+.sidebar-bottom .notice { padding: 12px; font-size: 10px; margin-bottom: 12px; }
+.sidebar-bottom .sidebar-link { font-size: 11px; }
+.backoffice-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.backoffice-top > .muted { display: flex; align-items: center; gap: 8px; font-size: 10px; }
+.backoffice-top .user-pill { border: 0; font-size: 12px; }
+.backoffice-main main > .simulation-banner { margin-bottom: 24px; }
+.stat-icon { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 20px; border-radius: 10px; color: var(--teal-dark); background: #e8f4f2; }
+.stat-card .stat-icon { margin: 0; }
+.table-product { display: flex; align-items: center; gap: 12px; }
+.mini-pack { width: 26px; height: 34px; flex-shrink: 0; border: 1px solid #d9e2e7; border-top: 8px solid var(--pack-color, var(--teal)); border-radius: 3px; background: #fff; }
+.table-product > div:last-child { min-width: 0; }
+.review-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; gap: 32px; }
+.review-grid .product-art.large { min-height: 320px; border-radius: 12px; }
+.review-grid .product-art.large .pack { transform: rotate(-7deg) scale(1.4); }
+.lab-card { display: flex; flex-direction: column; align-items: flex-start; }
+.lab-card h2 { font-size: 20px; }
+.lab-card > p { font-size: 11px; }
+.lab-symbol { display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: 24px; border: 1px solid var(--line); border-radius: 14px; background: #f6f9fa; }
+.lab-card h3 { font-size: 13px; }
+.lab-user { margin-bottom: 20px; width: 100%; }
+.lab-user strong { display: block; color: var(--navy); font-size: 11px; }
+.lab-user small { display: block; color: var(--muted); font-size: 9px; overflow-wrap: anywhere; }
+.lab-card > .btn { margin-top: auto; }
+.cover-stats { display: flex; flex-wrap: wrap; gap: 48px; padding-top: 32px; margin-top: 40px; border-top: 1px solid #355169; }
+.directory-link { display: flex; align-items: center; gap: 16px; min-height: 92px; padding: 20px; border: 1px solid var(--line); border-radius: 10px; color: var(--navy); background: #fff; text-decoration: none !important; }
+.directory-link:hover { border-color: #9cc7cb; background: #fafdfd; }
+.directory-link > span { color: #93a8b5; font-size: 12px; font-weight: 650; }
+.directory-link > div { flex: 1; min-width: 0; }
+.directory-link small { display: block; margin-bottom: 4px; color: var(--teal-dark); font-size: 9px; }
+.directory-link strong { display: block; font-size: 13px; font-weight: 600; }
+.directory-link > svg { color: var(--teal-dark); }
+.swatch > div:first-child { min-height: 88px; }
+.swatch > strong, .swatch > small { display: block; margin: 12px 12px 0; color: var(--navy); font-size: 11px; }
+.swatch > small { margin-top: 4px; margin-bottom: 12px; color: var(--muted); font-size: 10px; }
+.type-specimen { padding-top: 32px; margin-top: 32px; border-top: 1px solid var(--line); }
+.type-specimen h1 { font-size: 40px; }
+.type-specimen > p { font-size: 16px; }
+.type-specimen > small { color: var(--muted); font-size: 11px; }
+.component-grid .steps { justify-content: space-between; gap: 12px; }
+.component-grid .step { font-size: 9px; flex-direction: column; }
+.component-grid .step::after { display: none; }
+
+@media (max-width: 1199px) {
+  .shop-header { padding-inline: 32px; gap: 24px; }
+  .shop-header > .row:last-child { gap: 12px; }
+  .shop-header .user-pill > span:not(.avatar) { display: none; }
+  .catalog-results .toolbar { flex-wrap: wrap; }
+  .catalog-results .toolbar > div:first-child { flex: 1; }
+  .catalog-results .toolbar .search-field { flex: 1 1 100%; max-width: none; order: 3; }
+  .cart-line { grid-template-columns: 72px minmax(0, 1fr) 44px; gap: 12px; }
+  .cart-line > .quantity { grid-column: 2; }
+  .cart-line > .text-right { grid-column: 2; text-align: left; }
+  .cart-line > button { grid-column: 3; grid-row: 1; }
+  .product-detail-grid { gap: 32px; }
+  .login-brand-content h1 { font-size: 38px; }
+  .login-mini-card { padding: 20px; left: 0; }
+  .login-cross { right: 8px; }
+}
+
+@media (max-width: 899px) {
+  .shop-header { gap: 16px; }
+  .shop-header .nav-links { gap: 20px; margin-left: 0; }
+  .product-detail-grid { grid-template-columns: 1fr; }
+  .product-detail-grid .product-art.large { min-height: 360px; }
+  .review-grid { grid-template-columns: 1fr; }
+  .backoffice-top { margin-bottom: 32px; }
+  .backoffice-top > .muted { max-width: 160px; }
+  .backoffice-top .user-pill { padding-left: 0; }
+  .login-brand-content h1 { font-size: 34px; }
+  .login-mini-card { padding: 16px; gap: 12px; }
+  .login-mini-card strong { font-size: 10px; }
+}
+
+@media (max-width: 699px) {
+  .shop-header { padding-inline: 16px; gap: 12px; }
+  .shop-header .nav-links, .shop-header .user-pill { display: none; }
+  .shop-header > .row:last-child { gap: 8px; }
+  .logo > span:last-child { font-size: 25px; }
+  .logo-subtitle { font-size: 6px; letter-spacing: .7px; }
+  .footer { padding-inline: 16px; }
+  .catalog-results .toolbar { gap: 12px; }
+  .catalog-results .toolbar h2 { font-size: 20px; }
+  .catalog-results .toolbar p { font-size: 10px; }
+  .catalog-results .toolbar .search-field { min-width: 0; order: 3; }
+  .hero .hero-orbit { right: -224px; top: 0; opacity: .4; }
+  .hero-proof { max-width: 270px; margin-top: 16px; font-size: 8px; gap: 6px; }
+  .hero-proof svg { width: 14px; height: 14px; }
+  .hero-proof > span { display: none; }
+  .product-card-art > .product-art { min-height: 160px; }
+  .product-card-body { padding: 12px; gap: 8px; }
+  .product-card-body > .product-meta { font-size: 8px; letter-spacing: 0; }
+  .product-card-body h3 { min-height: 40px; font-size: 13px; }
+  .product-card-body .product-format { font-size: 9px; margin-bottom: 4px; }
+  .product-card-body .price { font-size: 19px; }
+  .product-card-body > .row { flex-wrap: wrap; gap: 8px; }
+  .product-card-body > .btn { min-height: 44px; font-size: 10px; padding-inline: 6px; }
+  .product-card-body > .btn svg { width: 14px; height: 14px; }
+  .price-ttc { font-size: 9px; }
+  .stock-label { font-size: 9px; }
+  .art-badge { left: 8px; top: 8px; font-size: 8px; }
+  .product-detail-grid { margin: 24px 0; gap: 24px; }
+  .product-detail-grid .product-art.large { min-height: 320px; }
+  .product-art.large .pack { transform: rotate(-7deg) scale(1.5); }
+  .product-art.large .art-circle { width: 260px; height: 260px; }
+  .product-detail-content h1 { font-size: 28px; }
+  .product-description { font-size: 13px; }
+  .detail-price > strong { font-size: 30px; }
+  .product-detail-content > .row.section-gap { flex-wrap: wrap; }
+  .product-detail-content > .row.section-gap .btn { flex: 1; }
+  .cart-line { grid-template-columns: 64px minmax(0, 1fr) 44px; gap: 12px; }
+  .cart-thumb .product-art { width: 64px; min-height: 80px; height: 80px; }
+  .cart-thumb .pack { transform: rotate(-7deg) scale(.42); }
+  .cart-line > .quantity { grid-column: 2; }
+  .cart-line > .text-right { grid-column: 2; text-align: left; }
+  .cart-line > button { grid-column: 3; grid-row: 1; }
+  .cart-line > div > strong { font-size: 11px; }
+  .cart-line p.product-meta { font-size: 8px; }
+  .summary-note { font-size: 10px; }
+  .summary-row strong { white-space: normal; text-align: right; }
+  .payment-panel { padding: 28px 20px; }
+  .payment-panel h2 { font-size: 34px; }
+  .payment-choices { grid-template-columns: 1fr; gap: 12px; }
+  .payment-panel > p.muted { font-size: 12px; }
+  .confirmation { padding: 32px 20px; margin: 24px auto; }
+  .confirmation-symbol { width: 64px; height: 64px; }
+  .confirmation h1 { font-size: 26px; }
+  .confirmation > p.muted { font-size: 12px; }
+  .confirmation-reference { padding: 16px; gap: 12px; font-size: 11px; }
+  .confirmation > .row { flex-direction: column; }
+  .confirmation > .row .btn { width: 100%; }
+  .login-layout { min-height: 100vh; }
+  .login-brand { min-height: 248px; padding: 24px; }
+  .login-brand-content { padding-top: 24px; }
+  .login-brand-content h1 { max-width: 300px; font-size: 29px; }
+  .login-brand-content > p:not(.eyebrow) { max-width: 300px; font-size: 12px; }
+  .login-brand .eyebrow { font-size: 7px; }
+  .login-visual, .login-brand-foot { display: none; }
+  .login-card { width: calc(100% - 48px); padding: 24px 0 32px; }
+  .login-card h2 { font-size: 27px; }
+  .login-back { margin-bottom: 16px; }
+  .login-card > div > p.muted { font-size: 12px; }
+  .login-copyright { font-size: 10px; }
+  .backoffice-top { align-items: flex-start; gap: 12px; margin-bottom: 24px; padding-bottom: 20px; }
+  .backoffice-top > .muted { max-width: 180px; font-size: 9px; }
+  .backoffice-top .user-pill { font-size: 10px; }
+  .backoffice-top .avatar { width: 32px; height: 32px; font-size: 10px; }
+  .review-grid { gap: 24px; }
+  .table-product { gap: 10px; }
+  .table-product strong { font-size: 12px; }
+  .table-product small { font-size: 10px; }
+  .delivery-steps { gap: 6px; }
+  .delivery-steps > span { padding: 12px 6px; font-size: 9px; }
+  .cover-stats { gap: 24px; margin-top: 32px; padding-top: 24px; }
+  .directory-link { min-height: 80px; padding: 16px; }
+  .directory-link strong { font-size: 12px; }
+  .type-specimen h1 { font-size: 28px; }
+  .type-specimen > p { font-size: 14px; }
+  .swatch > div:first-child { min-height: 72px; }
+}
+
+@media (max-width: 359px) {
+  .product-card-body { padding: 20px; }
+  .product-card-body h3 { min-height: 0; font-size: 16px; }
+  .product-card-body > .product-meta { font-size: 10px; }
+  .product-card-body .product-format { font-size: 11px; }
+  .product-card-body > .btn { font-size: 12px; }
+  .product-card-body .price { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+  <a class="sr-only skip-link" href="#main">Aller au contenu</a>
+  <div id="app"></div>
+  <div id="overlays"></div>
+  <div id="feedback" aria-live="polite"></div>
+  <script>/* Maquette de démonstration : données fictives conservées uniquement dans ce navigateur. */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR'}).format(n);
+const shortDate=s=>new Date(s).toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'});
+const uid=p=>p+'-'+Date.now().toString(36);
+const icon=(name,size=20)=>{const paths={search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/>',cart:'<path d="M3 4h2l2.5 11h11l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',chevron:'<path d="m9 5 7 7-7 7"/>',check:'<path d="m5 12 4 4L19 6"/>',close:'<path d="m6 6 12 12M18 6 6 18"/>',plus:'<path d="M12 5v14M5 12h14"/>',minus:'<path d="M5 12h14"/>',box:'<path d="m3 7 9-4 9 4v11l-9 4-9-4zM3 7l9 4 9-4M12 11v11M7.5 5l9 4"/>',orders:'<path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 7h6M9 11h6M9 15h3"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',lab:'<path d="M9 3h6M10 3v6L4 19q-1 2 2 2h12q3 0 2-2L14 9V3M7 15h10"/>',truck:'<path d="M3 5h12v12H3zM15 9h4l3 4v4h-7"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/>',shield:'<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',logout:'<path d="M9 4H4v16h5M10 12h11m-4-4 4 4-4 4"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',filter:'<path d="M4 6h16M7 12h10M10 18h4"/>',edit:'<path d="m16 3 5 5-12 12-6 1 1-6zM14 5l5 5"/>',trash:'<path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/>',alert:'<path d="m12 3 10 18H2zM12 9v5M12 17h.01"/>',tag:'<path d="M3 3h8l10 10-8 8L3 11z"/><circle cx="7" cy="7" r="1"/>',menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',lock:'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',download:'<path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/>',bell:'<path d="M6 9a6 6 0 0 1 12 0c0 8 3 8 3 8H3s3 0 3-8M10 21h4"/>'};return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.box}</svg>`;};
+const initial={role:'professionnel',currentUserId:null,labId:'l1',categories:[{id:'c1',name:'Soins & hygiène',active:true},{id:'c2',name:'Dispositifs médicaux',active:true},{id:'c3',name:'Produits pharmaceutiques',active:true}],labs:[{id:'l1',name:'Laboratoire Aster',email:'contact@aster.exemple.test',active:true,color:'#159A9C'},{id:'l2',name:'Laboratoire Nova',email:'contact@nova.exemple.test',active:true,color:'#7889BE'},{id:'l3',name:'Laboratoire Solis',email:'contact@solis.exemple.test',active:true,color:'#CB9975'}],products:[
+{id:'p1',name:'Solution de soin Aster',description:'Solution de soin en conditionnement professionnel. Présentation et données entièrement fictives pour la démonstration GSB.',category:'c1',lab:'l1',price:12.50,tva:20,stock:84,status:'Accepté',active:true,format:'Flacon · 250 ml',color:'#159A9C',code:'AST-001'},
+{id:'p2',name:'Coffret de soins Nova',description:'Un ensemble de produits de soin présenté dans un coffret pour les établissements de santé. Produit fictif.',category:'c1',lab:'l2',price:24.80,tva:20,stock:32,status:'Accepté',active:true,format:'Coffret · 12 unités',color:'#7889BE',code:'NOV-012'},
+{id:'p3',name:'Dispositif Solis',description:'Dispositif médical fictif en conditionnement individuel, destiné à illustrer le catalogue professionnel.',category:'c2',lab:'l3',price:18.90,tva:20,stock:58,status:'Accepté',active:true,format:'Boîte · 20 unités',color:'#CB9975',code:'SOL-020'},
+{id:'p4',name:'Gamme essentielle Aster',description:'Présentation pharmaceutique fictive du laboratoire Aster. Aucune indication thérapeutique réelle.',category:'c3',lab:'l1',price:8.40,tva:20,stock:120,status:'Accepté',active:true,format:'Boîte · 30 unités',color:'#159A9C',code:'AST-030'},
+{id:'p5',name:'Solution professionnelle Nova',description:'Présentation de solution destinée au catalogue de démonstration des laboratoires partenaires.',category:'c1',lab:'l2',price:16.20,tva:20,stock:0,status:'Accepté',active:true,format:'Flacon · 500 ml',color:'#7889BE',code:'NOV-500'},
+{id:'p6',name:'Kit de soin Solis',description:'Kit fictif pour illustrer le panier, les stocks et les commandes de la plateforme.',category:'c2',lab:'l3',price:32.00,tva:20,stock:17,status:'Accepté',active:true,format:'Kit · 8 éléments',color:'#CB9975',code:'SOL-008'},
+{id:'p7',name:'Nouvelle solution Aster',description:'Nouveau produit transmis pour examen par l’administrateur. Publication après acceptation.',category:'c1',lab:'l1',price:14.90,tva:20,stock:40,status:'En attente',active:true,format:'Flacon · 100 ml',color:'#159A9C',code:'AST-100'},
+{id:'p8',name:'Coffret découverte Aster',description:'Produit fictif refusé lors de sa première soumission.',category:'c3',lab:'l1',price:29.00,tva:20,stock:4,status:'Refusé',active:true,format:'Coffret · 6 unités',color:'#159A9C',code:'AST-006'}],
+users:[{id:'u1',name:'Lina Martin',email:'lina.martin@exemple.test',role:'Professionnel',lab:null,active:true,mustChange:true},{id:'u2',name:'Camille Bernard',email:'camille@aster.exemple.test',role:'Fournisseur',lab:'l1',active:true,mustChange:true},{id:'u3',name:'Alex Moreau',email:'admin@gsb.exemple.test',role:'Administrateur',lab:null,active:true,mustChange:false},{id:'u4',name:'Sam Laurent',email:'sam@nova.exemple.test',role:'Fournisseur',lab:'l2',active:true,mustChange:true},{id:'u5',name:'Lou Robert',email:'lou@solis.exemple.test',role:'Fournisseur',lab:'l3',active:true,mustChange:true}],
+cart:[{product:'p1',qty:2},{product:'p3',qty:1}],profile:{name:'Lina Martin',first:'Lina',last:'Martin',email:'lina.martin@exemple.test',phone:'01 00 00 00 00',profession:'Pharmacienne',number:'DEMO-000001',address:'12 avenue des Sciences',city:'Paris',postal:'75013'},
+orders:[{id:'o1',stockDebited:false,reference:'GSB-2026-00142',date:'2026-10-23T10:30:00',status:'Validée',address:'12 avenue des Sciences, 75013 Paris — adresse fictive',lines:[{product:'p1',name:'Solution de soin Aster',qty:3,price:11.50,tva:20},{product:'p3',name:'Dispositif Solis',qty:1,price:18.90,tva:20}],payment:{status:'Réussi',reference:'SIM-2026-00142',date:'2026-10-23T10:31:00'},delivery:{status:'Expédiée',tracking:'FICTIF-GSB-00142',shipped:'2026-10-24T09:00:00',delivered:null},history:[{status:'En attente',date:'2026-10-23T10:30:00'},{status:'Validée',date:'2026-10-23T10:35:00'}]},{id:'o2',stockDebited:false,reference:'GSB-2026-00128',date:'2026-10-19T14:00:00',status:'En attente',address:'12 avenue des Sciences, 75013 Paris — adresse fictive',lines:[{product:'p2',name:'Coffret de soins Nova',qty:1,price:24.80,tva:20}],payment:{status:'Échoué',reference:'SIM-2026-00128',date:'2026-10-19T14:01:00'},delivery:null,history:[{status:'En attente',date:'2026-10-19T14:00:00'}]}],movements:[{id:'m1',product:'p1',variation:24,motif:'Réapprovisionnement fictif',date:'2026-10-25T09:30:00'},{id:'m2',product:'p1',variation:-3,motif:'Commande de démonstration',date:'2026-10-23T10:30:00'}]};
+let state;try{state=JSON.parse(localStorage.getItem('gsb-figma-demo-v1'))||structuredClone(initial);}catch{state=structuredClone(initial);} const persist=()=>localStorage.setItem('gsb-figma-demo-v1',JSON.stringify(state));
+const ui={search:'',cat:'',lab:'',sort:'default',qty:1,loginRole:'professionnel',tableSearch:'',status:'',orderId:'o1',filtersOpen:false};
+const sessionUser=()=>state.users.find(u=>u.id===state.currentUserId);
+const roleHome=role=>role==='admin'?'admin':role==='fournisseur'?'fournisseur':'catalogue';
+const roleLabel=role=>({professionnel:'Professionnel',fournisseur:'Fournisseur',admin:'Administrateur'}[role]);
+const labName=id=>state.labs.find(l=>l.id===id)?.name||'Laboratoire partenaire';
+const catName=id=>state.categories.find(c=>c.id===id)?.name||'Catégorie';
+const product=id=>state.products.find(p=>p.id===id);
+const order=id=>state.orders.find(o=>o.id===id)||state.orders[0];
+const available=p=>p.active&&p.status==='Accepté';
+const cartCount=()=>state.cart.reduce((n,l)=>n+l.qty,0);
+const totals=lines=>{const ht=lines.reduce((n,l)=>n+l.price*l.qty,0),tva=lines.reduce((n,l)=>n+l.price*l.qty*l.tva/100,0);return {ht,tva,ttc:ht+tva};};
+const cartLines=()=>state.cart.map(l=>({...l,...product(l.product)})).map(l=>({...l,product:l.id}));
+const badge=(s)=>`<span class="badge ${['Accepté','Validée','Réussi','Livrée','Actif'].includes(s)?'success':['Refusé','Annulée','Échoué','Inactif'].includes(s)?'danger':['En attente','En préparation'].includes(s)?'warning':'neutral'}">${icon(s==='En attente'?'clock':s==='Accepté'||s==='Validée'||s==='Réussi'?'check':s==='Refusé'||s==='Échoué'?'close':'box',14)}${esc(s)}</span>`;
+const btn=(label,action,kind='primary',extra='')=>`<button class="btn ${kind}" data-action="${action}" ${extra}>${label}</button>`;
+const link=(label,path,kind='secondary')=>`<a class="btn ${kind}" href="#${path}">${label}</a>`;
+const logo=()=>`<a class="logo" href="#catalogue" aria-label="GSB, catalogue"><span class="logo-mark"><svg width="23" height="23" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 2h6v7h7v6h-7v7H9v-7H2V9h7z"/></svg></span><span>GSB<span class="logo-subtitle">ESPACE PROFESSIONNEL</span></span></a>`;
+const heading=(title,sub='',action='')=>`<div class="page-heading"><div><p class="eyebrow">${state.role==='fournisseur'?labName(state.labId):state.role==='admin'?'ADMINISTRATION GSB':'VOTRE ESPACE PROFESSIONNEL'}</p><h1>${title}</h1>${sub?`<p class="muted">${sub}</p>`:''}</div>${action}</div>`;
+const simulation=(text='Les paiements, livraisons et stocks de cette maquette sont fictifs.')=>`<div class="simulation-banner">${icon('lab',16)}<span><strong>Environnement de démonstration</strong> · ${text}</span></div>`;
+function shopHeader(route){return `<header class="shop-header">${logo()}<nav class="nav-links" aria-label="Navigation principale"><a class="${route==='catalogue'?'is-active':''}" href="#catalogue">Catalogue</a><a class="${route.startsWith('command')?'is-active':''}" href="#commandes">Mes commandes</a></nav><div class="row"><a class="btn icon secondary" href="#panier" aria-label="Panier, ${cartCount()} articles">${icon('cart')}<span class="cart-count">${cartCount()}</span></a><a class="user-pill" href="#compte"><span class="avatar">LM</span><span>Dr Lina Martin<small>Professionnelle de santé</small></span></a></div></header>`;}
+const shopNav=()=>`<nav class="mobile-nav" aria-label="Navigation mobile"><a href="#catalogue">${icon('grid')}Catalogue</a><a href="#panier">${icon('cart')}Panier</a><a href="#commandes">${icon('orders')}Commandes</a><a href="#compte">${icon('user')}Compte</a></nav>`;
+const footer=()=>`<footer class="footer"><span>© 2026 GSB · Projet BTS SIO SLAM — IPSSI Paris</span><a href="#presentation">Présentation de la maquette</a><a href="#connexion">Changer d’espace de démo</a></footer>`;
+const navItem=(label,path,i,route)=>`<a class="sidebar-link ${route===path?'is-active':''}" href="#${path}">${icon(i)}${label}</a>`;
+function sidebar(route,admin){return `<aside class="sidebar">${logo()}<div class="sidebar-lab"><small>${admin?'VOTRE ESPACE':'LABORATOIRE PARTENAIRE'}</small><strong>${admin?'Administration':labName(state.labId)}</strong><span class="badge ${admin?'neutral':'success'}">${admin?'Gestion de la plateforme':'Compte fournisseur'}</span></div><nav aria-label="Navigation ${admin?'administration':'fournisseur'}">${admin?navItem('Vue d’ensemble','admin','grid',route)+navItem('Validation des produits','admin/validation','shield',route)+navItem('Comptes utilisateurs','admin/comptes','user',route)+navItem('Laboratoires','admin/laboratoires','lab',route)+navItem('Catégories','admin/categories','tag',route)+navItem('Commandes & livraisons','admin/commandes','orders',route):navItem('Vue d’ensemble','fournisseur','grid',route)+navItem('Mes produits','fournisseur/produits','box',route)+navItem('Ajouter un produit','fournisseur/ajouter','plus',route)+navItem('Stock fictif','fournisseur/stock','orders',route)}</nav><div class="sidebar-bottom"><div class="notice">${icon('shield',18)}<span>${admin?'Supervision et validation des partenaires.':'Vous gérez uniquement les produits de votre laboratoire.'}</span></div><a class="sidebar-link" href="#connexion">${icon('logout')}Changer d’espace</a><a class="sidebar-link" href="#presentation">${icon('grid')}Plan de la maquette</a></div></aside>`;}
+function wrap(route,content){if(route==='connexion'||route==='mot-de-passe')return content;if(route==='presentation'||route==='composants')return `<div class="app-shell">${shopHeader(route)}<main id="main" class="shell">${content}</main>${footer()}</div>`;if(route.startsWith('admin')||route.startsWith('fournisseur'))return `<div class="backoffice">${sidebar(route,route.startsWith('admin'))}<div class="backoffice-main"><header class="backoffice-top"><span class="muted">${icon('shield',16)} Accès sécurisé · espace de démonstration</span><span class="user-pill"><span class="avatar">${route.startsWith('admin')?'AM':'CB'}</span>${esc(route.startsWith('admin')?'Alex Moreau':sessionUser()?.name||'Camille Bernard')}</span></header><main id="main">${content}</main>${footer()}</div></div>`;return `<div class="app-shell">${shopHeader(route)}<main id="main" class="shell">${content}</main>${footer()}${shopNav()}</div>`;}
+function pack(p,large=false){return `<div class="product-art ${large?'large':''}" style="--pack-color:${p.color};--pack-accent:${p.color}18" aria-label="Conditionnement fictif ${esc(p.name)}" role="img"><span class="art-circle"></span><div class="pack"><span class="pack-lab">${esc(labName(p.lab).replace('Laboratoire ',''))}</span><span class="pack-band"></span><span class="pack-cross">+</span><span class="pack-name">${esc(p.name)}</span><span class="pack-format">${esc(p.format)}</span><span class="pack-foot">PRODUIT FICTIF · GSB</span></div></div>`;}
+function productCard(p){return `<article class="product-card"><a href="#produit/${p.id}" class="product-card-art" aria-label="Voir ${esc(p.name)}">${pack(p)}${p.stock===0?'<span class="badge neutral art-badge">Rupture de stock</span>':''}</a><div class="product-card-body"><p class="product-meta">${esc(labName(p.lab))}</p><a href="#produit/${p.id}"><h3>${esc(p.name)}</h3></a><p class="muted product-format">${esc(p.format)}</p><div class="row between"><div><strong class="price">${money(p.price)} <small>HT</small></strong><p class="muted price-ttc">${money(p.price*(1+p.tva/100))} TTC</p></div><span class="stock-label ${p.stock?'':'muted'}">${p.stock?'<i></i> En stock':'Indisponible'}</span></div>${btn(icon('plus',18)+' Ajouter au panier','add-cart','secondary full-width',`data-id="${p.id}" ${p.stock?'':'disabled'}`)}</div></article>`;}
+function filteredProducts(){let ps=state.products.filter(available).filter(p=>(!ui.cat||p.category===ui.cat)&&(!ui.lab||p.lab===ui.lab)&&(!ui.search||(p.name+' '+labName(p.lab)).toLowerCase().includes(ui.search.toLowerCase())));if(ui.sort==='price')ps.sort((a,b)=>a.price-b.price);if(ui.sort==='name')ps.sort((a,b)=>a.name.localeCompare(b.name));return ps;}
+function catalogGrid(){let ps=filteredProducts();return ps.length?ps.map(productCard).join(''):empty('Aucun produit ne correspond à votre recherche.','Essayez un autre nom ou effacez vos filtres.',btn('Réinitialiser les filtres','reset-filters','secondary'));}
+function catalog(){const ps=filteredProducts();return `<section class="hero"><div><p class="eyebrow">LE CATALOGUE DES LABORATOIRES PARTENAIRES</p><h1>Les essentiels du soin.<br>Un seul espace professionnel.</h1><p>Retrouvez vos produits, préparez vos commandes<br class="desktop-only"> et suivez chaque étape, simplement.</p><span class="hero-proof">${icon('shield',18)} Produits validés par GSB <span>·</span> Accès réservé aux professionnels</span></div><div class="hero-orbit" aria-hidden="true"><span class="orbit-ring"></span><span class="orbit-plus">+</span><div class="hero-pill"><span></span></div><span class="hero-dot"></span><span class="hero-orbit-label">GSB<br><small>À VOS CÔTÉS</small></span></div></section><div class="catalog-layout"><aside id="catalog-filters" class="filters ${ui.filtersOpen?'is-open':''}"><div class="row between"><h2>Affiner la sélection</h2><button class="btn icon ghost mobile-only" data-action="toggle-filters" aria-label="Fermer les filtres">${icon('close',18)}</button></div><label class="field"><span>Catégorie</span><select id="category-filter"><option value="">Toutes les catégories</option>${state.categories.filter(c=>c.active).map(c=>`<option value="${c.id}" ${ui.cat===c.id?'selected':''}>${c.name}</option>`).join('')}</select></label><label class="field"><span>Laboratoire</span><select id="lab-filter"><option value="">Tous les laboratoires</option>${state.labs.filter(l=>l.active).map(l=>`<option value="${l.id}" ${ui.lab===l.id?'selected':''}>${l.name}</option>`).join('')}</select></label>${btn('Effacer les filtres','reset-filters','ghost small')}<div class="filter-help">${icon('lab',26)}<h3>Un réseau de confiance</h3><p>Un laboratoire identifié pour chaque produit du catalogue.</p></div></aside><section class="catalog-results"><div class="toolbar"><button class="btn secondary mobile-only" data-action="toggle-filters" aria-controls="catalog-filters" aria-expanded="${ui.filtersOpen}">${icon('filter',18)} Filtres</button><div><h2>Notre catalogue</h2><p class="muted"><span id="result-count">${ps.length}</span> produits disponibles au catalogue</p></div><label class="search-field">${icon('search')}<input id="catalog-search" type="search" placeholder="Rechercher un produit, un laboratoire…" value="${esc(ui.search)}" aria-label="Rechercher au catalogue"></label><label class="sort-label"><span class="sr-only">Trier les produits</span><select id="sort-filter"><option value="default">Pertinence</option><option value="price" ${ui.sort==='price'?'selected':''}>Prix croissant</option><option value="name" ${ui.sort==='name'?'selected':''}>Nom du produit</option></select></label></div><div class="chips"><button class="chip ${!ui.cat?'is-active':''}" data-action="category" data-id="">Tout le catalogue</button>${state.categories.filter(c=>c.active).map(c=>`<button class="chip ${ui.cat===c.id?'is-active':''}" data-action="category" data-id="${c.id}">${c.name}</button>`).join('')}</div><div class="product-grid" id="product-grid">${catalogGrid()}</div><p class="catalog-note muted">Les prix affichés et les stocks sont des données fictives de démonstration.</p></section></div>`;}
+function productDetail(id){const p=product(id)||state.products[0];return `<div class="breadcrumb"><a href="#catalogue">Catalogue</a>${icon('chevron',14)}<span>${catName(p.category)}</span>${icon('chevron',14)}<span>${esc(p.name)}</span></div><div class="product-detail-grid"><div>${pack(p,true)}<div class="notice section-gap">${icon('lab')}<span>Visuel et produit fictifs · Maquette pédagogique GSB</span></div></div><section class="product-detail-content"><p class="eyebrow">${esc(labName(p.lab))}</p><h1>${esc(p.name)}</h1><p class="muted">${esc(p.format)} · Référence ${esc(p.code)}</p><div class="row section-gap">${badge(p.stock?'Accepté':'Indisponible')}<span class="muted">${p.stock?'Produit validé par GSB':'Réapprovisionnement à venir'}</span></div><p class="product-description">${esc(p.description)}</p><div class="detail-price"><strong>${money(p.price)} <small>HT / unité</small></strong><span>${money(p.price*(1+p.tva/100))} TTC · TVA ${p.tva} %</span></div><div class="stock-line">${p.stock?`${icon('check',16)} En stock — ${p.stock} unités disponibles`:'Rupture de stock'}</div><div class="row section-gap"><div class="quantity"><button data-action="detail-qty" data-delta="-1" aria-label="Diminuer la quantité">${icon('minus',16)}</button><output id="detail-qty">${ui.qty}</output><button data-action="detail-qty" data-delta="1" data-id="${p.id}" aria-label="Augmenter la quantité">${icon('plus',16)}</button></div>${btn(icon('cart')+' Ajouter au panier','add-cart','primary',`data-id="${p.id}" data-detail="1" ${p.stock?'':'disabled'}`)}</div><p class="muted">Quantité minimale : 1 · Maximum : stock disponible.</p><div class="panel section-gap"><div class="summary-row"><span>Laboratoire fournisseur</span><strong>${labName(p.lab)}</strong></div><div class="summary-row"><span>Catégorie</span><strong>${catName(p.category)}</strong></div><div class="summary-row"><span>Conditionnement</span><strong>${esc(p.format)}</strong></div></div></section></div>`;}
+function empty(title,description,action=''){return `<div class="empty-state">${icon('box',44)}<h2>${title}</h2><p>${description}</p>${action}</div>`;}
+function summary(lines,action=''){const t=totals(lines);return `<aside class="panel summary"><h2>Votre récapitulatif</h2><p class="muted">${lines.reduce((n,l)=>n+l.qty,0)} articles · ${lines.length} références</p><div class="summary-row"><span>Total HT</span><strong>${money(t.ht)}</strong></div><div class="summary-row"><span>TVA</span><strong>${money(t.tva)}</strong></div><div class="summary-row total"><span>Total TTC</span><strong>${money(t.ttc)}</strong></div>${action}<p class="muted summary-note">${icon('shield',16)} Paiement et livraison simulés</p></aside>`;}
+function cart(){const lines=cartLines();return heading('Votre panier','Retrouvez les produits sélectionnés. Votre panier est conservé dans cette démonstration.',link('Continuer mes achats','catalogue','ghost'))+(lines.length?`<div class="cart-layout"><section><div class="panel">${lines.map(l=>`<article class="cart-line"><div class="cart-thumb">${pack(l)}</div><div><p class="product-meta">${labName(l.lab)}</p><h3>${esc(l.name)}</h3><p class="muted">${esc(l.format)}</p><strong>${money(l.price)} HT / unité</strong></div><div class="quantity"><button data-action="cart-qty" data-id="${l.id}" data-delta="-1" aria-label="Diminuer ${esc(l.name)}">${icon('minus',16)}</button><output>${l.qty}</output><button data-action="cart-qty" data-id="${l.id}" data-delta="1" aria-label="Augmenter ${esc(l.name)}">${icon('plus',16)}</button></div><div class="text-right"><strong>${money(l.price*l.qty)} HT</strong><p class="muted">${money(l.price*l.qty*(1+l.tva/100))} TTC</p></div><button class="btn icon ghost" data-action="remove-cart" data-id="${l.id}" aria-label="Retirer ${esc(l.name)}">${icon('trash',18)}</button></article>`).join('')}</div><div class="notice section-gap">${icon('clock')}<span>Le prix et la disponibilité sont vérifiés avant la création de votre commande.</span></div></section>${summary(lines,link('Valider mon panier '+icon('arrow',18),'validation','primary full-width'))}</div>`:empty('Votre panier attend vos essentiels.','Parcourez le catalogue pour ajouter votre premier produit.',link('Découvrir le catalogue','catalogue','primary')));}
+const steps=current=>`<ol class="steps">${['Panier','Coordonnées','Paiement simulé','Confirmation'].map((s,i)=>`<li class="step ${i<=current?'is-active':''}"><span>${i<current?icon('check',14):i+1}</span>${s}</li>`).join('')}</ol>`;
+const field=(label,name,value='',type='text',extra='')=>`<label class="field"><span>${label}</span><input name="${name}" type="${type}" value="${esc(value)}" ${extra}></label>`;
+function checkout(){const lines=cartLines();if(!lines.length)return empty('Ajoutez d’abord un produit au panier.','Une commande doit contenir au moins une ligne.',link('Retour au catalogue','catalogue','primary'));return steps(1)+heading('Vérifiez votre commande','Une dernière vérification avant la simulation du paiement.')+`<form id="checkout-form" class="cart-layout"><div class="panel"><h2>Vos coordonnées</h2><p class="muted">Professionnelle de santé · données de démonstration</p><div class="form-grid section-gap">${field('Prénom *','first',state.profile.first,'text','required')}${field('Nom *','last',state.profile.last,'text','required')}${field('Email professionnel *','email',state.profile.email,'email','required')}${field('Téléphone','phone',state.profile.phone,'tel')}</div><h2 class="section-gap">Adresse de livraison fictive</h2>${field('Adresse *','address',state.profile.address,'text','required')}<div class="form-grid">${field('Code postal *','postal',state.profile.postal,'text','required pattern="[0-9]{5}"')}${field('Ville *','city',state.profile.city,'text','required')}</div><label class="checkbox-label"><input type="checkbox" required checked> J’ai vérifié les produits, les quantités et l’adresse fictive.</label><div class="notice section-gap">${icon('lab')}<span>Aucune expédition réelle. Les données de cette maquette sont fictives.</span></div></div>${summary(lines,'<button class="btn primary full-width" type="submit">Passer au paiement simulé '+icon('arrow',18)+'</button>')}</form>`;}
+function payment(id){const o=order(id);return steps(2)+heading('Paiement simulé','Choisissez une issue pour tester le parcours de démonstration.')+`<div class="center-column">${simulation('Simulation — aucun paiement réel. Aucune donnée bancaire n’est demandée.')}<div class="panel payment-panel"><span class="payment-icon">${icon('shield',36)}</span><p class="eyebrow">COMMANDE ${o.reference}</p><h2>${money(totals(o.lines).ttc)}</h2><p class="muted">Montant TTC de la commande fictive</p>${o.payment?`<div class="section-gap">${badge(o.payment.status)}<p>Un résultat de paiement a déjà été enregistré pour cette commande.</p>${link('Consulter ma commande','commande/'+o.id,'primary')}</div>`:`<div class="payment-choices section-gap">${btn(icon('check')+' Simuler une réussite','pay-success','primary',`data-id="${o.id}"`)}${btn(icon('close')+' Simuler un échec','pay-fail','secondary',`data-id="${o.id}"`)}</div><p class="muted section-gap">Une seule simulation sera enregistrée pour cette commande.</p>`}</div></div>`;}
+function confirmation(id){const o=order(id),ok=o.payment?.status==='Réussi';return steps(3)+`<div class="confirmation panel"><span class="confirmation-symbol ${ok?'success':'danger'}">${icon(ok?'check':'alert',38)}</span><p class="eyebrow">${ok?'VOTRE COMMANDE EST ENREGISTRÉE':'LE PAIEMENT SIMULÉ A ÉCHOUÉ'}</p><h1>${ok?'Merci pour votre commande.':'Votre commande reste en attente.'}</h1><p class="muted">${ok?'Vous pouvez retrouver ses détails et son suivi dans votre espace.':'Le résultat fictif est conservé. Aucun paiement réel n’a été effectué.'}</p><div class="confirmation-reference"><span>Référence</span><strong>${o.reference}</strong><span>Total TTC</span><strong>${money(totals(o.lines).ttc)}</strong></div><div class="row center">${link('Voir ma commande '+icon('arrow',18),'commande/'+o.id,'primary')}${link('Retour au catalogue','catalogue','secondary')}</div></div>`;}
+function ordersTable(admin=false){return `<div class="table-wrap"><table class="data-table"><thead><tr><th>Commande</th><th>Date</th><th>${admin?'Professionnel':'Articles'}</th><th>Total TTC</th><th>Statut</th><th></th></tr></thead><tbody>${state.orders.map(o=>`<tr><td data-label="Commande"><strong>${o.reference}</strong><small>${o.payment?'Paiement '+o.payment.status.toLowerCase():'Paiement non simulé'}</small></td><td data-label="Date">${shortDate(o.date)}</td><td data-label="${admin?'Professionnel':'Articles'}">${admin?'Dr Lina Martin':o.lines.reduce((n,l)=>n+l.qty,0)+' articles'}</td><td data-label="Total TTC"><strong>${money(totals(o.lines).ttc)}</strong></td><td data-label="Statut">${badge(o.status)}</td><td><a class="btn ghost small" href="#${admin?'admin/commande/':'commande/'}${o.id}">Voir ${icon('chevron',16)}</a></td></tr>`).join('')}</tbody></table></div>`;}
+function orders(admin=false){return heading(admin?'Commandes & livraisons':'Mes commandes',admin?'Consultez les commandes et faites évoluer leur suivi fictif.':'Vos commandes, leur historique et leur livraison au même endroit.')+`<section class="panel"><div class="toolbar"><h2>${state.orders.length} commandes</h2><span class="badge neutral">Tous les statuts</span></div>${state.orders.length?ordersTable(admin):empty('Vous n’avez pas encore de commande.','Votre première commande apparaîtra ici.',link('Parcourir le catalogue','catalogue','primary'))}</section>`;}
+function orderDetail(id,admin=false){const o=order(id),t=totals(o.lines);return `<div class="breadcrumb"><a href="#${admin?'admin/commandes':'commandes'}">Commandes</a>${icon('chevron',14)}${o.reference}</div>`+heading(o.reference,`Commande du ${shortDate(o.date)} · ${o.lines.length} références`,badge(o.status))+`${admin?`<section class="panel section-gap"><div class="row between"><div><h2>Faire évoluer la commande</h2><p class="muted">Chaque changement est conservé dans l’historique.</p></div><div class="row"><select id="admin-order-status" aria-label="Nouveau statut">${['En attente','Validée','Annulée'].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join('')}</select>${btn('Mettre à jour','order-status','primary',`data-id="${o.id}"`)}</div></div></section>`:''}<div class="cart-layout"><div class="stack"><section class="panel"><div class="row between"><h2>Les produits de votre commande</h2><span class="badge neutral">Prix figés à l’achat</span></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Produit</th><th>Quantité</th><th>Prix HT / unité</th><th>TVA</th><th>Total TTC</th></tr></thead><tbody>${o.lines.map(l=>`<tr><td data-label="Produit"><strong>${esc(l.name)}</strong><small>Libellé conservé à l’achat</small></td><td data-label="Quantité">${l.qty}</td><td data-label="Prix HT / unité">${money(l.price)}</td><td data-label="TVA">${l.tva} %</td><td data-label="Total TTC"><strong>${money(l.price*l.qty*(1+l.tva/100))}</strong></td></tr>`).join('')}</tbody></table></div><p class="muted">Les évolutions du catalogue ne modifient pas ces prix ni ces libellés.</p></section><section class="panel"><h2>Historique de la commande</h2><ol class="timeline">${o.history.map((h,i)=>`<li class="timeline-item"><span class="timeline-dot">${icon('check',14)}</span><div><strong>${h.status}</strong><p class="muted">${shortDate(h.date)} · ${new Date(h.date).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}</p></div></li>`).join('')}</ol></section><section class="panel"><div class="row between"><h2>Livraison fictive</h2>${o.delivery?badge(o.delivery.status):'<span class="badge neutral">Non créée</span>'}</div>${o.delivery?`<p class="muted">Suivi : <strong>${o.delivery.tracking}</strong></p><div class="delivery-steps">${['En préparation','Expédiée','Livrée'].map((s,i)=>`<span class="${i<=['En préparation','Expédiée','Livrée'].indexOf(o.delivery.status)?'is-active':''}">${icon(i===0?'box':i===1?'truck':'check',18)}${s}</span>`).join('')}</div><p class="muted">${o.delivery.shipped?'Expédition simulée le '+shortDate(o.delivery.shipped):'En attente d’expédition simulée.'}${o.delivery.delivered?' · Livraison simulée le '+shortDate(o.delivery.delivered):''}</p>`:'<p class="muted">Le suivi apparaîtra lorsqu’une livraison fictive sera créée.</p>'}${admin?`<div class="row section-gap"><select id="delivery-status" aria-label="Statut de livraison fictive">${['En préparation','Expédiée','Livrée'].map(s=>`<option ${o.delivery?.status===s?'selected':''}>${s}</option>`).join('')}</select>${btn(o.delivery?'Actualiser le suivi':'Créer la livraison fictive','delivery-update','secondary',`data-id="${o.id}"`)}</div>`:''}</section></div><aside class="stack"><section class="panel summary"><h2>Récapitulatif</h2><div class="summary-row"><span>Total HT</span><strong>${money(t.ht)}</strong></div><div class="summary-row"><span>TVA</span><strong>${money(t.tva)}</strong></div><div class="summary-row total"><span>Total TTC</span><strong>${money(t.ttc)}</strong></div><h3 class="section-gap">Paiement simulé</h3>${o.payment?badge(o.payment.status):'<span class="badge neutral">Non simulé</span>'}<p class="muted">${o.payment?o.payment.reference:'Aucun résultat enregistré.'}</p><p class="muted">Aucun paiement réel.</p></section><section class="panel"><h2>Adresse fictive</h2><p>Dr Lina Martin</p><p class="muted">${esc(o.address)}</p></section></aside></div>`;}
+function account(){const p=state.profile;return heading('Mon compte','Vos informations professionnelles et vos coordonnées.')+`<form id="profile-form" class="panel account-panel"><div class="row"><span class="avatar large">LM</span><div><h2>Dr ${esc(p.name)}</h2><p class="muted">Professionnelle de santé · compte actif</p></div>${badge('Actif')}</div><h3 class="section-gap">Informations personnelles</h3><div class="form-grid">${field('Prénom *','first',p.first,'text','required')}${field('Nom *','last',p.last,'text','required')}${field('Email professionnel *','email',p.email,'email','required')}${field('Téléphone','phone',p.phone,'tel')}</div><h3 class="section-gap">Profil professionnel</h3><div class="form-grid">${field('Profession *','profession',p.profession,'text','required')}${field('Numéro professionnel *','number',p.number,'text','required')}</div><h3 class="section-gap">Adresse de l’établissement</h3>${field('Adresse *','address',p.address,'text','required')}<div class="form-grid">${field('Code postal *','postal',p.postal,'text','required pattern="[0-9]{5}"')}${field('Ville *','city',p.city,'text','required')}</div><div class="row end section-gap"><button class="btn primary" type="submit">Enregistrer les modifications</button></div></form>`;}
+function login(password=false){return `<main class="login-layout" id="main"><section class="login-brand">${logo()}<div class="login-brand-content"><p class="eyebrow">LE LIEN ENTRE LABORATOIRES ET SOIGNANTS</p><h1>Votre quotidien,<br>en toute confiance.</h1><p>Une plateforme pensée pour les professionnels de santé et les laboratoires partenaires.</p><div class="login-visual" aria-hidden="true"><span class="login-cross">+</span><span class="login-circle"></span><div class="login-mini-card">${icon('shield',28)}<strong>Un espace professionnel.<br>Un réseau de confiance.</strong></div></div></div><p class="login-brand-foot">GSB · Projet pédagogique BTS SIO SLAM</p></section><section class="login-card"><a class="login-back" href="#presentation">${icon('chevron',16)} Voir la présentation</a><div><span class="badge neutral">${icon('lock',14)} ${password?'PREMIÈRE CONNEXION':'ACCÈS PROFESSIONNEL'}</span><h2>${password?'Un nouveau départ sécurisé.':'Bienvenue dans votre espace.'}</h2><p class="muted">${password?'Définissez un nouveau mot de passe pour continuer la démonstration.':'Connectez-vous pour retrouver vos produits et vos commandes.'}</p>${password?`<form id="password-form">${field('Nouveau mot de passe *','password','DemoGSB!2026','password','required minlength="8" autocomplete="new-password"')}${field('Confirmer le mot de passe *','confirm','DemoGSB!2026','password','required minlength="8" autocomplete="new-password"')}<p class="muted">Au moins 8 caractères. Utilisez uniquement une valeur fictive dans cette maquette.</p><p class="form-error" id="password-error" role="alert"></p><button class="btn primary full-width" type="submit">Enregistrer et continuer ${icon('arrow',18)}</button></form>`:`<form id="login-form">${field('Email professionnel *','email',ui.loginRole==='admin'?'admin@gsb.exemple.test':ui.loginRole==='fournisseur'?'camille@aster.exemple.test':'lina.martin@exemple.test','email','required autocomplete="username"')}<label class="field"><span>Mot de passe *</span><span class="password-input"><input name="password" type="password" value="DemoGSB!2026" required autocomplete="current-password"><button class="btn icon ghost" data-action="toggle-password" type="button" aria-label="Afficher le mot de passe">${icon('eye',18)}</button></span></label><p class="muted">Compte fictif prérempli pour explorer le prototype.</p><button class="btn primary full-width" type="submit">Se connecter ${icon('arrow',18)}</button></form><div class="demo-roles"><p class="eyebrow">CHOISIR UN PARCOURS DE DÉMONSTRATION</p><div class="row">${[['professionnel','Professionnel'],['fournisseur','Fournisseur'],['admin','Administrateur']].map(([r,label])=>btn(label,'demo-role',ui.loginRole===r?'secondary is-active small':'ghost small',`data-role="${r}"`)).join('')}</div></div>`}<div class="notice section-gap">${icon('shield',18)}<span>Démonstration pédagogique. N’utilisez aucune donnée personnelle réelle.</span></div></div><p class="muted login-copyright">© 2026 GSB · IPSSI Paris</p></section></main>`;}
+function stats(items){return `<div class="stat-grid">${items.map(([n,l,sub,i])=>`<article class="stat-card"><div class="row between"><span class="muted">${l}</span><span class="stat-icon">${icon(i||'box')}</span></div><strong>${n}</strong><p class="muted">${sub}</p></article>`).join('')}</div>`;}
+function productsTable(ps,admin=false){return `<div class="table-wrap"><table class="data-table"><thead><tr><th>Produit</th><th>${admin?'Laboratoire':'Catégorie'}</th><th>Prix HT</th><th>Stock fictif</th><th>Validation</th><th></th></tr></thead><tbody>${ps.map(p=>`<tr><td data-label="Produit"><div class="table-product"><span class="mini-pack" style="--pack-color:${p.color}">${icon('box',19)}</span><div><strong>${esc(p.name)}</strong><small>${esc(p.code)} · ${esc(p.format)}</small></div></div></td><td data-label="${admin?'Laboratoire':'Catégorie'}">${admin?labName(p.lab):catName(p.category)}</td><td data-label="Prix HT"><strong>${money(p.price)}</strong></td><td data-label="Stock fictif"><span class="${p.stock<10?'stock-warning':''}">${p.stock} unités</span></td><td data-label="Validation">${badge(p.status)}</td><td class="table-actions"><a class="btn ghost small" href="#${admin?'admin/examen/':'fournisseur/modifier/'}${p.id}">${admin?'Examiner':'Modifier'} ${icon('chevron',16)}</a></td></tr>`).join('')}</tbody></table></div>`;}
+function supplierDashboard(){const ps=state.products.filter(p=>p.lab===state.labId),pending=ps.filter(p=>p.status==='En attente'),low=ps.filter(p=>p.stock<10);return heading('Bonjour '+esc((sessionUser()?.name||'Camille').split(' ')[0])+',','Voici l’activité de votre laboratoire aujourd’hui.',link(icon('plus',18)+' Ajouter un produit','fournisseur/ajouter','primary'))+simulation('Stock fictif — aucun mouvement réel de marchandise.')+stats([[ps.length,'Mes produits','Rattachés à votre laboratoire','box'],[pending.length,'En attente','Soumis à la validation GSB','clock'],[low.length,'Stock à surveiller','Moins de 10 unités fictives','alert']])+`<section class="panel"><div class="row between"><div><h2>Vos produits récents</h2><p class="muted">Suivez leur validation et leur disponibilité.</p></div>${link('Tous mes produits','fournisseur/produits','ghost')}</div>${productsTable(ps.slice().reverse().slice(0,4))}</section><div class="grid-2 section-gap"><section class="panel"><span class="badge warning">À VÉRIFIER</span><h2 class="section-gap">${low.length} alerte de stock fictif</h2><p class="muted">Ajustez vos quantités et conservez le motif de chaque mouvement.</p>${link('Gérer mon stock','fournisseur/stock','secondary')}</section><section class="panel"><span class="badge neutral">COMMENT ÇA MARCHE ?</span><h2 class="section-gap">De la soumission au catalogue</h2><p class="muted">Votre produit est examiné par GSB. Une fois accepté et actif, il devient visible aux professionnels de santé.</p></section></div>`;}
+function supplierProducts(){const ps=state.products.filter(p=>p.lab===state.labId&&(!ui.status||p.status===ui.status)&&(!ui.tableSearch||p.name.toLowerCase().includes(ui.tableSearch.toLowerCase())));return heading('Mes produits','Votre catalogue et les décisions de validation GSB.',link(icon('plus',18)+' Ajouter un produit','fournisseur/ajouter','primary'))+`<section class="panel"><div class="toolbar"><label class="search-field">${icon('search')}<input id="table-search" placeholder="Rechercher dans mes produits" value="${esc(ui.tableSearch)}"></label><select id="product-status-filter" aria-label="Filtrer par validation"><option value="">Tous les statuts</option>${['En attente','Accepté','Refusé'].map(s=>`<option ${ui.status===s?'selected':''}>${s}</option>`).join('')}</select><span class="muted">${ps.length} produits</span></div>${ps.length?productsTable(ps):empty('Aucun produit dans cette sélection.','Ajoutez votre premier produit ou changez les filtres.',link('Ajouter un produit','fournisseur/ajouter','primary'))}</section>`;}
+function productForm(id){const p=id?product(id):null;if(p&&p.lab!==state.labId)return empty('Ce produit appartient à un autre laboratoire.','Votre compte donne accès uniquement à vos propres produits.',link('Mes produits','fournisseur/produits'));return `<div class="breadcrumb"><a href="#fournisseur/produits">Mes produits</a>${icon('chevron',14)}${p?'Modifier':'Ajouter un produit'}</div>`+heading(p?'Modifier le produit':'Un nouveau produit, en quelques étapes.','Renseignez sa présentation, son prix et son stock fictif.')+`<form id="product-form" data-id="${p?.id||''}" class="cart-layout"><section class="panel"><h2>Présentation du produit</h2>${field('Nom du produit *','name',p?.name||'Solution essentielle Aster','text','required')}<label class="field"><span>Description *</span><textarea name="description" required rows="4">${esc(p?.description||'Produit fictif du laboratoire Aster, destiné à la démonstration de la boutique GSB.')}</textarea></label><div class="form-grid"><label class="field"><span>Catégorie *</span><select name="category" required>${state.categories.filter(c=>c.active).map(c=>`<option value="${c.id}" ${p?.category===c.id?'selected':''}>${c.name}</option>`).join('')}</select></label>${field('Conditionnement','format',p?.format||'Flacon · 100 ml')}</div>${field('URL du visuel fictif','image_url',p?.image_url||'','url','placeholder="https://…"')}<h3 class="section-gap">Tarification et disponibilité</h3><div class="form-grid">${field('Prix HT unitaire (€) *','price',p?.price||14.90,'number','required min="0" step="0.01"')}${field('Taux de TVA (%) *','tva',p?.tva??20,'number','required min="0" max="100" step="0.01"')}${field('Stock fictif initial *','stock',p?.stock??40,'number',`required min="0" step="1" ${p?'readonly':''}`)}</div>${p?'<p class="muted">Pour conserver la traçabilité, ajustez le stock depuis l’écran Stock fictif.</p>':''}<label class="checkbox-label"><input name="active" type="checkbox" ${p?.active===false?'':'checked'}> Produit actif après validation par GSB</label><div class="row end section-gap">${link('Annuler','fournisseur/produits','secondary')}<button class="btn primary" type="submit">${p?'Enregistrer et soumettre':'Soumettre à GSB'} ${icon('arrow',18)}</button></div></section><aside class="stack"><section class="panel"><p class="eyebrow">VOTRE LABORATOIRE</p><h2>${labName(state.labId)}</h2><p class="muted">Ce rattachement est déterminé par votre compte et ne peut pas être modifié.</p></section><section class="panel"><h3>Après la soumission</h3>${badge('En attente')}<p class="muted">L’administrateur examinera votre produit. Il sera proposé au catalogue uniquement lorsqu’il sera accepté et actif.</p></section>${simulation('Les quantités saisies sont fictives.')}</aside></form>`;}
+function stock(){const ps=state.products.filter(p=>p.lab===state.labId),ms=state.movements.filter(m=>ps.some(p=>p.id===m.product));return heading('Stock fictif','Chaque variation est conservée avec sa date et son motif.')+simulation('Simulation de stock — aucune marchandise réelle.')+`<div class="cart-layout"><section class="panel"><h2>Historique des mouvements</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Produit</th><th>Variation</th><th>Motif</th><th>Date</th></tr></thead><tbody>${ms.map(m=>`<tr><td data-label="Produit"><strong>${esc(product(m.product)?.name)}</strong></td><td data-label="Variation"><span class="badge ${m.variation>0?'success':'neutral'}">${m.variation>0?'+':''}${m.variation}</span></td><td data-label="Motif">${esc(m.motif)}</td><td data-label="Date">${shortDate(m.date)}</td></tr>`).join('')}</tbody></table></div>${ms.length?'':'<p class="muted">Aucun mouvement enregistré.</p>'}</section><form class="panel" id="stock-form"><h2>Enregistrer un mouvement</h2><label class="field"><span>Produit *</span><select name="product" required>${ps.map(p=>`<option value="${p.id}">${esc(p.name)} (${p.stock})</option>`).join('')}</select></label>${field('Variation de quantité *','variation',10,'number','required step="1"')}<p class="muted">Nombre positif pour ajouter, négatif pour retirer.</p>${field('Motif *','motif','Réapprovisionnement fictif','text','required')}<p class="form-error" id="stock-error" role="alert"></p><button class="btn primary full-width" type="submit">Enregistrer la variation</button></form></div>`;}
+function adminDashboard(){const pending=state.products.filter(p=>p.status==='En attente');return heading('Vue d’ensemble','Les informations essentielles pour piloter la plateforme.',link('Voir le catalogue professionnel','catalogue','secondary'))+stats([[pending.length,'Produits à valider','Nouvelles soumissions partenaires','clock'],[state.labs.length,'Laboratoires partenaires','Chacun dispose d’un compte','lab'],[state.users.length,'Comptes utilisateurs','Professionnels et partenaires','user'],[state.orders.filter(o=>o.status==='En attente').length,'Commandes en attente','Suivi et validation','orders']])+`<section class="panel"><div class="row between"><div><h2>Votre file de validation</h2><p class="muted">Ces produits attendent une décision avant leur publication.</p></div>${link('Tout examiner','admin/validation','ghost')}</div>${pending.length?productsTable(pending.slice(0,3),true):empty('Tout est à jour.','Aucun produit ne nécessite de validation pour le moment.')}</section><section class="panel section-gap"><div class="row between"><h2>Dernières commandes</h2>${link('Toutes les commandes','admin/commandes','ghost')}</div>${ordersTable(true)}</section>`;}
+function adminValidation(){const ps=state.products.filter(p=>!ui.status||p.status===ui.status);return heading('Validation des produits','Examinez les soumissions des laboratoires partenaires.')+`<section class="panel"><div class="toolbar"><h2>${ps.length} produits à consulter</h2><select id="product-status-filter" aria-label="Statut du produit"><option value="">Tous les statuts</option>${['En attente','Accepté','Refusé'].map(s=>`<option ${ui.status===s?'selected':''}>${s}</option>`).join('')}</select></div>${productsTable(ps,true)}</section>`;}
+function adminExamine(id){const p=product(id)||state.products.find(p=>p.status==='En attente')||state.products[0];return `<div class="breadcrumb"><a href="#admin/validation">Validation des produits</a>${icon('chevron',14)}Examen</div>`+heading('Examiner le produit',`${labName(p.lab)} · Référence ${p.code}`,badge(p.status))+`<div class="cart-layout"><section class="panel"><div class="review-grid">${pack(p,true)}<div><p class="eyebrow">${catName(p.category)}</p><h2>${esc(p.name)}</h2><p class="muted">${esc(p.format)}</p><p>${esc(p.description)}</p><div class="summary-row"><span>Prix HT</span><strong>${money(p.price)}</strong></div><div class="summary-row"><span>TVA</span><strong>${p.tva} %</strong></div><div class="summary-row"><span>Prix TTC</span><strong>${money(p.price*(1+p.tva/100))}</strong></div><div class="summary-row"><span>Stock fictif</span><strong>${p.stock} unités</strong></div></div></div></section><aside class="stack"><section class="panel"><h2>Votre décision</h2><p class="muted">Un produit accepté et actif devient visible dans le catalogue professionnel.</p>${btn(icon('check')+' Accepter le produit','accept-product','primary full-width',`data-id="${p.id}"`)}${btn(icon('close')+' Refuser le produit','reject-product','secondary full-width',`data-id="${p.id}"`)}<a class="btn ghost full-width" href="#admin/validation">Revenir à la liste</a></section><section class="panel"><h3>Laboratoire fournisseur</h3><p>${labName(p.lab)}</p><p class="muted">Un seul laboratoire est associé à ce produit.</p></section></aside></div>`;}
+function adminUsers(){return heading('Comptes utilisateurs','Gérez les rôles, les rattachements et l’activation des comptes.',btn(icon('plus',18)+' Ajouter un compte','new-user','primary'))+`<section class="panel"><div class="toolbar"><h2>${state.users.length} comptes</h2><span class="badge neutral">Comptes fictifs</span></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Utilisateur</th><th>Rôle</th><th>Laboratoire</th><th>Statut</th><th></th></tr></thead><tbody>${state.users.map(u=>`<tr><td data-label="Utilisateur"><strong>${esc(u.name)}</strong><small>${esc(u.email)}</small></td><td data-label="Rôle">${u.role}</td><td data-label="Laboratoire">${u.lab?labName(u.lab):'—'}</td><td data-label="Statut">${badge(u.active?'Actif':'Inactif')}</td><td>${btn(u.active?'Désactiver':'Activer','toggle-user','ghost small',`data-id="${u.id}"`)}</td></tr>`).join('')}</tbody></table></div></section>`;}
+function adminLabs(){return heading('Laboratoires partenaires','Chaque laboratoire dispose d’au moins un compte fournisseur.',btn(icon('plus',18)+' Ajouter un laboratoire','new-lab','primary'))+`<div class="grid-3">${state.labs.map(l=>`<section class="panel lab-card"><span class="lab-symbol" style="color:${l.color}">${icon('lab',32)}</span><h2>${esc(l.name)}</h2><p class="muted">${esc(l.email)}</p>${badge(l.active?'Actif':'Inactif')}<h3 class="section-gap">Comptes associés</h3>${state.users.filter(u=>u.lab===l.id).map(u=>`<div class="row lab-user"><span class="avatar">${esc(u.name.split(' ').map(x=>x[0]).join('').slice(0,2))}</span><div><strong>${esc(u.name)}</strong><small>${esc(u.email)}</small></div></div>`).join('')}${btn(l.active?'Désactiver le laboratoire':'Activer le laboratoire','toggle-lab','secondary full-width',`data-id="${l.id}"`)}</section>`).join('')}</div>`;}
+function adminCategories(){return heading('Catégories','Organisez les produits du catalogue professionnel.',btn(icon('plus',18)+' Ajouter une catégorie','new-category','primary'))+`<section class="panel"><div class="table-wrap"><table class="data-table"><thead><tr><th>Catégorie</th><th>Produits</th><th>Statut</th><th></th></tr></thead><tbody>${state.categories.map(c=>`<tr><td data-label="Catégorie"><div class="table-product"><span class="stat-icon">${icon('tag')}</span><strong>${esc(c.name)}</strong></div></td><td data-label="Produits">${state.products.filter(p=>p.category===c.id).length}</td><td data-label="Statut">${badge(c.active?'Actif':'Inactif')}</td><td class="table-actions">${btn('Modifier','edit-category','ghost small',`data-id="${c.id}"`)}${btn(c.active?'Désactiver':'Activer','toggle-category','ghost small',`data-id="${c.id}"`)}</td></tr>`).join('')}</tbody></table></div></section>`;}
+const screenList=[['connexion','Connexion','Parcours commun'],['mot-de-passe','Première connexion','Parcours commun'],['catalogue','Catalogue','Professionnel'],['produit/p1','Fiche produit','Professionnel'],['panier','Panier persistant','Professionnel'],['validation','Coordonnées & validation','Professionnel'],['paiement/o1','Paiement simulé','Professionnel'],['confirmation/o1','Confirmation','Professionnel'],['commandes','Mes commandes','Professionnel'],['commande/o1','Détail de commande','Professionnel'],['compte','Mon compte','Professionnel'],['fournisseur','Tableau de bord','Fournisseur'],['fournisseur/produits','Mes produits','Fournisseur'],['fournisseur/ajouter','Ajouter un produit','Fournisseur'],['fournisseur/modifier/p1','Modifier un produit','Fournisseur'],['fournisseur/stock','Stock fictif','Fournisseur'],['admin','Supervision','Administration'],['admin/validation','Validation des produits','Administration'],['admin/examen/p7','Examen d’un produit','Administration'],['admin/comptes','Comptes utilisateurs','Administration'],['admin/laboratoires','Laboratoires','Administration'],['admin/categories','Catégories','Administration'],['admin/commandes','Commandes & livraisons','Administration'],['admin/commande/o1','Suivi administrateur','Administration'],['composants','Bibliothèque de composants','Design system']];
+function presentation(){return `<section class="cover"><p class="eyebrow">GSB / MAQUETTE INTERACTIVE / VERSION 01</p><h1>Le soin commence<br>par une relation de confiance.</h1><p>Une e-boutique professionnelle pour connecter les professionnels de santé et les laboratoires partenaires.</p><div class="row section-gap">${link('Explorer la boutique '+icon('arrow',18),'connexion','primary')}${link('Voir les composants','composants','secondary')}</div><div class="cover-stats"><div class="cover-stat"><strong>3</strong><span>espaces métiers</span></div><div class="cover-stat"><strong>25</strong><span>écrans de référence</span></div><div class="cover-stat"><strong>1440 / 390</strong><span>desktop et mobile</span></div></div></section><div class="grid-3 section-gap"><section class="panel"><span class="stat-icon">${icon('user')}</span><h2>Professionnel de santé</h2><p class="muted">Trouver un produit, constituer un panier, passer une commande et suivre son historique.</p>${btn('Démarrer ce parcours','start-role','secondary',`data-role="professionnel"`)}</section><section class="panel"><span class="stat-icon">${icon('lab')}</span><h2>Laboratoire partenaire</h2><p class="muted">Soumettre ses produits et gérer leur stock fictif, avec un périmètre limité à son laboratoire.</p>${btn('Démarrer ce parcours','start-role','secondary',`data-role="fournisseur"`)}</section><section class="panel"><span class="stat-icon">${icon('shield')}</span><h2>Administration GSB</h2><p class="muted">Valider les produits, gérer les partenaires et superviser commandes et livraisons simulées.</p>${btn('Démarrer ce parcours','start-role','secondary',`data-role="admin"`)}</section></div><section class="screen-directory section-gap"><div class="row between"><div><p class="eyebrow">EXPLORER LE FICHIER</p><h2>Tous les écrans, au même endroit.</h2></div>${btn('Réinitialiser la démonstration','reset-demo','ghost small')}</div><div class="directory-grid">${screenList.map(([path,name,group],i)=>`<a class="directory-link" href="#${path}"><span>${String(i+1).padStart(2,'0')}</span><div><small>${group}</small><strong>${name}</strong></div>${icon('arrow',16)}</a>`).join('')}</div></section><div class="notice section-gap">${icon('lab')}<span>Projet BTS SIO SLAM 2 · IPSSI Paris · Rezki Zouaoui, Kelian Luye et Mekhali. Paiement, livraison et stock entièrement fictifs.</span></div>`;}
+function components(){return heading('Un langage visuel commun.','Des composants cohérents pour les trois espaces et les versions mobiles.',link('Présentation','presentation','ghost'))+`<section class="panel"><p class="eyebrow">01 / IDENTITÉ</p><h2>Des repères clairs, à chaque interaction.</h2><div class="color-grid">${[['Bleu nuit','#142D4E'],['Turquoise','#159A9C'],['Action accessible','#0C7476'],['Fond','#F5F7FA'],['Texte','#1F2937'],['Secondaire','#64748B']].map(([n,c])=>`<div class="swatch"><div style="background:${c}"></div><strong>${n}</strong><small>${c}</small></div>`).join('')}</div><div class="type-specimen"><h1>Une relation de confiance.</h1><h2>Une hiérarchie lisible.</h2><p>Inter · 16 px / 24 px — Les informations essentielles au bon endroit.</p><small>Échelle : 12 / 14 / 16 / 20 / 24 / 32 / 40 / 56 · Espacements : 8 / 16 / 24 / 32 / 48 / 64.</small></div></section><div class="component-grid section-gap"><section class="panel"><p class="eyebrow">02 / ACTIONS</p><h2>Boutons et états</h2><div class="row wrap section-gap">${btn('Action principale','noop','primary')}${btn('Secondaire','noop','secondary')}${btn('Discret','noop','ghost')}${btn('Refuser','noop','danger')}</div><div class="row wrap section-gap"><button class="btn primary is-hover">Survol</button><button class="btn primary is-focus">Focus</button><button class="btn primary" disabled>Désactivé</button><button class="btn primary is-loading" disabled>Chargement…</button></div></section><section class="panel"><p class="eyebrow">03 / STATUTS</p><h2>Des états accompagnés d’un libellé</h2><div class="row wrap section-gap">${['En attente','Accepté','Refusé','Validée','Annulée','En préparation','Expédiée','Livrée'].map(badge).join('')}</div></section><section class="panel"><p class="eyebrow">04 / SAISIE</p><h2>Champs et validation</h2>${field('Email professionnel','example','lina.martin@exemple.test','email')}<label class="field is-error"><span>Confirmer le mot de passe *</span><input type="password" value="incorrect"><small>Les mots de passe ne correspondent pas.</small></label>${field('Laboratoire associé','readonly','Laboratoire Aster','text','readonly')}</section><section class="panel"><p class="eyebrow">05 / RETOURS</p><h2>Notifications et aide</h2><div class="notice success">${icon('check')}<span>Le produit a été ajouté à votre panier.</span></div><div class="notice danger section-gap">${icon('alert')}<span>Stock insuffisant. Choisissez une quantité inférieure.</span></div>${simulation('Aucune opération réelle.')}</section><section class="panel"><p class="eyebrow">06 / CONTENU</p><h2>Carte produit réutilisable</h2><div style="max-width:320px">${productCard(state.products[0])}</div></section><section class="panel"><p class="eyebrow">07 / NAVIGATION</p><h2>Quantité, étapes et chargement</h2><div class="quantity section-gap"><button aria-label="Diminuer">${icon('minus',16)}</button><output>2</output><button aria-label="Augmenter">${icon('plus',16)}</button></div>${steps(1)}<div class="skeleton" style="height:24px;width:80%"></div><div class="skeleton section-gap" style="height:80px"></div></section></div><section class="panel section-gap"><p class="eyebrow">08 / ÉTATS VIDES</p>${empty('Votre sélection est vide.','Une phrase claire, suivie d’une action utile.',link('Explorer le catalogue','catalogue','primary'))}</section>`;}
+function page(route){const [a,b,c]=route.split('/');if(route==='presentation')return presentation();if(route==='composants')return components();if(route==='connexion')return login();if(route==='mot-de-passe')return login(true);if(route==='catalogue')return catalog();if(a==='produit')return productDetail(b);if(route==='panier')return cart();if(route==='validation')return checkout();if(a==='paiement')return payment(b);if(a==='confirmation')return confirmation(b);if(route==='commandes')return orders();if(a==='commande')return orderDetail(b);if(route==='compte')return account();if(a==='fournisseur'){if(!b)return supplierDashboard();if(b==='produits')return supplierProducts();if(b==='ajouter')return productForm();if(b==='modifier')return productForm(c);if(b==='stock')return stock();}if(a==='admin'){if(!b)return adminDashboard();if(b==='validation')return adminValidation();if(b==='examen')return adminExamine(c);if(b==='comptes')return adminUsers();if(b==='laboratoires')return adminLabs();if(b==='categories')return adminCategories();if(b==='commandes')return orders(true);if(b==='commande')return orderDetail(c,true);}return presentation();}
+function render(){let route=ui.route||location.hash.slice(1)||new URLSearchParams(location.search).get('screen')||'presentation';ui.route=route;if(sessionUser()?.mustChange&&!['connexion','mot-de-passe','presentation','composants'].includes(route)){route='mot-de-passe';ui.route=route;}if(route.startsWith('admin'))state.role='admin';else if(route.startsWith('fournisseur'))state.role='fournisseur';else if(!['connexion','mot-de-passe','presentation','composants'].includes(route))state.role='professionnel';$('#app').innerHTML=wrap(route,page(route));document.title='GSB · '+(screenList.find(s=>s[0]===route)?.[1]||'Maquette professionnelle');if(route==='catalogue')bindCatalog();window.scrollTo(0,0);}
+function bindCatalog(){const update=()=>{$('#product-grid').innerHTML=catalogGrid();$('#result-count').textContent=filteredProducts().length;};$('#catalog-search').addEventListener('input',e=>{ui.search=e.target.value;update();});$('#category-filter').addEventListener('change',e=>{ui.cat=e.target.value;render();});$('#lab-filter').addEventListener('change',e=>{ui.lab=e.target.value;render();});$('#sort-filter').addEventListener('change',e=>{ui.sort=e.target.value;update();});}
+function go(path){ui.route=path;closeModal();ui.qty=1;ui.tableSearch='';render();}
+function toast(message,error=false){$('#feedback').innerHTML=`<div class="toast ${error?'danger':''}" role="status">${icon(error?'alert':'check',20)}<span>${esc(message)}</span><button class="btn icon ghost" data-action="dismiss-toast" aria-label="Fermer la notification">${icon('close',16)}</button></div>`;setTimeout(()=>{$('#feedback').innerHTML='';},4500);}
+function modal(title,content,footer=''){const el=$('#overlays');el.innerHTML=`<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="row between"><h2 id="modal-title">${title}</h2><button class="btn icon ghost" data-action="close-modal" aria-label="Fermer la fenêtre">${icon('close')}</button></div>${content}${footer}</section></div>`;el.querySelector('input,select,button')?.focus();}
+function closeModal(){$('#overlays').innerHTML='';}
+let pendingAction=null;
+function confirmAction(title,message,action,label='Confirmer'){pendingAction=action;modal(title,`<p class="muted">${message}</p>`,`<div class="row end section-gap">${btn('Annuler','close-modal','secondary')}${btn(label,'confirm-action','primary')}</div>`);}
+document.addEventListener('click',e=>{
+  const anchor=e.target.closest('a[href^="#"]');
+  if(!anchor)return;
+  const destination=anchor.getAttribute('href').slice(1);
+  if(!destination||destination==='main')return;
+  e.preventDefault();e.stopPropagation();go(destination);
+},true);
+document.addEventListener('click',e=>{const el=e.target.closest('[data-action]');if(!el||el.disabled)return;const a=el.dataset.action,id=el.dataset.id;e.preventDefault();if(a==='noop')return;if(a==='dismiss-toast'){$('#feedback').innerHTML='';return;}if(a==='close-modal'){closeModal();return;}if(a==='confirm-action'){const f=pendingAction;closeModal();pendingAction=null;f?.();return;}if(a==='start-role'){ui.loginRole=el.dataset.role;go('connexion');return;}if(a==='demo-role'){ui.loginRole=el.dataset.role;render();return;}if(a==='toggle-password'){const input=$('[name="password"]');input.type=input.type==='password'?'text':'password';el.setAttribute('aria-label',input.type==='password'?'Afficher le mot de passe':'Masquer le mot de passe');return;}if(a==='toggle-filters'){ui.filtersOpen=!ui.filtersOpen;render();return;}if(a==='reset-filters'){ui.search='';ui.cat='';ui.lab='';ui.sort='default';render();return;}if(a==='category'){ui.cat=id;render();return;}if(a==='detail-qty'){const p=product(id),delta=Number(el.dataset.delta);if(delta>0&&p&&ui.qty>=p.stock){toast('La quantité ne peut pas dépasser le stock disponible.',true);return;}ui.qty=Math.max(1,ui.qty+delta);$('#detail-qty').textContent=ui.qty;return;}if(a==='add-cart'){const p=product(id);if(!p||!available(p))return;const qty=el.dataset.detail?ui.qty:1,line=state.cart.find(l=>l.product===id);if((line?.qty||0)+qty>p.stock){toast('Stock insuffisant. Réduisez la quantité dans votre panier.',true);return;}if(line)line.qty+=qty;else state.cart.push({product:id,qty});persist();render();toast('Produit ajouté à votre panier.');return;}if(a==='cart-qty'){const line=state.cart.find(l=>l.product===id),p=product(id),next=line.qty+Number(el.dataset.delta);if(next>p.stock){toast('Stock insuffisant pour cette quantité.',true);return;}line.qty=Math.max(1,next);persist();render();return;}if(a==='remove-cart'){confirmAction('Retirer ce produit ?',`« ${esc(product(id).name)} » sera retiré de votre panier.`,()=>{state.cart=state.cart.filter(l=>l.product!==id);persist();render();toast('Le produit a été retiré.');},'Retirer le produit');return;}if(a==='pay-success'||a==='pay-fail'){const o=order(id);if(o.status==='Annulée'){toast('Cette commande est annulée ; aucun paiement ne peut être simulé.',true);return;}if(o.payment){toast('Un résultat existe déjà pour cette commande.',true);return;}o.payment={status:a==='pay-success'?'Réussi':'Échoué',reference:'SIM-'+o.reference,date:new Date().toISOString()};persist();go('confirmation/'+id);return;}if(a==='accept-product'||a==='reject-product'){const p=product(id);confirmAction(a==='accept-product'?'Accepter ce produit ?':'Refuser ce produit ?',a==='accept-product'?'Le produit actif sera visible dans le catalogue professionnel.':'Le produit restera absent du catalogue professionnel.',()=>{p.status=a==='accept-product'?'Accepté':'Refusé';persist();go('admin/validation');toast('Décision enregistrée : '+p.status+'.');},a==='accept-product'?'Accepter le produit':'Refuser le produit');return;}if(a==='order-status'){const o=order(id),status=$('#admin-order-status').value;if(o.status==='Annulée'){toast('Une commande annulée ne peut plus changer de statut.',true);return;}if(o.status===status){toast('Ce statut est déjà enregistré.');return;}confirmAction('Mettre à jour la commande ?',`Nouveau statut : ${esc(status)}. Cette modification sera conservée dans l’historique.`,()=>{const date=new Date().toISOString();if(status==='Annulée'&&o.stockDebited===true){for(const line of o.lines){const p=product(line.product);if(p){p.stock+=line.qty;state.movements.unshift({id:uid('m')+'-'+line.product,product:line.product,variation:line.qty,motif:'Annulation de la commande fictive '+o.reference,date});}}o.stockDebited=false;}o.status=status;o.history.push({status,date});persist();render();toast('Le statut a été mis à jour.');});return;}if(a==='delivery-update'){const o=order(id),status=$('#delivery-status').value,now=new Date().toISOString();if(!o.delivery)o.delivery={status:'En préparation',tracking:'FICTIF-'+o.reference,shipped:null,delivered:null};o.delivery.status=status;if(status==='En préparation'){o.delivery.shipped=null;o.delivery.delivered=null;}else if(status==='Expédiée'){o.delivery.shipped||=now;o.delivery.delivered=null;}else if(status==='Livrée'){o.delivery.shipped||=now;o.delivery.delivered||=now;}persist();render();toast('Le suivi de livraison fictif a été actualisé.');return;}if(a==='toggle-user'){const u=state.users.find(u=>u.id===id);confirmAction(u.active?'Désactiver ce compte ?':'Activer ce compte ?',esc(u.name)+' · '+esc(u.role),()=>{u.active=!u.active;persist();render();toast('Le compte a été mis à jour.');});return;}if(a==='toggle-lab'){const l=state.labs.find(l=>l.id===id);confirmAction('Modifier l’activation du laboratoire ?',esc(l.name),()=>{l.active=!l.active;persist();render();toast('Le laboratoire a été mis à jour.');});return;}if(a==='toggle-category'){const c=state.categories.find(c=>c.id===id);c.active=!c.active;persist();render();toast('La catégorie a été mise à jour.');return;}if(a==='new-category'||a==='edit-category'){const c=state.categories.find(c=>c.id===id);modal(c?'Modifier la catégorie':'Ajouter une catégorie',`<form id="category-form" data-id="${c?.id||''}">${field('Nom de la catégorie *','name',c?.name||'Nouvelle catégorie','text','required')}<label class="field"><span>Description</span><textarea name="description" rows="3">${esc(c?.description||'')}</textarea></label><button class="btn primary full-width" type="submit">Enregistrer la catégorie</button></form>`);return;}if(a==='new-user'){modal('Ajouter un compte',`<form id="user-form">${field('Nom complet *','name','Robin Petit','text','required')}${field('Email *','email','robin@exemple.test','email','required')}<label class="field"><span>Rôle *</span><select name="role" id="new-user-role"><option>Professionnel</option><option>Fournisseur</option><option>Administrateur</option></select></label><label class="field"><span>Laboratoire · obligatoire pour Fournisseur</span><select name="lab"><option value="">Sans rattachement</option>${state.labs.map(l=>`<option value="${l.id}">${l.name}</option>`).join('')}</select></label><label class="checkbox-label"><input name="mustChange" type="checkbox" checked> Changement de mot de passe à la première connexion</label><p class="form-error" id="user-error"></p><button class="btn primary full-width" type="submit">Créer le compte fictif</button></form>`);return;}if(a==='new-lab'){modal('Ajouter un laboratoire partenaire',`<form id="lab-form">${field('Raison sociale *','name','Laboratoire Horizon','text','required')}${field('Email de contact *','email','contact@horizon.exemple.test','email','required')}<h3 class="section-gap">Premier compte fournisseur</h3>${field('Nom du responsable *','userName','Morgan Dubois','text','required')}${field('Email du compte *','userEmail','morgan@horizon.exemple.test','email','required')}<p class="muted">Le laboratoire et son premier compte sont créés ensemble.</p><button class="btn primary full-width" type="submit">Créer le laboratoire et son compte</button></form>`);return;}if(a==='reset-demo'){confirmAction('Recommencer la démonstration ?','Seules les données fictives créées dans cette maquette seront réinitialisées.',()=>{state=structuredClone(initial);persist();ui.search='';ui.cat='';ui.lab='';ui.status='';render();toast('La démonstration est prête.');},'Réinitialiser');return;}});
+document.addEventListener('change',e=>{if(e.target.id==='table-search'){ui.tableSearch=e.target.value;render();}if(e.target.id==='product-status-filter'){ui.status=e.target.value;render();}});
+document.addEventListener('submit',e=>{const form=e.target;if(!form.id)return;e.preventDefault();const data=Object.fromEntries(new FormData(form));if(form.id==='login-form'){const email=String(data.email||'').trim().toLowerCase(),u=state.users.find(u=>u.email.toLowerCase()===email&&u.role===roleLabel(ui.loginRole));if(!u){toast('Ce compte fictif est inconnu pour le parcours choisi. Vérifiez l’email et le rôle.',true);return;}if(!u.active){toast('Ce compte fictif est désactivé.',true);return;}if(u.role==='Fournisseur'&&!state.labs.some(l=>l.id===u.lab&&l.active)){toast('Le laboratoire rattaché à ce compte est absent ou désactivé.',true);return;}state.currentUserId=u.id;state.role=ui.loginRole;if(u.role==='Fournisseur')state.labId=u.lab;persist();go(u.mustChange?'mot-de-passe':roleHome(state.role));}if(form.id==='password-form'){const u=sessionUser();if(!u){toast('Choisissez d’abord un compte fictif sur l’écran de connexion.',true);go('connexion');return;}if(data.password!==data.confirm){$('#password-error').textContent='Les mots de passe ne correspondent pas. Vérifiez la confirmation.';return;}u.mustChange=false;persist();go(roleHome(state.role));toast('Mot de passe de démonstration mis à jour.');}if(form.id==='profile-form'){state.profile={...state.profile,...data,name:data.first+' '+data.last};persist();toast('Vos informations ont été enregistrées.');}if(form.id==='checkout-form'){const lines=cartLines();if(!lines.length||lines.some(l=>l.qty<1||l.qty>product(l.id).stock||!available(product(l.id)))){toast('Vérifiez les quantités et la disponibilité de votre panier.',true);go('panier');return;}const date=new Date().toISOString(),o={id:uid('o'),reference:'GSB-2026-'+String(143+state.orders.length-2).padStart(5,'0'),date,status:'En attente',stockDebited:true,address:data.address+', '+data.postal+' '+data.city+' — adresse fictive',lines:lines.map(l=>({product:l.id,name:l.name,qty:l.qty,price:l.price,tva:l.tva})),payment:null,delivery:null,history:[{status:'En attente',date}]};for(const l of lines){product(l.id).stock-=l.qty;state.movements.unshift({id:uid('m'),product:l.id,variation:-l.qty,motif:'Commande fictive '+o.reference,date});}state.orders.unshift(o);state.cart=[];persist();go('paiement/'+o.id);}if(form.id==='product-form'){const existing=product(form.dataset.id);if(existing&&existing.lab!==state.labId){toast('Ce produit ne dépend pas de votre laboratoire.',true);return;}const p={id:existing?.id||uid('p'),name:data.name,description:data.description,category:data.category,lab:state.labId,price:Number(data.price),tva:Number(data.tva),stock:existing?existing.stock:Number(data.stock),status:'En attente',active:data.active==='on',format:data.format||'Conditionnement professionnel',color:state.labs.find(l=>l.id===state.labId).color,code:existing?.code||'AST-'+String(state.products.length+1).padStart(3,'0'),image_url:data.image_url};if(existing)Object.assign(existing,p);else state.products.push(p);persist();go('fournisseur/produits');toast('Produit soumis à GSB. Statut : En attente.');}if(form.id==='stock-form'){const p=product(data.product),variation=Number(data.variation);if(!p||p.lab!==state.labId){$('#stock-error').textContent='Choisissez un produit rattaché à votre laboratoire.';return;}if(!Number.isInteger(variation)||variation===0||p.stock+variation<0){$('#stock-error').textContent='Saisissez une variation entière, non nulle, laissant un stock positif ou nul.';return;}p.stock+=variation;state.movements.unshift({id:uid('m'),product:p.id,variation,motif:data.motif,date:new Date().toISOString()});persist();render();toast('Le mouvement de stock fictif a été enregistré.');}if(form.id==='category-form'){const c=state.categories.find(c=>c.id===form.dataset.id);if(c)Object.assign(c,{name:data.name,description:data.description});else state.categories.push({id:uid('c'),name:data.name,description:data.description,active:true});persist();closeModal();render();toast('La catégorie a été enregistrée.');}if(form.id==='user-form'){if(data.role==='Fournisseur'&&!data.lab){$('#user-error').textContent='Choisissez le laboratoire auquel rattacher ce compte fournisseur.';return;}state.users.push({id:uid('u'),name:data.name,email:data.email,role:data.role,lab:data.role==='Fournisseur'?data.lab:null,active:true,mustChange:data.mustChange==='on'});persist();closeModal();render();toast('Le compte fictif a été créé.');}if(form.id==='lab-form'){const id=uid('l');state.labs.push({id,name:data.name,email:data.email,active:true,color:'#159A9C'});state.users.push({id:uid('u'),name:data.userName,email:data.userEmail,role:'Fournisseur',lab:id,active:true,mustChange:true});persist();closeModal();render();toast('Le laboratoire et son premier compte fournisseur ont été créés.');}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();if(ui.filtersOpen){ui.filtersOpen=false;render();}}if(e.key==='Tab'&&$('#overlays .modal')){const focusable=[...$('#overlays .modal').querySelectorAll('button,input,select,textarea,a[href]')].filter(x=>!x.disabled),first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
+window.addEventListener('hashchange',()=>{closeModal();ui.qty=1;ui.tableSearch='';render();});
+render();
+</script>
+</body>
+</html>

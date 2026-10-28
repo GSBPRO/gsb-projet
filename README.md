@@ -49,7 +49,7 @@ Architecturer et maquettiser.
 - ✅ Modèle Conceptuel de Données (MCD)
 - ✅ Modèle Logique de Données (MLD)
 - ✅ Modèle Physique de Données (MPD) + script SQL ([`docs/MPD.md`](docs/MPD.md), [`database/schema.sql`](database/schema.sql))
-- Maquettes des écrans principaux (catalogue, panier, admin)
+- ✅ Maquettes des écrans principaux : 43 pages ordinateur, 16 pages mobile et prototype interactif ([`docs/maquettes/`](docs/maquettes/), voir `LISEZ-MOI.txt`)
 - Architecture technique (arborescence front/back, routes API)
 - Diagramme de Gantt
 
@@ -87,6 +87,7 @@ Jeu de données, documentation, démonstration, préparation de la soutenance.
 - [ ] Code source complet (front + back + script BDD)
 - [x] ✅ Cahier des charges
 - [x] ✅ Modèles Merise (MCD, MLD, MPD)
+- [x] ✅ Maquettes et prototype interactif ([`docs/maquettes/`](docs/maquettes/))
 - [ ] Diagramme de Gantt
 - [ ] Démonstration de l'application
 
