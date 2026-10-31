@@ -1,0 +1,35 @@
+/* Le style commun à tous les boutons */
+.bouton {
+  padding: var(--espace-petit) var(--espace-moyen);
+  border-radius: var(--arrondi-petit);
+  font-weight: 600;
+  cursor: pointer; /* la souris devient une main */
+}
+
+/* Bouton principal : fond turquoise, texte blanc */
+.bouton-principal {
+  background: var(--couleur-principale);
+  color: white;
+  border: 1px solid var(--couleur-principale);
+}
+
+.bouton-principal:hover {
+  background: var(--couleur-principale-fonce); /* plus foncé quand la souris passe dessus */
+}
+
+/* Bouton secondaire : fond blanc, bordure turquoise */
+.bouton-secondaire {
+  background: var(--fond-carte);
+  color: var(--couleur-principale);
+  border: 1px solid var(--couleur-principale);
+}
+
+.bouton-secondaire:hover {
+  background: var(--fond-turquoise);
+}
+
+/* Bouton grisé (disabled) */
+.bouton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

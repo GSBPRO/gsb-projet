@@ -1,0 +1,50 @@
+/* ============================================================
+   variable.css : les couleurs et tailles du site GSB
+   On les écrit UNE seule fois ici, puis on les réutilise partout
+   avec var(...). Exemple : color: var(--couleur-principale);
+   ============================================================ */
+
+:root {
+  
+  --bleu-marine: #142d4e;       
+  --couleur-principale: #159a9c; 
+  --couleur-principale-fonce: #0c7476; 
+  --couleur-principale-clair: #8bdbd4; 
+  --fond-turquoise: #e9f5f3;     
+
+  /* ----- Fonds et bordures ----- */
+  --fond-page: #f5f7fa;          
+  --fond-carte: #ffffff;         
+  --bordure: #cdd8e3;            
+
+  /* ----- Textes ----- */
+  --texte: #1f2937;              
+  --texte-gris: #64748b;         
+
+  /* ----- Messages et statuts (alertes, badges) ----- */
+  --succes-fond: #e9f5f3;
+  --succes-texte: #0c7476;
+  --attente-fond: #fff4dd;       
+  --attente-texte: #92600a;
+  --erreur-fond: #fce5e9;       
+  --erreur-texte: #b42318;
+
+  /* ----- Espacements (pour les marges et les écarts) ----- */
+  --espace-petit: 8px;
+  --espace-moyen: 16px;
+  --espace-grand: 24px;
+  --espace-tres-grand: 40px;
+
+  /* ----- Coins arrondis ----- */
+  --arrondi-petit: 8px;          
+  --arrondi-moyen: 10px;         
+  --arrondi-rond: 50%;          
+
+  /* ----- Texte : police et tailles ----- */
+  --police: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  --taille-petite: 12px;         /* petits textes, légendes */
+  --taille-normale: 14px;        /* texte courant */
+  --taille-moyenne: 18px;        /* sous-titres */
+  --taille-grande: 24px;         /* titres de section */
+  --taille-titre: 36px;          /* grand titre de page */
+}

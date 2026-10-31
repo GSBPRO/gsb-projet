@@ -1,0 +1,32 @@
+/* Le bloc complet : titre + champ + erreur, les uns sous les autres */
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-petit);
+}
+
+/* Le titre au-dessus du champ */
+.champ label {
+  font-weight: 600;
+  color: var(--bleu-marine);
+}
+
+/* Le champ où l'on tape */
+.champ input {
+  padding: var(--espace-petit) var(--espace-moyen);
+  border: 1px solid var(--bordure);
+  border-radius: var(--arrondi-petit);
+  background: var(--fond-carte);
+}
+
+/* Quand on clique dans le champ, la bordure devient turquoise */
+.champ input:focus {
+  outline: none;
+  border-color: var(--couleur-principale);
+}
+
+/* Le message d'erreur, en rouge */
+.champ-erreur {
+  color: var(--erreur-texte);
+  font-size: var(--taille-petite);
+}

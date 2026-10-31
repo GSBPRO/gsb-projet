@@ -1,0 +1,112 @@
+/* La barre du haut : fond blanc avec une fine ligne en dessous */
+.header {
+  background: var(--fond-carte);
+  border-bottom: 1px solid var(--bordure);
+}
+
+/* Contenu de la barre : hauteur fixe, éléments centrés verticalement */
+.header-contenu {
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+
+
+.header-menu {
+    display: flex;
+    align-self: stretch; /* le menu prend toute la hauteur de la barre */
+    gap: var(--espace-grand);
+    margin-left: var(--espace-grand);
+  }
+
+.header-lien {
+    display: flex;
+    align-items: center;
+    color: var(--texte-gris);
+    font-weight: 600;
+    border-bottom: 3px solid transparent; /* trait invisible, pour que rien ne bouge */
+  }
+
+
+.header-lien:hover {
+    color: var(--bleu-marine);
+  }
+
+
+.header-lien-actif {
+    color: var(--bleu-marine);
+    border-bottom-color: var(--couleur-principale);
+  }
+
+/* ----- La partie de droite ----- */
+.header-droite {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-moyen);
+  margin-left: auto; /* pousse tout ce bloc complètement à droite */
+}
+
+/* Le bouton carré du panier */
+.header-panier {
+  position: relative; /* permet de placer la pastille par rapport au panier */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--bleu-marine);
+  border: 1px solid var(--bordure);
+  border-radius: var(--arrondi-moyen);
+}
+
+/* La pastille turquoise en haut à droite du panier */
+.header-pastille {
+  position: absolute; /* placée librement dans le panier */
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--couleur-principale-fonce);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 9px;
+}
+
+/* L'utilisateur : une ligne verticale à gauche, puis le rond et les textes */
+.header-utilisateur {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-petit);
+  padding-left: var(--espace-moyen);
+  border-left: 1px solid var(--bordure);
+}
+
+/* Le rond avec les initiales */
+.header-initiales {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--fond-turquoise);
+  color: var(--couleur-principale-fonce);
+  font-weight: 700;
+  border-radius: var(--arrondi-rond);
+}
+
+/* Le nom */
+.header-nom {
+  font-weight: 600;
+  color: var(--bleu-marine);
+}
+
+/* Le rôle, plus petit et gris */
+.header-role {
+  font-size: var(--taille-petite);
+  color: var(--texte-gris);
+}
+

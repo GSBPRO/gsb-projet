@@ -1,0 +1,65 @@
+/* ============================================================
+   global.css : le style de base, appliqué à tout le site
+   ============================================================ */
+
+/* On charge d'abord nos couleurs et tailles (fichier variable.css) */
+@import './variable.css';
+
+
+/* ----- Remise à zéro : on enlève les marges ajoutées par le navigateur ----- */
+* {
+  margin: 0;
+  padding: 0;
+  /* La largeur d'un élément inclut sa bordure et son espace intérieur :
+     plus simple pour calculer les tailles */
+  box-sizing: border-box;
+}
+
+/* ----- La page entière ----- */
+body {
+  font-family: var(--police);
+  font-size: var(--taille-normale);
+  color: var(--texte);
+  background: var(--fond-page);
+  line-height: 1.5; /* espace entre les lignes de texte */
+}
+
+/* ----- Les titres ----- */
+h1 {
+  font-size: var(--taille-titre);
+  color: var(--bleu-marine);
+}
+
+h2 {
+  font-size: var(--taille-grande);
+  color: var(--bleu-marine);
+}
+
+h3 {
+  font-size: var(--taille-moyenne);
+  color: var(--bleu-marine);
+}
+
+/* ----- Les liens ----- */
+a {
+  color: var(--couleur-principale);
+  text-decoration: none; /* pas de soulignement */
+}
+
+a:hover {
+  color: var(--couleur-principale-fonce);
+}
+
+/* ----- Les images ne dépassent jamais de leur zone ----- */
+img {
+  max-width: 100%;
+}
+
+/* ----- Les champs et boutons utilisent la même police que le site ----- */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}

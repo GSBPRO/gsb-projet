@@ -1,0 +1,42 @@
+/* ============================================================
+   responsive.css : adapter le site à la taille de l'écran
+   Trois tailles : ordinateur (par défaut), tablette, téléphone.
+   Une règle @media ne s'applique que si l'écran est plus petit
+   que la largeur indiquée.
+   ============================================================ */
+
+/* ----- Ordinateur (par défaut) -----
+   .conteneur centre le contenu et limite sa largeur.
+   On l'utilise autour du contenu de chaque page. */
+.conteneur {
+  max-width: 1200px;
+  margin: 0 auto; /* marges automatiques à gauche et à droite : le contenu est centré */
+  padding: 0 var(--espace-grand);
+}
+
+/* ----- Tablette : écran de 768px de large ou moins ----- */
+@media (max-width: 768px) {
+  .conteneur {
+    padding: 0 var(--espace-moyen);
+  }
+
+  /* Les grands titres sont un peu réduits */
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
+
+/* ----- Téléphone : écran de 480px de large ou moins ----- */
+@media (max-width: 480px) {
+  .conteneur {
+    padding: 0 var(--espace-petit);
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}

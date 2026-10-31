@@ -1,0 +1,11 @@
+# Dossiers installés par npm : ils ne doivent jamais être envoyés sur GitHub
+node_modules/
+
+# Résultat de la commande "npm run build"
+dist/
+
+# Fichiers de configuration locale (mots de passe, clés)
+.env
+
+# Journaux
+*.log
