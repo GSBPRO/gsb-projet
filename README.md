@@ -55,7 +55,8 @@ Architecturer et maquettiser.
 
 ### 3. Développement du socle
 Authentification, rôles, base MySQL, structure React/Express.
-- Setup back-end Node.js + API, setup front-end React
+- Setup back-end Node.js + API
+- ✅ Setup front-end React (Vite, styles, boutons, champs, logo, barre du haut)
 - Authentification sécurisée
 - Espace personnel
 
@@ -103,15 +104,40 @@ Prototype interactif : ouvrir [`docs/maquettes/GSB_Canva_Prototype_interactif.ht
 
 ![Aperçu maquette mobile](docs/maquettes/apercu-canva-mobile.png)
 
+## Où on en est (31/10/2026)
+
+**Front-end React (branche `kelian`)** : on code avec des données fictives, étape par étape ([`docs/FEUILLE_DE_ROUTE_CODE.md`](docs/FEUILLE_DE_ROUTE_CODE.md)).
+
+| Étape | Contenu | État |
+|---|---|---|
+| 0 | Projet Vite + React qui démarre | ✅ fait |
+| 1 | Styles (couleurs, texte), `Button`, `Input` | ✅ fait, il reste `Alert`, `Badge`, `Loader`, `Modal`, `EmptyState` |
+| 2 | Logo et `Header` (barre du haut) | ✅ fait, il reste `Footer`, `Sidebar`, `Breadcrumb`, `PageHeader`, layouts, routes |
+| 3 | Connexion avec données fictives | à faire |
+| 4 | Catalogue (bandeau, filtres, fiche produit) | à faire |
+| 5 à 10 | Panier, commandes, espace personnel, admin, fournisseur, qualité | à faire |
+
+**Back-end Node.js** : pas commencé (après le front).
+
+**Fichiers restant à écrire** : la liste complète (29 fichiers) est dans [`docs/fichiers-a-ecrire.pdf`](docs/fichiers-a-ecrire.pdf). Ce qui est déjà écrit est expliqué dans [`docs/recap-front.pdf`](docs/recap-front.pdf).
+
+## Lancer le front
+
+```
+cd frontend
+npm install
+npm run dev
+```
+
 ## Développement
 
 Plan étape par étape : [`docs/FEUILLE_DE_ROUTE_CODE.md`](docs/FEUILLE_DE_ROUTE_CODE.md). On commence par le front avec des données fictives, puis on branche le back-end.
 
-## Structure du dépôt (à venir)
+## Structure du dépôt
 
 ```
-docs/           cahier des charges, Merise, Gantt
-backend/        API Node.js
-frontend/       application React
+docs/           cahier des charges, Merise, maquettes, récapitulatifs du front
+backend/        API Node.js (à venir)
+frontend/       application React (en cours)
 database/       scripts SQL
 ```
