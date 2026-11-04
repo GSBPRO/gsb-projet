@@ -1,0 +1,42 @@
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #cfdff4; /* couleur proche de l'image, affichée le temps qu'elle charge */
+}
+
+/* Cadre qui suit la souris. Il déborde un peu du bandeau : en se décalant,
+   il ne laisse jamais apparaître de bord vide. */
+.hero-bg__frame {
+  position: absolute;
+  inset: -30px;
+  transition: transform 0.8s ease-out; /* rend le suivi de la souris doux */
+}
+
+/* L'image remplit tout le cadre sans être déformée, et « respire » avec un zoom très lent. */
+.hero-bg__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  animation: hero-bg-breathe 30s ease-in-out infinite alternate;
+}
+
+@keyframes hero-bg-breathe {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+/* Voile clair : fond gris en haut pour se fondre sous l'en-tête, et un peu de blanc à gauche
+   pour que le titre reste bien lisible. */
+.hero-bg__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, var(--color-grey) 0%, rgba(239, 241, 243, 0) 22%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 55%);
+}

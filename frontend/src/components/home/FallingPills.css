@@ -1,0 +1,47 @@
+.falling-pills {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none; /* ne bloque jamais un clic */
+}
+
+/* Emplacement de la gélule : c'est lui qui saute quand la souris passe. */
+.falling-pills__slot {
+  position: absolute;
+  top: 0;
+}
+
+/* Une gélule : deux moitiés (claire et glacier), un reflet et une ombre douce. */
+.falling-pills__pill {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #eef7fb 0 50%, #a9d2e6 50% 100%);
+  box-shadow:
+    inset 3px 0 0 rgba(255, 255, 255, 0.85),
+    inset -3px 0 5px rgba(49, 81, 107, 0.2),
+    0 6px 12px rgba(49, 81, 107, 0.18);
+  /* forwards : à la fin, la gélule garde sa dernière position (elle reste sur le tas). */
+  animation-name: pill-drop;
+  animation-fill-mode: both;
+}
+
+/* Chute qui accélère (gravité), petit rebond, puis repos. */
+@keyframes pill-drop {
+  0% {
+    transform: translate(var(--drift), -120px) rotate(var(--start-rotate));
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 1);
+  }
+  82% {
+    transform: translate(0, var(--land-y)) rotate(var(--end-rotate));
+    animation-timing-function: ease-out;
+  }
+  90% {
+    transform: translate(0, calc(var(--land-y) - 10px)) rotate(calc(var(--end-rotate) - 6deg));
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translate(0, var(--land-y)) rotate(var(--end-rotate));
+  }
+}

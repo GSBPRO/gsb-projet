@@ -1,0 +1,110 @@
+/* Pas de fond : l'en-tête est posé sur le gris de la page.
+   Il ne reste donc pas collé en haut au défilement, sinon le contenu passerait dessous et deviendrait illisible. */
+.header {
+  padding-top: var(--space-2);
+}
+
+/* Mobile d'abord : logo et actions sur une ligne, les onglets passent dessous. */
+.header__inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'logo actions'
+    'nav nav';
+  align-items: center;
+  gap: var(--space-2);
+  width: min(1312px, 100% - 32px);
+  margin-inline: auto;
+}
+
+.header__logo {
+  grid-area: logo;
+  text-decoration: none;
+}
+
+.header__nav {
+  grid-area: nav;
+  overflow-x: auto; /* sur un écran très étroit, on fait défiler les onglets plutôt que de les couper */
+}
+
+.header__actions {
+  grid-area: actions;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__icon-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-border-input);
+  border-radius: 10px;
+  background: var(--color-white);
+  color: var(--color-deep);
+  cursor: pointer;
+}
+
+.header__icon-btn:hover {
+  background: var(--color-glacier);
+}
+
+.header__user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.header__avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-glacier);
+  color: var(--color-deep);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* Le nom ne s'affiche qu'à partir d'une largeur suffisante */
+.header__user-text {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .header {
+    padding-top: var(--space-3);
+  }
+
+  .header__inner {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'logo nav actions';
+    gap: var(--space-4);
+  }
+
+  .header__nav {
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .header__user-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+  }
+
+  .header__user-text strong {
+    font-size: 14px;
+  }
+
+  .header__user-text span {
+    font-size: 12px;
+    color: var(--color-text-muted);
+  }
+}

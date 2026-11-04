@@ -1,0 +1,67 @@
+/* Police hébergée dans le projet (pas de Google Fonts) : aucune donnée de visiteur n'est envoyée à un tiers. */
+@import '@fontsource-variable/manrope';
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font: 16px/1.55 var(--font);
+  color: var(--color-text);
+  background: var(--color-grey);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  color: var(--color-deep);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin-top: 0;
+}
+
+a {
+  color: var(--color-deep);
+}
+
+/* Contour bien visible pour la navigation au clavier */
+:focus-visible {
+  outline: 3px solid var(--color-deep);
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  margin-bottom: var(--space-2);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+/* Respecte le réglage « réduire les animations » du système */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,21 @@
+.pro-layout {
+  min-height: 100vh;
+}
+
+.pro-layout__main {
+  width: min(1312px, 100% - 32px);
+  margin-inline: auto;
+  padding: var(--space-3) 0 var(--space-8);
+}
+
+@media (min-width: 900px) {
+  .pro-layout__main {
+    padding-top: var(--space-4);
+  }
+}
+
+/* Un décor pleine largeur (100vw) dépasse de la largeur de la barre de défilement :
+   on coupe ce dépassement pour éviter une barre de défilement horizontale. */
+.pro-layout {
+  overflow-x: clip;
+}

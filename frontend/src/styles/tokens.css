@@ -1,0 +1,37 @@
+/*
+  Les couleurs et tailles du site, rangées à un seul endroit :
+  pour changer une couleur partout, on la change ici.
+  Contrastes vérifiés (WCAG AA : 4,5 pour le texte, 3 pour les bordures de champ).
+*/
+:root {
+  /* Palette GSB */
+  --color-glacier: #b9dceb; /* fonds et accents uniquement : trop clair pour du texte sur blanc */
+  --color-deep: #31516b; /* couleur principale : titres, boutons, fonds sombres */
+  --color-deep-hover: #26425a;
+  --color-white: #ffffff;
+  --color-grey: #eff1f3; /* fond des pages */
+
+  /* Couleurs ajoutées pour l'accessibilité */
+  --color-text: #1f2e3b;
+  --color-text-muted: #5a6b7a;
+  --color-border: #d5dce2; /* bordures décoratives (cartes) */
+  --color-border-input: #7d8d9a; /* bordures des champs : contraste 3,4 sur blanc */
+  --color-error: #b42318;
+  --color-success: #276b45;
+  --color-warning: #9a5b00;
+
+  /* Typographie */
+  --font: 'Manrope Variable', 'Segoe UI', Arial, sans-serif;
+
+  /* Espacements : multiples de 8 px, comme la maquette */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 8px 28px rgba(49, 81, 107, 0.06);
+}
