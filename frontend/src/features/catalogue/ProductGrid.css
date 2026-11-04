@@ -1,0 +1,32 @@
+/* Autant de colonnes que la largeur le permet, avec des cartes d'au moins 230 px. */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--space-3);
+}
+
+.product-grid__message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border: 1px dashed var(--color-border-input);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  color: var(--color-text-muted);
+}
+
+.product-grid__message p {
+  margin: 0;
+}
+
+.product-grid__message-title {
+  color: var(--color-text);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.product-grid__message .btn {
+  margin-top: var(--space-2);
+}

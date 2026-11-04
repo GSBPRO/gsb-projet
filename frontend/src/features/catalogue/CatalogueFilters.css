@@ -1,0 +1,126 @@
+.catalogue-filters {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+}
+
+/* Mobile d'abord : un bouton « Filtres », et le panneau caché tant qu'on ne l'ouvre pas. */
+.catalogue-filters__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: none;
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Petite flèche qui pivote quand le panneau s'ouvre */
+.catalogue-filters__toggle::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.catalogue-filters__toggle[aria-expanded='true']::after {
+  transform: rotate(-135deg);
+}
+
+.catalogue-filters__dot {
+  margin-left: var(--space-1);
+  margin-right: auto;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--color-deep);
+  color: var(--color-white);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.catalogue-filters__panel {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: 0 var(--space-3) var(--space-3);
+}
+
+.catalogue-filters__panel.is-open {
+  display: flex;
+}
+
+.catalogue-filters__title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 17px;
+}
+
+.catalogue-filters__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.catalogue-filters__field select {
+  min-height: 44px;
+  padding: 0 var(--space-1);
+  border: 1px solid var(--color-border-input);
+  border-radius: 10px;
+  background: var(--color-white);
+  color: var(--color-text);
+}
+
+.catalogue-filters__check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.catalogue-filters__check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-deep); /* la case cochée prend le bleu GSB */
+}
+
+.catalogue-filters__reset {
+  align-self: flex-start;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  color: var(--color-deep);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.catalogue-filters__reset:disabled {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  cursor: default;
+}
+
+/* Ordinateur : pas de bouton, le panneau est toujours affiché en colonne. */
+@media (min-width: 900px) {
+  .catalogue-filters__toggle {
+    display: none;
+  }
+
+  .catalogue-filters__panel {
+    display: flex;
+    padding: var(--space-3);
+  }
+}

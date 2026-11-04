@@ -1,0 +1,32 @@
+.category-chips {
+  display: flex;
+  gap: var(--space-1);
+  overflow-x: auto; /* sur mobile, on fait défiler les pastilles plutôt que de les couper */
+  padding-bottom: 4px;
+}
+
+.category-chips__chip {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border-input);
+  border-radius: 999px;
+  background: var(--color-white);
+  color: var(--color-deep);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.category-chips__chip:hover {
+  background: var(--color-glacier);
+}
+
+/* Pastille sélectionnée : bleu profond et texte blanc (contraste 8,3) */
+.category-chips__chip[aria-pressed='true'] {
+  border-color: var(--color-deep);
+  background: var(--color-deep);
+  color: var(--color-white);
+}

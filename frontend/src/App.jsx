@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import CataloguePage from './features/catalogue/CataloguePage.jsx';
 import ProLayout from './features/layout/ProLayout.jsx';
 import ComingSoonPage from './pages/ComingSoonPage.jsx';
 import HomePage from './features/home/HomePage.jsx';
@@ -21,7 +22,7 @@ export default function App() {
         }
       >
         <Route path="/accueil" element={<HomePage />} />
-        <Route path="/catalogue" element={<ComingSoonPage title="Catalogue" />} />
+        <Route path="/catalogue" element={<CataloguePage />} />
         <Route path="/panier" element={<ComingSoonPage title="Mon panier" />} />
         <Route path="/commandes" element={<ComingSoonPage title="Mes commandes" />} />
         <Route path="/compte" element={<ComingSoonPage title="Mon compte" />} />

@@ -161,3 +161,57 @@
     font-size: 14px;
   }
 }
+
+/* Onglet qui ouvre un menu : un bouton qui ressemble aux autres onglets */
+.slide-tabs__link--button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Petite flèche qui pivote quand le menu est ouvert */
+.slide-tabs__chevron {
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.25s;
+}
+
+.slide-tabs__link--button[aria-expanded='true'] .slide-tabs__chevron {
+  margin-top: 3px;
+  transform: rotate(-135deg);
+}
+
+/* Onglet qui ouvre un menu : un bouton qui ressemble aux autres onglets */
+.slide-tabs__link--button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Petite flèche qui pivote quand le menu est ouvert */
+.slide-tabs__chevron {
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.25s;
+}
+
+.slide-tabs__link--button[aria-expanded='true'] .slide-tabs__chevron {
+  margin-top: 3px;
+  transform: rotate(-135deg);
+}
