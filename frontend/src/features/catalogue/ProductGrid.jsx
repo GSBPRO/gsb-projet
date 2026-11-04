@@ -6,7 +6,7 @@ import './ProductGrid.css';
 const SKELETON_COUNT = 6;
 
 // Grille des produits, avec les trois états demandés : chargement, erreur et aucun résultat.
-export default function ProductGrid({ status, products, laboratoriesById, onRetry, onResetFilters }) {
+export default function ProductGrid({ status, products, laboratoriesById, categoriesById, onRetry, onResetFilters }) {
   if (status === 'loading') {
     return (
       <div className="product-grid" aria-busy="true">
@@ -47,6 +47,7 @@ export default function ProductGrid({ status, products, laboratoriesById, onRetr
           key={product.id}
           product={product}
           laboratory={laboratoriesById.get(product.laboratoryId)}
+          categoryName={categoriesById.get(product.categoryId)?.name}
           index={index}
         />
       ))}

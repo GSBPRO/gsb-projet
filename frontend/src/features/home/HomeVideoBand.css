@@ -1,0 +1,76 @@
+/* Bandeau pleine largeur : sort de la colonne centrale pour toucher les deux bords de l'écran. */
+.home-video {
+  position: relative;
+  width: 100vw;
+  height: 320px;
+  margin-inline: calc(50% - 50vw);
+  overflow: hidden;
+  background: linear-gradient(135deg, #31516b 0%, #1f2e3b 100%); /* visible tant que la vidéo charge */
+  /* Fondu : le bas de la vidéo devient transparent et se mélange au paysage du bandeau dessous. */
+  -webkit-mask-image: linear-gradient(180deg, #000 45%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 45%, transparent 100%);
+  /* Chevauche le haut du bandeau d'accueil pour que le fondu ait quelque chose derrière lui. */
+  margin-bottom: -160px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.home-video__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Voile : garde la navbar lisible par-dessus */
+.home-video::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(31, 46, 59, 0.45) 0%, rgba(31, 46, 59, 0) 70%);
+}
+
+@media (min-width: 900px) {
+  .home-video {
+    height: 380px;
+  }
+}
+
+/* Le bandeau d'accueil juste dessous n'a plus à remonter sous l'en-tête. */
+.home-video + .hero {
+  margin-top: 0;
+}
+
+/* Le bandeau d'accueil commence plus bas à cause de la vidéo : on le raccourcit pour que les gélules
+   en bas restent visibles sans défiler, et on remonte le texte et la molécule. */
+@media (min-width: 900px) {
+  .home-video + .hero {
+    min-height: max(560px, calc(100vh - 220px));
+  }
+
+  .home-video + .hero .hero-content {
+    align-items: start;
+    padding-top: var(--space-2);
+  }
+}
+
+/* Molécule 3D : remontée d'environ 70 px par rapport à sa place d'origine. */
+@media (min-width: 900px) {
+  .home-video + .hero .hero-content__aside {
+    margin-top: -30px;
+  }
+}
+
+/* Phrase de présentation sous la molécule : descendue d'environ 40 px. */
+@media (min-width: 900px) {
+  .home-video + .hero .hero-content__lead {
+    margin-top: 40px;
+  }
+}
+
+/* Bloc de gauche (salutation, titre, bouton) centré verticalement face à la molécule et à sa phrase. */
+@media (min-width: 900px) {
+  .home-video + .hero .hero-content > div:first-child {
+    align-self: center;
+    transform: translateY(-80px); /* remonté un peu par rapport au centre */
+  }
+}

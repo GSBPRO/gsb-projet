@@ -37,9 +37,11 @@ export default function CataloguePage() {
   // Accès rapide à un laboratoire par son numéro (pour afficher son nom sur chaque carte).
   const laboratoriesById = useMemo(() => new Map(laboratories.map((lab) => [lab.id, lab])), [laboratories]);
 
+  const categoriesById = useMemo(() => new Map(categories.map((category) => [category.id, category])), [categories]);
+
   return (
     <div className="catalogue-page">
-      <CatalogueBanner />
+      <CatalogueBanner videoSrc="/videos/catalogue.mp4" />
 
       <div className="catalogue-page__layout">
         <CatalogueFilters
@@ -67,6 +69,7 @@ export default function CataloguePage() {
             status={status}
             products={visibleProducts}
             laboratoriesById={laboratoriesById}
+            categoriesById={categoriesById}
             onRetry={reload}
             onResetFilters={resetFilters}
           />

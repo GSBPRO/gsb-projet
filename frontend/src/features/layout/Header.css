@@ -125,3 +125,59 @@
     color: var(--color-text-muted);
   }
 }
+
+/* En-tête posé sur le bandeau du catalogue : il flotte par-dessus, sans fond, texte blanc. */
+.header--over-hero {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.header--over-hero .header__user,
+.header--over-hero .header__user-text span {
+  color: var(--color-white);
+}
+
+.header--over-hero .header__icon-btn {
+  border-color: transparent;
+}
+
+/* Effet translucide (verre dépoli) : la barre laisse deviner ce qui passe derrière. */
+.header__inner {
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 4px 24px rgba(31, 46, 59, 0.08);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+
+/* Sur le bandeau vidéo : verre plus sombre, texte blanc conservé. */
+.header--over-hero .header__inner {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* Les éléments internes gardaient un fond blanc opaque : on les rend translucides aussi. */
+.header .slide-tabs {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.header .header__icon-btn {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.header .header__icon-btn:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.header--over-hero .slide-tabs {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.header--over-hero .header__icon-btn {
+  background: rgba(255, 255, 255, 0.14);
+}
