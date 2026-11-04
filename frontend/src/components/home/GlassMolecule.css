@@ -1,0 +1,27 @@
+/* Place réservée dans la page (le texte en dessous ne bouge pas). */
+.glass-molecule {
+  position: relative;
+  height: 300px;
+  pointer-events: none; /* ne bloque aucun clic */
+}
+
+/* Zone de dessin 3D beaucoup plus grande que la place réservée, centrée dessus.
+   Fond transparent : on ne la voit pas, mais la molécule peut tourner sans être coupée. */
+.glass-molecule__stage {
+  position: absolute;
+  inset: -100px -80px;
+}
+
+.glass-molecule__stage canvas {
+  display: block;
+}
+
+@media (min-width: 900px) {
+  .glass-molecule {
+    height: 320px;
+  }
+
+  .glass-molecule__stage {
+    inset: -140px -160px;
+  }
+}

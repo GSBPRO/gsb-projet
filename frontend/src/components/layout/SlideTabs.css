@@ -1,0 +1,163 @@
+.slide-tabs {
+  position: relative; /* repère pour placer la pastille */
+  width: fit-content;
+  padding: 4px;
+  border: 2px solid var(--color-deep);
+  border-radius: 999px;
+  background: var(--color-white);
+}
+
+.slide-tabs__cursor {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  /* Le léger rebond imite l'effet « ressort » du composant d'origine, sans bibliothèque. */
+  transition:
+    transform 0.35s cubic-bezier(0.3, 1.3, 0.5, 1),
+    width 0.35s cubic-bezier(0.3, 1.3, 0.5, 1),
+    opacity 0.2s;
+}
+
+/* La gélule : deux moitiés de teintes différentes, comme un médicament en capsule. */
+.capsule {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.capsule__half {
+  flex: 1;
+}
+
+.capsule__half--left {
+  border-radius: 999px 0 0 999px;
+  background: var(--color-deep); /* texte blanc : contraste 8,3 */
+}
+
+.capsule__half--right {
+  border-radius: 0 999px 999px 0;
+  background: var(--color-deep-hover); /* texte blanc : contraste 10,4 */
+}
+
+/* Au changement de page : la gélule s'écrase, rebondit et ses moitiés s'entrouvrent puis se referment. */
+.capsule--hop {
+  animation: capsule-hop 0.6s ease-out;
+}
+
+.capsule--hop .capsule__half--left {
+  animation: capsule-open-left 0.6s ease-out;
+}
+
+.capsule--hop .capsule__half--right {
+  animation: capsule-open-right 0.6s ease-out;
+}
+
+/* Petite croix de pharmacie qui s'envole au-dessus de la gélule */
+.capsule__cross {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  color: var(--color-deep);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0;
+  animation: capsule-cross 0.8s ease-out 0.2s;
+}
+
+@keyframes capsule-hop {
+  0% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(1.08, 0.72);
+  }
+  55% {
+    transform: scale(0.96, 1.12);
+  }
+  80% {
+    transform: scale(1.02, 0.96);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes capsule-open-left {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  35% {
+    transform: translateX(-4px);
+  }
+  70% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes capsule-open-right {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  35% {
+    transform: translateX(4px);
+  }
+  70% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes capsule-cross {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.5) rotate(0deg);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-16px) scale(1.2) rotate(90deg);
+  }
+}
+
+.slide-tabs__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slide-tabs__link {
+  position: relative; /* passe au-dessus de la pastille */
+  display: block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: var(--color-deep);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+/* Texte blanc quand la pastille bleue est dessous (contraste 8,3) */
+.slide-tabs__link.is-highlighted {
+  color: var(--color-white);
+}
+
+.slide-tabs__link:focus-visible {
+  outline-offset: 2px;
+}
+
+@media (min-width: 900px) {
+  .slide-tabs__link {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}

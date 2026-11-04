@@ -1,0 +1,26 @@
+.water-ripple__defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* Copie déformée de l'image, posée exactement sur l'originale (mêmes règles que .hero-bg__image). */
+.water-ripple {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  filter: url('#gsb-water');
+  /* Visible seulement sur l'eau, avec une transition douce à l'horizon (pas de coupure nette). */
+  mask-image: linear-gradient(180deg, transparent 0%, transparent 62%, #000 72%);
+  animation: hero-bg-breathe 30s ease-in-out infinite alternate; /* suit le zoom de l'image de fond */
+}
+
+/* L'effet coûte le plus en calcul : il est coupé si l'ordinateur demande moins d'animations. */
+@media (prefers-reduced-motion: reduce) {
+  .water-ripple {
+    display: none;
+  }
+}

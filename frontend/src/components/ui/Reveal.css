@@ -1,0 +1,34 @@
+/* État de départ : caché. L'apparition se déclenche quand un parent a la classe « is-revealed ». */
+.reveal {
+  transition:
+    opacity 0.8s ease var(--reveal-delay, 0s),
+    transform 1s cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0s);
+}
+
+.reveal--fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.reveal--zoom {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+/* Ligne de titre : fenêtre qui cache ce qui dépasse, et ligne placée juste en dessous. */
+.reveal-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em; /* laisse la place aux lettres qui descendent (p, q, g) */
+}
+
+.reveal--line {
+  display: block;
+  transform: translateY(105%);
+}
+
+/* Signal reçu : tout revient à sa place, chacun avec son propre retard. */
+.is-revealed .reveal {
+  opacity: 1;
+  transform: none;
+}

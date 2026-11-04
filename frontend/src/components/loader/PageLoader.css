@@ -1,0 +1,44 @@
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100; /* au-dessus de tout, en-tête compris */
+  display: grid;
+  place-items: center;
+  background: var(--color-grey);
+  /* N'apparaît qu'après 200 ms : si tout est prêt plus vite, on ne voit jamais de clignotement. */
+  animation: page-loader-appear 0.3s ease-out 0.2s both;
+  transition:
+    opacity 0.6s ease,
+    visibility 0.6s;
+}
+
+/* Chargement qu'on sait long (première arrivée) : visible tout de suite, la page derrière ne se voit jamais. */
+.page-loader--immediate {
+  animation: none;
+}
+
+/* Sortie en fondu ; « visibility: hidden » empêche ensuite tout clic sur le loader invisible. */
+.page-loader--hidden {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Texte réservé aux lecteurs d'écran : invisible à l'écran */
+.page-loader__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@keyframes page-loader-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

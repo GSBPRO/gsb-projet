@@ -1,0 +1,82 @@
+/* Contrastes mesurés sur l'image : titre 4,4 minimum (grand texte : 3 exigé), texte de droite 8. */
+
+/* Mobile d'abord : une colonne */
+.hero-content {
+  position: relative;
+  z-index: 1; /* au-dessus du fond, des particules et des gélules */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  /* Le texte reste aligné sur la colonne du site (1312 px max), même si le fond fait toute la largeur. */
+  padding: var(--space-6) max(var(--space-2), calc((100vw - 1312px) / 2)) 160px;
+}
+
+.hero-content__greeting {
+  margin-bottom: var(--space-2);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text); /* petit texte : couleur la plus foncée pour garder 4,5 de contraste */
+}
+
+.hero-content__title {
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+/* Bouton sombre en forme de pilule */
+.hero-content__cta {
+  border-radius: 999px;
+  background: var(--color-text);
+  color: var(--color-white);
+}
+
+.hero-content__cta:hover {
+  background: var(--color-deep);
+}
+
+.hero-content__aside {
+  max-width: 380px;
+}
+
+/* Même hauteur que la molécule : la place est réservée pendant son chargement (pas de saut de la page). */
+.hero-content__molecule-space {
+  height: 300px;
+}
+
+.hero-content__lead {
+  max-width: 340px;
+  margin: 0;
+  color: var(--color-text);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+/* Ordinateur : titre à gauche, texte à droite */
+@media (min-width: 900px) {
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    align-items: center;
+    gap: var(--space-6);
+    min-height: inherit;
+    padding: var(--space-8) max(var(--space-6), calc((100vw - 1312px) / 2)) var(--space-6);
+  }
+
+  .hero-content__title {
+    font-size: 64px;
+  }
+
+  .hero-content__aside {
+    margin-top: 40px;
+  }
+
+  .hero-content__molecule-space {
+    height: 320px;
+  }
+}

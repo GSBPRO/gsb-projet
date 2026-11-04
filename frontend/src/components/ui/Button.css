@@ -1,0 +1,67 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: 48px; /* zone de clic confortable au doigt */
+  padding: 0 var(--space-3);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn--primary {
+  background: var(--color-deep);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  background: var(--color-deep-hover);
+}
+
+.btn--secondary {
+  background: var(--color-white);
+  border-color: var(--color-border-input);
+  color: var(--color-deep);
+}
+
+.btn--secondary:hover {
+  background: var(--color-grey);
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Liens qui ressemblent à des boutons : pas de soulignement */
+a.btn {
+  text-decoration: none;
+}
+
+/* Variantes pour les fonds bleu profond */
+.btn--light {
+  background: var(--color-glacier);
+  color: var(--color-deep); /* contraste 5,8 */
+}
+
+.btn--light:hover {
+  background: #cfe7f1;
+}
+
+.btn--outline-light {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.7);
+  color: var(--color-white);
+}
+
+.btn--outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

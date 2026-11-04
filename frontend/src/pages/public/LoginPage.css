@@ -1,0 +1,139 @@
+/* Mobile d'abord : le contenu prend toute la largeur, puis se centre sur grand écran. */
+.login {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh; /* hauteur réelle sur mobile, barre d'adresse comprise */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-2);
+  overflow: hidden;
+  background: var(--color-grey);
+}
+
+.login__content {
+  position: relative; /* passe au-dessus du fond animé */
+  width: 100%;
+  max-width: 440px;
+}
+
+.login__header {
+  margin-bottom: var(--space-4);
+}
+
+.login__eyebrow {
+  margin: var(--space-4) 0 var(--space-1);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-deep);
+}
+
+.login__title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+/* Champs façon « ligne » : seulement une bordure basse, et une barre qui se remplit au focus. */
+.login .field {
+  margin-bottom: var(--space-4);
+  transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.login .field:focus-within {
+  transform: translateX(8px);
+}
+
+.login .field__label {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-deep);
+}
+
+.login .field__input {
+  padding-left: 0;
+  border: 0;
+  border-bottom: 1px solid var(--color-deep); /* reste visible même sur une bulle (contraste 5,8) */
+  border-radius: 0;
+  font-size: 18px;
+  background: linear-gradient(var(--color-deep), var(--color-deep)) no-repeat left bottom / 0% 3px;
+  transition: background-size 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* La barre bleue pleine largeur sert d'indicateur de focus pour le clavier. */
+.login .field__input:focus-visible {
+  outline: none;
+  background-size: 100% 3px;
+}
+
+.login .field__input::placeholder {
+  color: var(--color-deep);
+  opacity: 0.75;
+}
+
+/* Bouton « liquide » : une goutte bleue derrière le bouton, déformée au survol. */
+.login__submit {
+  position: relative;
+  margin-top: var(--space-6);
+  filter: url('#gsb-goo');
+}
+
+.login__drop {
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background: var(--color-deep);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.login__submit:hover .login__drop {
+  transform: scale(1.05, 1.25);
+}
+
+.login__submit .btn {
+  position: relative;
+  min-height: 56px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: letter-spacing 0.3s;
+}
+
+.login__submit .btn:hover {
+  letter-spacing: 0.2em;
+}
+
+.login__footer {
+  margin-top: var(--space-4);
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.login__footer p {
+  margin-bottom: 0;
+}
+
+.login__error {
+  margin: 0 0 var(--space-2);
+  padding: 12px var(--space-2);
+  border-left: 3px solid var(--color-error);
+  background: #fdf0ef;
+  color: var(--color-error);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Le message d'erreur sous un champ, posé sur les bulles */
+.login .field__error {
+  font-weight: 600;
+}
+
+@media (min-width: 600px) {
+  .login__title {
+    font-size: 48px;
+  }
+}

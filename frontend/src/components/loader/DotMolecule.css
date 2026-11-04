@@ -1,0 +1,64 @@
+.dot-molecule {
+  width: min(320px, 70vw);
+  height: auto;
+  overflow: visible; /* les points peuvent partir de loin, hors du dessin */
+  animation: dot-molecule-float 4s ease-in-out infinite; /* léger flottement : jamais figée */
+}
+
+/* Chaque point part de sa position éparpillée, invisible, puis rejoint sa place. */
+.dot-molecule__dot {
+  fill: #8fb6cc; /* liaisons : bleu glacier plus soutenu */
+  opacity: 0;
+  transform: translate(var(--from-x), var(--from-y));
+  /* Départ et arrivée en douceur (courbe « ease-in-out ») : le point glisse au lieu de « sauter ». */
+  animation: dot-gather 1.4s cubic-bezier(0.45, 0, 0.25, 1) var(--delay) forwards;
+}
+
+/* Les atomes en bleu profond, et qui « respirent » doucement une fois la molécule formée. */
+.dot-molecule__dot--atom {
+  fill: var(--color-deep);
+  animation:
+    dot-gather 1.4s cubic-bezier(0.45, 0, 0.25, 1) var(--delay) forwards,
+    dot-breathe 1.8s ease-in-out calc(var(--delay) + 1.4s) infinite;
+}
+
+@keyframes dot-gather {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1; /* le point devient visible pendant qu'il arrive, pas d'un coup à la fin */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes dot-molecule-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes dot-breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Moins d'animations demandées : la molécule s'affiche directement, déjà formée. */
+@media (prefers-reduced-motion: reduce) {
+  .dot-molecule__dot {
+    opacity: 1;
+    transform: none;
+  }
+}

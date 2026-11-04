@@ -1,0 +1,45 @@
+.liquid {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none; /* le décor ne doit jamais bloquer un clic */
+}
+
+.liquid__defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.liquid__stage {
+  position: absolute;
+  inset: 0;
+  filter: url('#gsb-goo');
+  opacity: 0.7;
+}
+
+.liquid__blob {
+  position: absolute;
+  border-radius: 50%;
+  /* Uniquement du bleu glacier : le texte est posé directement dessus et doit rester lisible
+     (bleu profond sur glacier : contraste 5,8). Une bulle bleu profond le rendrait illisible. */
+  background: linear-gradient(135deg, #dcedf5, var(--color-glacier));
+  filter: blur(20px);
+  animation: liquid-float 20s infinite alternate ease-in-out;
+  transition: margin 0.1s ease-out; /* adoucit le suivi de la souris */
+}
+
+@keyframes liquid-float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(10vw, 20vh) scale(1.2);
+  }
+  66% {
+    transform: translate(-5vw, 10vh) scale(0.8);
+  }
+  100% {
+    transform: translate(5vw, -10vh) scale(1.1);
+  }
+}

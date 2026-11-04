@@ -1,0 +1,26 @@
+/* Le bandeau est posé directement sur la page, sans cadre, et prend toute la largeur de l'écran. */
+.hero {
+  position: relative; /* repère pour toutes les couches posées en absolu à l'intérieur */
+  overflow: hidden;
+  min-height: max(620px, 100vh - 130px); /* remplit l'écran sous l'en-tête */
+  /* Sort de la colonne centrale de la mise en page pour aller d'un bord à l'autre de l'écran,
+     et annule les marges haut et bas de la page. */
+  margin: calc(-1 * var(--space-3)) calc(50% - 50vw) calc(-1 * var(--space-8));
+}
+
+@media (min-width: 900px) {
+  .hero {
+    margin-top: calc(-1 * var(--space-4));
+    min-height: calc(100vh - 90px);
+  }
+}
+
+/* Apparition : le paysage part d'un léger zoom et recule doucement quand l'écran de chargement s'efface. */
+.hero .hero-bg {
+  transform: scale(1.08);
+  transition: transform 1.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero.is-revealed .hero-bg {
+  transform: scale(1);
+}
