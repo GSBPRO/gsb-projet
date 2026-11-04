@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import ProLayout from './components/layout/ProLayout.jsx';
-import ComingSoonPage from './pages/pro/ComingSoonPage.jsx';
-import HomePage from './pages/pro/HomePage.jsx';
-import LoginPage from './pages/public/LoginPage.jsx';
-import NotFoundPage from './pages/public/NotFoundPage.jsx';
-import ProtectedRoute from './routes/ProtectedRoute.jsx';
+import ProLayout from './features/layout/ProLayout.jsx';
+import ComingSoonPage from './pages/ComingSoonPage.jsx';
+import HomePage from './features/home/HomePage.jsx';
+import LoginPage from './features/auth/LoginPage.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
+import ProtectedRoute from './features/auth/ProtectedRoute.jsx';
 
 export default function App() {
   return (
