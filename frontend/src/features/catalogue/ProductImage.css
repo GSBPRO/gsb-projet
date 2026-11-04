@@ -1,0 +1,38 @@
+.product-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: linear-gradient(160deg, #f4f9fc 0%, #e3eef4 100%);
+}
+
+/* Image provisoire : une gélule aux couleurs du laboratoire, inclinée, et les initiales. */
+.product-image--placeholder {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.product-image__capsule {
+  width: 46px;
+  height: 110px;
+  border-radius: 999px;
+  border: 3px solid var(--color-white);
+  /* moitié haute aux couleurs du laboratoire, moitié basse blanche */
+  background: linear-gradient(180deg, var(--lab-color) 0 50%, var(--color-white) 50% 100%);
+  box-shadow: 0 14px 28px rgba(49, 81, 107, 0.18);
+  transform: rotate(35deg);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.product-image__initials {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  color: var(--color-deep);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  opacity: 0.55;
+}

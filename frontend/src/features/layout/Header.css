@@ -1,7 +1,24 @@
 /* Pas de fond : l'en-tête est posé sur le gris de la page.
    Il ne reste donc pas collé en haut au défilement, sinon le contenu passerait dessous et deviendrait illisible. */
 .header {
+  position: relative; /* repère du menu du catalogue, qui se place juste en dessous */
+  z-index: 50; /* au-dessus du voile : les onglets restent cliquables quand le menu est ouvert */
   padding-top: var(--space-2);
+}
+
+/* Voile sur la page quand un menu est ouvert ; un clic dessus referme le menu. */
+.header__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1; /* sous l'en-tête et son menu, au-dessus de la page */
+  background: rgba(31, 46, 59, 0.18);
+  animation: header-backdrop-in 0.3s ease-out;
+}
+
+@keyframes header-backdrop-in {
+  from {
+    opacity: 0;
+  }
 }
 
 /* Mobile d'abord : logo et actions sur une ligne, les onglets passent dessous. */

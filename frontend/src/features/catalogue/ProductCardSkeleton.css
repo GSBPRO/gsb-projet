@@ -1,0 +1,54 @@
+.product-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: var(--space-3);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+}
+
+/* Toutes les formes grises partagent le même reflet qui passe de gauche à droite. */
+.product-skeleton__image,
+.product-skeleton__line,
+.product-skeleton__button {
+  display: block;
+  background: linear-gradient(90deg, #e9eef2 0%, #f5f8fa 50%, #e9eef2 100%);
+  background-size: 200% 100%;
+  animation: skeleton-shine 1.4s ease-in-out infinite;
+}
+
+.product-skeleton__image {
+  aspect-ratio: 4 / 3;
+}
+
+.product-skeleton__line {
+  height: 12px;
+  margin-inline: var(--space-2);
+  border-radius: 6px;
+}
+
+.product-skeleton__line--short {
+  width: 40%;
+}
+
+.product-skeleton__line--medium {
+  width: 60%;
+  height: 22px;
+}
+
+.product-skeleton__button {
+  height: 44px;
+  margin: var(--space-1) var(--space-2) 0;
+  border-radius: 10px;
+}
+
+@keyframes skeleton-shine {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}

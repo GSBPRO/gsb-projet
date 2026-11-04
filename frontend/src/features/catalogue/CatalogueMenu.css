@@ -1,0 +1,264 @@
+/* Panneau posé sous l'en-tête, sur toute la largeur du site. */
+.catalogue-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: min(1312px, 100% - 32px);
+  max-height: calc(100dvh - 160px); /* sur petit écran, on fait défiler le menu */
+  overflow-y: auto;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(160deg, #f8fbfd 0%, #eaf3f8 100%);
+  box-shadow: 0 30px 70px rgba(31, 46, 59, 0.18);
+  transform: translateX(-50%);
+  animation: catalogue-menu-open 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.catalogue-menu:focus-visible {
+  outline: 3px solid var(--color-deep);
+}
+
+/* ---- Titre et points forts ---- */
+.catalogue-menu__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+}
+
+.catalogue-menu__title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.catalogue-menu__highlights {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-text);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.9;
+  text-transform: uppercase;
+}
+
+.catalogue-menu__number {
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Cartes ---- */
+.catalogue-menu__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.catalogue-menu__cards li {
+  /* Les cartes apparaissent l'une après l'autre */
+  animation: catalogue-menu-card-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  animation-delay: calc(var(--card-index, 0) * 60ms + 80ms);
+}
+
+.catalogue-menu__card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-height: 120px;
+  height: 100%;
+  padding: var(--space-2);
+  border-radius: 14px;
+  background: var(--color-white);
+  color: var(--color-text);
+  text-decoration: none;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.catalogue-menu__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(49, 81, 107, 0.14);
+}
+
+.catalogue-menu__card:focus-visible {
+  outline: 3px solid var(--color-deep);
+  outline-offset: 2px;
+}
+
+.catalogue-menu__card--loading {
+  background: linear-gradient(90deg, #e9eef2 0%, #f5f8fa 50%, #e9eef2 100%);
+  background-size: 200% 100%;
+  animation: catalogue-menu-shine 1.4s ease-in-out infinite;
+}
+
+/* Vignette : une gélule aux couleurs de la catégorie */
+.catalogue-menu__thumb {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 64px;
+  height: 88px;
+  border-radius: 10px;
+  background: linear-gradient(160deg, #f4f9fc 0%, #e3eef4 100%);
+}
+
+.catalogue-menu__capsule {
+  width: 20px;
+  height: 50px;
+  border: 2px solid var(--color-white);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--thumb-color) 0 50%, var(--color-white) 50% 100%);
+  box-shadow: 0 6px 12px rgba(49, 81, 107, 0.18);
+  transform: rotate(25deg);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.catalogue-menu__card:hover .catalogue-menu__capsule {
+  transform: rotate(0deg) scale(1.08);
+}
+
+.catalogue-menu__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 36px; /* place pour le bouton « + » */
+}
+
+.catalogue-menu__name {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.catalogue-menu__tagline {
+  color: var(--color-text);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.catalogue-menu__count {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+/* Petit carré bleu « + » en bas de la carte, comme sur la référence */
+.catalogue-menu__plus {
+  position: absolute;
+  right: var(--space-2);
+  bottom: var(--space-2);
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--color-deep);
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.catalogue-menu__card:hover .catalogue-menu__plus {
+  transform: rotate(90deg);
+}
+
+/* ---- Grande barre « Voir tout » ---- */
+.catalogue-menu__all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: 52px;
+  border-radius: 12px;
+  background: var(--color-deep);
+  color: var(--color-white);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
+}
+
+.catalogue-menu__all:hover {
+  background: var(--color-deep-hover);
+}
+
+.catalogue-menu__all:focus-visible {
+  outline: 3px solid var(--color-glacier);
+  outline-offset: 2px;
+}
+
+.catalogue-menu__message {
+  margin: 0;
+  color: var(--color-error);
+  font-weight: 600;
+}
+
+@keyframes catalogue-menu-shine {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes catalogue-menu-open {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -12px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes catalogue-menu-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Tablette : 2 cartes par ligne ; ordinateur : 4 cartes sur une ligne */
+@media (min-width: 640px) {
+  .catalogue-menu__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .catalogue-menu {
+    padding: var(--space-4);
+  }
+
+  .catalogue-menu__title {
+    font-size: 44px;
+  }
+
+  .catalogue-menu__cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

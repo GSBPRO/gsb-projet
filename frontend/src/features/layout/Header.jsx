@@ -1,21 +1,26 @@
 import { Link, useNavigate } from 'react-router-dom';
-import useAuth from '../auth/useAuth.js';
 import CartIcon from '../../components/icons/CartIcon.jsx';
 import LogoutIcon from '../../components/icons/LogoutIcon.jsx';
 import Logo from '../../components/ui/Logo.jsx';
+import useAuth from '../auth/useAuth.js';
+import CatalogueMenu from '../catalogue/CatalogueMenu.jsx';
 import SlideTabs from './SlideTabs.jsx';
+import useMenuToggle from './useMenuToggle.js';
 import './Header.css';
+
+const CATALOGUE_MENU_ID = 'catalogue-menu';
 
 const NAV_LINKS = [
   { to: '/accueil', label: 'Accueil' },
-  { to: '/catalogue', label: 'Catalogue' },
+  { to: '/catalogue', label: 'Catalogue', menuId: CATALOGUE_MENU_ID },
   { to: '/commandes', label: 'Mes commandes' },
 ];
 
-// En-tête de l'espace professionnel : logo, onglets, panier, compte, déconnexion.
+// En-tête de l'espace professionnel : logo, onglets (dont le menu du catalogue), panier, compte, déconnexion.
 export default function Header() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const { openMenuId, toggleMenu, closeMenu } = useMenuToggle();
   const initials = `${user.firstName[0]}${user.lastName[0]}`;
 
   function handleLogout() {
@@ -31,7 +36,12 @@ export default function Header() {
         </Link>
 
         <div className="header__nav">
-          <SlideTabs links={NAV_LINKS} label="Navigation principale" />
+          <SlideTabs
+            links={NAV_LINKS}
+            label="Navigation principale"
+            openMenuId={openMenuId}
+            onToggleMenu={toggleMenu}
+          />
         </div>
 
         <div className="header__actions">
@@ -56,6 +66,14 @@ export default function Header() {
           </button>
         </div>
       </div>
+
+      {openMenuId === CATALOGUE_MENU_ID && (
+        <>
+          {/* Voile sur la page : un clic dessus (donc en dehors du menu) referme le menu. */}
+          <div className="header__backdrop" onClick={closeMenu} aria-hidden="true" />
+          <CatalogueMenu id={CATALOGUE_MENU_ID} onClose={closeMenu} />
+        </>
+      )}
     </header>
   );
 }
