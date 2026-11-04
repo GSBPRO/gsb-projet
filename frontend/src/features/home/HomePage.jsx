@@ -3,6 +3,7 @@ import PageLoader from '../loader/PageLoader.jsx';
 import useAuth from '../auth/useAuth.js';
 import useReadyWithTimeout from '../loader/useReadyWithTimeout.js';
 import HomeHero from './HomeHero.jsx';
+import HomeVideoBand from './HomeVideoBand.jsx';
 
 // 4 secondes au maximum : même si la 3D ne se charge pas, la page finit toujours par s'afficher.
 const MAX_LOADING_MS = 4000;
@@ -29,6 +30,7 @@ export default function HomePage() {
     <>
       {/* Première arrivée : on sait que le chargement dure, le loader s'affiche donc tout de suite. */}
       <PageLoader isVisible={!isReady} showImmediately={minLoadingMs > 0} />
+      <HomeVideoBand />
       <HomeHero userName={`${user.title} ${user.lastName}`} onMoleculeReady={markReady} isRevealed={isReady} />
     </>
   );

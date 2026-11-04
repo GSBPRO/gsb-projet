@@ -1,80 +1,105 @@
+/* Style « vitrine » : carte blanche aux coins arrondis, sur un fond beige, légendes en police mono. */
 .product-card {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background: var(--color-white);
-  transition:
-    transform 0.25s ease-out,
-    box-shadow 0.25s ease-out;
-  /* Apparition en cascade : chaque carte arrive un peu après la précédente.
-     « backwards » et non « both » : une fois l'animation finie, elle ne bloque plus l'inclinaison au survol. */
+  /* Apparition en cascade : chaque carte arrive un peu après la précédente. */
   animation: product-card-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
   animation-delay: calc(var(--card-index) * 60ms);
 }
 
-.product-card:hover {
-  box-shadow: 0 18px 40px rgba(49, 81, 107, 0.16);
-}
-
-/* Au survol, la gélule provisoire se redresse un peu */
-.product-card:hover .product-image__capsule {
-  transform: rotate(20deg) scale(1.05);
-}
-
-.product-card__body {
+.product-card__button {
+  position: relative;
   display: flex;
-  flex: 1;
   flex-direction: column;
-  gap: 10px;
-  padding: var(--space-2) var(--space-2) var(--space-3);
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  padding: 0 var(--space-2) var(--space-2);
+  border: 0;
+  border-radius: 14px;
+  background: var(--color-white);
+  color: var(--color-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s ease-out;
 }
 
-.product-card__lab {
-  margin: 0;
+.product-card__button:hover,
+.product-card__button:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(49, 81, 107, 0.14);
+}
+
+.product-card__tag,
+.product-card__soldout {
+  position: absolute;
+  top: 12px;
+  z-index: 1;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.product-card__tag {
+  left: 12px;
+  background: var(--color-glacier);
   color: var(--color-deep);
-  font-size: 12px;
-  font-weight: 700;
+}
+
+.product-card__soldout {
+  right: 12px;
+  background: var(--color-text);
+  color: var(--color-white);
+}
+
+/* Grande zone d'image : le produit flotte au centre, avec beaucoup d'air autour. */
+.product-card__visual {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  margin: 0 calc(var(--space-2) * -1);
+  padding: var(--space-4) var(--space-2) var(--space-2);
+}
+
+.product-card__visual .product-image {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  background: none;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.product-card__button:hover .product-image {
+  transform: scale(1.06);
+}
+
+.product-card__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1);
 }
 
 .product-card__name {
-  margin: 0;
-  color: var(--color-text);
-  font-size: 17px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.product-card__format,
+.product-card__caption {
+  color: var(--color-text-muted);
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .product-card__format {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: 13px;
-}
-
-/* margin-top: auto pousse les prix et le bouton en bas : toutes les cartes s'alignent. */
-.product-card__prices {
-  margin-top: auto;
-  padding-top: var(--space-1);
-}
-
-.product-card__price-ht {
-  margin: 0;
-  color: var(--color-text);
-  font-size: 24px;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-}
-
-.product-card__price-ht span {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--color-text-muted);
-}
-
-.product-card__price-ttc {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: 13px;
-  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
 }
 
 @keyframes product-card-in {
@@ -85,5 +110,14 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .product-card__button,
+  .product-card__visual .product-image {
+    animation: none;
+    transition: none;
   }
 }

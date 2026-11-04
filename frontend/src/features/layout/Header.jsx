@@ -17,7 +17,8 @@ const NAV_LINKS = [
 ];
 
 // En-tête de l'espace professionnel : logo, onglets (dont le menu du catalogue), panier, compte, déconnexion.
-export default function Header() {
+// overHero : l'en-tête est posé sur un bandeau sombre (logo et texte en blanc).
+export default function Header({ overHero = false }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const { openMenuId, toggleMenu, closeMenu } = useMenuToggle();
@@ -29,10 +30,10 @@ export default function Header() {
   }
 
   return (
-    <header className="header">
+    <header className={`header${overHero ? ' header--over-hero' : ''}`}>
       <div className="header__inner">
         <Link to="/accueil" className="header__logo" aria-label="GSB, retour à l'accueil">
-          <Logo />
+          <Logo variant={overHero ? 'light' : 'dark'} />
         </Link>
 
         <div className="header__nav">

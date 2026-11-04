@@ -19,3 +19,8 @@
 .pro-layout {
   overflow-x: clip;
 }
+
+/* Page avec bandeau : le contenu commence tout en haut, le bandeau passe sous l'en-tête. */
+.pro-layout--hero .pro-layout__main {
+  padding-top: 0;
+}

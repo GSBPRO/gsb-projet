@@ -1,43 +1,44 @@
-import { useRef } from 'react';
-import Button from '../../components/ui/Button.jsx';
-import { formatPrice, formatVatRate, priceWithTax } from '../../utils/price.js';
+import { useState } from 'react';
+import { formatPrice, priceWithTax } from '../../utils/price.js';
+import ProductDialog from './ProductDialog.jsx';
 import ProductImage from './ProductImage.jsx';
-import StockBadge from './StockBadge.jsx';
-import useTilt from './useTilt.js';
 import './ProductCard.css';
 
-// Carte d'un produit du catalogue : image, laboratoire, nom, prix HT et TTC, stock et bouton.
+// Carte d'un produit, style « vitrine » : grande image sur fond blanc, pastille de catégorie,
+// nom et format, puis une légende (laboratoire, prix). Toute la carte ouvre la fiche à 360°.
 // index : position dans la grille, pour faire apparaître les cartes les unes après les autres.
-export default function ProductCard({ product, laboratory, index }) {
-  const cardRef = useRef(null);
-  useTilt(cardRef);
+export default function ProductCard({ product, laboratory, categoryName, index }) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isOutOfStock = product.stock === 0;
 
   return (
-    <article ref={cardRef} className="product-card" style={{ '--card-index': Math.min(index, 12) }}>
-      <ProductImage product={product} laboratoryColor={laboratory?.color} />
+    <article className="product-card" style={{ '--card-index': Math.min(index, 12) }}>
+      {/* Un vrai bouton : atteignable au clavier, il porte le nom du produit pour les lecteurs d'écran. */}
+      <button
+        type="button"
+        className="product-card__button"
+        onClick={() => setIsDialogOpen(true)}
+        aria-label={`${product.name} : voir la fiche`}
+      >
+        <span className="product-card__tag">{categoryName}</span>
+        {isOutOfStock && <span className="product-card__soldout">Rupture</span>}
 
-      <div className="product-card__body">
-        <p className="product-card__lab">{laboratory?.name}</p>
-        <h3 className="product-card__name">{product.name}</h3>
-        <p className="product-card__format">{product.format}</p>
+        <span className="product-card__visual">
+          <ProductImage product={product} laboratoryColor={laboratory?.color} />
+        </span>
 
-        <div className="product-card__prices">
-          <p className="product-card__price-ht">
-            {formatPrice(product.priceHt)} <span>HT</span>
-          </p>
-          <p className="product-card__price-ttc">
-            {formatPrice(priceWithTax(product.priceHt, product.vatRate))} TTC · TVA {formatVatRate(product.vatRate)}
-          </p>
-        </div>
+        <span className="product-card__row">
+          <span className="product-card__name">{product.name}</span>
+          <span className="product-card__format">{product.format}</span>
+        </span>
+        <span className="product-card__caption">
+          {laboratory?.name} · {formatPrice(priceWithTax(product.priceHt, product.vatRate))} TTC
+        </span>
+      </button>
 
-        <StockBadge stock={product.stock} />
-
-        {/* L'ajout au panier sera branché à l'étape « panier » (features/cart). */}
-        <Button variant="secondary" fullWidth disabled={isOutOfStock}>
-          {isOutOfStock ? 'Indisponible' : 'Ajouter au panier'}
-        </Button>
-      </div>
+      {isDialogOpen && (
+        <ProductDialog product={product} laboratory={laboratory} onClose={() => setIsDialogOpen(false)} />
+      )}
     </article>
   );
 }
