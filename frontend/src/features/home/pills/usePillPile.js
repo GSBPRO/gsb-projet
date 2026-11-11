@@ -20,8 +20,6 @@ export default function usePillPile(containerRef, { spawnEvery = 150, maxPileRat
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return undefined;
-    // Moins d'animations demandées par le système : pas de pluie du tout.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
     let pile = null;
 

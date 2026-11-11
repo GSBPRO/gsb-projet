@@ -73,7 +73,7 @@ a {
 
 /* Respecte le réglage « réduire les animations » du système */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *:not(.falling-pills, .falling-pills *) {
     transition: none !important;
     animation: none !important;
   }
