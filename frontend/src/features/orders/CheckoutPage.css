@@ -1,0 +1,140 @@
+.checkout-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: var(--space-8);
+}
+
+.checkout-page__title {
+  margin: 0 0 var(--space-3);
+  color: var(--color-deep);
+}
+
+/* Mobile d'abord : récapitulatif puis formulaire (order). Ordinateur : formulaire à gauche, récapitulatif à droite. */
+.checkout-page__layout {
+  display: grid;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.checkout-page__summary {
+  order: -1;
+}
+
+@media (min-width: 900px) {
+  .checkout-page__layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+  }
+
+  .checkout-page__summary {
+    order: 0;
+    position: sticky;
+    top: var(--space-3);
+  }
+}
+
+.checkout-page__form,
+.checkout-page__summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  box-shadow: var(--shadow);
+}
+
+.checkout-page h2 {
+  margin: 0 0 var(--space-1);
+  color: var(--color-deep);
+  font-size: 1.15rem;
+}
+
+.checkout-page__note {
+  margin: 0 0 var(--space-1);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.checkout-page__demo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.checkout-page__demo input {
+  width: 20px;
+  height: 20px;
+}
+
+.checkout-page__error {
+  padding: var(--space-2);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius);
+  color: var(--color-error);
+  font-size: 0.9rem;
+}
+
+.checkout-page__error p {
+  margin: 0 0 var(--space-1);
+  font-weight: 700;
+}
+
+.checkout-page__error ul {
+  margin: 0 0 var(--space-1);
+  padding-left: var(--space-3);
+}
+
+.checkout-page__summary ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checkout-page__summary li,
+.checkout-page__summary dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.checkout-page__summary dl {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}
+
+.checkout-page__summary dt {
+  color: var(--color-text-muted);
+}
+
+.checkout-page__summary dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.checkout-page__grand-total dt,
+.checkout-page__grand-total dd {
+  color: var(--color-deep);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.checkout-page__message {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+  padding: var(--space-8) var(--space-2);
+  border: 1px dashed var(--color-border-input);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  color: var(--color-text-muted);
+  text-align: center;
+}

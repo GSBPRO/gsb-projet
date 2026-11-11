@@ -2,9 +2,11 @@ import { useId } from 'react';
 import './Input.css';
 
 // Champ avec son label et son message d'erreur reliés, pour les lecteurs d'écran.
-export default function Input({ label, error = '', required = false, endAdornment = null, ...rest }) {
+// multiline : un champ de plusieurs lignes (<textarea>), pour une adresse par exemple.
+export default function Input({ label, error = '', required = false, endAdornment = null, multiline = false, ...rest }) {
   const id = useId();
   const errorId = `${id}-error`;
+  const Control = multiline ? 'textarea' : 'input';
 
   return (
     <div className="field">
@@ -13,7 +15,7 @@ export default function Input({ label, error = '', required = false, endAdornmen
         {required && <span aria-hidden="true"> *</span>}
       </label>
       <div className="field__control">
-        <input
+        <Control
           id={id}
           className={`field__input ${error ? 'field__input--error' : ''}`}
           required={required}

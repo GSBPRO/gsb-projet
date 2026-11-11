@@ -19,6 +19,7 @@
   color: var(--color-text);
   font: inherit;
   text-align: left;
+  text-decoration: none;
   cursor: pointer;
   transition:
     transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),

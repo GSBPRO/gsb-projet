@@ -1,5 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import CataloguePage from './features/catalogue/CataloguePage.jsx';
+import CartPage from './features/cart/CartPage.jsx';
+import CheckoutPage from './features/orders/CheckoutPage.jsx';
+import ProductPage from './features/catalogue/ProductPage.jsx';
 import ProLayout from './features/layout/ProLayout.jsx';
 import ComingSoonPage from './pages/ComingSoonPage.jsx';
 import HomePage from './features/home/HomePage.jsx';
@@ -23,7 +26,10 @@ export default function App() {
       >
         <Route path="/accueil" element={<HomePage />} />
         <Route path="/catalogue" element={<CataloguePage />} />
-        <Route path="/panier" element={<ComingSoonPage title="Mon panier" />} />
+        <Route path="/catalogue/:productId" element={<ProductPage />} />
+        <Route path="/panier" element={<CartPage />} />
+        <Route path="/commande" element={<CheckoutPage />} />
+        <Route path="/commande/confirmation/:orderId" element={<ComingSoonPage title="Commande confirmée" />} />
         <Route path="/commandes" element={<ComingSoonPage title="Mes commandes" />} />
         <Route path="/compte" element={<ComingSoonPage title="Mon compte" />} />
       </Route>

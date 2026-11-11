@@ -8,7 +8,9 @@ Ce qui sert à plusieurs fonctionnalités est rangé dans `components/`.
 | `features/auth/` | la connexion (page, formulaire, session, protection des pages) |
 | `features/layout/` | l'espace professionnel : en-tête, onglets à gélule, mise en page |
 | `features/home/` | la page d'accueil et ses effets (fond, particules, gélules, molécule 3D) |
-| `features/catalogue/` | le catalogue : recherche, catégories, filtres, tri et cartes produit |
+| `features/catalogue/` | le catalogue : recherche, catégories, filtres, tri, cartes produit et page détail d'un produit |
+| `features/cart/` | le panier : ajout, quantités, totaux HT / TVA / TTC, contrôle de stock |
+| `features/orders/` | les commandes : validation (adresse, paiement simulé), création avec prix figés ; historique à venir |
 | `features/loader/` | l'écran de chargement (molécule de petits points) |
 | `components/ui/` | les briques réutilisées partout : bouton, champ, logo, apparition animée |
 | `components/icons/` | les icônes SVG |

@@ -181,3 +181,24 @@
 .header--over-hero .header__icon-btn {
   background: rgba(255, 255, 255, 0.14);
 }
+
+/* Pastille avec le nombre d'articles, posée sur l'icône du panier. */
+.header__cart {
+  position: relative;
+}
+
+.header__cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
+  background: var(--color-deep);
+  color: var(--color-white);
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 20px;
+  text-align: center;
+}

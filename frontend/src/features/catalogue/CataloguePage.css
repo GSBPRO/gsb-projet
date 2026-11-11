@@ -8,6 +8,10 @@
 .catalogue-page__layout {
   display: grid;
   gap: var(--space-3);
+  /* Sort de la colonne centrale (1312 px) pour occuper toute la largeur de l'écran, comme le bandeau. */
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: clamp(16px, 2.5vw, 40px);
 }
 
 .catalogue-page__main {

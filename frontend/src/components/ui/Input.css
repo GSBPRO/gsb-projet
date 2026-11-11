@@ -26,6 +26,13 @@
   color: var(--color-text);
 }
 
+/* Champ de plusieurs lignes */
+textarea.field__input {
+  padding: 12px var(--space-2);
+  resize: vertical;
+  font: inherit;
+}
+
 /* Laisse la place au bouton placé dans le champ (ex. : œil du mot de passe) */
 .field__control:has(.field__adornment) .field__input {
   padding-right: 52px;
