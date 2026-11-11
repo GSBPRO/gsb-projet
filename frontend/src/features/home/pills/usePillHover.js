@@ -10,7 +10,6 @@ export default function usePillHover(containerRef) {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return undefined;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
     let frame = 0;
 
