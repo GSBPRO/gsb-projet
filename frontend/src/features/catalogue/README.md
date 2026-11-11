@@ -13,7 +13,8 @@ Données **fictives** pour l'instant : `productService.js` sera branché sur l'A
 | `CatalogueToolbar.jsx` + `.css` | le titre, le nombre de produits, la recherche et le tri |
 | `CategoryChips.jsx` + `.css` | les catégories en pastilles cliquables |
 | `ProductGrid.jsx` + `.css` | la grille, et les états chargement / erreur / aucun résultat |
-| `ProductCard.jsx` + `.css` | la carte d'un produit (prix HT et TTC, stock, bouton, inclinaison au survol) |
+| `ProductCard.jsx` + `.css` | la carte d'un produit (prix HT et TTC, stock) ; elle mène à la page du produit |
+| `ProductPage.jsx` + `.css` | la page détail `/catalogue/:id` : miniatures, grande image (vue 360°), infos et prix |
 | `ProductImage.jsx` + `.css` | la photo du produit, ou une image provisoire en attendant |
 | `StockBadge.jsx` + `.css` | « En stock », « Plus que X en stock » ou « Rupture de stock » |
 | `ProductCardSkeleton.jsx` + `.css` | la carte « fantôme » pendant le chargement |

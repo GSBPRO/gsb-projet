@@ -105,7 +105,7 @@ Prototype interactif : ouvrir [`docs/maquettes/GSB_Canva_Prototype_interactif.ht
 
 ## Développement
 
-Plan étape par étape : [`docs/FEUILLE_DE_ROUTE_CODE.md`](docs/FEUILLE_DE_ROUTE_CODE.md). On commence par le front avec des données fictives, puis on branche le back-end.
+Plan étape par étape : [`docs/FEUILLE_DE_ROUTE_CODE.md`](docs/FEUILLE_DE_ROUTE_CODE.md). **Où on en est : [`docs/AVANCEMENT_FRONT.md`](docs/AVANCEMENT_FRONT.md).** On commence par le front avec des données fictives, puis on branche le back-end.
 
 ## Structure du dépôt (à venir)
 

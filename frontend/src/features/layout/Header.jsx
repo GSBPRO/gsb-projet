@@ -3,6 +3,7 @@ import CartIcon from '../../components/icons/CartIcon.jsx';
 import LogoutIcon from '../../components/icons/LogoutIcon.jsx';
 import Logo from '../../components/ui/Logo.jsx';
 import useAuth from '../auth/useAuth.js';
+import useCart from '../cart/useCart.js';
 import CatalogueMenu from '../catalogue/CatalogueMenu.jsx';
 import SlideTabs from './SlideTabs.jsx';
 import useMenuToggle from './useMenuToggle.js';
@@ -20,6 +21,7 @@ const NAV_LINKS = [
 // overHero : l'en-tête est posé sur un bandeau sombre (logo et texte en blanc).
 export default function Header({ overHero = false }) {
   const { user, logout } = useAuth();
+  const { itemCount } = useCart();
   const navigate = useNavigate();
   const { openMenuId, toggleMenu, closeMenu } = useMenuToggle();
   const initials = `${user.firstName[0]}${user.lastName[0]}`;
@@ -46,8 +48,17 @@ export default function Header({ overHero = false }) {
         </div>
 
         <div className="header__actions">
-          <Link to="/panier" className="header__icon-btn" aria-label="Panier">
+          <Link
+            to="/panier"
+            className="header__icon-btn header__cart"
+            aria-label={itemCount > 0 ? `Panier, ${itemCount} article${itemCount > 1 ? 's' : ''}` : 'Panier'}
+          >
             <CartIcon />
+            {itemCount > 0 && (
+              <span className="header__cart-count" aria-hidden="true">
+                {itemCount > 99 ? '99+' : itemCount}
+              </span>
+            )}
           </Link>
 
           <Link to="/compte" className="header__user">
