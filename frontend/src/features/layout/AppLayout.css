@@ -1,26 +1,26 @@
-.pro-layout {
+.app-layout {
   min-height: 100vh;
 }
 
-.pro-layout__main {
+.app-layout__main {
   width: min(1312px, 100% - 32px);
   margin-inline: auto;
   padding: var(--space-3) 0 var(--space-8);
 }
 
 @media (min-width: 900px) {
-  .pro-layout__main {
+  .app-layout__main {
     padding-top: var(--space-4);
   }
 }
 
 /* Un décor pleine largeur (100vw) dépasse de la largeur de la barre de défilement :
    on coupe ce dépassement pour éviter une barre de défilement horizontale. */
-.pro-layout {
+.app-layout {
   overflow-x: clip;
 }
 
 /* Page avec bandeau : le contenu commence tout en haut, le bandeau passe sous l'en-tête. */
-.pro-layout--hero .pro-layout__main {
+.app-layout--hero .app-layout__main {
   padding-top: 0;
 }

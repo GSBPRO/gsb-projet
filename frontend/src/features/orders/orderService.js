@@ -1,5 +1,6 @@
 import { delay } from '../../mocks/delay.js';
 import { cartTotals, priceWithTax } from '../../utils/price.js';
+import { updateCatalogue } from '../catalogue/catalogueStore.js';
 import { getCatalogue } from '../catalogue/productService.js';
 import { MAX_QUANTITY } from '../cart/cartService.js';
 
@@ -49,6 +50,19 @@ function readOrders(userId) {
     return [];
   }
 }
+
+// Retire (sign = -1) ou remet (sign = +1) en stock les quantités d'une commande.
+function changeStock(lines, sign) {
+  updateCatalogue((catalogue) => {
+    for (const line of lines) {
+      const product = catalogue.products.find((candidate) => candidate.id === line.productId);
+      if (product) product.stock = Math.max(0, product.stock + sign * line.quantity);
+    }
+  });
+}
+
+// Suivi de livraison fictif (F36, F37). Une commande n'est suivie qu'une fois validée par l'administrateur.
+export const DELIVERY_STEPS = ['En préparation', 'Expédiée', 'Livrée'];
 
 function writeOrders(userId, orders) {
   try {
@@ -122,12 +136,16 @@ export async function createOrder(userId, { items, address, simulateFailure = fa
     throw new OrderError('PAYMENT', 'Le paiement simulé a échoué : aucune commande n’a été créée.');
   }
 
+  // Le stock baisse une seule fois, à la création de la commande (RG17).
+  changeStock(lines, -1);
+
   const orders = readOrders(userId);
   const now = new Date();
   const order = {
     id: orders.reduce((max, existing) => Math.max(max, existing.id), 0) + 1,
     reference: generateReference(now, new Set(orders.map((existing) => existing.reference))),
     date: now.toISOString(),
+    userId,
     status: 'En attente',
     deliveryAddress,
     lines,
@@ -149,4 +167,71 @@ export async function listOrders(userId) {
 export async function getOrder(userId, orderId) {
   await delay();
   return readOrders(userId).find((order) => order.id === Number(orderId)) ?? null;
+}
+
+// ---- Côté administrateur (F24, F25) ----
+// Les commandes de tous les comptes sont lues dans le navigateur : en démonstration seulement.
+// Le serveur vérifiera que seul un administrateur peut appeler ces fonctions (NF02).
+
+const ORDERS_KEY_PREFIX = 'gsb.orders.';
+
+function allUserIds() {
+  try {
+    return Object.keys(localStorage)
+      .filter((key) => key.startsWith(ORDERS_KEY_PREFIX))
+      .map((key) => Number(key.slice(ORDERS_KEY_PREFIX.length)))
+      .filter(Number.isInteger);
+  } catch {
+    return [];
+  }
+}
+
+// Toutes les commandes, la plus récente en premier, chacune avec son userId.
+export async function listAllOrders() {
+  await delay();
+  return allUserIds()
+    .flatMap((userId) => readOrders(userId).map((order) => ({ ...order, userId })))
+    .sort((a, b) => b.date.localeCompare(a.date));
+}
+
+// Vrai si au moins une commande contient ce produit : on ne supprime pas un produit qui a un historique (F27).
+export function productHasOrders(productId) {
+  return allUserIds().some((userId) =>
+    readOrders(userId).some((order) => order.lines.some((line) => line.productId === productId)),
+  );
+}
+
+const ALLOWED_STATUSES = ['En attente', 'Validée', 'Annulée'];
+
+// Met à jour le statut (F25) et, pour une commande validée, l'étape de livraison (F36, F37).
+// Une commande annulée n'a plus de livraison ; une commande en attente n'est pas encore expédiable.
+export async function updateOrder(userId, orderId, { status, deliveryStep }) {
+  await delay();
+
+  if (!ALLOWED_STATUSES.includes(status)) {
+    throw new OrderError('STATUS', 'Statut de commande inconnu.');
+  }
+  const orders = readOrders(userId);
+  const order = orders.find((candidate) => candidate.id === Number(orderId));
+  if (!order) {
+    throw new OrderError('NOT_FOUND', 'Commande introuvable.');
+  }
+
+  // Une commande annulée est définitive : sa réactivation ferait redescendre le stock une seconde fois (RG17).
+  if (order.status === 'Annulée' && status !== 'Annulée') {
+    throw new OrderError('STATUS', 'Une commande annulée ne peut plus être modifiée.');
+  }
+  // Annulation : les produits reviennent en stock.
+  if (status === 'Annulée' && order.status !== 'Annulée') {
+    changeStock(order.lines, +1);
+  }
+
+  order.status = status;
+  if (status === 'Validée') {
+    order.deliveryStep = DELIVERY_STEPS.includes(deliveryStep) ? deliveryStep : (order.deliveryStep ?? DELIVERY_STEPS[0]);
+  } else {
+    delete order.deliveryStep;
+  }
+  writeOrders(userId, orders);
+  return { ...order, userId };
 }

@@ -2,28 +2,23 @@ import { Link, useNavigate } from 'react-router-dom';
 import CartIcon from '../../components/icons/CartIcon.jsx';
 import LogoutIcon from '../../components/icons/LogoutIcon.jsx';
 import Logo from '../../components/ui/Logo.jsx';
+import { homePathFor, roleLabel, ROLES } from '../auth/roles.js';
 import useAuth from '../auth/useAuth.js';
 import useCart from '../cart/useCart.js';
 import CatalogueMenu from '../catalogue/CatalogueMenu.jsx';
+import { CATALOGUE_MENU_ID, navLinksFor } from './navLinks.js';
 import SlideTabs from './SlideTabs.jsx';
 import useMenuToggle from './useMenuToggle.js';
 import './Header.css';
 
-const CATALOGUE_MENU_ID = 'catalogue-menu';
-
-const NAV_LINKS = [
-  { to: '/accueil', label: 'Accueil' },
-  { to: '/catalogue', label: 'Catalogue', menuId: CATALOGUE_MENU_ID },
-  { to: '/commandes', label: 'Mes commandes' },
-];
-
-// En-tête de l'espace professionnel : logo, onglets (dont le menu du catalogue), panier, compte, déconnexion.
+// En-tête de l'espace connecté : logo, onglets du profil, panier (professionnel seulement), compte, déconnexion.
 // overHero : l'en-tête est posé sur un bandeau sombre (logo et texte en blanc).
 export default function Header({ overHero = false }) {
   const { user, logout } = useAuth();
   const { itemCount } = useCart();
   const navigate = useNavigate();
   const { openMenuId, toggleMenu, closeMenu } = useMenuToggle();
+  const isProfessional = user.role === ROLES.professional;
   const initials = `${user.firstName[0]}${user.lastName[0]}`;
 
   function handleLogout() {
@@ -34,13 +29,13 @@ export default function Header({ overHero = false }) {
   return (
     <header className={`header${overHero ? ' header--over-hero' : ''}`}>
       <div className="header__inner">
-        <Link to="/accueil" className="header__logo" aria-label="GSB, retour à l'accueil">
+        <Link to={homePathFor(user.role)} className="header__logo" aria-label="GSB, retour à l'accueil">
           <Logo variant={overHero ? 'light' : 'dark'} />
         </Link>
 
         <div className="header__nav">
           <SlideTabs
-            links={NAV_LINKS}
+            links={navLinksFor(user.role)}
             label="Navigation principale"
             openMenuId={openMenuId}
             onToggleMenu={toggleMenu}
@@ -48,6 +43,7 @@ export default function Header({ overHero = false }) {
         </div>
 
         <div className="header__actions">
+          {isProfessional && (
           <Link
             to="/panier"
             className="header__icon-btn header__cart"
@@ -60,6 +56,7 @@ export default function Header({ overHero = false }) {
               </span>
             )}
           </Link>
+          )}
 
           <Link to="/compte" className="header__user">
             <span className="header__avatar" aria-hidden="true">
@@ -69,7 +66,7 @@ export default function Header({ overHero = false }) {
               <strong>
                 {user.title} {user.firstName} {user.lastName}
               </strong>
-              <span>Professionnel de santé</span>
+              <span>{roleLabel(user.role)}</span>
             </span>
           </Link>
 
@@ -79,7 +76,7 @@ export default function Header({ overHero = false }) {
         </div>
       </div>
 
-      {openMenuId === CATALOGUE_MENU_ID && (
+      {isProfessional && openMenuId === CATALOGUE_MENU_ID && (
         <>
           {/* Voile sur la page : un clic dessus (donc en dehors du menu) referme le menu. */}
           <div className="header__backdrop" onClick={closeMenu} aria-hidden="true" />

@@ -5,6 +5,10 @@ Données **fictives** pour l'instant : `productService.js` sera branché sur l'A
 
 | Fichier | Rôle |
 |---|---|
+| `catalogueStore.js` | la « base » du catalogue en démonstration : produits, catégories, historique de stock (gardés dans le navigateur) |
+| `productManagementService.js` | création, modification et liste de tous les produits (utilisé par l'admin et les fournisseurs) |
+| `ProductForm.jsx` + `.css`, `useProductForm.js` | le formulaire produit, partagé par l'admin et le fournisseur |
+| `imageUpload.js` | contrôle (type, taille) et réduction de l'image choisie |
 | `CataloguePage.jsx` + `.css` | la page : charge les données et assemble les morceaux ci-dessous |
 | `CatalogueBanner.jsx` + `.css` | le bandeau glacé en haut de la page |
 | `CatalogueMenu.jsx` + `.css` | le méga-menu qui se déplie sous l'onglet « Catalogue » de l'en-tête |

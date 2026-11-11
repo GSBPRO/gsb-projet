@@ -15,10 +15,19 @@ export function AuthProvider({ children }) {
     return loggedUser;
   }
 
+  // Après un changement de mot de passe ou de profil, on remplace l'utilisateur gardé en mémoire.
+  async function changePassword(currentPassword, newPassword) {
+    setUser(await authService.changePassword(user.id, currentPassword, newPassword));
+  }
+
+  async function updateProfile(fields) {
+    setUser(await authService.updateProfile(user.id, fields));
+  }
+
   function logout() {
     authService.logout();
     setUser(null);
   }
 
-  return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, login, logout, changePassword, updateProfile }}>{children}</AuthContext.Provider>;
 }

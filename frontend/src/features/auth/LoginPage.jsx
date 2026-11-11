@@ -6,6 +6,7 @@ import EyeIcon from '../../components/icons/EyeIcon.jsx';
 import LiquidBackground from '../../components/effects/LiquidBackground.jsx';
 import Button from '../../components/ui/Button.jsx';
 import Input from '../../components/ui/Input.jsx';
+import { homePathFor } from './roles.js';
 import useAuth from './useAuth.js';
 import useLoginForm from './useLoginForm.js';
 import './LoginPage.css';
@@ -23,7 +24,7 @@ export default function LoginPage() {
 
   // Déjà connecté : inutile de revoir le formulaire.
   if (user) {
-    return <Navigate to="/accueil" replace />;
+    return <Navigate to={user.mustChangePassword ? '/mot-de-passe' : homePathFor(user.role)} replace />;
   }
 
   return (
@@ -33,11 +34,11 @@ export default function LoginPage() {
       <main className="login__content">
         <header className="login__header">
           <Logo />
-          <p className="login__eyebrow">Espace réservé aux professionnels de santé</p>
+          <p className="login__eyebrow">Espace réservé aux professionnels, fournisseurs et administrateurs GSB</p>
           <h1 className="login__title">
             Accès
             <br />
-            professionnel.
+            GSB.
           </h1>
         </header>
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { isValidEmail } from './validators.js';
+import { homePathFor } from './roles.js';
 import useAuth from './useAuth.js';
 
 // Toute la logique du formulaire de connexion : valeurs, erreurs, envoi, redirection.
@@ -40,8 +41,9 @@ export default function useLoginForm() {
 
     setIsSubmitting(true);
     try {
-      await login(values.email, values.password);
-      navigate('/accueil', { replace: true });
+      const loggedUser = await login(values.email, values.password);
+      // Première connexion : le mot de passe doit être changé avant tout (F04, RG04).
+      navigate(loggedUser.mustChangePassword ? '/mot-de-passe' : homePathFor(loggedUser.role), { replace: true });
     } catch (error) {
       setFormError(error.message);
       setIsSubmitting(false);

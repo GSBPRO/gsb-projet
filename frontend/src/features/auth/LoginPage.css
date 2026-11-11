@@ -137,3 +137,14 @@
     font-size: 48px;
   }
 }
+
+/* Lien discret en forme de bouton (ex. « Se déconnecter » sous le formulaire de première connexion). */
+.login__link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-deep);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
