@@ -1,0 +1,60 @@
+.account-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: var(--space-8);
+}
+
+.account-page__grid {
+  display: grid;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .account-page__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.account-page__card {
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  box-shadow: var(--shadow);
+}
+
+.account-page__card h2 {
+  font-size: 1.15rem;
+}
+
+.account-page dl {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0 0 var(--space-2);
+}
+
+.account-page dt {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.account-page dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.account-page__note {
+  font-size: 0.9rem;
+}
+
+.account-page__message {
+  font-weight: 700;
+}
+
+.account-page__message--success {
+  color: var(--color-success);
+}
+
+.account-page__message--error {
+  color: var(--color-error);
+}

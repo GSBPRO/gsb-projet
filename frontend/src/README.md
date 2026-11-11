@@ -10,14 +10,17 @@ Ce qui sert à plusieurs fonctionnalités est rangé dans `components/`.
 | `features/home/` | la page d'accueil et ses effets (fond, particules, gélules, molécule 3D) |
 | `features/catalogue/` | le catalogue : recherche, catégories, filtres, tri, cartes produit et page détail d'un produit |
 | `features/cart/` | le panier : ajout, quantités, totaux HT / TVA / TTC, contrôle de stock |
-| `features/orders/` | les commandes : validation (adresse, paiement simulé), création avec prix figés ; historique à venir |
+| `features/orders/` | les commandes : validation, confirmation, historique, détail, suivi de livraison |
+| `features/account/` | mon compte : profil et mot de passe (commun aux trois profils) |
+| `features/admin/` | l'espace administrateur : commandes, produits, stock, validation, catégories, comptes |
+| `features/supplier/` | l'espace fournisseur : ses produits et ses propositions |
 | `features/loader/` | l'écran de chargement (molécule de petits points) |
-| `components/ui/` | les briques réutilisées partout : bouton, champ, logo, apparition animée |
+| `components/ui/` | les briques réutilisées partout : bouton, champ, liste déroulante, tableau, pastille de statut, titre de page, états de chargement, logo, apparition animée |
 | `components/icons/` | les icônes SVG |
 | `components/effects/` | le fond liquide, utilisé par la connexion et le loader |
-| `pages/` | les pages simples sans fonctionnalité propre (introuvable, bientôt disponible) |
+| `pages/` | les pages simples sans fonctionnalité propre (introuvable) |
 | `mocks/` | les outils pour les données fictives, en attendant l'API |
-| `utils/` | les petits calculs partagés (prix TTC et affichage en euros) |
+| `utils/` | les petits outils partagés (prix, dates, chargement de données `useLoader`) |
 | `styles/` | les couleurs GSB (`tokens.css`) et le style de base (`global.css`) |
 | `App.jsx` | la liste des adresses du site et la page affichée pour chacune |
 | `main.jsx` | le démarrage de l'application |

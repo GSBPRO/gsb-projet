@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSB — Comprendre le front</title>
+<style>
+  :root {
+    --bg: #f6f3ee; --card: #fdfcfa; --text: #2f2e2b; --muted: #75716a; --deep: #4a4640;
+    --accent: #8a7a63; --glacier: #ece6db; --border: #e2dcd0; --code-bg: #f1ede5;
+    --ok: #4f7a5c; --ok-bg: #eef3ec; --warn: #9a6b22; --warn-bg: #f8f0e0; --err: #a4483c; --err-bg: #f7ebe7; --tip-bg: #efeae0;
+    --shadow: 0 2px 16px rgba(74, 70, 64, 0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1b19; --card: #262421; --text: #ece8e1; --muted: #a8a299; --deep: #e0d6c4;
+      --accent: #c2ae8d; --glacier: #34312c; --border: #38352f; --code-bg: #1a1917;
+      --ok: #9cc7a8; --ok-bg: #20291f; --warn: #e2b66d; --warn-bg: #2d261a; --err: #e59a8e; --err-bg: #2e1f1c; --tip-bg: #2a2723;
+      --shadow: none;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { margin: 0; font: 18px/1.85 "Segoe UI", system-ui, Arial, sans-serif; color: var(--text); background: var(--bg); }
+  a { color: var(--accent); text-underline-offset: 3px; }
+
+  .layout { display: grid; grid-template-columns: 1fr; }
+  nav.toc { background: var(--card); border-bottom: 1px solid var(--border); padding: 20px 22px; }
+  nav.toc summary { font-weight: 800; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); cursor: pointer; }
+  nav.toc input { width: 100%; margin: 16px 0 18px; padding: 11px 16px; border: 1px solid var(--border); border-radius: 999px; background: var(--bg); color: var(--text); font: inherit; font-size: 0.92rem; }
+  nav.toc input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  nav.toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+  nav.toc li { margin: 3px 0; counter-increment: toc; }
+  nav.toc li a { display: flex; gap: 12px; align-items: baseline; padding: 9px 14px; border-radius: 10px; color: var(--muted); text-decoration: none; font-size: 0.94rem; line-height: 1.4; transition: background 0.15s, color 0.15s; }
+  nav.toc li a::before { content: counter(toc, decimal-leading-zero); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; color: var(--accent); flex: none; }
+  nav.toc li a:hover { background: var(--glacier); color: var(--text); }
+  nav.toc li.active a { background: var(--glacier); color: var(--deep); font-weight: 700; box-shadow: inset 3px 0 0 var(--accent); }
+  nav.toc li.hidden { display: none; }
+
+  main { padding: 28px 22px 120px; max-width: 880px; width: 100%; margin: 0 auto; }
+  @media (min-width: 1000px) {
+    .layout { grid-template-columns: 330px 1fr; }
+    nav.toc { position: sticky; top: 0; height: 100vh; overflow-y: auto; border-right: 1px solid var(--border); border-bottom: 0; padding: 28px 18px; }
+    main { padding: 56px 56px 160px; margin: 0; }
+  }
+
+  h1 { font-size: 2.5rem; line-height: 1.2; color: var(--deep); margin: 0 0 16px; letter-spacing: -0.02em; }
+  .lead { color: var(--muted); font-size: 1.1rem; margin-bottom: 40px; }
+
+  /* Chaque grande partie : un bandeau net avec un numéro, beaucoup d'air autour. */
+  h2 { font-size: 1.8rem; line-height: 1.25; color: var(--deep); margin: 112px 0 28px; padding: 22px 26px; background: var(--card); border: 1px solid var(--border); border-left: 8px solid var(--accent); border-radius: 14px; box-shadow: var(--shadow); letter-spacing: -0.01em; }
+  h3 { font-size: 1.35rem; color: var(--deep); margin: 64px 0 18px; padding-bottom: 10px; border-bottom: 2px solid var(--glacier); }
+  h4 { font-size: 1.1rem; color: var(--accent); margin: 40px 0 10px; }
+  p { margin: 0 0 22px; }
+  li { margin: 10px 0; }
+  ul, ol { padding-left: 28px; margin: 0 0 28px; }
+  strong { color: var(--deep); }
+
+  .box { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px 26px; margin: 34px 0; box-shadow: var(--shadow); }
+  .box > :last-child { margin-bottom: 0; }
+  .box strong.t { display: block; margin-bottom: 10px; font-size: 1.05rem; }
+  .box.tip { background: var(--tip-bg); border-left: 6px solid var(--accent); }
+  .box.sec { background: var(--err-bg); border-left: 6px solid var(--err); }
+  .box.rule { background: var(--ok-bg); border-left: 6px solid var(--ok); }
+  .box.warn { background: var(--warn-bg); border-left: 6px solid var(--warn); }
+  .box.sec strong.t { color: var(--err); }
+  .box.rule strong.t { color: var(--ok); }
+  .box.warn strong.t { color: var(--warn); }
+
+  code { background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; font: 0.82em Consolas, "Courier New", monospace; color: var(--deep); word-break: break-word; }
+  pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; overflow-x: auto; font: 0.86rem/1.75 Consolas, "Courier New", monospace; margin: 26px 0 34px; }
+  pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+
+  /* Tableaux aérés : on lit une ligne à la fois, couleurs alternées. */
+  table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 28px 0 40px; font-size: 0.97rem; line-height: 1.65; display: block; overflow-x: auto; background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); }
+  th, td { padding: 16px 20px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: 0; }
+  th { background: var(--glacier); color: var(--deep); font-size: 0.82rem; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+  tbody tr:nth-child(even) td, table tr:nth-child(even) td { background: color-mix(in srgb, var(--code-bg) 55%, transparent); }
+  td:first-child { min-width: 170px; }
+
+  .tag { display: inline-block; font-size: 0.78rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--glacier); color: var(--deep); margin-left: 6px; }
+  .flow { font: 0.88rem/2 Consolas, monospace; background: var(--card); border: 2px dashed var(--accent); border-radius: 14px; padding: 22px 26px; white-space: pre-wrap; margin: 26px 0 38px; }
+  .muted { color: var(--muted); }
+
+  #progress { position: fixed; top: 0; left: 0; height: 4px; width: 0; background: var(--accent); z-index: 10; }
+  @media print { nav.toc, #progress { display: none; } .layout { display: block; } }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="layout">
+<nav class="toc" aria-label="Sommaire">
+  <details open>
+    <summary>Sommaire</summary>
+    <input id="filter" type="search" placeholder="Filtrer les sections…" aria-label="Filtrer le sommaire">
+    <ol id="toc-list"></ol>
+  </details>
+</nav>
+
+<main>
+<h1>GSB — Comprendre le front, de A à Z</h1>
+<p class="lead">Guide d'étude du dossier <code>frontend/</code> : comment chaque fonctionnalité marche, quel fichier fait quoi, pourquoi le code est écrit comme ça, et comment défendre tes choix à l'oral. Écrit le 11/11/2026, d'après le code de la branche <code>kelian</code>.</p>
+
+<div class="box tip"><strong class="t">Comment lire ce guide</strong>
+Les sections 1 à 3 donnent les bases (démarrage, React, données). Les sections 4 à 12 détaillent chaque fonctionnalité fichier par fichier. La section 13 déroule des parcours complets pas à pas, la 14 liste les règles métier, la 15 la sécurité et le RGPD, la 16 ce qui change avec le back-end. Les noms entre <code>code</code> sont de vrais fichiers, fonctions ou variables : ouvre-les à côté.
+<br><span class="muted">Ce guide explique chaque fichier et chaque bloc de logique, pas chacune des ~7 000 lignes une par une : les lignes purement visuelles (CSS, décor 3D) sont résumées.</span></div>
+
+<!-- ============ 1 ============ -->
+<h2 id="s1">1. Vue d'ensemble</h2>
+<p>Le front est une application web <strong>React</strong> (une « SPA » : Single Page Application). Le navigateur charge une seule page HTML ; ensuite, React change l'affichage sans recharger la page quand on clique sur un lien. Il n'y a <strong>aucun serveur</strong> pour l'instant : les données sont des fichiers JavaScript (« mocks ») et le navigateur sert de mini-base de données.</p>
+
+<table>
+<tr><th>Outil</th><th>Rôle</th><th>Où le voir</th></tr>
+<tr><td>React 19</td><td>construire l'interface avec des composants</td><td><code>package.json</code></td></tr>
+<tr><td>Vite 8</td><td>serveur de développement (<code>npm run dev</code>) et outil de build (<code>npm run build</code>)</td><td><code>vite.config.js</code></td></tr>
+<tr><td>react-router-dom 7</td><td>les « pages » : associe une adresse (<code>/catalogue</code>) à un composant</td><td><code>App.jsx</code></td></tr>
+<tr><td>three</td><td>la molécule 3D de l'accueil</td><td><code>features/home/molecule/</code></td></tr>
+<tr><td>@fontsource-variable/manrope</td><td>la police, hébergée dans le projet (RGPD : pas de Google Fonts)</td><td><code>styles/global.css</code></td></tr>
+</table>
+
+<h3>Arborescence</h3>
+<pre><code>frontend/
+├─ index.html            la page unique ; contient &lt;div id="root"&gt;
+├─ public/               fichiers servis tels quels (images produits, vidéos)
+└─ src/
+   ├─ main.jsx           démarrage : montre l'application dans #root
+   ├─ App.jsx            la table des routes (adresse → page)
+   ├─ features/          UN dossier par fonctionnalité (auth, cart, catalogue, …)
+   ├─ components/        briques partagées : ui/, icons/, effects/
+   ├─ utils/             price.js, date.js, useLoader.js
+   ├─ mocks/delay.js     simule le temps de réponse d'un serveur
+   ├─ pages/             NotFoundPage
+   └─ styles/            tokens.css (couleurs), global.css (base)</code></pre>
+
+<div class="box rule"><strong class="t">La règle d'organisation (FRYDAY.md)</strong>
+Ce qui sert à <em>une seule</em> fonctionnalité vit dans son dossier <code>features/&lt;nom&gt;/</code> (composant, CSS, hook, service, données). Ce qui sert à <em>plusieurs</em> fonctionnalités va dans <code>components/</code> ou <code>utils/</code>. Dans chaque fichier, les imports suivent le même ordre : bibliothèques → autres dossiers du projet → même dossier → CSS.</div>
+
+<h3>Les 4 types de fichiers que tu verras partout</h3>
+<table>
+<tr><th>Type</th><th>Exemple</th><th>Rôle</th></tr>
+<tr><td>Page / composant <code>.jsx</code></td><td><code>OrdersPage.jsx</code></td><td>affichage uniquement (le HTML « JSX »), peu de logique</td></tr>
+<tr><td>Hook <code>use….js</code></td><td><code>useCheckoutForm.js</code></td><td>la logique : états, validation, envoi</td></tr>
+<tr><td>Service <code>….Service.js</code></td><td><code>orderService.js</code></td><td>lit / écrit les données (aujourd'hui navigateur, demain API)</td></tr>
+<tr><td>CSS <code>.css</code></td><td><code>OrdersPage.css</code></td><td>l'apparence, avec les couleurs de <code>tokens.css</code></td></tr>
+</table>
+<p>L'idée : <strong>composant = ce qu'on voit, hook = ce qu'on fait, service = d'où viennent les données</strong>. C'est ce que demande FRYDAY (« la logique va dans des hooks, appels API isolés dans un service »).</p>
+
+<!-- ============ 2 ============ -->
+<h2 id="s2">2. Le démarrage : de index.html à l'écran</h2>
+<div class="flow">navigateur ouvre localhost:5173
+  → index.html (contient &lt;div id="root"&gt; et charge /src/main.jsx)
+  → main.jsx : createRoot(#root).render( … )
+       StrictMode
+        └ BrowserRouter          (active les adresses / liens)
+           └ AuthProvider        (qui est connecté ?)
+              └ CartProvider     (son panier)
+                 └ App           (quelle page pour cette adresse ?)</div>
+
+<h3><code>main.jsx</code></h3>
+<ul>
+<li><strong>StrictMode</strong> : en développement seulement, React exécute chaque effet deux fois pour révéler les bugs. C'est pour ça que le code des gélules a un test <code>pills.length &gt; 0</code> (voir section 6).</li>
+<li><strong>BrowserRouter</strong> doit entourer tout ce qui utilise <code>Link</code>, <code>useNavigate</code>, <code>useLocation</code>.</li>
+<li><strong>L'ordre des providers compte</strong> : <code>CartProvider</code> lit l'utilisateur (<code>useAuth</code>), donc il doit être <em>à l'intérieur</em> de <code>AuthProvider</code>. Si on les inverse, <code>useAuth</code> lève une erreur claire (« doit être utilisé à l'intérieur de &lt;AuthProvider&gt; »).</li>
+<li>Il importe <code>styles/global.css</code>, qui importe lui-même la police et <code>tokens.css</code>.</li>
+</ul>
+
+<h3><code>App.jsx</code> : la table des routes</h3>
+<p>Une route = une adresse + le composant à afficher. Elles sont imbriquées pour partager des protections :</p>
+<pre><code>&lt;Routes&gt;
+  /                    → redirige vers /connexion
+  /connexion           → LoginPage
+  /mot-de-passe        → ChangePasswordPage        (hors protection, sinon boucle)
+  &lt;Route element={&lt;ProtectedRoute&gt;&lt;AppLayout/&gt;&lt;/ProtectedRoute&gt;}&gt;   ← connecté obligatoire + en-tête
+      /compte          → AccountPage               (les 3 profils)
+      &lt;Route element={&lt;ProtectedRoute roles={[Professionnel]} /&gt;}&gt;
+          /accueil /catalogue /catalogue/:productId /panier
+          /commande /commande/confirmation/:orderId /commandes /commandes/:orderId
+      &lt;Route element={&lt;ProtectedRoute roles={[Administrateur]} /&gt;}&gt;
+          /admin → /admin/commandes, /admin/produits(/nouveau|/:productId),
+          /admin/validation, /admin/categories, /admin/comptes
+      &lt;Route element={&lt;ProtectedRoute roles={[Fournisseur]} /&gt;}&gt;
+          /fournisseur → /fournisseur/produits(/nouveau|/:productId)
+  *                    → NotFoundPage</code></pre>
+<ul>
+<li><code>:productId</code> est un <strong>paramètre d'adresse</strong> : le composant le lit avec <code>useParams()</code>.</li>
+<li>Une route « de mise en page » (avec <code>element</code> mais sans <code>path</code>) affiche ses enfants à la place de <code>&lt;Outlet /&gt;</code>. C'est ainsi que <code>AppLayout</code> met l'en-tête autour de toutes les pages.</li>
+<li>Une <code>ProtectedRoute</code> sans enfant explicite rend <code>&lt;Outlet /&gt;</code> : elle sert de « portier » pour tout un groupe de pages.</li>
+</ul>
+
+<!-- ============ 3 ============ -->
+<h2 id="s3">3. Les notions React utilisées (à savoir expliquer)</h2>
+<table>
+<tr><th>Notion</th><th>À quoi ça sert</th><th>Exemple dans le projet</th></tr>
+<tr><td><code>useState</code></td><td>une valeur qui, quand elle change, redessine le composant</td><td>champs d'un formulaire (<code>useLoginForm</code>), filtres du catalogue</td></tr>
+<tr><td><code>useEffect</code></td><td>faire quelque chose <em>après</em> l'affichage (charger, écouter la souris, minuteur). La fonction renvoyée « nettoie » (supprime l'écouteur / le minuteur)</td><td><code>useLoader</code>, <code>usePillPile</code></td></tr>
+<tr><td><code>useCallback</code></td><td>garder la <em>même fonction</em> d'un rendu à l'autre (sinon un <code>useEffect</code> qui la surveille se relancerait en boucle)</td><td><code>useOrders</code> : <code>load</code></td></tr>
+<tr><td><code>useMemo</code></td><td>ne recalculer une valeur que si ses entrées changent</td><td>liste filtrée du catalogue</td></tr>
+<tr><td><code>useRef</code></td><td>garder une valeur ou un élément HTML sans redessiner</td><td>le conteneur des gélules, le point de départ d'un glissement 360°</td></tr>
+<tr><td><code>useLayoutEffect</code></td><td>comme <code>useEffect</code> mais <em>avant</em> l'affichage : pour mesurer sans clignotement</td><td><code>useSlidingCursor</code></td></tr>
+<tr><td>Contexte (<code>createContext</code>)</td><td>partager une donnée avec toute l'appli sans la passer de parent en enfant</td><td><code>AuthContext</code>, <code>CartContext</code></td></tr>
+<tr><td>Hook personnalisé</td><td>une fonction <code>use…</code> qui regroupe de la logique réutilisable</td><td><code>useAuth</code>, <code>useCart</code>, <code>useLoader</code></td></tr>
+<tr><td>Champ contrôlé</td><td>la valeur affichée vient de l'état React (<code>value=…</code> + <code>onChange</code>)</td><td>tous les formulaires</td></tr>
+<tr><td><code>key</code></td><td>identifie chaque élément d'une liste ; changer la <code>key</code> force React à recréer le composant</td><td><code>UserForm key=…</code>, animation de la gélule</td></tr>
+<tr><td>Rendu conditionnel</td><td><code>{cond &amp;&amp; &lt;X/&gt;}</code> ou <code>cond ? A : B</code></td><td>partout (états chargement / erreur / vide)</td></tr>
+<tr><td>Props</td><td>les « paramètres » d'un composant</td><td><code>&lt;StatusBadge tone="success"&gt;</code></td></tr>
+</table>
+<div class="box tip"><strong class="t">Pourquoi React échappe le texte (sécurité XSS)</strong>
+Quand on écrit <code>{order.deliveryAddress}</code> dans le JSX, React transforme le texte en texte, jamais en HTML. Même si quelqu'un tape <code>&lt;script&gt;</code> dans une adresse, il s'affiche comme du texte. Le projet n'utilise <strong>jamais</strong> <code>dangerouslySetInnerHTML</code> (règle FRYDAY).</div>
+
+<!-- ============ 4 ============ -->
+<h2 id="s4">4. Les données : mocks, services, stockage navigateur</h2>
+<p>Comme il n'y a pas de serveur, chaque fonctionnalité a un <strong>service</strong> qui joue le rôle du serveur. Les composants appellent le service ; plus tard on remplacera le contenu du service par des <code>fetch</code> vers l'API Express, et les composants ne changeront pas.</p>
+
+<h3><code>mocks/delay.js</code></h3>
+<p><code>delay(ms = 500)</code> renvoie une promesse qui se résout après 500 ms. Chaque service l'attend (<code>await delay()</code>) pour <strong>simuler le temps d'un vrai réseau</strong> : on voit donc bien les écrans « Chargement… ».</p>
+
+<h3><code>utils/useLoader.js</code> : l'état d'un chargement</h3>
+<p>Presque toutes les pages chargent des données. Ce hook gère les 3 états (exigés par FRYDAY : chargement / erreur / vide).</p>
+<pre><code>const { status, data, reload } = useLoader(load);
+// status : 'loading' | 'error' | 'success'
+// data   : le résultat de load() (null tant que ce n'est pas chargé)
+// reload : relance le chargement (bouton « Réessayer », ou après une modification)</code></pre>
+<ol>
+<li><code>run()</code> met l'état à <code>loading</code> — <strong>sauf</strong> s'il y a déjà des données affichées (<code>previous.status === 'success'</code>) : au rechargement après une modification, la liste ne clignote pas.</li>
+<li>Elle appelle <code>await load()</code> ; succès → <code>{status:'success', data}</code>, échec → <code>{status:'error'}</code> (le détail technique n'est pas montré à l'utilisateur).</li>
+<li>Un <code>useEffect</code> lance <code>run</code> au premier affichage et chaque fois que <code>load</code> change. C'est pourquoi <code>load</code> doit être stable : on l'enveloppe dans <code>useCallback</code>.</li>
+</ol>
+
+<h3><code>components/ui/PageState.jsx</code></h3>
+<p>Le complément d'affichage de <code>useLoader</code> : <code>&lt;PageState status isEmpty emptyText onRetry&gt;…enfants…&lt;/PageState&gt;</code>. Chargement → « Chargement… » (<code>aria-busy</code>) ; erreur → message + bouton « Réessayer » (<code>role="alert"</code>) ; vide → le texte <code>emptyText</code> ; sinon → les enfants. Toutes les nouvelles pages (commandes, admin, fournisseur) l'utilisent : elles réagissent donc toutes pareil.</p>
+
+<h3>Où sont gardées les données (démo)</h3>
+<table>
+<tr><th>Donnée</th><th>Où</th><th>Clé</th><th>Survit à F5 ?</th><th>Survit à la fermeture de l'onglet ?</th></tr>
+<tr><td>Utilisateur connecté (son numéro uniquement)</td><td><code>sessionStorage</code></td><td><code>gsb.userId</code></td><td>oui</td><td>non</td></tr>
+<tr><td>Panier (liste de <code>{productId, quantity}</code>)</td><td><code>localStorage</code></td><td><code>gsb.cart.&lt;userId&gt;</code></td><td>oui</td><td>oui</td></tr>
+<tr><td>Commandes d'un utilisateur</td><td><code>localStorage</code></td><td><code>gsb.orders.&lt;userId&gt;</code></td><td>oui</td><td>oui</td></tr>
+<tr><td>Catalogue modifié (produits, catégories, mouvements de stock)</td><td><code>localStorage</code></td><td><code>gsb.catalogue</code></td><td>oui</td><td>oui</td></tr>
+<tr><td>Comptes et mots de passe modifiés</td><td>mémoire JavaScript (tableau <code>users</code>)</td><td>—</td><td>non (retour aux comptes de départ)</td><td>non</td></tr>
+</table>
+<div class="box sec"><strong class="t">Pourquoi si peu dans le navigateur ?</strong>
+FRYDAY interdit les tokens et données sensibles dans <code>localStorage</code> : tout le monde peut le lire et le modifier dans les outils du navigateur. On n'y met donc <strong>ni mot de passe, ni jeton</strong> ; le panier ne contient <strong>pas de prix</strong> (voir section 9) ; et chaque lecture est <em>re-validée</em> (« on ne fait pas confiance au stockage »). Les mots de passe des comptes restent en mémoire seulement.</div>
+<p>Toutes les lectures/écritures de stockage sont entourées de <code>try/catch</code> : en navigation privée stricte le stockage peut être indisponible ; l'appli continue de marcher, sans mémoire d'une page à l'autre.</p>
+
+<!-- ============ 5 ============ -->
+<h2 id="s5">5. Authentification et rôles — <code>features/auth/</code></h2>
+<p>Exigences : F03 (connexion), F04/RG04 (mot de passe à changer à la première connexion), F02 (pas d'inscription), F07 (pages protégées), NF02 (contrôle par rôle), NF04 (message d'erreur générique).</p>
+
+<h3>Les fichiers</h3>
+<table>
+<tr><th>Fichier</th><th>Rôle détaillé</th></tr>
+<tr><td><code>mockUsers.js</code></td><td>Tableau <code>users</code> : 4 comptes de démo. Champs : <code>id, email, password, firstName, lastName, title, role, profession, phone, mustChangePassword, active</code> (+ <code>supplierId</code> pour un fournisseur, le laboratoire auquel il est rattaché, RG01). Les mots de passe sont en clair <strong>uniquement</strong> parce que c'est une maquette ; le vrai serveur stockera un hash bcrypt (NF01).</td></tr>
+<tr><td><code>roles.js</code></td><td><code>ROLES</code> (les 3 profils), <code>homePathFor(role)</code> (page d'accueil du profil : <code>/accueil</code>, <code>/fournisseur/produits</code>, <code>/admin/commandes</code>), <code>roleLabel(role)</code> (libellé de l'en-tête).</td></tr>
+<tr><td><code>validators.js</code></td><td><code>isValidEmail</code> (regex simple), <code>passwordError(value)</code> (≥ 8 caractères + majuscule + minuscule + chiffre + caractère spécial ; renvoie le message d'erreur ou <code>''</code>), <code>isValidPhone</code> (facultatif, 6 à 20 caractères parmi chiffres, espaces, <code>. + ( ) -</code>).</td></tr>
+<tr><td><code>authService.js</code></td><td>Le « faux serveur » d'authentification : <code>login</code>, <code>logout</code>, <code>restoreSession</code>, <code>changePassword</code>, <code>updateProfile</code> + la classe <code>AccountError</code>.</td></tr>
+<tr><td><code>AuthContext.jsx</code></td><td><code>AuthProvider</code> : garde <code>user</code> en état React et expose <code>login, logout, changePassword, updateProfile</code>.</td></tr>
+<tr><td><code>useAuth.js</code></td><td>Raccourci <code>useContext(AuthContext)</code> ; lève une erreur si on est hors du provider.</td></tr>
+<tr><td><code>LoginPage.jsx</code> + <code>useLoginForm.js</code></td><td>L'écran et sa logique (valeurs, erreurs, envoi, redirection).</td></tr>
+<tr><td><code>ChangePasswordPage.jsx</code>, <code>PasswordForm.jsx</code>, <code>usePasswordForm.js</code></td><td>Le changement de mot de passe (première connexion et « Mon compte »).</td></tr>
+<tr><td><code>ProtectedRoute.jsx</code></td><td>Le portier des pages.</td></tr>
+</table>
+
+<h3><code>authService.login(email, password)</code> pas à pas</h3>
+<ol>
+<li><code>await delay()</code> (simule le réseau).</li>
+<li>Cherche l'utilisateur dont l'email (<code>trim().toLowerCase()</code>) correspond.</li>
+<li>Si l'utilisateur n'existe pas <strong>ou</strong> si le mot de passe est faux <strong>ou</strong> si le compte est désactivé → lève <em>la même erreur</em> : « Email ou mot de passe incorrect. » <span class="tag">NF04</span> On ne révèle jamais si l'adresse existe (sinon un attaquant pourrait deviner quelles adresses sont des comptes).</li>
+<li>Sinon : <code>saveSession(user.id)</code> (écrit <em>uniquement</em> le numéro dans <code>sessionStorage</code>) et renvoie <code>toPublicUser(user)</code>, la copie <strong>sans le champ password</strong> (<code>const { password: _p, ...publicUser } = user</code>). Le reste de l'appli ne voit donc jamais un mot de passe.</li>
+</ol>
+
+<h3><code>restoreSession()</code></h3>
+<p>Appelée une seule fois, au tout premier rendu de <code>AuthProvider</code> : <code>useState(() =&gt; authService.restoreSession())</code>. (Passer une <em>fonction</em> à <code>useState</code> = « calcule la valeur initiale une seule fois ».) Elle relit <code>gsb.userId</code>, retrouve l'utilisateur <em>actif</em> et le renvoie ; sinon <code>null</code>. C'est ce qui fait qu'un F5 ne déconnecte pas.</p>
+
+<h3><code>useLoginForm</code> (la logique du formulaire)</h3>
+<pre><code>values {email, password}   errors {email?, password?}   formError   isSubmitting
+handleChange   : met à jour la valeur du champ modifié (event.target.name / value)
+validate()     : email invalide → message ; mot de passe vide → message
+handleSubmit   : preventDefault ; si déjà en cours → return (anti double clic) ;
+                 si erreurs → les afficher et s'arrêter ;
+                 sinon login() ; succès → navigate(mustChangePassword ? '/mot-de-passe' : homePathFor(role)) ;
+                 échec → formError = message générique</code></pre>
+<p><code>noValidate</code> sur le <code>&lt;form&gt;</code> désactive les bulles de validation du navigateur : on affiche nos propres messages (en français, sous chaque champ, reliés par <code>aria-describedby</code>).</p>
+
+<h3><code>ProtectedRoute</code> : 4 décisions dans l'ordre</h3>
+<ol>
+<li>pas d'utilisateur → <code>&lt;Navigate to="/connexion" replace /&gt;</code> ;</li>
+<li><code>user.mustChangePassword</code> → vers <code>/mot-de-passe</code> (aucune autre page tant que ce n'est pas fait, F04/RG04) ;</li>
+<li><code>roles</code> fourni et le rôle de l'utilisateur n'y est pas → vers <code>homePathFor(son rôle)</code> ;</li>
+<li>sinon → affiche la page.</li>
+</ol>
+<div class="box sec"><strong class="t">Limite à retenir</strong>
+Cette protection est du <strong>confort d'affichage</strong>. Un utilisateur peut modifier le JavaScript de son navigateur. Seul le <strong>serveur</strong> protégera vraiment (vérifier le rôle sur chaque route API, NF02). Le code le rappelle en commentaire.</div>
+
+<h3>Changement de mot de passe</h3>
+<p><code>usePasswordForm(onDone)</code> : champs <code>current, next, confirm</code>. Validation : actuel non vide ; <code>passwordError(next)</code> ; <code>confirm === next</code>. Puis <code>changePassword(current, next)</code> du contexte → <code>authService.changePassword</code> :</p>
+<ul>
+<li>mot de passe actuel faux → <code>AccountError('CURRENT')</code> (on redemande l'ancien pour qu'une personne devant un poste ouvert ne puisse pas le changer) ;</li>
+<li>règle non respectée → <code>RULES</code> ; identique à l'ancien → <code>SAME</code> ;</li>
+<li>succès : <code>user.password = new</code>, <code>mustChangePassword = false</code>, renvoie l'utilisateur public. Le contexte fait <code>setUser(...)</code> : <code>ProtectedRoute</code> laisse alors passer.</li>
+</ul>
+<p>L'interface choisit <em>quel champ</em> afficher en erreur grâce au <strong>code</strong> de l'erreur (<code>error.code === 'CURRENT'</code> → sous « mot de passe actuel »), pas en lisant le texte.</p>
+
+<!-- ============ 6 ============ -->
+<h2 id="s6">6. Mise en page et navigation — <code>features/layout/</code></h2>
+<table>
+<tr><th>Fichier</th><th>Rôle</th></tr>
+<tr><td><code>AppLayout.jsx</code></td><td>Enveloppe de toutes les pages connectées : <code>&lt;Header&gt;</code> puis <code>&lt;main&gt;&lt;Outlet/&gt;&lt;/main&gt;</code>. Sur <code>/accueil</code> et <code>/catalogue</code> (<code>HERO_PAGES</code>), la classe <code>app-layout--hero</code> supprime l'espace du haut pour que la vidéo passe derrière l'en-tête translucide. Précharge aussi la molécule 3D (<code>loadGlassMolecule</code>).</td></tr>
+<tr><td><code>navLinks.js</code></td><td><code>navLinksFor(role)</code> : les onglets de chaque profil. Professionnel : Accueil, Catalogue (avec menu), Mes commandes. Fournisseur : Mes produits. Admin : Commandes, Produits, Validation, Catégories, Comptes.</td></tr>
+<tr><td><code>Header.jsx</code></td><td>Logo (renvoie vers <code>homePathFor(role)</code>), onglets <code>SlideTabs</code>, panier (<strong>professionnel seulement</strong>, avec pastille du nombre d'articles, « 99+ » au-delà), avatar avec initiales + nom + libellé du profil (lien vers <code>/compte</code>), bouton déconnexion (<code>logout()</code> puis <code>navigate('/connexion')</code>), et le méga-menu du catalogue (professionnel seulement) avec un voile qui ferme au clic.</td></tr>
+<tr><td><code>SlideTabs.jsx</code> + <code>useSlidingCursor.js</code></td><td>La « gélule » qui glisse sous l'onglet survolé ou actif. Le hook mesure l'onglet (<code>offsetLeft/offsetWidth</code>) dans un <code>useLayoutEffect</code>, remesure au redimensionnement et quand la police a fini de charger (<code>document.fonts.ready</code>), et compte les changements de page (<code>pageChangeCount</code>) pour relancer l'animation via une <code>key</code>. L'onglet actif est annoncé aux lecteurs d'écran par <code>aria-current="page"</code>.</td></tr>
+<tr><td><code>useMenuToggle.js</code></td><td>Ouvre/ferme un menu : un clic ouvre, un 2<sup>e</sup> ferme ; se ferme seul quand l'adresse change ; à la fermeture au clavier, rend le focus à l'onglet (<code>aria-controls</code>) pour ne pas « perdre » un utilisateur clavier.</td></tr>
+</table>
+
+<!-- ============ 7 ============ -->
+<h2 id="s7">7. Accueil et chargement — <code>features/home/</code>, <code>features/loader/</code></h2>
+<p>Partie surtout visuelle. Ce qu'il faut savoir expliquer :</p>
+<h3><code>HomePage.jsx</code></h3>
+<ul>
+<li>Affiche <code>PageLoader</code> (écran de chargement), la bande vidéo et le « hero » (bandeau avec texte, fond, particules, gélules, molécule).</li>
+<li><code>useReadyWithTimeout(maxWaitMs=4000, minWaitMs)</code> renvoie <code>[isReady, markReady]</code>. La page est « prête » quand <strong>(a)</strong> la molécule 3D a appelé <code>markReady</code> <strong>et (b)</strong> la durée minimale est écoulée (2,8 s à la <em>première</em> visite, 0 ensuite). Un minuteur de sécurité (4 s) appelle <code>markReady</code> de toute façon : la page ne reste jamais bloquée si la 3D échoue.</li>
+<li><code>hasShownLoader</code> est une variable <em>hors du composant</em> (module) : elle se souvient, pendant la session, que le loader a déjà été montré.</li>
+<li><code>isRevealed</code> ajoute la classe <code>is-revealed</code> au bandeau ; le composant <code>Reveal</code> (components/ui) déclenche alors ses animations d'apparition décalées (<code>delay</code> → variable CSS <code>--reveal-delay</code>).</li>
+</ul>
+<h3>Les couches du bandeau (<code>HomeHero.jsx</code>, de l'arrière vers l'avant)</h3>
+<ol>
+<li><code>background/</code> : paysage animé (<code>HeroBackground</code>, <code>WaterRipple</code>, <code>useMouseParallax</code> pour le léger déplacement avec la souris) ;</li>
+<li><code>particles/</code> : particules de lumière ;</li>
+<li><code>pills/</code> : les gélules ;</li>
+<li><code>HeroContent</code> : le texte et la molécule 3D (<code>molecule/</code>, avec <code>three</code>, chargée à la demande par <code>loadGlassMolecule.js</code> et préchargée dès la page de connexion pour que l'accueil soit prêt plus vite).</li>
+</ol>
+<h3>Les gélules (<code>pills/</code>)</h3>
+<ul>
+<li><code>usePillPile</code> : toutes les 150 ms, une gélule est ajoutée et tombe ; elle se pose sur un <strong>tas</strong>. Le tas est une « carte des hauteurs » : un tableau avec une hauteur par colonne de 8 px. Pour chaque gélule, on essaie 6 positions et on garde la plus basse → un tas régulier. Maximum ≈ 3 couches sur la largeur (<code>largeur × 3/50</code> gélules) et le tas s'arrête à 30 % de la hauteur.</li>
+<li>Le tas est gardé dans une variable hors du composant (<code>savedPile</code>) : en quittant l'accueil puis en revenant, les gélules sont replacées directement, sans retomber. Si la fenêtre change de taille, on recommence après 300 ms de calme.</li>
+<li><code>usePillHover</code> : les gélules « sautent » quand la souris passe près. Chaque gélule a deux éléments (emplacement + gélule) pour que le saut aille toujours vers le haut de l'écran quel que soit l'angle.</li>
+<li>Les gélules ont <code>aria-hidden="true"</code> : purement décoratives.</li>
+</ul>
+<div class="box warn"><strong class="t">Modification faite le 11/11</strong>
+Avant, le code désactivait les gélules si le système demandait « réduire les animations » (<code>prefers-reduced-motion</code>). Sur ton PC (animations coupées dans Windows) elles avaient disparu. J'ai retiré ce test dans <code>usePillPile.js</code> et <code>usePillHover.js</code> et exclu <code>.falling-pills</code> de la règle globale de <code>global.css</code> qui coupe toutes les animations. Conséquence accessibilité : les personnes sensibles aux animations voient les gélules ; à signaler si un jury pose la question.</div>
+<h3>Écran de chargement (<code>features/loader/</code>)</h3>
+<p><code>PageLoader</code> : fond uni + <code>DotMolecule</code> (petits points qui s'assemblent en molécule, positions dans <code>moleculeDots.js</code>). <code>isVisible=false</code> → fondu puis invisible et non cliquable. <code>showImmediately</code> : sans lui, il attend 200 ms avant de s'afficher (évite le clignotement d'un chargement très court). Un paragraphe <code>role="status"</code> invisible à l'écran annonce « Chargement de la page » aux lecteurs d'écran.</p>
+
+<!-- ============ 8 ============ -->
+<h2 id="s8">8. Catalogue — <code>features/catalogue/</code></h2>
+<p>Exigences : F08 (par catégories), F09 (fiche produit), F10 (recherche), F11 (filtres), F12 (produits actifs et validés uniquement), RG07 (TTC = HT + TVA).</p>
+
+<h3>8.1 Les données</h3>
+<table>
+<tr><th>Fichier</th><th>Rôle</th></tr>
+<tr><td><code>mockCatalogue.js</code></td><td><code>categories</code> (3), <code>laboratories</code> (3 — ce sont les « fournisseurs »), <code>products</code> : 40 produits construits depuis un tableau de lignes <code>[dossier, nom, format, description, catégorie, labo, prixHT, TVA, stock]</code> avec <code>rows.map(...)</code>. Chaque produit reçoit <code>id</code>, <code>validationStatus: 'Accepté'</code>, <code>active: true</code>, <code>image</code> (<code>/produits/&lt;dossier&gt;/principal.webp</code>) et <code>views360</code> (dossier des 36 vues). Toutes les valeurs sont inventées.</td></tr>
+<tr><td><code>catalogueStore.js</code></td><td>La « base » modifiable du catalogue (voir 8.2).</td></tr>
+<tr><td><code>productService.js</code></td><td><code>getCatalogue()</code> : renvoie ce qui est <em>vendable</em> (voir 8.3).</td></tr>
+<tr><td><code>useCatalogue.js</code></td><td>Hook de chargement (état <code>loading/error/success</code>) autour de <code>getCatalogue()</code>.</td></tr>
+</table>
+
+<h3>8.2 <code>catalogueStore.js</code></h3>
+<ul>
+<li>Un état unique <code>{ products, categories, stockMovements }</code>. Au premier accès (<code>load()</code>) : il lit <code>localStorage['gsb.catalogue']</code> ; si la forme est valide (<code>isValidState</code> : trois tableaux, produits avec <code>id</code> entier et <code>name</code> texte) il le garde, sinon il repart des mocks (<code>structuredClone</code> = copie profonde, pour ne jamais modifier les mocks d'origine).</li>
+<li><code>updateCatalogue(change)</code> : appelle <code>change(état)</code> qui modifie l'état directement, puis écrit dans le <code>localStorage</code> (<code>try/catch</code> : si c'est plein — une grosse image — la modif reste en mémoire), puis prévient les « écouteurs ».</li>
+<li><code>onCatalogueChange(listener)</code> : <code>productService</code> s'y abonne pour <strong>vider sa mémoire</strong> (<code>cataloguePromise = null</code>). Sans ça, après une modification admin, le catalogue du professionnel afficherait l'ancienne version.</li>
+<li><code>readCatalogue()</code> renvoie l'état ; <code>nextId(items)</code> = plus grand id + 1.</li>
+</ul>
+
+<h3>8.3 <code>productService.getCatalogue()</code></h3>
+<ul>
+<li><code>isSellable(product)</code> : <code>product.active &amp;&amp; product.validationStatus === 'Accepté'</code> (F12, RG08).</li>
+<li><code>loadCatalogue()</code> garde aussi seulement les produits dont la <strong>catégorie est active</strong> (désactiver une catégorie la retire du catalogue, F22). Renvoie <code>{ products, categories (actives), laboratories }</code>.</li>
+<li><strong>Mémoire (cache)</strong> : la même promesse est réutilisée par le menu du catalogue et la page catalogue (un seul chargement). En cas d'échec on oublie le cache pour pouvoir réessayer.</li>
+</ul>
+
+<h3>8.4 Recherche, filtres, tri — <code>useCatalogueFilters(products, laboratories)</code></h3>
+<ul>
+<li>État <code>filters</code> : <code>search, categoryId, laboratoryId, inStockOnly, sort</code> (valeurs initiales dans <code>INITIAL_FILTERS</code>).</li>
+<li><code>setFilter(name, value)</code> change un critère sans toucher aux autres (<code>{...previous, [name]: value}</code>) ; <code>useCallback</code> pour une identité stable.</li>
+<li><code>normalize(text)</code> : <code>normalize('NFD')</code> sépare les lettres de leurs accents, la regex <code>\p{Diacritic}</code> les supprime, puis minuscules → « Éphélide » trouve « ephelide ».</li>
+<li><code>visibleProducts</code> (<code>useMemo</code>) : sépare la recherche en mots ; garde un produit si catégorie ok, labo ok, (en stock si demandé) <strong>et</strong> <em>tous</em> les mots sont dans « nom + nom du laboratoire ». Puis trie une <em>copie</em> (<code>[...filtered]</code>, sinon <code>sort()</code> modifierait la liste d'origine) : prix croissant/décroissant sur <code>priceHt</code>, nom avec <code>localeCompare(…, 'fr')</code>, ou « pertinence » (ordre d'origine).</li>
+<li><code>hasActiveFilters</code> : sert à afficher « Tout effacer ».</li>
+</ul>
+
+<h3>8.5 <code>CataloguePage.jsx</code> : l'assemblage</h3>
+<ul>
+<li>Charge les données avec <code>useCatalogue</code> ; utilise des tableaux vides <strong>créés une fois</strong> (<code>NO_ITEMS</code>) : un nouveau <code>[]</code> à chaque rendu relancerait le <code>useMemo</code> pour rien (React compare les références).</li>
+<li><strong>Filtres dans l'adresse</strong> : le menu envoie vers <code>/catalogue?categorie=2</code> ou <code>?stock=1</code>. <code>useSearchParams</code> les lit dans un <code>useEffect</code>. <em>On ne fait pas confiance à l'adresse</em> : <code>Number(...)</code> puis <code>Number.isInteger &amp;&amp; &gt; 0</code>, sinon la valeur est ignorée.</li>
+<li>Construit des <code>Map</code> (id → laboratoire / catégorie) avec <code>useMemo</code> pour retrouver un nom en O(1) sur chaque carte.</li>
+<li>Assemble : <code>CatalogueBanner</code> (vidéo), <code>CatalogueFilters</code> (labo, en stock, effacer), <code>CatalogueToolbar</code> (compteur, recherche, tri), <code>CategoryChips</code>, <code>ProductGrid</code> (cartes <code>ProductCard</code>, squelettes <code>ProductCardSkeleton</code> pendant le chargement).</li>
+</ul>
+<h3>8.6 Cartes et fiche produit</h3>
+<ul>
+<li><code>ProductCard</code> : image (<code>ProductImage</code>), nom, labo, prix TTC, <code>StockBadge</code>. <code>useTilt</code> incline la carte vers la souris (<code>perspective(800px) rotateX/rotateY</code>, ±6°) ; désactivé sur écran tactile (<code>hover: hover</code>) et si « réduire les animations ».</li>
+<li><code>ProductImage</code> : si <code>product.image</code> existe → <code>&lt;img loading="lazy" decoding="async"&gt;</code> (téléchargée seulement quand elle approche de l'écran) ; sinon une image provisoire (gélule + initiales des 2 premiers mots, <code>aria-hidden</code>).</li>
+<li><code>StockBadge</code> : 0 → « Rupture de stock » ; ≤ 10 → « Plus que N en stock » ; sinon « En stock ». Le texte porte l'information (pas seulement la couleur).</li>
+<li><code>ProductPage</code> (<code>/catalogue/:productId</code>) : retrouve le produit par <code>useParams</code> ; calcule <code>unitTtc</code> (<code>priceWithTax</code>), et le nombre ajoutable : <code>remaining = min(99, stock) − déjà dans le panier</code>. Miniatures : la photo principale ; <strong>si le produit a un rendu 3D</strong> (<code>views360</code>) la vue 360° et 3 angles fixes (un produit proposé par un fournisseur n'a qu'une photo). Ajout : <code>addItem</code> puis message de confirmation.</li>
+<li><code>useRotation360(folder)</code> : 36 vues (<code>vue_000.webp</code> à <code>vue_035.webp</code>). Précharge les 36 images à l'ouverture de la fiche ; glisser souris/doigt : 14 px = 1 vue (<code>setPointerCapture</code> pour continuer à suivre hors de l'élément) ; flèches ← → au clavier ; le modulo <code>(frame + steps + 36) % 36</code> fait boucler.</li>
+<li><code>CatalogueMenu</code> + <code>catalogueMenuCards.js</code> : une carte par catégorie + « En stock », avec le nombre de produits et le lien filtré.</li>
+</ul>
+
+<h3>8.7 Gestion des produits (admin + fournisseur) — fichiers ajoutés</h3>
+<table>
+<tr><th>Fichier</th><th>Rôle</th></tr>
+<tr><td><code>productManagementService.js</code></td><td><code>VAT_RATES</code> (2,1 / 5,5 / 10 / 20), <code>LIMITS</code>, <code>ProductError</code>, <code>validateProduct</code>, <code>createProduct</code>, <code>updateProduct</code>, <code>listAllProducts</code>, <code>getProductForEdit</code>, <code>listSupplierProducts</code> (détails ci-dessous).</td></tr>
+<tr><td><code>ProductForm.jsx</code> + <code>useProductForm.js</code></td><td>Formulaire partagé admin/fournisseur : nom, conditionnement, description, catégorie, (fournisseur si admin), prix HT, TVA, (stock de départ à la création), image avec aperçu.</td></tr>
+<tr><td><code>imageUpload.js</code></td><td><code>readProductImage(file)</code> : refuse tout sauf JPEG/PNG/WebP, refuse &gt; 3 Mo, charge l'image dans un <code>Image</code>, la réduit à 480 px max sur un <code>canvas</code>, la ré-encode en WebP (qualité 0,8) et renvoie une adresse <code>data:</code>. <code>isAcceptedImage</code> n'accepte que <code>/produits/…</code> ou <code>data:image/(webp|jpeg|png);base64,…</code> (refuse <code>javascript:</code>, liens externes).</td></tr>
+</table>
+<h4><code>validateProduct(input, { requireImage, validateStock })</code></h4>
+<p>Renvoie un objet <code>{champ: message}</code>. Contrôles : nom/format/description non vides et ≤ 120/80/1000 caractères ; catégorie existante ; prix HT nombre fini &gt; 0 et ≤ 100 000 ; TVA dans <code>VAT_RATES</code> ; stock entier 0…100 000 (à la création) ; image obligatoire pour un fournisseur (F29) et d'un format accepté.</p>
+<h4><code>createProduct(input, actor)</code></h4>
+<ul>
+<li><code>actor</code> = l'utilisateur connecté (<code>{role, supplierId}</code>). Administrateur → produit <strong>Accepté</strong> directement, fournisseur choisi dans le formulaire. Fournisseur → produit <strong>En attente</strong>, <code>laboratoryId = actor.supplierId</code> (<em>jamais</em> une valeur venue du formulaire : un fournisseur ne peut pas créer pour un autre).</li>
+<li><code>cleanFields</code> ne recopie que les champs connus (nom, format, … prix arrondi au centime) : un champ glissé en plus est ignoré.</li>
+</ul>
+<h4><code>updateProduct(productId, input, actor)</code></h4>
+<ul>
+<li>Trouve le produit ; si l'acteur n'est pas admin et que <code>product.laboratoryId !== actor.supplierId</code> → rien n'est modifié et l'erreur est « Produit introuvable » (même réponse qu'un produit inexistant : on ne révèle pas son existence).</li>
+<li>Pour un fournisseur, <code>isMajorChange</code> = un des champs nom/format/description/catégorie/prix/TVA ou l'image a changé → le statut repasse à <strong>En attente</strong> et le motif de refus est effacé (F30, RG08).</li>
+</ul>
+
+<!-- ============ 9 ============ -->
+<h2 id="s9">9. Panier — <code>features/cart/</code> et <code>utils/price.js</code></h2>
+<p>Exigences : F13 (ajout/retrait/quantité), F14 (totaux), F15 (HT/TVA/TTC), F16 (contrôle du stock).</p>
+
+<h3><code>cartService.js</code></h3>
+<ul>
+<li><code>MAX_QUANTITY = 99</code>. Clé <code>gsb.cart.&lt;userId&gt;</code> : un panier par utilisateur (deux personnes sur le même PC ne partagent pas).</li>
+<li><strong>Le panier ne stocke que <code>{productId, quantity}</code></strong>, jamais de prix : les prix sont relus dans le catalogue à chaque affichage, donc impossible d'afficher un prix périmé ou falsifié depuis le navigateur.</li>
+<li><code>sanitize(raw)</code> : le stockage est modifiable par n'importe qui, on ne le croit pas. Ne garde que les lignes dont <code>productId</code> et <code>quantity</code> sont des entiers &gt; 0, fusionne les doublons (une <code>Map</code> par produit) et plafonne à 99.</li>
+<li><code>loadCart</code> / <code>saveCart</code> (avec <code>try/catch</code>), <code>findStockIssues(lines)</code> : les lignes dont la quantité dépasse le stock, avec ce qui reste.</li>
+</ul>
+<h3><code>CartContext.jsx</code></h3>
+<ul>
+<li>Lit l'utilisateur (<code>useAuth</code>) ; <code>items</code> initialisé avec son panier ; un <code>useEffect([userId])</code> recharge le bon panier au changement de compte (déconnexion → <code>[]</code> en mémoire, mais le panier reste dans le navigateur pour la prochaine connexion).</li>
+<li><code>update(nextItems)</code> : <strong>écrit dans le stockage puis dans l'état, dans la même fonction</strong> (pas dans un <code>useEffect</code>) : un effet pourrait écrire l'ancien panier sous le compte suivant pendant un changement d'utilisateur.</li>
+<li><code>addItem</code> (ajoute ou additionne, plafond 99), <code>setQuantity</code> (≤ 0 → supprime), <code>removeItem</code>, <code>clear</code>, <code>itemCount</code> (somme des quantités → pastille de l'en-tête), <code>replaceItems</code>.</li>
+</ul>
+<h3><code>CartPage.jsx</code></h3>
+<ul>
+<li>Charge le catalogue (<code>useCatalogue</code>) puis associe chaque ligne du panier à son produit ; un produit qui n'existe plus ou n'est plus vendable est ignoré (jamais de ligne sans prix).</li>
+<li>Totaux par <code>cartTotals</code> ; <code>findStockIssues</code> pour avertir ; <code>CartLine</code> (nom, <code>QuantityStepper</code>, suppression) et <code>CartSummary</code> (HT, TVA par taux, TTC, bouton « Passer commande » → <code>/commande</code>).</li>
+<li><code>QuantityStepper</code> : boutons − / + (pas de champ libre → impossible de saisir 0, un négatif ou 1e9) ; <code>&lt;output aria-live="polite"&gt;</code> annonce la nouvelle quantité.</li>
+</ul>
+<h3><code>utils/price.js</code> : les calculs d'argent (RG07, RG20)</h3>
+<table>
+<tr><th>Fonction</th><th>Calcul</th></tr>
+<tr><td><code>priceWithTax(ht, tva)</code></td><td><code>Math.round(ht × (1 + tva/100) × 100) / 100</code> → TTC arrondi au centime</td></tr>
+<tr><td><code>formatPrice</code></td><td><code>Intl.NumberFormat('fr-FR', currency EUR)</code> → « 12,50 € »</td></tr>
+<tr><td><code>formatVatRate</code></td><td>2.1 → « 2,1 % »</td></tr>
+<tr><td><code>lineAmounts(ht, tva, qté)</code></td><td><code>ht = ht×qté</code> ; <code>ttc = priceWithTax(ht, tva) × qté</code> (prix <em>unitaire</em> TTC déjà arrondi × quantité → le total affiché = prix unitaire affiché × quantité) ; <code>vat = ttc − ht</code>, tout arrondi au centime</td></tr>
+<tr><td><code>cartTotals(lignes)</code></td><td>additionne HT et TTC, TVA <strong>par taux</strong> (<code>Map</code>), arrondit à chaque addition : HT + TVA = TTC toujours exact</td></tr>
+</table>
+<div class="box tip"><strong class="t">Pourquoi arrondir à chaque étape ?</strong>
+En JavaScript, <code>0,1 + 0,2 = 0,30000000000000004</code> (virgule flottante). Arrondir au centime à chaque addition évite d'afficher ou de stocker ces erreurs. Ces calculs servent à l'<em>affichage</em> : le serveur refera les siens (on ne fait jamais confiance à un prix calculé dans le navigateur).</div>
+
+<!-- ============ 10 ============ -->
+<h2 id="s10">10. Commandes — <code>features/orders/</code></h2>
+<p>Exigences : F17 à F20, F36/F37 (suivi), RG17 (stock décrémenté une fois), RG18 (aucune donnée bancaire), RG19/F19 (prix figés).</p>
+
+<h3>10.1 <code>orderService.createOrder(userId, { items, address, simulateFailure })</code></h3>
+<ol>
+<li><code>await delay()</code>.</li>
+<li><strong>Adresse</strong> : <code>trim()</code>, longueur 10 à 255 (même limite que la colonne SQL) sinon <code>OrderError('ADDRESS')</code>.</li>
+<li><strong>Panier</strong> : tableau non vide sinon <code>EMPTY</code>.</li>
+<li>Relit le catalogue (<code>getCatalogue</code>). Pour chaque ligne : produit introuvable, quantité non entière, &lt; 1 ou &gt; 99 → <code>EMPTY</code> ; quantité &gt; stock → ajouté à <code>stockIssues</code>. Chaque ligne est construite avec <strong>nom, format, prix HT, TVA, prix TTC copiés du catalogue</strong> : les prix sont <em>figés</em> à la date d'achat (F19). Modifier un produit plus tard ne change pas les anciennes commandes.</li>
+<li>Si <code>stockIssues</code> non vide → <code>OrderError('STOCK', …, details)</code>.</li>
+<li>Paiement simulé : si <code>simulateFailure</code> → <code>OrderError('PAYMENT')</code> et <strong>aucune commande n'est créée</strong>. Aucune donnée de carte n'est jamais demandée (RG18).</li>
+<li><code>changeStock(lines, -1)</code> : le stock baisse <em>une seule fois</em>, ici (RG17).</li>
+<li>Crée l'objet commande : <code>id</code> (max des id de cet utilisateur + 1), <code>reference</code>, <code>date</code> (ISO), <code>userId</code>, <code>status: 'En attente'</code>, <code>deliveryAddress</code>, <code>lines</code>, <code>totals: cartTotals(lines)</code>, puis l'enregistre.</li>
+</ol>
+<p><strong>Référence</strong> : <code>GSB-AAAAMMJJ-XXXXXX</code>. 6 caractères tirés avec <code>crypto.getRandomValues</code> (meilleur aléatoire que <code>Math.random</code>) dans un alphabet de 31 caractères sans ceux qu'on confond (pas de O/0, I/1, L). Une boucle <code>do…while</code> recommence si la référence existe déjà.</p>
+<p><code>OrderError(code, message, details)</code> : l'interface réagit au <strong>code</strong>. <code>isValidOrder</code> filtre les données du stockage (forme vérifiée) comme pour le panier.</p>
+
+<h3>10.2 Lecture — F20</h3>
+<ul>
+<li><code>listOrders(userId)</code> : seulement les commandes <strong>de cet utilisateur</strong>, triées par date décroissante (<code>b.date.localeCompare(a.date)</code>, les dates ISO se trient comme du texte).</li>
+<li><code>getOrder(userId, orderId)</code> : <code>null</code> si la commande n'existe pas <strong>ou</strong> n'est pas à lui : même réponse dans les deux cas → on ne révèle pas qu'une commande d'un autre existe.</li>
+<li><code>useOrders()</code> / <code>useOrder(id)</code> : <code>useLoader</code> avec <code>useCallback</code> sur <code>user.id</code>.</li>
+</ul>
+
+<h3>10.3 Pages</h3>
+<table>
+<tr><th>Fichier</th><th>Adresse</th><th>Ce qu'il fait</th></tr>
+<tr><td><code>CheckoutPage</code> + <code>useCheckoutForm</code></td><td><code>/commande</code></td><td>Récapitulatif (lignes, totaux HT/TVA/TTC recalculés depuis le catalogue), champ adresse, case « mode démonstration : simuler un échec », bouton <code>Payer X €</code>. Si le panier est vide → redirige vers <code>/panier</code> <em>sauf</em> juste après la commande (<code>isPlaced</code> : le panier vient d'être vidé, sinon on serait renvoyé au panier au lieu de la confirmation).</td></tr>
+<tr><td><code>ConfirmationPage</code></td><td><code>/commande/confirmation/:orderId</code></td><td>Affiche la référence (police à chasse fixe), la date, le total ; boutons « Voir ma commande » et « Continuer mes achats ». La référence est celle de l'historique (F18).</td></tr>
+<tr><td><code>OrdersPage</code></td><td><code>/commandes</code></td><td>Tableau : référence, date, statut (<code>OrderStatusBadge</code>), total TTC, lien. État vide : « Vous n'avez pas encore passé de commande. »</td></tr>
+<tr><td><code>OrderDetailPage</code></td><td><code>/commandes/:orderId</code></td><td>Statut, <code>DeliveryTracking</code>, tableau des lignes (prix figés), adresse (<code>white-space: pre-line</code> : conserve les retours à la ligne, reste du texte), totaux. Commande inconnue ou d'un autre compte → « Commande introuvable. »</td></tr>
+<tr><td><code>DeliveryTracking</code></td><td>(composant)</td><td>En attente → « La livraison commencera dès que votre commande sera validée » ; Annulée → « aucune livraison » ; Validée → liste ordonnée des 3 étapes, celle de <code>deliveryStep</code> en <code>aria-current="step"</code>, précédentes en vert.</td></tr>
+<tr><td><code>orderStatus.js</code></td><td>—</td><td><code>ORDER_STATUSES</code> : En attente (pending), Validée (success), Annulée (error) ; <code>getStatusInfo</code> tolère un statut inconnu.</td></tr>
+</table>
+<h3>10.4 <code>useCheckoutForm</code></h3>
+<p>Deux sortes d'erreurs : celle d'un <em>champ</em> (adresse → sous le champ) et celle de la <em>commande</em> (stock, paiement → encadré rouge avec la liste des produits en cause et un lien « Modifier mon panier »). En cas de succès : <code>setIsPlaced(true)</code> → <code>navigate(confirmation, {replace:true})</code> → <code>clear()</code> (vide le panier). <code>if (isSubmitting) return</code> empêche deux commandes par double clic.</p>
+
+<h3>10.5 Côté administrateur (dans <code>orderService.js</code>)</h3>
+<ul>
+<li><code>listAllOrders()</code> : parcourt les clés <code>gsb.orders.*</code> du <code>localStorage</code> (<code>allUserIds</code>), lit chaque liste, ajoute <code>userId</code>, trie par date.</li>
+<li><code>updateOrder(userId, orderId, { status, deliveryStep })</code> : statut dans <code>ALLOWED_STATUSES</code> ; commande trouvée ; <strong>une commande « Annulée » est définitive</strong> (sinon on pourrait la réactiver et faire redescendre le stock une 2<sup>e</sup> fois) ; passer à « Annulée » appelle <code>changeStock(lines, +1)</code> (remet en stock) ; si « Validée », enregistre l'étape de livraison (défaut « En préparation ») ; sinon efface <code>deliveryStep</code>.</li>
+<li><code>productHasOrders(productId)</code> : vrai si une commande de n'importe qui contient ce produit (empêche la suppression, F27).</li>
+</ul>
+
+<!-- ============ 11 ============ -->
+<h2 id="s11">11. Mon compte — <code>features/account/</code></h2>
+<ul>
+<li><code>AccountPage</code> (<code>/compte</code>, les 3 profils) : affiche en lecture nom, email, profil ; formulaire « Fonction » + « Téléphone » ; carte « Changer mon mot de passe » (<code>PasswordForm</code>).</li>
+<li><code>useProfileForm</code> : valide le téléphone (<code>isValidPhone</code>) et la fonction (≤ 80) ; <code>updateProfile</code> → <code>authService.updateProfile</code> n'accepte que <code>phone</code> et <code>profession</code> (liste blanche, tronqués à 20 / 80). L'email, le nom et le rôle ne changent pas ici : ils sont gérés par l'administrateur (RG01).</li>
+<li>Message de succès/erreur dans <code>role="status"</code>.</li>
+</ul>
+
+<!-- ============ 12 ============ -->
+<h2 id="s12">12. Espace administrateur — <code>features/admin/</code></h2>
+<h3>12.1 Services</h3>
+<table>
+<tr><th>Fonction</th><th>Ce qu'elle fait</th><th>Exigence</th></tr>
+<tr><td><code>setProductActive(id, active)</code></td><td>active/désactive : un produit désactivé disparaît du catalogue sans être supprimé</td><td>F23</td></tr>
+<tr><td><code>deleteProduct(id)</code></td><td>refuse si <code>productHasOrders</code> (« désactivez-le au lieu de le supprimer »), sinon filtre le produit hors du tableau</td><td>F27</td></tr>
+<tr><td><code>adjustStock(id, delta, reason, adminId)</code></td><td><code>delta</code> entier ≠ 0 ; motif obligatoire (≤ 200) ; refuse un stock négatif ; ajoute un mouvement <code>{id, productId, delta, stockAfter, reason, adminId, date}</code></td><td>F26, F27</td></tr>
+<tr><td><code>listStockMovements(id)</code></td><td>historique du produit, du plus récent au plus ancien</td><td>F27</td></tr>
+<tr><td><code>reviewProduct(id, 'accept'|'refuse', reason)</code></td><td>Accepté (efface le motif) ou Refusé avec motif <strong>obligatoire</strong></td><td>F31</td></tr>
+<tr><td><code>createCategory / renameCategory / setCategoryActive</code></td><td>nom 1–60 caractères, <strong>unique sans tenir compte de la casse</strong> ; désactiver retire la catégorie et ses produits du catalogue</td><td>F22</td></tr>
+</table>
+<p><code>adminUserService.js</code> : <code>listUsers</code> (sans mot de passe), <code>validateUser</code> (civilité, prénom, nom, profil ; un Fournisseur doit avoir un fournisseur rattaché, RG01 ; à la création email valide <em>et unique</em>, mot de passe provisoire conforme), <code>createUser</code> (<code>mustChangePassword: true</code>), <code>updateUser</code> (l'email ne change pas : c'est l'identifiant), <code>setUserActive</code> (refuse de se désactiver soi-même : on s'enfermerait dehors).</p>
+<p><code>AdminError</code> / <code>UserError</code> / <code>ProductError</code> / <code>OrderError</code> / <code>AccountError</code> : toutes portent un <strong>code</strong> ; l'interface choisit son message ou son champ d'après le code.</p>
+<h3>12.2 Pages</h3>
+<table>
+<tr><th>Page</th><th>Fonctionnement</th></tr>
+<tr><td><code>AdminOrdersPage</code></td><td>Charge <code>listAllOrders</code> + <code>listUsers</code> en parallèle (<code>Promise.all</code>) pour afficher le nom du client. Filtre texte (référence ou nom) + statut. Chaque ligne (<code>OrderRow</code>) a ses propres listes : statut et étape de livraison (visible si « Validée »), bouton Enregistrer. Une commande annulée est verrouillée. <code>&lt;details&gt;</code> déroule les lignes et l'adresse.</td></tr>
+<tr><td><code>AdminProductsPage</code></td><td>Tous les produits (même cachés) avec catégorie, fournisseur, prix TTC, <strong>stock visible</strong> (F33), statut de validation et « Désactivé ». Actions : Modifier, Activer/Désactiver, Supprimer en <strong>deux temps</strong> (1<sup>er</sup> clic → « Confirmer / Annuler » : pas de fenêtre <code>confirm()</code> du navigateur). Fonction <code>run(action)</code> : exécute, recharge, ou affiche l'erreur.</td></tr>
+<tr><td><code>AdminProductFormPage</code></td><td>Création (<code>/nouveau</code>, stock de départ) et modification (<code>/:productId</code>). Le stock se change via <code>StockPanel</code>, pas dans le formulaire.</td></tr>
+<tr><td><code>StockPanel</code></td><td>Formulaire quantité + motif ; affiche le stock actuel ; tableau d'historique. Recharge la page après un ajustement.</td></tr>
+<tr><td><code>AdminValidationPage</code></td><td>Produits « En attente » : carte avec image, fournisseur, description, prix, stock proposé. Accepter, ou Refuser… → champ motif → Confirmer le refus.</td></tr>
+<tr><td><code>AdminCategoriesPage</code></td><td>Ajout, renommage en ligne, activer/désactiver.</td></tr>
+<tr><td><code>AdminAccountsPage</code> + <code>UserForm</code></td><td>Tableau des comptes avec profil et statut (« Mot de passe provisoire »), création/modification dans un panneau, activer/désactiver (pas pour soi-même).</td></tr>
+</table>
+<div class="box warn"><strong class="t">Limite connue</strong>
+Un administrateur peut changer son propre profil dans « Modifier » (le champ profil n'est pas verrouillé pour soi-même). À corriger côté serveur ; pas bloquant en démo.</div>
+
+<!-- ============ 13 ============ -->
+<h2 id="s13">13. Espace fournisseur — <code>features/supplier/</code></h2>
+<ul>
+<li><code>SupplierProductsPage</code> : <code>listSupplierProducts(user.supplierId)</code> filtre <code>product.laboratoryId === supplierId</code> : <strong>ses</strong> produits seulement (F28). Pour chacun : image, prix HT/TTC, stock, <code>StatusBadge</code> (En attente / Accepté / Refusé, F32), et le motif en cas de refus (texte, échappé par React).</li>
+<li><code>SupplierProductFormPage</code> : proposition (<code>/nouveau</code>, image obligatoire, stock de départ) ou modification. Le produit à modifier est cherché <em>dans la liste de ce fournisseur</em> : l'identifiant d'un produit d'un autre → « Produit introuvable ». Un texte rappelle qu'une modification importante remet le produit en attente.</li>
+<li>Les couleurs de statut viennent de <code>admin/validationTones.js</code> (partagé).</li>
+</ul>
+
+<!-- ============ 14 ============ -->
+<h2 id="s14">14. Briques communes — <code>components/</code></h2>
+<table>
+<tr><th>Fichier</th><th>Rôle</th></tr>
+<tr><td><code>ui/Button.jsx</code></td><td>Un seul bouton pour tout le site. Variantes : <code>primary</code>, <code>secondary</code>, <code>danger</code>, <code>light</code>, <code>outline-light</code> ; <code>fullWidth</code> ; <code>className</code> fusionné avec les classes de base (corrigé le 11/11 : avant, un <code>className</code> passé remplaçait les classes du bouton). <code>type="button"</code> par défaut pour ne pas soumettre un formulaire par erreur. <code>btn--small</code> pour les lignes de tableau.</td></tr>
+<tr><td><code>ui/ButtonLink.jsx</code></td><td>Un <code>&lt;Link&gt;</code> qui ressemble à un bouton : un vrai lien (clic molette, « ouvrir dans un onglet » marchent).</td></tr>
+<tr><td><code>ui/Input.jsx</code></td><td>Champ + label + message d'erreur reliés (<code>useId</code>, <code>htmlFor</code>, <code>aria-invalid</code>, <code>aria-describedby</code>). <code>multiline</code> → <code>&lt;textarea&gt;</code>. <code>*</code> si obligatoire (<code>aria-hidden</code>).</td></tr>
+<tr><td><code>ui/SelectField.jsx</code></td><td>Même chose pour une liste déroulante (+ option vide « Choisir… »).</td></tr>
+<tr><td><code>ui/DataTable.jsx</code></td><td>Tableau dans un conteneur qui défile horizontalement sur petit écran ; <code>caption</code> invisible pour les lecteurs d'écran.</td></tr>
+<tr><td><code>ui/StatusBadge.jsx</code></td><td>Pastille de statut (<code>tone</code> : pending, success, error, info, neutral) ; le texte porte l'information.</td></tr>
+<tr><td><code>ui/PageHeader.jsx</code>, <code>ui/PageState.jsx</code></td><td>Titre de page avec actions ; états chargement / erreur / vide.</td></tr>
+<tr><td><code>ui/QuantityStepper.jsx</code>, <code>ui/Reveal.jsx</code>, <code>ui/Logo.jsx</code></td><td>Choix de quantité ; apparition animée (<code>fade-up</code>, <code>zoom</code>, <code>line</code>) ; logo (variantes claire/sombre).</td></tr>
+<tr><td><code>icons/</code></td><td>Icônes SVG (panier, flèche, œil, déconnexion) : décoratives, le bouton qui les contient porte l'<code>aria-label</code>.</td></tr>
+<tr><td><code>effects/LiquidBackground</code>, <code>useParallaxBlobs</code></td><td>Fond liquide de la connexion ; réagit à la souris (désactivé si « réduire les animations »).</td></tr>
+<tr><td><code>utils/date.js</code></td><td><code>formatDateTime</code>, <code>formatDate</code> avec <code>Intl.DateTimeFormat('fr-FR')</code>.</td></tr>
+<tr><td><code>styles/tokens.css</code></td><td>Variables CSS : couleurs GSB (<code>--color-deep #31516b</code>, <code>--color-glacier</code>…), contrastes vérifiés WCAG AA, espacements en multiples de 8 px (<code>--space-1</code> à <code>--space-8</code>), rayons, ombre.</td></tr>
+<tr><td><code>styles/global.css</code></td><td>Base (box-sizing, police Manrope, titres), <code>:focus-visible</code> (contour épais pour le clavier), <code>.visually-hidden</code> (texte lu mais invisible), et la règle « réduire les animations ».</td></tr>
+</table>
+<div class="box tip"><strong class="t">Mobile d'abord</strong>
+Les CSS partent de la version mobile puis ajoutent des règles <code>@media (min-width: …)</code> pour les grands écrans (ex. en-tête sur 2 lignes → 1 ligne, formulaires en colonnes).</div>
+
+<!-- ============ 15 ============ -->
+<h2 id="s15">15. Parcours complets, pas à pas</h2>
+
+<h3>A. Première connexion de Paul Durand</h3>
+<div class="flow">1. /connexion : saisit paul.durand@gsb-demo.fr + mot de passe provisoire
+2. useLoginForm.validate → ok ; login() → authService.login : compte trouvé, mot de passe ok, actif
+3. sessionStorage['gsb.userId'] = 2 ; AuthContext.setUser(user sans password)
+4. user.mustChangePassword === true → navigate('/mot-de-passe')
+5. ChangePasswordPage : tout autre lien renvoie ici (ProtectedRoute)
+6. usePasswordForm : ancien + nouveau (règles) + confirmation → authService.changePassword
+7. mustChangePassword = false → navigate(homePathFor('Professionnel')) = /accueil</div>
+
+<h3>B. Une commande de bout en bout (Lina Martin)</h3>
+<div class="flow">1. /catalogue : useCatalogue → getCatalogue (produits actifs+acceptés, catégories actives)
+2. clic sur un produit → /catalogue/1 : ProductPage ; quantité ; « Ajouter au panier »
+3. CartContext.addItem → update() → saveCart (localStorage gsb.cart.1) + setItems ; pastille de l'en-tête +1
+4. /panier : lignes jointes au catalogue, totaux ; « Passer commande »
+5. /commande : adresse (10–255 car.) ; « Payer » → useCheckoutForm.handleSubmit
+6. orderService.createOrder : contrôles → lignes aux prix figés → stock −qté → commande « En attente »
+7. navigate(/commande/confirmation/1) puis clear() du panier
+8. ConfirmationPage lit la commande (useOrder) et montre la référence GSB-…
+9. /commandes liste ; /commandes/1 montre le détail ; suivi : « sera validée »</div>
+
+<h3>C. Traitement par l'administrateur</h3>
+<div class="flow">1. admin@gsb-demo.fr → homePathFor('Administrateur') = /admin/commandes
+2. listAllOrders (toutes les clés gsb.orders.*) + listUsers → nom du client
+3. statut « Validée » + étape « Expédiée » → Enregistrer → updateOrder
+4. Lina rouvre /commandes/1 : DeliveryTracking affiche l'étape « Expédiée »
+5. (si « Annulée » : changeStock(+1) remet les produits en stock, la commande est verrouillée)</div>
+
+<h3>D. Un produit proposé par un fournisseur</h3>
+<div class="flow">1. marc.dubois@aster-demo.fr → /fournisseur/produits (ses 14 produits seulement)
+2. « Proposer un produit » : formulaire ; l'image est contrôlée puis réduite (canvas → WebP)
+3. createProduct(values, user) : laboratoryId = user.supplierId ; validationStatus = « En attente »
+4. le produit n'apparaît PAS au catalogue (isSellable exige « Accepté »)
+5. admin → /admin/validation : Accepter (ou Refuser + motif)
+6. onCatalogueChange vide le cache : le catalogue du professionnel affiche le produit
+7. si le fournisseur modifie ensuite le prix/nom/… → retour « En attente » (F30)</div>
+
+<!-- ============ 16 ============ -->
+<h2 id="s16">16. Règles métier et exigences couvertes</h2>
+<table>
+<tr><th>Code</th><th>Règle</th><th>Où dans le code</th></tr>
+<tr><td>F01, F21</td><td>L'admin crée / modifie / (dés)active les comptes</td><td><code>admin/adminUserService.js</code>, <code>AdminAccountsPage</code></td></tr>
+<tr><td>F02</td><td>Pas d'inscription</td><td>aucun lien d'inscription ; seul <code>createUser</code> (admin)</td></tr>
+<tr><td>F03, NF04</td><td>Connexion, message générique</td><td><code>authService.login</code></td></tr>
+<tr><td>F04, RG04</td><td>Mot de passe provisoire à changer</td><td><code>mustChangePassword</code>, <code>ProtectedRoute</code>, <code>ChangePasswordPage</code></td></tr>
+<tr><td>F05</td><td>Profil consultable/modifiable</td><td><code>features/account/</code></td></tr>
+<tr><td>F07, NF02</td><td>Pages réservées aux connectés / par profil</td><td><code>ProtectedRoute roles</code></td></tr>
+<tr><td>F08–F12</td><td>Catalogue, fiche, recherche, filtres, produits vendables</td><td><code>features/catalogue/</code></td></tr>
+<tr><td>F13–F16</td><td>Panier, totaux, stock</td><td><code>features/cart/</code>, <code>utils/price.js</code></td></tr>
+<tr><td>F17–F20</td><td>Commande, référence, prix figés, historique propre</td><td><code>features/orders/</code></td></tr>
+<tr><td>F22, F23, F27</td><td>Catégories, produits, suppression sans historique</td><td><code>adminCatalogueService.js</code></td></tr>
+<tr><td>F24, F25</td><td>Commandes de tous + statuts</td><td><code>AdminOrdersPage</code>, <code>updateOrder</code></td></tr>
+<tr><td>F26, F27, F33</td><td>Stock : ajustement motivé, trace, visible</td><td><code>adjustStock</code>, <code>StockPanel</code>, <code>AdminProductsPage</code></td></tr>
+<tr><td>F28–F30, F32</td><td>Produits du fournisseur, proposition, modification, statut</td><td><code>features/supplier/</code>, <code>productManagementService.js</code></td></tr>
+<tr><td>F31</td><td>Validation / refus des produits</td><td><code>reviewProduct</code>, <code>AdminValidationPage</code></td></tr>
+<tr><td>F36, F37</td><td>Suivi de livraison fictif</td><td><code>DeliveryTracking</code>, <code>deliveryStep</code></td></tr>
+<tr><td>RG01</td><td>Fournisseur ⇔ rattaché à un laboratoire</td><td><code>supplierId</code>, <code>validateUser</code></td></tr>
+<tr><td>RG07, RG20</td><td>TTC = HT + TVA, arrondi centime</td><td><code>utils/price.js</code></td></tr>
+<tr><td>RG08</td><td>Produit vendable seulement si actif + accepté</td><td><code>isSellable</code></td></tr>
+<tr><td>RG17</td><td>Stock décrémenté une seule fois</td><td><code>changeStock</code>, annulation définitive</td></tr>
+<tr><td>RG18</td><td>Aucune donnée bancaire</td><td>paiement simulé dans <code>createOrder</code></td></tr>
+<tr><td>NF07, NF08</td><td>Responsive, accessibilité</td><td>mobile d'abord, labels, <code>aria-*</code>, <code>:focus-visible</code></td></tr>
+</table>
+
+<!-- ============ 17 ============ -->
+<h2 id="s17">17. Sécurité et RGPD</h2>
+<h3>Ce que le front fait bien</h3>
+<ul>
+<li>Pas de <code>dangerouslySetInnerHTML</code> ; tout texte utilisateur (adresse, motif de refus, nom de produit) est affiché comme texte.</li>
+<li>Aucun secret côté front ; aucun mot de passe ni jeton dans le stockage navigateur ; <code>toPublicUser</code> retire le mot de passe.</li>
+<li>Messages d'erreur génériques à la connexion (NF04) ; même réponse « introuvable » pour une ressource inexistante ou d'un autre (commande, produit).</li>
+<li>Données du stockage <strong>re-validées</strong> à chaque lecture (<code>sanitize</code>, <code>isValidOrder</code>, <code>isValidState</code>).</li>
+<li>Adresse d'URL non crue (<code>?categorie=</code> validé) ; image acceptée seulement si <code>/produits/…</code> ou <code>data:image/…</code>.</li>
+<li>Anti double envoi (<code>isSubmitting</code>), listes blanches de champs (<code>cleanFields</code>, <code>updateProfile</code>).</li>
+<li>Police hébergée localement ; aucun script tiers.</li>
+</ul>
+<div class="box sec"><strong class="t">Ce que le front ne peut PAS garantir (à dire au jury)</strong>
+<ul style="margin:6px 0 0">
+<li>Tout contrôle front (rôle, propriétaire d'une commande, produits d'un fournisseur, stock, prix) <strong>se contourne</strong> depuis la console du navigateur. Le serveur devra refaire chaque contrôle : droits sur chaque route (NF02), prix recalculés, stock transactionnel (RG17), validation des entrées (NF03).</li>
+<li>Les mots de passe en clair dans <code>mockUsers.js</code> n'existent que pour la maquette ; le serveur stockera des hash bcrypt (NF01).</li>
+<li>Le contrôle d'image (type, taille) doit être refait côté serveur (analyse du vrai contenu).</li>
+<li><code>npm audit</code> : 0 vulnérabilité au dernier passage.</li>
+</ul></div>
+<h3>Données personnelles collectées (RGPD)</h3>
+<table>
+<tr><th>Donnée</th><th>Pourquoi</th><th>Qui y accède</th></tr>
+<tr><td>Nom, email, fonction, téléphone</td><td>identifier et joindre l'utilisateur</td><td>lui-même, administrateurs</td></tr>
+<tr><td>Adresse de livraison</td><td>livrer la commande</td><td>lui-même, administrateurs</td></tr>
+<tr><td>Historique de commandes</td><td>suivi, obligations comptables</td><td>lui-même, administrateurs</td></tr>
+</table>
+<p class="muted">Durées de conservation à définir avec le serveur. Restent à faire (FRYDAY) : mentions légales, politique de confidentialité, bandeau cookies (aucun traceur n'est utilisé aujourd'hui).</p>
+
+<!-- ============ 18 ============ -->
+<h2 id="s18">18. Ce qui change quand le back-end arrive</h2>
+<table>
+<tr><th>Aujourd'hui (front seul)</th><th>Demain (Express + MySQL)</th></tr>
+<tr><td><code>authService</code> compare un mot de passe en clair</td><td><code>POST /api/auth/login</code> ; hash bcrypt ; session par cookie <code>HttpOnly</code> ; <code>restoreSession</code> → <code>GET /api/auth/me</code></td></tr>
+<tr><td><code>catalogueStore</code> + <code>localStorage</code></td><td>tables MySQL ; le fichier disparaît, les services font des <code>fetch</code></td></tr>
+<tr><td><code>createOrder</code> relit le catalogue dans le navigateur</td><td><code>POST /api/orders</code> : le serveur relit les prix, vérifie le stock dans une transaction, décrémente une fois</td></tr>
+<tr><td><code>listAllOrders</code> lit toutes les clés du navigateur</td><td><code>GET /api/admin/orders</code> avec contrôle du rôle Administrateur</td></tr>
+<tr><td><code>ProtectedRoute</code> (confort d'affichage)</td><td>middleware de rôle sur <strong>chaque</strong> route API (c'est lui la vraie protection)</td></tr>
+<tr><td><code>delay()</code></td><td>le vrai temps réseau</td></tr>
+</table>
+<p>Méthode : écrire d'abord <code>docs/API.md</code> (méthode, URL, entrée, sortie, rôle requis pour chaque route), puis remplacer le contenu de chaque <code>*Service.js</code>. Les composants n'ont pas à changer, c'est l'intérêt de la séparation composant / hook / service.</p>
+
+<!-- ============ 19 ============ -->
+<h2 id="s19">19. Questions probables d'un jury (avec réponses courtes)</h2>
+<ol>
+<li><strong>Pourquoi React et pas du HTML/JS simple ?</strong> Imposé par le sujet ; en plus, les composants réutilisables (bouton, tableau, formulaire) et l'état partagé (utilisateur, panier) évitent de dupliquer.</li>
+<li><strong>Pourquoi des hooks séparés des composants ?</strong> Le composant affiche, le hook gère la logique : plus lisible, testable, et réutilisable (ex. <code>PasswordForm</code> sert à la première connexion et dans « Mon compte »).</li>
+<li><strong>Comment le panier évite-t-il les prix falsifiés ?</strong> Il ne stocke que produit + quantité ; les prix sont relus dans le catalogue ; la commande fige les prix, et le serveur les recalculera.</li>
+<li><strong>Un utilisateur peut-il voir la commande d'un autre ?</strong> Le service ne lit que les commandes de l'utilisateur connecté et répond « introuvable » sinon. Mais c'est le serveur qui devra l'imposer, car le front se contourne.</li>
+<li><strong>Pourquoi le même message d'erreur à la connexion ?</strong> Pour ne pas révéler quelles adresses ont un compte (NF04).</li>
+<li><strong>Comment gérez-vous le stock ?</strong> Décrémenté une seule fois à la création, remis si annulation, annulation définitive ; ajustements admin avec motif et historique. Le serveur utilisera une transaction (RG17).</li>
+<li><strong>Pourquoi <code>useCallback</code> / <code>useMemo</code> ?</strong> Garder la même fonction/valeur entre deux rendus pour ne pas relancer un effet ou un calcul inutilement (ex. <code>useLoader(load)</code>).</li>
+<li><strong>Où sont les risques XSS ?</strong> Aucun <code>dangerouslySetInnerHTML</code> ; React échappe le texte ; les images sont limitées à <code>/produits/</code> ou <code>data:image/</code>.</li>
+<li><strong>Que se passe-t-il si le stockage navigateur est bloqué ?</strong> Chaque accès est dans un <code>try/catch</code> : l'appli marche, sans mémoire entre deux pages.</li>
+<li><strong>Qu'est-ce qui reste à faire ?</strong> Le back-end (API, MySQL, auth serveur), les tests multi-navigateurs, Lighthouse, mentions légales / cookies, et refaire les images produits (marques réelles).</li>
+</ol>
+
+<p class="muted" style="margin-top:48px">Fin du guide. Pour retrouver un fichier : <code>frontend/src/README.md</code> donne le plan, et chaque dossier de <code>features/</code> a son propre <code>README.md</code>.</p>
+</main>
+</div>
+
+<script>
+  // Sommaire construit à partir des <h2>, filtrable, avec la section en cours surlignée.
+  const list = document.getElementById('toc-list');
+  const headings = [...document.querySelectorAll('main h2')];
+  headings.forEach((h) => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent.replace(/^\d+\.\s*/, '');
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+  document.getElementById('filter').addEventListener('input', (event) => {
+    const q = event.target.value.trim().toLowerCase();
+    list.querySelectorAll('li').forEach((li) => {
+      li.classList.toggle('hidden', q !== '' && !li.textContent.toLowerCase().includes(q));
+    });
+  });
+  const items = [...list.querySelectorAll('li')];
+  const bar = document.getElementById('progress');
+  function onScroll() {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
+    let current = 0;
+    headings.forEach((h, i) => { if (h.getBoundingClientRect().top < innerHeight * 0.35) current = i; });
+    items.forEach((li, i) => li.classList.toggle('active', i === current));
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>

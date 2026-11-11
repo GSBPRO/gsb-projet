@@ -1,27 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
+import useLoader from '../../utils/useLoader.js';
 import useAuth from '../auth/useAuth.js';
 import { getOrder, listOrders } from './orderService.js';
-
-// Charge une donnée et suit son état : « loading » (chargement), « error » (échec) ou « success ».
-function useLoader(load) {
-  const [state, setState] = useState({ status: 'loading', data: null });
-
-  const run = useCallback(async () => {
-    setState({ status: 'loading', data: null });
-    try {
-      setState({ status: 'success', data: await load() });
-    } catch {
-      // Message clair pour l'utilisateur ; le détail technique ne lui sert à rien.
-      setState({ status: 'error', data: null });
-    }
-  }, [load]);
-
-  useEffect(() => {
-    run();
-  }, [run]);
-
-  return { status: state.status, data: state.data, reload: run };
-}
 
 // La liste des commandes de l'utilisateur connecté (la plus récente en premier).
 export default function useOrders() {

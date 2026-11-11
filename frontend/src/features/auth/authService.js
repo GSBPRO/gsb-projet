@@ -1,5 +1,6 @@
 import { delay } from '../../mocks/delay.js';
 import { users } from './mockUsers.js';
+import { passwordError } from './validators.js';
 
 // Un seul message pour tous les échecs : on ne révèle pas si l'adresse existe (NF04).
 const LOGIN_ERROR = 'Email ou mot de passe incorrect.';
@@ -59,4 +60,51 @@ function clearSession() {
   } catch {
     // Rien à effacer si le stockage est indisponible.
   }
+}
+
+// Erreur avec un code : l'interface choisit son message selon le code.
+// CURRENT : mot de passe actuel faux, RULES : nouveau mot de passe trop faible, SAME : identique à l'ancien.
+export class AccountError extends Error {
+  constructor(code, message) {
+    super(message);
+    this.code = code;
+  }
+}
+
+// Change le mot de passe (F04, RG04). Il faut redonner l'ancien : sinon, quelqu'un devant un poste
+// laissé ouvert pourrait le changer. Le serveur devra stocker le nouveau mot de passe haché (NF01).
+// Plus tard : PUT /api/auth/password vers Express.
+export async function changePassword(userId, currentPassword, newPassword) {
+  await delay();
+
+  const user = users.find((candidate) => candidate.id === userId);
+  if (!user || user.password !== currentPassword) {
+    throw new AccountError('CURRENT', 'Le mot de passe actuel est incorrect.');
+  }
+  const rule = passwordError(newPassword);
+  if (rule) {
+    throw new AccountError('RULES', rule);
+  }
+  if (newPassword === currentPassword) {
+    throw new AccountError('SAME', 'Le nouveau mot de passe doit être différent de l’ancien.');
+  }
+
+  user.password = newPassword;
+  user.mustChangePassword = false;
+  return toPublicUser(user);
+}
+
+// Modifie seulement les informations autorisées du profil (F05) : l'e-mail, le rôle et le statut
+// ne se changent pas ici (ils sont gérés par l'administrateur, RG01). La liste blanche empêche
+// d'envoyer d'autres champs. Plus tard : PUT /api/me vers Express.
+export async function updateProfile(userId, { phone, profession }) {
+  await delay();
+
+  const user = users.find((candidate) => candidate.id === userId);
+  if (!user) {
+    throw new AccountError('NOT_FOUND', 'Compte introuvable.');
+  }
+  user.phone = String(phone ?? '').trim().slice(0, 20);
+  user.profession = String(profession ?? '').trim().slice(0, 80);
+  return toPublicUser(user);
 }

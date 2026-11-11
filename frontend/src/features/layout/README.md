@@ -1,10 +1,11 @@
-# Espace professionnel (`features/layout`)
+# Mise en page (`features/layout`)
 
-Ce qui entoure toutes les pages du professionnel de santé.
+Ce qui entoure toutes les pages connectées : professionnel, fournisseur et administrateur (chacun voit ses onglets).
 
 | Fichier | Rôle |
 |---|---|
-| `ProLayout.jsx` + `.css` | la mise en page commune : l'en-tête, puis la page en cours |
+| `AppLayout.jsx` + `.css` | la mise en page commune aux trois profils : l'en-tête, puis la page en cours |
+| `navLinks.js` | les onglets de l'en-tête selon le profil |
 | `Header.jsx` + `.css` | l'en-tête : logo, onglets, menu du catalogue (avec voile), panier, utilisateur, déconnexion |
 | `SlideTabs.jsx` + `.css` | les onglets avec la gélule animée au changement de page |
 | `useSlidingCursor.js` | calcule où placer la gélule et quand relancer son animation |

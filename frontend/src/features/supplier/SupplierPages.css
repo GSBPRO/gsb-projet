@@ -1,0 +1,29 @@
+.supplier-product {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.supplier-product__image {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.supplier-product__image .product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.supplier-product__reason {
+  margin: 6px 0 0;
+  color: var(--color-error);
+  font-size: 0.85rem;
+}
+
+.supplier-note {
+  max-width: 720px;
+}

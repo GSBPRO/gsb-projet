@@ -1,0 +1,42 @@
+.confirmation-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-bottom: var(--space-8);
+}
+
+.confirmation-page__card {
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  box-shadow: var(--shadow);
+}
+
+.confirmation-page dl {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+
+.confirmation-page dt {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.confirmation-page dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Police à chasse fixe : la référence se lit et se recopie sans erreur. */
+.confirmation-page__reference {
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 1.3rem;
+  letter-spacing: 0.04em;
+}
+
+.confirmation-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}

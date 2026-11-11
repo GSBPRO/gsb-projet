@@ -1,0 +1,16 @@
+.page-state {
+  padding: var(--space-4) var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  box-shadow: var(--shadow);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.page-state--error {
+  color: var(--color-error);
+}
+
+.page-state--error p {
+  font-weight: 700;
+}

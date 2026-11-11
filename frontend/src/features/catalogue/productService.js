@@ -1,16 +1,20 @@
 import { delay } from '../../mocks/delay.js';
-import { categories, laboratories, products } from './mockCatalogue.js';
+import { laboratories, onCatalogueChange, readCatalogue } from './catalogueStore.js';
 
 // Un produit n'est proposé à la vente que s'il est actif ET validé par l'administrateur (F12, RG08).
 function isSellable(product) {
   return product.active && product.validationStatus === 'Accepté';
 }
 
+// Une catégorie désactivée disparaît du catalogue avec ses produits (F22).
 async function loadCatalogue() {
   await delay();
+  const { products, categories } = readCatalogue();
+  const activeCategories = categories.filter((category) => category.active !== false);
+  const activeIds = new Set(activeCategories.map((category) => category.id));
   return {
-    products: products.filter(isSellable),
-    categories,
+    products: products.filter((product) => isSellable(product) && activeIds.has(product.categoryId)),
+    categories: activeCategories,
     laboratories,
   };
 }
@@ -18,6 +22,10 @@ async function loadCatalogue() {
 // On garde la réponse en mémoire : le menu du catalogue et la page catalogue utilisent les mêmes données,
 // inutile de les recharger à chaque ouverture. En cas d'échec, on oublie pour pouvoir réessayer.
 let cataloguePromise = null;
+// Quand l'admin ou un fournisseur modifie le catalogue, la mémoire est vidée : la page suivante relit tout.
+onCatalogueChange(() => {
+  cataloguePromise = null;
+});
 
 // Tout ce dont le catalogue a besoin, en un seul appel.
 // Plus tard : GET /api/catalogue vers Express. C'est le SERVEUR qui fera le tri des produits vendables (F12) :

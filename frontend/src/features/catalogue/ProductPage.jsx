@@ -87,14 +87,19 @@ export default function ProductPage() {
   const maxQuantity = remaining;
   const cannotAdd = isOutOfStock || remaining === 0;
 
-  // Miniatures : la photo principale, la vue à 360°, puis trois angles fixes.
+  // Miniatures : la photo principale ; pour les produits qui ont un rendu 3D, la vue à 360° et trois angles fixes.
+  // Un produit proposé par un fournisseur n'a qu'une photo.
   const frame = (index) => `${product.views360}vue_${String(index).padStart(3, '0')}.webp`;
   const thumbs = [
     { key: 'main', src: product.image, label: 'Photo principale' },
-    { key: 'rotate', src: frame(0), label: 'Vue à 360°', badge: '360°' },
-    { key: 'a', src: frame(9), label: 'Vue de trois quarts' },
-    { key: 'b', src: frame(18), label: 'Vue de dos' },
-    { key: 'c', src: frame(27), label: 'Vue de côté' },
+    ...(product.views360
+      ? [
+          { key: 'rotate', src: frame(0), label: 'Vue à 360°', badge: '360°' },
+          { key: 'a', src: frame(9), label: 'Vue de trois quarts' },
+          { key: 'b', src: frame(18), label: 'Vue de dos' },
+          { key: 'c', src: frame(27), label: 'Vue de côté' },
+        ]
+      : []),
   ];
   const current = thumbs.find((thumb) => thumb.key === selected) ?? thumbs[0];
 
