@@ -26,6 +26,23 @@ function isValidState(state) {
   );
 }
 
+// Un catalogue enregistré avant l'ajout des photos d'ambiance ne les connaît pas :
+// on les reprend des données fictives, sans toucher au reste (stock, prix modifiés…).
+function addMissingVisuals(saved) {
+  saved.products.forEach((product) => {
+    if (product.ambiance === undefined) {
+      product.ambiance = mockProducts.find((mock) => mock.id === product.id)?.ambiance ?? null;
+    }
+    // Les visuels en plus ne se modifient pas dans l'appli : on reprend toujours la liste à jour des données fictives.
+    const mock = mockProducts.find((item) => item.id === product.id);
+    product.extraImages = mock?.extraImages ?? product.extraImages ?? [];
+    // Pareil pour la vue 360° : elle peut avoir été retirée d'un produit depuis l'enregistrement.
+    if (mock) product.views360 = mock.views360;
+    product.blurredAmbiance = mock?.blurredAmbiance ?? product.blurredAmbiance ?? false;
+  });
+  return saved;
+}
+
 let state = null;
 const listeners = new Set();
 
@@ -33,7 +50,7 @@ function load() {
   if (state) return state;
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    state = isValidState(saved) ? saved : initialState();
+    state = isValidState(saved) ? addMissingVisuals(saved) : initialState();
   } catch {
     state = initialState();
   }

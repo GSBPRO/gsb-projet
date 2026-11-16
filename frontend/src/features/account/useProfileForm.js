@@ -10,17 +10,17 @@ export default function useProfileForm() {
   const [message, setMessage] = useState({ type: '', text: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleChange(event) {
+  function handleChange (event) {
     const { name, value } = event.target;
-    setValues((previous) => ({ ...previous, [name]: value }));
+    setValues((previous) => ({ ...previous, [name]: value })); // on garde les aciennes valeurs et on met a jour que ceux qui est modifiés
     setMessage({ type: '', text: '' });
   }
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event) { //function qu'on appelle quand on clique sur enregistrer ,async permet de notifiquer que c une étpes qui prend du temps 
     event.preventDefault();
     if (isSubmitting) return;
 
-    const found = {};
+    const found = {}; // boite vide ou on range les erreurs trouvé dans le formulaire 
     if (!isValidPhone(values.phone)) found.phone = 'Saisissez un numéro valide (chiffres, espaces, + . -).';
     if (values.profession.trim().length > 80) found.profession = '80 caractères maximum.';
     setErrors(found);
