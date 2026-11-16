@@ -1,0 +1,17 @@
+Create ONE premium square 1:1 French e-commerce gallery image for RHINARIS, consistent with this existing series. The first reference is the Rhinaris product identity. Preserve its ACTUAL physical form: a rigid white cylindrical 100 ml nasal saline canister with white shoulder and an angled long white nasal applicator. Royal-blue Rhinaris name panel, cyan water bands, orange HYGIÈNE QUOTIDIENNE band, white label, 100 ml. This is a NASAL product. No flexible pouch, no oral drink spout, no oral taking, no tablet or syrup, no different brand. Faithful commercial-style AI reconstruction, no claim to be an official manufacturer photograph. The second reference supplies the composition and visual language ONLY: replace its content and product with the correct Rhinaris content. Readable precise French text, no invented claims, no medical dose regimen, no fictitious review or stars. Do not claim 100% undiluted seawater, sterility or guaranteed results. Verified source for context only, do not typeset URL: https://www.rhinaris.com/fr/produits/solution-saline-douce-rhinaris.
+IMAGE 4 — "LES ESSENTIELS" infographic. Match the reference: dark cobalt/royal-blue to navy gradient, subtle cool-cyan glow, elevated photoreal product on the left occupying 45% of canvas, white elegant serif headline at upper right and four equal feature rows beneath. Show the exposed angled NASAL nozzle correctly on the product, and its protective cap detached next to the base as in reference 1. Generous margins and aligned typography. Four warm-orange circular discs with simple fine dark-navy line icons: nose outline, saline water drop, moisture drop, open instruction booklet. White thin leader lines towards product. Bold white sans-serif feature headings and smaller white body text. Subtle abstract blue/cyan water shapes in corners, no fruit or food or loose tablets. Keep all four row texts fully inside image; no overlaps with product.
+Exact headline:
+"Rhinaris,
+les essentiels"
+Exact rows:
+"Nettoyage doux"
+"Pour l’hygiène quotidienne du nez."
+"Solution isotonique"
+"Chlorure de sodium à 0,9 %."
+"Hydratation nasale"
+"Aide à soulager la sécheresse."
+"Usage nasal"
+"Lire et respecter l’étiquette."
+Small but legible footer:
+"Usage nasal uniquement. Informations : fabricant Rhinaris."
+Do not inherit Humex, oxomémazine, caramel, poche, CONCEPT, oral-use copy or any old content from template. No other product, no heat, no dispensing or clinical scene.

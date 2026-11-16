@@ -1,0 +1,18 @@
+Create ONE square premium French product gallery visual for PHYTOSUN arôms SPRAY NASAL DÉCONGESTIONNANT 20 ml. First reference is product identity: actual compact rigid WHITE NASAL PUMP BOTTLE, white collar and finger flange, long tapered nasal tip with protective cover fitted, green/white Phytosun arôms label and20ml. Retain this precise container, not an oral pouch or100mlcanister. The carton in first reference is NOT needed for these images. Second reference supplies visual composition and typography ONLY, never its old product facts or colors. Recolor palette in deep forest/emerald green, white and cyan water accents matching Phytosun original. No orange Rhinaris identity, no other brand, no tablet, drink, mouth spray, new formula, age limit, dose, fictional review or efficacy guarantee. These are photoreal AI product reconstructions for a school e-commerce design.
+Verified exact product source (context only, no URL in image): https://www.phytosunaroms.com/spray-nasal-decongestionnant — original20mlreferenceEAN3595899930837, for adults/children6yearsandabove. NOT nasal MAX variant. Manufacturer describes hypertonic seawater, Niaouli essential oil and Menthe–Eucalyptus globulus aroma, no vasoconstrictor, medical device.
+Use case: infographic-diagram. IMAGE 5 — factual REPÈRES table, not an efficacy comparison. Preserve the second reference's frosted glass visual language: blurred desaturated green/gray/cyan backdrop, subtle emerald haze, thin white horizontal rules, three aligned columns, tall softly rounded translucent middle panel outlined white. White elegant serif headers and centered values, uppercase white sans-serif left row labels. High contrast and generous spacing, all content entirely inside square. No product photograph here, no fake endorsement, stars or comparative check/cross icons.
+Exact column headers:
+LEFT: "REPÈRES"
+MIDDLE stacked: "Phytosun Arôms" / "Spray" / "NASAL"
+RIGHT stacked: "À RETENIR" / "Repères"
+Six exact rows written LEFT | MIDDLE | RIGHT:
+"FORMAT" | "20 ml" | "FLACON POMPE"
+"VOIE" | "NASALE" | "USAGE NASAL UNIQUEMENT"
+"BASE" | "EAU DE MER" | "HYPERTONIQUE"
+"ASSOCIATION" | "NIAOULI" | "ARÔME MENTHE–EUCALYPTUS"
+"PUBLIC" | "DÈS 6 ANS" | "ADULTES ET ENFANTS"
+"STATUT" | "DISPOSITIF MÉDICAL" | "LIRE LA NOTICE"
+Wrap long values cleanly into two or three short centered lines. Six equal-height rows, no missing or duplicated words and no text over borders.
+Footer centered, readable:
+"Informations : fabricant Phytosun Arôms."
+Do not carry over Rhinaris, isotonique, NaCl0,9%,100ml, entretien, sansconservateur, Poche, CONCEPT or oralform comparisons from template. No fake check icons, no medical promises.

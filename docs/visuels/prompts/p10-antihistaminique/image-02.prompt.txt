@@ -1,0 +1,11 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: Zyrtec 10 mg. Verified format: Boîte de 15 comprimés pelliculés sécables.
+PACKAGING: a real rigid rectangular medicine carton, white with forest-green lower band and green graphic arc, dark navy Zyrtec logo, '10 mg', 'Cétirizine', '15 comprimés pelliculés sécables', small UCB mark. No bottle, no pouch.
+PALETTE: forest green, fresh leaf green, white and deep navy.
+INPUT1: exact product identity reference generated for this series; reproduce its packaging. INPUT2: composition/style reference, replace its brand and facts entirely. Premium factual product-card layout. Brand-colored textured rubber surface with diagonal fence shadows, product partly visible diagonally along left edge. Large translucent white rectangular card with subtly rounded corners center-right. Small uppercase 'REPÈRES PRODUIT' and 'Zyrtec'. Large dark-navy sans-serif title 'Zyrtec 10 mg'. Under it four spacious short factual lines:
+Antihistaminique
+Cétirizine 10 mg
+Comprimés pelliculés sécables.
+Then smaller footer 'Informations : ANSM / EMA.' and 'Ceci est un médicament. Lire la notice. Demander conseil au pharmacien.'. All card text French. No star ratings or customer review. All copy within card, clean hierarchy, card must not hide brand of the product entirely.

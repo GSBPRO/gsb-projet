@@ -1,0 +1,11 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: Systane Ultra UD. Verified format: Boîte de 30 unidoses de 0,7 ml.
+PACKAGING: real SYSTANE ULTRA UD Alcon rectangular carton predominantly emerald-green and white with lime-green gradient arcs, 'SYSTANE ULTRA UD', 'Gouttes oculaires lubrifiantes', 'Sans conservateur', '30 unidoses de 0,7 ml', small blue Alcon brand, with two miniature transparent twist-off eye-drop vials in front. No nasal spray, no oral pouch, no multi-dose bottle.
+PALETTE: emerald green, teal, lime green, white and deep navy.
+INPUT1: exact product identity reference generated for this series; reproduce its packaging. INPUT2: composition/style reference, replace its brand and facts entirely. Premium factual product-card layout. Brand-colored textured rubber surface with diagonal fence shadows, product partly visible diagonally along left edge. Large translucent white rectangular card with subtly rounded corners center-right. Small uppercase 'REPÈRES PRODUIT' and 'Systane'. Large dark-navy sans-serif title 'Systane Ultra UD'. Under it four spacious short factual lines:
+Gouttes oculaires lubrifiantes
+Solution stérile sans conservateur
+30 unidoses de 0,7 ml.
+Then smaller footer 'Informations : Alcon / HAS.' and 'Usage oculaire uniquement. Lire la notice. Demander conseil à un professionnel de santé.'. All card text French. No star ratings or customer review. All copy within card, clean hierarchy, card must not hide brand of the product entirely.

@@ -1,0 +1,13 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: Zyrtec 10 mg. Verified format: Boîte de 15 comprimés pelliculés sécables.
+PACKAGING: a real rigid rectangular medicine carton, white with forest-green lower band and green graphic arc, dark navy Zyrtec logo, '10 mg', 'Cétirizine', '15 comprimés pelliculés sécables', small UCB mark. No bottle, no pouch.
+PALETTE: forest green, fresh leaf green, white and deep navy.
+INPUT1: exact product identity packaging. INPUT2: exact art-direction/layout reference for four-point infographic, not content. Use dark forest green to navy gradient background, restrained abstract curved accents in the brand palette. Large realistic product lower-left, full package visible and sharp. Right upper large elegant white serif title 'Zyrtec,
+l’essentiel'. Four vertically aligned brand-accent circular discs with simple white line icons and thin horizontal white leader lines toward product. Each with bold white short title and one factual subtitle. EXACT FOUR points:
+15 comprimés — Sous plaquettes
+Cétirizine — 10 mg par comprimé
+Forme sécable — Comprimés pelliculés
+Médicament — Lire la notice
+Small bottom footer 'Ceci est un médicament. Lire la notice. Demander conseil au pharmacien.' and 'Informations : ANSM / EMA.'. No other claims or decorative fruit unless physically on packaging. Text must be readable with no overlaps.

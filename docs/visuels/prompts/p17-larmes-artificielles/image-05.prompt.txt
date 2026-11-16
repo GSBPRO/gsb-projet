@@ -1,0 +1,14 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: Systane Ultra UD. Verified format: Boîte de 30 unidoses de 0,7 ml.
+PACKAGING: real SYSTANE ULTRA UD Alcon rectangular carton predominantly emerald-green and white with lime-green gradient arcs, 'SYSTANE ULTRA UD', 'Gouttes oculaires lubrifiantes', 'Sans conservateur', '30 unidoses de 0,7 ml', small blue Alcon brand, with two miniature transparent twist-off eye-drop vials in front. No nasal spray, no oral pouch, no multi-dose bottle.
+PALETTE: emerald green, teal, lime green, white and deep navy.
+INPUT1: product identity/palette reference only, no need for package photograph in this chart. INPUT2: match the frosted-glass table art direction closely. Square premium factual reference matrix on softly blurred emerald green, teal, lime green, white and deep navy gradient background. Three columns, header left 'REPÈRES', header centered 'Systane\nUltra UD', header right 'À RETENIR'. The middle column is one tall translucent frosted-glass panel with fine white outline and rounded corners. Thin straight white horizontal separators span the table; all text white, elegant serif column headers, clean sans labels, perfectly aligned, spacious. SIX rows only; each triple means left/center/right:
+FORMAT | 30 unidoses | 0,7 ml CHACUNE
+NATURE | Gouttes oculaires | LUBRIFIANTES
+STÉRILE | Oui | AVANT OUVERTURE
+CONSERVATEUR | Sans | FORME UD
+VOIE | Oculaire | POUR LES YEUX
+RÉFÉRENCE | Ultra UD | LIRE LA NOTICE
+Footer below table 'Informations : Alcon / HAS.'. This is a single-product facts table, not a comparison or a rating. French accents and exact wording. No stars, ticks, cross icons or implied superiority.

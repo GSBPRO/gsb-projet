@@ -1,0 +1,13 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: Systane Ultra UD. Verified format: Boîte de 30 unidoses de 0,7 ml.
+PACKAGING: real SYSTANE ULTRA UD Alcon rectangular carton predominantly emerald-green and white with lime-green gradient arcs, 'SYSTANE ULTRA UD', 'Gouttes oculaires lubrifiantes', 'Sans conservateur', '30 unidoses de 0,7 ml', small blue Alcon brand, with two miniature transparent twist-off eye-drop vials in front. No nasal spray, no oral pouch, no multi-dose bottle.
+PALETTE: emerald green, teal, lime green, white and deep navy.
+INPUT1: exact product identity packaging. INPUT2: exact art-direction/layout reference for four-point infographic, not content. Use dark emerald green to navy gradient background, restrained abstract curved accents in the brand palette. Large realistic product lower-left, full package visible and sharp. Right upper large elegant white serif title 'Systane,
+l’essentiel'. Four vertically aligned brand-accent circular discs with simple white line icons and thin horizontal white leader lines toward product. Each with bold white short title and one factual subtitle. EXACT FOUR points:
+Gouttes oculaires — Lubrifiantes
+30 unidoses — 0,7 ml par unidose
+Solution stérile — Sans conservateur
+Usage oculaire — Lire la notice
+Small bottom footer 'Usage oculaire uniquement. Lire la notice. Demander conseil à un professionnel de santé.' and 'Informations : Alcon / HAS.'. No other claims or decorative fruit unless physically on packaging. Text must be readable with no overlaps.

@@ -1,3 +1,5 @@
+import { withProductGallery } from './productGalleries.js';
+
 // Données fictives du catalogue, en attendant l'API Express.
 // Les champs reprennent ceux de la base (schema.sql) : prix HT, taux de TVA, stock,
 // statut de validation et produit actif ou non.
@@ -208,7 +210,7 @@ const extraImagesByFolder = {
   ],
 };
 
-export const products = rows.map(
+export const baseProducts = rows.map(
   ([folder, name, format, description, categoryId, laboratoryId, priceHt, vatRate, stock], index) => ({
     id: index + 1,
     name,
@@ -233,3 +235,5 @@ export const products = rows.map(
     })),
   }),
 );
+
+export const products = baseProducts.map(withProductGallery);

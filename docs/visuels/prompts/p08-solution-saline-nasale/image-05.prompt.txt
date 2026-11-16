@@ -1,0 +1,18 @@
+Create ONE premium square 1:1 French e-commerce gallery image for RHINARIS, consistent with this existing series. The first reference is the Rhinaris product identity. Preserve its ACTUAL physical form: a rigid white cylindrical 100 ml nasal saline canister with white shoulder and an angled long white nasal applicator. Royal-blue Rhinaris name panel, cyan water bands, orange HYGIÈNE QUOTIDIENNE band, white label, 100 ml. This is a NASAL product. No flexible pouch, no oral drink spout, no oral taking, no tablet or syrup, no different brand. Faithful commercial-style AI reconstruction, no claim to be an official manufacturer photograph. The second reference supplies the composition and visual language ONLY: replace its content and product with the correct Rhinaris content. Readable precise French text, no invented claims, no medical dose regimen, no fictitious review or stars. Do not claim 100% undiluted seawater, sterility or guaranteed results. Verified source for context only, do not typeset URL: https://www.rhinaris.com/fr/produits/solution-saline-douce-rhinaris.
+IMAGE 5 — a factual REPÈRES matrix, NOT a medication efficacy comparison or a pouch-vs-container table. Match the second reference's clean frosted-glass visual grammar: blurred cool blue/gray/forest backdrop, light cyan and restrained orange edge haze, no objects visible; thin straight white horizontal rules, three aligned columns, a tall softly rounded translucent panel highlighting the middle column. Fine white outline of highlighted panel, elegant white serif header and values, uppercase sans-serif left row labels. Large readable typography, high contrast, spacious consistent row height, nothing cropped. Orange round badges with dark-navy check marks ONLY for the two OUI values in the center. The right column is plain text, no fake negative comparison icons.
+Exact column headers:
+left: "REPÈRES"
+middle stacked: "Rhinaris" / "Solution" / "ISOTONIQUE"
+right stacked: "À RETENIR" / "Repères"
+Six rows, each in the order LEFT | CENTER | RIGHT:
+"FORMAT" | "100 ml" | "EMBOUT NASAL"
+"SOLUTION" | "ISOTONIQUE" | "NaCl 0,9 %"
+"SANS CONSERVATEUR" | "OUI" | "INDIQUÉ PAR LE FABRICANT"
+"USAGE QUOTIDIEN" | "OUI" | "SUIVRE L’ÉTIQUETTE"
+"ENTRETIEN" | "APRÈS CHAQUE USAGE" | "LAVER / RINCER / ESSUYER"
+"VOIE" | "NASALE" | "USAGE NASAL UNIQUEMENT"
+Wrap long values cleanly into 2 or 3 short centered lines; do not duplicate words. All rows aligned on the same baselines between columns.
+Footer in two centered lines:
+"Entretien de l’embout : eau chaude savonneuse,"
+"rinçage et essuyage."
+Keep complete footnote inside safe margin. NO Poche, CONCEPT, Comprimé, Flacon, sans objet, non définie, solution buvable or oral consumption wording from older templates. No drug concentration other than NaCl 0,9 %. No medical comparative claims. This is an educational product-information visual.

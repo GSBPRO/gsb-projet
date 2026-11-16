@@ -1,0 +1,13 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: Physiodose sérum physiologique. Verified format: Boîte de 40 unidoses de 5 ml.
+PACKAGING: real PHYSIODOSE Laboratoires GILBERT rectangular carton, white upper half and soft-pink lower half, blue 'PHYSIODOSE', 'Sérum physiologique', 'Stérile', '40 unidoses de 5 ml', pink water graphic, two small translucent plastic twist-off 5ml unidoses upright at front, accurately tapered flat ampoules with twist tips, NOT bottles or oral pouches.
+PALETTE: soft pink, white, fuchsia, deep navy and clean pale blue.
+INPUT1: exact product identity packaging. INPUT2: exact art-direction/layout reference for four-point infographic, not content. Use dark soft pink to navy gradient background, restrained abstract curved accents in the brand palette. Large realistic product lower-left, full package visible and sharp. Right upper large elegant white serif title 'Physiodose,
+l’essentiel'. Four vertically aligned brand-accent circular discs with simple white line icons and thin horizontal white leader lines toward product. Each with bold white short title and one factual subtitle. EXACT FOUR points:
+40 unidoses — 5 ml par unidose
+Solution saline — NaCl à 0,9 %
+Stérile — Sans conservateur
+Hygiène nez et yeux — Non injectable
+Small bottom footer 'Non injectable. Usage unidose selon la notice. Ne pas réutiliser une unidose ouverte.' and 'Informations : Laboratoires Gilbert.'. No other claims or decorative fruit unless physically on packaging. Text must be readable with no overlaps.

@@ -1,0 +1,13 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: Eludril Classic. Verified format: Flacon de 200 ml.
+PACKAGING: a real clear Eludril Classic 200ml bottle filled with red mouthwash, squared cylindrical shoulders, clear measuring cup cap over a screw closure, commercial white label dark navy 'Eludril', 'CLASSIC', 'BAIN DE BOUCHE', green slim stripe and Pierre Fabre ORAL CARE mark, '200 ml'. No pouch and no drinking straw.
+PALETTE: burgundy red, transparent cherry red, white, navy and a thin green accent.
+INPUT1: exact product identity packaging. INPUT2: exact art-direction/layout reference for four-point infographic, not content. Use dark burgundy red to navy gradient background, restrained abstract curved accents in the brand palette. Large realistic product lower-left, full package visible and sharp. Right upper large elegant white serif title 'Eludril,
+l’essentiel'. Four vertically aligned brand-accent circular discs with simple white line icons and thin horizontal white leader lines toward product. Each with bold white short title and one factual subtitle. EXACT FOUR points:
+Bain de bouche — Hygiène bucco-dentaire
+Concentré — À diluer selon la notice
+Flacon de 200 ml — Gobelet doseur
+Contient de l’alcool — Ne pas avaler
+Small bottom footer 'Ne pas avaler. Diluer selon les instructions. Demander conseil au dentiste.' and 'Informations : Pierre Fabre Oral Care.'. No other claims or decorative fruit unless physically on packaging. Text must be readable with no overlaps.

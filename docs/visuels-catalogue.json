@@ -1,0 +1,712 @@
+{
+  "date": "2026-11-16",
+  "products": 40,
+  "images": 200,
+  "existingGalleriesPreserved": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "previousSeriesReused": [
+    8,
+    9
+  ],
+  "items": [
+    {
+      "id": 1,
+      "folder": "p01-paracetamol-500-mg",
+      "brand": "Doliprane",
+      "format": "Boîte de 16 poches unidoses",
+      "sources": [
+        {
+          "title": "Galerie déjà fournie dans le projet GSB",
+          "url": "https://github.com/GSBPRO/gsb-projet/tree/ed9b886/frontend/public/produits/p01-paracetamol-500-mg",
+          "note": "Sources visuelles préexistantes ; aucune nouvelle validation pharmaceutique."
+        }
+      ],
+      "notes": [
+        "La galerie en place reste inchangée.",
+        "Concepts d’emballage GSB déjà présents dans le projet."
+      ]
+    },
+    {
+      "id": 2,
+      "folder": "p02-ibuprofene-400-mg",
+      "brand": "Nurofen",
+      "format": "Boîte de 20 poches unidoses",
+      "sources": [
+        {
+          "title": "Galerie déjà fournie dans le projet GSB",
+          "url": "https://github.com/GSBPRO/gsb-projet/tree/ed9b886/frontend/public/produits/p02-ibuprofene-400-mg",
+          "note": "Sources visuelles préexistantes ; aucune nouvelle validation pharmaceutique."
+        }
+      ],
+      "notes": [
+        "La galerie en place reste inchangée.",
+        "Concepts d’emballage GSB déjà présents dans le projet."
+      ]
+    },
+    {
+      "id": 3,
+      "folder": "p03-aspirine-500-mg",
+      "brand": "Aspirine — concept GSB",
+      "format": "Boîte de 20 poches unidoses",
+      "sources": [
+        {
+          "title": "Galerie déjà fournie dans le projet GSB",
+          "url": "https://github.com/GSBPRO/gsb-projet/tree/ed9b886/frontend/public/produits/p03-aspirine-500-mg",
+          "note": "Sources visuelles préexistantes ; aucune nouvelle validation pharmaceutique."
+        }
+      ],
+      "notes": [
+        "La galerie en place reste inchangée.",
+        "Concepts d’emballage GSB déjà présents dans le projet."
+      ]
+    },
+    {
+      "id": 4,
+      "folder": "p04-sels-de-rehydratation",
+      "brand": "Viatol",
+      "format": "Boîte de 10 poches",
+      "sources": [
+        {
+          "title": "Galerie déjà fournie dans le projet GSB",
+          "url": "https://github.com/GSBPRO/gsb-projet/tree/ed9b886/frontend/public/produits/p04-sels-de-rehydratation",
+          "note": "Sources visuelles préexistantes ; aucune nouvelle validation pharmaceutique."
+        }
+      ],
+      "notes": [
+        "La galerie en place reste inchangée.",
+        "Concepts d’emballage GSB déjà présents dans le projet."
+      ]
+    },
+    {
+      "id": 5,
+      "folder": "p05-antiacide",
+      "brand": "Gaviscon",
+      "format": "Boîte de 24 poches",
+      "sources": [
+        {
+          "title": "Galerie déjà fournie dans le projet GSB",
+          "url": "https://github.com/GSBPRO/gsb-projet/tree/ed9b886/frontend/public/produits/p05-antiacide",
+          "note": "Sources visuelles préexistantes ; aucune nouvelle validation pharmaceutique."
+        }
+      ],
+      "notes": [
+        "La galerie en place reste inchangée.",
+        "Concepts d’emballage GSB déjà présents dans le projet."
+      ]
+    },
+    {
+      "id": 6,
+      "folder": "p06-pastilles-pour-la-gorge",
+      "brand": "Strepsils",
+      "format": "Boîte de 24 poches unidoses",
+      "sources": [
+        {
+          "title": "Galerie déjà fournie dans le projet GSB",
+          "url": "https://github.com/GSBPRO/gsb-projet/tree/ed9b886/frontend/public/produits/p06-pastilles-pour-la-gorge",
+          "note": "Sources visuelles préexistantes ; aucune nouvelle validation pharmaceutique."
+        }
+      ],
+      "notes": [
+        "La galerie en place reste inchangée.",
+        "Concepts d’emballage GSB déjà présents dans le projet."
+      ]
+    },
+    {
+      "id": 7,
+      "folder": "p07-sirop-contre-la-toux",
+      "brand": "Humex",
+      "format": "Poche souple de 150 ml",
+      "sources": [
+        {
+          "title": "Galerie déjà fournie dans le projet GSB",
+          "url": "https://github.com/GSBPRO/gsb-projet/tree/ed9b886/frontend/public/produits/p07-sirop-contre-la-toux",
+          "note": "Sources visuelles préexistantes ; aucune nouvelle validation pharmaceutique."
+        }
+      ],
+      "notes": [
+        "La galerie en place reste inchangée.",
+        "Concepts d’emballage GSB déjà présents dans le projet."
+      ]
+    },
+    {
+      "id": 8,
+      "folder": "p08-solution-saline-nasale",
+      "brand": "Rhinaris",
+      "format": "Flacon de 100 ml",
+      "sources": [
+        {
+          "title": "Rhinaris — Solution saline douce (fabricant, français)",
+          "url": "https://www.rhinaris.com/fr/produits/solution-saline-douce-rhinaris",
+          "note": "Référence 100 ml. Solution isotonique NaCl 0,9 % : 28 % d’eau de mer et eau purifiée. Sans conservateur ; hygiène nasale quotidienne. Nettoyage de l’embout après chaque usage : eau chaude savonneuse, rinçage et essuyage."
+        },
+        {
+          "title": "Rhinaris — Gentle Saline Solution (manufacturer, English)",
+          "url": "https://www.rhinaris.com/products/rhinaris-gentle-saline-solution",
+          "note": "Fiche anglaise de la même solution saline douce, usage nasal uniquement."
+        }
+      ],
+      "notes": [
+        "Cinq visuels générés le 16 novembre 2026 avec l'outil intégré image_gen pour la maquette e-commerce GSB.",
+        "La forme du spray nasal est conservée. Aucun conditionnement buvable ni formulation fictive n'est présenté.",
+        "Reconstitutions visuelles par IA à partir de la référence utilisateur ; étiquettes simplifiées, images non officielles du fabricant.",
+        "L'image 2 est une carte d'informations produit sans témoignage ni note client inventés.",
+        "L'image 5 est un tableau de repères, sans comparaison entre formes non validées.",
+        "Livraison PNG et prompts, sans fichier Blender. Informations fabricant vérifiées pour la variante Solution saline douce 100 ml."
+      ]
+    },
+    {
+      "id": 9,
+      "folder": "p09-spray-nasal-decongestionnant",
+      "brand": "Phytosun Arôms",
+      "format": "Flacon de 20 ml",
+      "sources": [
+        {
+          "title": "Phytosun Arôms — Spray nasal décongestionnant (fabricant)",
+          "url": "https://www.phytosunaroms.com/spray-nasal-decongestionnant",
+          "note": "Référence exacte 20 ml, EAN 3595899930837. Eau de mer hypertonique, huile essentielle de Niaouli et arôme Menthe–Eucalyptus globulus ; sans vasoconstricteur ; dispositif médical ; adultes et enfants à partir de 6 ans. Fiche fabricant consultée le 16 novembre 2026."
+        }
+      ],
+      "notes": [
+        "Cinq visuels générés le 16 novembre 2026 avec l'outil intégré image_gen pour la maquette e-commerce GSB.",
+        "Le flacon nasal rigide de la référence utilisateur est conservé ; aucun conditionnement buvable ni formulation fictive n'est présenté.",
+        "Reconstitutions visuelles par IA à partir de la photo utilisateur. Étiquettes simplifiées ; ces images ne sont pas des photographies officielles du fabricant.",
+        "L'image 2 est une carte d'informations produit sans témoignage, étoiles ou note client inventés.",
+        "L'image 5 est un tableau de repères, sans comparaison avec une autre forme de produit.",
+        "Ne pas confondre cette référence avec Spray nasal MAX 20 ml (EAN 3564300033283), dont la formule et l'âge indiqué diffèrent.",
+        "Les textes ne remplacent pas la notice du produit. Aucune posologie ni garantie d'efficacité n'est ajoutée.",
+        "Livraison de cinq PNG et des prompts finaux ; aucun fichier Blender."
+      ]
+    },
+    {
+      "id": 10,
+      "folder": "p10-antihistaminique",
+      "brand": "Zyrtec",
+      "format": "Boîte de 15 comprimés pelliculés sécables",
+      "sources": [
+        {
+          "title": "ANSM — liste des présentations Zyrtec",
+          "url": "https://ansm.sante.fr/uploads/2020/10/26/liste-cip7-cip13-9.pdf",
+          "note": "CIS64404112, Zyrtec10mg comprimé pelliculé sécable ;15comprimés CIP3400932994427. Source historique de conditionnement, ne confirme pas la disponibilité actuelle."
+        },
+        {
+          "title": "EMA — Zyrtec et noms associés",
+          "url": "https://www.ema.europa.eu/fr/documents/referral/zyrtec-article-30-referral-annex-i-ii-iii_fr.pdf",
+          "note": "Dichlorhydrate de cétirizine10mg par comprimé, forme pelliculée sécable."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 11,
+      "folder": "p11-antiseptique-cutane",
+      "brand": "Bétadine",
+      "format": "Flacon de 125 ml",
+      "sources": [
+        {
+          "title": "BDM / ANSM — Bétadine Dermique10%",
+          "url": "https://base-donnees-publique.medicaments.gouv.fr/medicament/68964585/extrait",
+          "note": "Solution pour application locale, povidone iodée10g pour100ml ; flacon125ml documenté."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 12,
+      "folder": "p12-bain-de-bouche",
+      "brand": "Eludril",
+      "format": "Flacon de 200 ml",
+      "sources": [
+        {
+          "title": "Pierre Fabre Oral Care — Eludril Classic",
+          "url": "https://www.pierrefabre-oralcare.com/pl-pl/p/eludril-classic-antybakteryjny-i-lagodzacy-plyn-do-plukania-jamy-ustnej-3577056023163-808759b4",
+          "note": "Source fabricant versionClassic : flacons200/500ml ; chlorhexidine0,1% et chlorobutanol0,5%, dilution et présence d’alcool. Ne pas confondre avec Eludrilpro ou Eludrilperio."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 13,
+      "folder": "p13-vitamine-c",
+      "brand": "UPSA",
+      "format": "20 comprimés effervescents",
+      "sources": [
+        {
+          "title": "UPSA — VitamineC1000mg effervescente",
+          "url": "https://www.upsa.com/produit/vitalite-et-bien-etre/vitamine-c-1000-mg-3/",
+          "note": "20comprimés effervescents, complément alimentaire avec sucre et édulcorant, goût orange, réservé à l’adulte. Ne pas confondre avec la variante à croquer."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 14,
+      "folder": "p14-vitamine-d",
+      "brand": "D.Plantes",
+      "format": "Flacon compte-gouttes de 20 ml",
+      "sources": [
+        {
+          "title": "Laboratoire D.Plantes — D3++ huile1000UI20ml",
+          "url": "https://www.dplantes.com/vitamines/vitamine-d3-huile-1000-ui",
+          "note": "Complément alimentaire D3 issue de la lanoline, huile vierge de colza, flacon compte-gouttes20ml.1000UI est l’identité de la variante, aucune recommandation de dose ne figure dans les visuels."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 15,
+      "folder": "p15-magnesium-b6",
+      "brand": "Magne B6",
+      "format": "Boîte de 60 comprimés enrobés",
+      "sources": [
+        {
+          "title": "BDM / ANSM — MagneB648mg/5mg",
+          "url": "https://base-donnees-publique.medicaments.gouv.fr/medicament/68617360/extrait",
+          "note": "Présentation60comprimés commercialisée ; médicament pour carences en magnésium confirmées par un médecin. Forme enrobée."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 16,
+      "folder": "p16-serum-physiologique",
+      "brand": "Physiodose",
+      "format": "Boîte de 40 unidoses de 5 ml",
+      "sources": [
+        {
+          "title": "Laboratoires Gilbert — Physiodose40dosettes5ml",
+          "url": "https://www.laboratoires-gilbert.com/fr/produit/serum-physiologique-en-plastique-dorigine-vegetale/",
+          "note": "40dosettes5ml, NaCl0,9%, eau purifiée, stérile sans conservateur non injectable ; hygiène nasale et oculaire."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 17,
+      "folder": "p17-larmes-artificielles",
+      "brand": "Systane",
+      "format": "Boîte de 30 unidoses de 0,7 ml",
+      "sources": [
+        {
+          "title": "Alcon France — Mentions obligatoiresSystane",
+          "url": "https://www.myalcon.com/fr/professional/mentions-obligatoires/",
+          "note": "GammeUltraUD gouttes oculaires lubrifiantes, dispositif médical ; consulter la notice."
+        },
+        {
+          "title": "HAS — SystaneUltraUD17mars2026",
+          "url": "https://www.has-sante.fr/upload/docs/evamed/CNEDIMTS-8095_SYSTANE%20ULTRA%20UD_17%20mars%202026_8095_avis.pdf",
+          "note": "Boîte française de30unidoses stériles sans conservateur de0,7ml. Ne pas extrapoler les instructions sur lentilles des versions internationales."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 18,
+      "folder": "p18-creme-hydratante",
+      "brand": "CeraVe",
+      "format": "Pot de 454 g",
+      "sources": [
+        {
+          "title": "CeraVe France — Baume Hydratant",
+          "url": "https://www.cerave.fr/nos-produits/hydratants/baume-hydratant",
+          "note": "Identité du soin, visage et corps, texture riche, sans parfum, pot. Les durées d'efficacité ne sont pas reprises."
+        },
+        {
+          "title": "CeraVe France — Baume Hydratant Eco-Recharge",
+          "url": "https://www.cerave.fr/nos-produits/hydratants/baume-hydratant-eco-recharge",
+          "note": "Mention explicite du pot standard de 454 g, distinct de la recharge."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 19,
+      "folder": "p19-creme-reparatrice",
+      "brand": "La Roche-Posay",
+      "format": "Tube de 100 ml",
+      "sources": [
+        {
+          "title": "La Roche-Posay — Cicaplast Baume B5+",
+          "url": "https://www.laroche-posay.fr/gammes/corps/cicaplast/cicaplast-baume-b5-%E2%80%8B--baume-ultra-reparateur-apaisant%E2%80%8B/LRP_035.html",
+          "note": "Variante B5+ classique, tailles 40 et 100 ml ; choisie 100 ml. Distinct du B5+ SPF50 et Gel B5. Aucune promesse chiffrée ajoutée."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 20,
+      "folder": "p20-gel-nettoyant-visage",
+      "brand": "CeraVe",
+      "format": "Flacon pompe de 236 ml",
+      "sources": [
+        {
+          "title": "CeraVe France — Gel Moussant",
+          "url": "https://www.cerave.fr/nos-produits/nettoyants/gel-moussant",
+          "note": "Produit classique pour visage et corps, peaux normales à grasses, sans parfum ; formats 236 et 473 ml. Choisi236 ml plutôt que200 ml du mock."
+        },
+        {
+          "title": "CeraVe France — FAQ",
+          "url": "https://www.cerave.fr/fr-FR/faq",
+          "note": "Confirme les flacons pompe 236 et473 ml."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 21,
+      "folder": "p21-creme-solaire-spf-50",
+      "brand": "La Roche-Posay",
+      "format": "Flacon de 50 ml",
+      "sources": [
+        {
+          "title": "La Roche-Posay — Anthelios UVMune400 fluide invisible sans parfum",
+          "url": "https://www.laroche-posay.fr/gammes/solaires/anthelios/anthelios-uvmune-400-creme-solaire-fluide-invisible-sans-parfum/LRP_026.html",
+          "note": "Variante sans parfum50ml SPF50+ exacte, distincte KA, teintée et anti-taches. Pas de promesse chiffrée de durée ni protection totale."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 22,
+      "folder": "p22-baume-a-levres",
+      "brand": "Labello",
+      "format": "Stick de 4,8 g",
+      "sources": [
+        {
+          "title": "Beiersdorf — Labello Original",
+          "url": "https://www.nivea.fr/produits/stick-l%C3%A8vres-hydratant-original-424387240040.html",
+          "note": "Source fabricant : stick Original 4,8 g, soin des lèvres, beurre de karité. Reconstitution visuelle non officielle, sans durée de performance."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 23,
+      "folder": "p23-gel-hydroalcoolique",
+      "brand": "PURELL",
+      "format": "Flacon pompe de 350 ml",
+      "sources": [
+        {
+          "title": "GOJO Japan — PURELL Advanced Gel",
+          "url": "https://www.gojo-japan.jp/products/pag/",
+          "note": "Source fabricant : référence 3691-12, pompe 350 ml. Format documenté au Japon ; les références de marché peuvent différer. Reconstitution visuelle non officielle ; aucune performance désinfectante chiffrée inventée."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 24,
+      "folder": "p24-savon-dermatologique",
+      "brand": "Avène",
+      "format": "Pain de 100 g",
+      "sources": [
+        {
+          "title": "Eau Thermale Avène — XeraCalm A.D Pain nettoyant",
+          "url": "https://www.eau-thermale-avene.fr/p/xeracalm-ad-pain-nettoyant-3282770398472-14c39aab",
+          "note": "Source fabricant : pain nettoyant surgras sans savon, identité et gamme."
+        },
+        {
+          "title": "Avène — Product Manual",
+          "url": "https://www.avenederm.com/media/marketing/assets/Avene_Product_Manual_0423_Final3_DIGITAL.pdf",
+          "note": "Documentation fabricant : XeraCalm A.D Ultra-Rich Cleansing Bar 100 g. Reconstitution visuelle non officielle."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 25,
+      "folder": "p25-shampooing-antipelliculaire",
+      "brand": "Nizoral",
+      "format": "Flacon de 100 ml",
+      "sources": [
+        {
+          "title": "EG/STADA — Nizoral",
+          "url": "https://www.eg.be/nizoral/fr/traitement-des-pellicules",
+          "note": "Source fabricant : Nizoral 20 mg/g shampooing, kétoconazole, identité blanche et jaune belge."
+        },
+        {
+          "title": "EG — RCP Nizoral publié par l’AFMPS",
+          "url": "https://app.fagg-afmps.be/pharma-status/api/files/62bc63bb1e5c015ab3d6eabe",
+          "note": "RCP fabricant version 11/2025 : 20 mg/g, shampooing, flacons 60,100 ou200 ml. Format100 ml retenu. Reconstitution pédagogique non officielle."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 26,
+      "folder": "p26-dentifrice-fluore",
+      "brand": "Signal",
+      "format": "Tube de 75 ml",
+      "sources": [
+        {
+          "title": "Signal — Intégral 8 Complet Effet Prébiotique",
+          "url": "https://www.missionsignal.fr/p/integral-8-complet.html/08720181416316",
+          "note": "Source fabricant : variante75 ml et liste INCI incluant Sodium Fluoride. Reconstitution visuelle pédagogique non officielle. Pas de durée ou comparaison d’efficacité reproduite."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": 27,
+      "folder": "p27-brosse-a-dents",
+      "brand": "Oral-B",
+      "format": "Brosse manuelle — unité",
+      "sources": [
+        {
+          "title": "Oral-B — CrossAction All-In-One Manual Toothbrush",
+          "url": "https://oralb.com/en-us/products/toothbrushes/manual-toothbrushes/oral-b-crossaction-all-in-one-toothbrush//",
+          "note": "Référence fabricant manuelle, 1 unité, brins croisés ; aucune allégation chiffrée reprise."
+        }
+      ],
+      "notes": [
+        "Reconstitution visuelle par IA, non photographie officielle du fabricant.",
+        "Aucun avis client inventé."
+      ]
+    },
+    {
+      "id": 28,
+      "folder": "p28-fil-dentaire",
+      "brand": "Oral-B",
+      "format": "Bobine de 50 m",
+      "sources": [
+        {
+          "title": "Oral-B France — Essential fil dentaire 50 m",
+          "url": "https://www.oralb.fr/fr-fr/produits/plus-de-produits/essential-50m-fil-dentaire",
+          "note": "Intitulé fabricant et longueur 50 m. Pas d’arôme ou de revêtement ajouté sans vérification."
+        }
+      ],
+      "notes": [
+        "Reconstitution visuelle par IA, non photographie officielle du fabricant.",
+        "Aucun avis client inventé."
+      ]
+    },
+    {
+      "id": 29,
+      "folder": "p29-compresses-steriles",
+      "brand": "URGO",
+      "format": "50 compresses — 7,5 × 7,5 cm",
+      "sources": [
+        {
+          "title": "URGO — Compresses stériles de Gaze",
+          "url": "https://urgo.fr/produits/compresse-gaze/",
+          "note": "Fiche fabricant : gaze hydrophile pur coton, stérile et absorbante, usage unique. Formats 7,5 × 7,5 cm et 10 × 10 cm ; boîtes de 10, 25 ou 50 compresses."
+        }
+      ],
+      "notes": [
+        "Reconstitution IA non officielle ; outil intégré image_gen.",
+        "Le catalogue mock indique 50 sachets ; la galerie illustre le format fabricant boîte de 50 compresses, à harmoniser uniquement lors d’une future intégration autorisée.",
+        "Cinq visuels examinés : identité homogène, texte lisible, sachets maintenus fermés."
+      ]
+    },
+    {
+      "id": 30,
+      "folder": "p30-pansements-adhesifs",
+      "brand": "URGO",
+      "format": "Boîte de 20 pansements",
+      "sources": [
+        {
+          "title": "URGO — Waterproof",
+          "url": "https://urgo.fr/produits/pansement-waterproof/",
+          "note": "Fiche fabricant : formats x20 et x38. Le format x20 contient 16 pansements 2 × 7,2 cm et 4 pansements 3,4 × 7,2 cm. Support imperméable et perméable à l’air, compresse non adhérente à la plaie."
+        }
+      ],
+      "notes": [
+        "Reconstitution IA non officielle ; outil intégré image_gen.",
+        "Le catalogue mock indique 100 pansements ; le format réel x20 est illustré. Aucun changement du code ou du catalogue n’a été effectué.",
+        "Cinq visuels examinés : texte lisible et conditionnement homogène."
+      ]
+    },
+    {
+      "id": 31,
+      "folder": "p31-bandage-extensible",
+      "brand": "Elastoplast",
+      "format": "1 bande — largeur 7 cm",
+      "sources": [
+        {
+          "title": "Elastoplast — Bande de contention cohésive 7cm Blanc",
+          "url": "https://www.elastoplast.fr/produits/cohesive-bandages/elastoplast-bande-de-contension-cohesive-7cm-poignet",
+          "note": "Fabricant Elastoplast : bande de contention cohésive blanche largeur 7 cm, NART 48340-09011-47. Adhère sur elle-même, souple, pour maintien des pansements. La longueur n'est pas indiquée dans les visuels."
+        }
+      ],
+      "notes": [
+        "Reconstitution IA non officielle ; outil intégré image_gen.",
+        "Référence réelle choisie : bande cohésive blanche 7 cm. Le mock générique annonce 4 m × 7 cm : cette longueur n’a pas été reportée sans confirmation fabricant.",
+        "Cinq visuels examinés : textile cohérent, marque et texte lisibles, aucun geste médical illustré."
+      ]
+    },
+    {
+      "id": 32,
+      "folder": "p32-sparadrap-medical",
+      "brand": "3M Micropore",
+      "format": "1 rouleau — 2,5 cm × 5 m",
+      "sources": [
+        {
+          "title": "Solventum — Micropore Medical Tape",
+          "url": "https://www.solventum.com/en-gb/home/f/b10057822/",
+          "note": "Fabricant Solventum : Micropore papier blanc, référence 1530P-1S, 25 mm × 5 m, pour fixation des pansements légers. La marque 3M historique est conservée dans la reconstitution ; transition Solventum documentée."
+        }
+      ],
+      "notes": [
+        "Reconstitution IA non officielle ; outil intégré image_gen.",
+        "Cinq visuels examinés : papier cohérent, dimensions et marque lisibles, aucune application sur une personne."
+      ]
+    },
+    {
+      "id": 33,
+      "folder": "p33-thermometre-numerique",
+      "brand": "Braun",
+      "format": "Un thermomètre numérique",
+      "sources": [
+        {
+          "title": "Braun Healthcare — Age Precision PRT2000EU",
+          "url": "https://www.braunhealthcare.com/fr_fr/thermometer/digital-stick-age-precision/",
+          "note": "Fiche Braun PRT2000EU : thermomètre numérique Age Precision à usage domestique, sonde flexible, affichage LCD à code couleur, signal sonore, rappel de la dernière mesure et capuchon fourni. Aucun temps de mesure ni seuil clinique ajouté aux visuels."
+        }
+      ],
+      "notes": [
+        "Reconstitution IA non officielle ; outil intégré image_gen.",
+        "Le modèle réel Braun Age Precision PRT2000EU est utilisé à la place du thermomètre générique non brandé du mock.",
+        "Cinq visuels examinés : écran sans mesure de patient, modèle cohérent, aucune démonstration de prise de température."
+      ]
+    },
+    {
+      "id": 34,
+      "folder": "p34-poche-de-froid-instantanee",
+      "brand": "Nexcare",
+      "format": "Boîte de 2 poches de froid",
+      "sources": [
+        {
+          "title": "3M — Nexcare ColdHot Cold Instant N1574DU, 2/Pack",
+          "url": "https://www.3m.com/3M/en_LB/p/d/v000104267/",
+          "note": "Fiche 3M Nexcare ColdHot Cold Instant N1574DU : conditionnement réel 2 poches, activation sans réfrigération, usage unique et externe. Ne pas refroidir/congeler avant usage et suivre la notice."
+        }
+      ],
+      "notes": [
+        "Reconstitution IA non officielle ; outil intégré image_gen.",
+        "Le mock annonce un lot de 4. La galerie représente le conditionnement fabricant N1574DU de 2 poches, sans changement du code du projet.",
+        "Cinq visuels examinés : poches scellées, absence de bouchon buvable, texte cohérent et aucune application sur la peau."
+      ]
+    },
+    {
+      "id": 35,
+      "folder": "p35-bouillotte",
+      "brand": "Fashy",
+      "format": "Une bouillotte 2 L avec housse polaire",
+      "sources": [
+        {
+          "title": "Fashy — Wärmflasche mit Fleecebezug 2,0 L",
+          "url": "https://shop.fashy.de/waermflaschen/alle-waermflaschen/3723/waermflasche-mit-fleecebezug-2-0-l",
+          "note": "Fashy série 6530 : capacité nominale 2 L, housse polaire en polyester, couleur rouge disponible. Le fabricant demande de lire la notice, de ne pas utiliser d’eau bouillante et de contrôler état et fermeture avant usage."
+        },
+        {
+          "title": "Fashy — Catalogue 2025/2026",
+          "url": "https://www.fashy.de/userdata/files/Fashy%20W%C3%A4rme%20zum%20Wohlf%C3%BChlen%202025_2026.pdf",
+          "note": "Catalogue Fashy 2025/2026 : référence 6530 42, cranberry, 2 L avec housse polaire 100 % polyester."
+        }
+      ],
+      "notes": [
+        "Reconstitution IA non officielle ; outil intégré image_gen.",
+        "La capacité 2 L est nominale : les visuels ne proposent pas de procédure de remplissage et ne montrent pas d’eau chaude.",
+        "Cinq visuels examinés : housse polaire rouge, marque et modèle cohérents, aucune application sur le corps."
+      ]
+    },
+    {
+      "id": 36,
+      "folder": "p36-masques-chirurgicaux",
+      "brand": "3M",
+      "format": "Boîte de 50 masques",
+      "sources": [
+        {
+          "title": "3M Health Care — Infection Prevention catalogue",
+          "url": "https://www.3m.co.uk/intl/uk/ohes/segments/healthcare/(11349a)OH_Infection%20Prevention%20update_bro%20-%20webpage.pdf",
+          "note": "Catalogue fabricant, pages 11 et 13 : le modèle 1826 est un masque plissé à élastiques auriculaires et barrette nasale, de type II, conditionné en boîte de 50. Référence historique ; aucune disponibilité commerciale actuelle n'est revendiquée."
+        }
+      ],
+      "notes": [
+        "Reconstitution IA non officielle ; outil intégré image_gen.",
+        "Le mock mentionne IIR. Le modèle réel 3M 1826 documenté est de type II ; les cinq images utilisent ce classement.",
+        "Cinq images individuelles carrées inspectées : identité, forme du masque, conditionnement et lisibilité. Masques présentés non portés, sans promesse de filtration ni marquage CE inventé.",
+        "La première variante au format paysage, non retenue, est conservée hors du catalogue dans GSB_Catalogue_40_variantes_non_retenues/p36."
+      ]
+    },
+    {
+      "id": 37,
+      "folder": "p37-gants-medicaux",
+      "brand": "Medicom",
+      "format": "Boîte de 100 gants",
+      "sources": [
+        {
+          "title": "Medicom — fiche technique SafeTouch gants d’examen",
+          "url": "https://medicom.com/resources/english/TDS/TDS_1137_1174_1175_1176_1177_1185_1185EX_1186_1196__1199_1217_1220_1227_Medicom_SafeTouch_Medical_Examination_Gloves_EN.pdf",
+          "note": "Référence 1220 Advanced Force, nitrile bleu non poudré, non stérile, 100 gants/boîte."
+        }
+      ],
+      "notes": [
+        "Reconstitution visuelle par IA, non photographie officielle du fabricant.",
+        "Aucun avis client inventé."
+      ]
+    },
+    {
+      "id": 38,
+      "folder": "p38-pince-a-epiler",
+      "brand": "Vitry",
+      "format": "Pince inox mors biais — 9 cm",
+      "sources": [
+        {
+          "title": "Vitry — Pince à épiler inox mors biais",
+          "url": "https://www.vitry.com/products/1022-pince-a-epiler-inox-mors-biais",
+          "note": "Acier inoxydable, mors biais, format normal 9 cm, référence 1022Z. Entretien après usage."
+        }
+      ],
+      "notes": [
+        "Reconstitution visuelle par IA, non photographie officielle du fabricant.",
+        "Aucun avis client inventé."
+      ]
+    },
+    {
+      "id": 39,
+      "folder": "p39-tire-tique",
+      "brand": "O’TOM",
+      "format": "Lot de 2 crochets",
+      "sources": [
+        {
+          "title": "O’TOM / H3D — Tick Twister fiche fabricant",
+          "url": "https://www.otom.com/img/cms/Fiches%20techniques%202023/221214%20Product%20Information%20Tick%20Twister%20EN.pdf",
+          "note": "Forme et matière des crochets Tick Twister. Pas d’allégation de prévention de maladie."
+        },
+        {
+          "title": "Tick Twister — gamme fabricant",
+          "url": "https://www.ticktwister.com/shop/",
+          "note": "Conditionnements de 2 crochets de tailles différentes ; ne pas confondre avec les lots de 3."
+        }
+      ],
+      "notes": [
+        "Reconstitution visuelle par IA, non photographie officielle du fabricant.",
+        "Aucun avis client inventé."
+      ]
+    },
+    {
+      "id": 40,
+      "folder": "p40-boite-de-rangement-pour-medicaments",
+      "brand": "Pilbox",
+      "format": "Pilulier semainier — 7 cases",
+      "sources": [
+        {
+          "title": "Pilbox — Tempo, petit pilulier semainier",
+          "url": "https://pilbox.fr/produit/pilbox-tempo",
+          "note": "7 cases, 13×5,5×2 cm, dessus opaque et dessous transparent. Le pilulier n’est pas représenté rempli."
+        }
+      ],
+      "notes": [
+        "Reconstitution visuelle par IA, non photographie officielle du fabricant.",
+        "Aucun avis client inventé."
+      ]
+    }
+  ]
+}

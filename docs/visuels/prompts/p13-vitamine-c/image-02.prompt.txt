@@ -1,0 +1,12 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: UPSA Vitamine C 1000 mg. Verified format: 20 comprimés effervescents.
+PACKAGING: real UPSA Vitamine C 1000mg commercial effervescent tablet packaging, upright white and vivid-orange carton with UPSA red-white logo, large 'VITAMINE C', '1000 mg', orange slice illustration, '20 comprimés effervescents', 'Goût orange', and one matching closed white capped orange-labelled effervescent tablet tube beside it. No pouch.
+PALETTE: bright orange, warm tangerine yellow, white and deep navy.
+INPUT1: exact product identity reference generated for this series; reproduce its packaging. INPUT2: composition/style reference, replace its brand and facts entirely. Premium factual product-card layout. Brand-colored textured rubber surface with diagonal fence shadows, product partly visible diagonally along left edge. Large translucent white rectangular card with subtly rounded corners center-right. Small uppercase 'REPÈRES PRODUIT' and 'UPSA'. Large dark-navy sans-serif title 'UPSA Vitamine C 1000 mg'. Under it four spacious short factual lines:
+Complément alimentaire
+20 comprimés effervescents
+Goût orange
+Réservé à l’adulte.
+Then smaller footer 'Informations : UPSA.' and 'Complément alimentaire. Ne remplace pas une alimentation variée et équilibrée. Lire l’étiquette.'. All card text French. No star ratings or customer review. All copy within card, clean hierarchy, card must not hide brand of the product entirely.

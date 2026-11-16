@@ -1,0 +1,13 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: UPSA Vitamine C 1000 mg. Verified format: 20 comprimés effervescents.
+PACKAGING: real UPSA Vitamine C 1000mg commercial effervescent tablet packaging, upright white and vivid-orange carton with UPSA red-white logo, large 'VITAMINE C', '1000 mg', orange slice illustration, '20 comprimés effervescents', 'Goût orange', and one matching closed white capped orange-labelled effervescent tablet tube beside it. No pouch.
+PALETTE: bright orange, warm tangerine yellow, white and deep navy.
+INPUT1: exact product identity packaging. INPUT2: exact art-direction/layout reference for four-point infographic, not content. Use dark bright orange to navy gradient background, restrained abstract curved accents in the brand palette. Large realistic product lower-left, full package visible and sharp. Right upper large elegant white serif title 'UPSA,
+l’essentiel'. Four vertically aligned brand-accent circular discs with simple white line icons and thin horizontal white leader lines toward product. Each with bold white short title and one factual subtitle. EXACT FOUR points:
+Vitamine C — Complément alimentaire
+20 comprimés — Effervescents
+Goût orange — Avec sucre et édulcorant
+Réservé à l’adulte — Lire l’étiquette
+Small bottom footer 'Complément alimentaire. Ne remplace pas une alimentation variée et équilibrée. Lire l’étiquette.' and 'Informations : UPSA.'. No other claims or decorative fruit unless physically on packaging. Text must be readable with no overlaps.

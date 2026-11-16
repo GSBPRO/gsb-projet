@@ -1,0 +1,22 @@
+Use case: product-mockup. Create ONE high-resolution SQUARE 1:1 premium RHINARIS gallery image. Reference1 is the exact nasal spray identity: rigid white cylindrical100ml container, genuine angled WHITE NASAL APPLICATOR under a smooth white protective cap, royal-blue header with WHITE Rhinaris, cyan water-gradient band, WHITE label, ORANGE HYGIÈNE QUOTIDIENNE band, Solution saline douce,100ml and USAGE NASAL UNIQUEMENT. Preserve shape and label artwork, using the cap fitted on the container for this scene. NO flexible pouch, no drink-spout, no oral cap, no medicine pour or administration, no person taking it, no extra loose cap, no invented clinical benefit or other brand. This is a recreated product-presentation visual, not an official manufacturer photograph.
+IMAGE3: reference2 (Humex lifestyle graphic) is ONLY layout/photo style. Preserve moody navy/forest-green outdoor bokeh, woven navy backpack on RIGHT, adult man's hand entering upper right. Hand naturally grips the RIGID CLOSED Rhinaris cylinder around its body/shoulder and draws it partly out of the bag pocket; fingers wrap a real cylindrical spray, not pinch a flat flexible package or pull the nasal applicator. The protective cap stays fitted. Realistic skin, lighting and product scale, no use/dispensing scene or child.
+On LEFT, WHITE elegant serif hero, modest sans-serif body, two slim dark transparent panels with fine white rounded outlines. ORANGE bullet dots and a royal-blue strip with WHITE letters, consistent with the label.
+Exact headline:
+"Rhinaris."
+"À portée de main."
+Exact body, two lines:
+"Hygiène nasale quotidienne,"
+"en format 100 ml."
+Left panel title "DANS LE SAC", rows:
+"Format 100 ml"
+"Capuchon protecteur"
+"À emporter"
+Right title "EN MAIN", rows:
+"Embout nasal"
+"Solution douce"
+"Bleu et orange"
+Three orange bullets per panel. Royal-blue bottom strip of right panel with white:
+"FORMAT 100 ML"
+Small legible footer bottom left:
+"Usage nasal uniquement."
+Maintain clean aligned padding and all accents. Do not include the words concept, poche, Humex or any oral formulation. No ingestion, dosing schedule, guaranteed relief, flavor, milk, loose cap, additional products, certification, watermark or UI.

@@ -1,0 +1,13 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: Magne B6 48 mg/5 mg. Verified format: Boîte de 60 comprimés enrobés.
+PACKAGING: a real white rectangular MAGNE B6 carton with blue gradient lower panel and golden-yellow curve, navy brand 'MAGNE B6', clearly '48 mg / 5 mg', 'Magnésium / Vitamine B6', '60 comprimés enrobés'. Commercial pharmaceutical carton, not supplement gum, no pouch.
+PALETTE: royal blue, sky blue, white and deep navy with small golden yellow accents.
+INPUT1: exact product identity packaging. INPUT2: exact art-direction/layout reference for four-point infographic, not content. Use dark royal blue to navy gradient background, restrained abstract curved accents in the brand palette. Large realistic product lower-left, full package visible and sharp. Right upper large elegant white serif title 'Magne B6,
+l’essentiel'. Four vertically aligned brand-accent circular discs with simple white line icons and thin horizontal white leader lines toward product. Each with bold white short title and one factual subtitle. EXACT FOUR points:
+Magnésium — Associé à la vitamine B6
+60 comprimés — Enrobés, sous plaquettes
+Carence confirmée — Par un médecin
+Médicament — Lire la notice
+Small bottom footer 'Ceci est un médicament. Lire la notice. Demander conseil au pharmacien.' and 'Informations : notice ANSM.'. No other claims or decorative fruit unless physically on packaging. Text must be readable with no overlaps.

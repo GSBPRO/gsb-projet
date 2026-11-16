@@ -1,0 +1,13 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: Bétadine Dermique 10 %. Verified format: Flacon de 125 ml.
+PACKAGING: a real tall mustard-yellow plastic Betadine bottle with cylindrical ribbed chocolate-brown screw cap, accurate commercial yellow label, large dark-brown 'BETADINE', smaller 'DERMIQUE 10 %', 'Povidone iodée', 'Solution pour application locale', '125 ml', white separators. No oral pouch.
+PALETTE: warm golden yellow, dark chocolate brown, white and deep navy.
+INPUT1: exact product identity packaging. INPUT2: exact art-direction/layout reference for four-point infographic, not content. Use dark warm golden yellow to navy gradient background, restrained abstract curved accents in the brand palette. Large realistic product lower-left, full package visible and sharp. Right upper large elegant white serif title 'Bétadine,
+l’essentiel'. Four vertically aligned brand-accent circular discs with simple white line icons and thin horizontal white leader lines toward product. Each with bold white short title and one factual subtitle. EXACT FOUR points:
+Application locale — Usage externe
+Povidone iodée — Solution à 10 %
+Flacon de 125 ml — Bouchon à vis
+Antiseptique — Lire la notice
+Small bottom footer 'Usage externe. Ne pas avaler. Ceci est un médicament. Lire la notice.' and 'Informations : notice ANSM.'. No other claims or decorative fruit unless physically on packaging. Text must be readable with no overlaps.

@@ -6,6 +6,21 @@ Principe : chaque étape se termine par quelque chose qui tourne dans le navigat
 
 Références : [cahier des charges](Cahier_des_charges_GSB.docx), [MPD](MPD.md), [maquettes](maquettes/), [prototype](maquettes/GSB_Canva_Prototype_interactif.html).
 
+## Mise à jour du 16/11/2026 — Galeries du catalogue
+
+- [x] Conserver les sept galeries déjà complètes du projet.
+- [x] Réutiliser les séries Rhinaris et Phytosun et intégrer 31 nouvelles séries : 40 produits, cinq visuels chacun.
+- [x] Fournir les nouvelles grandes images en WebP et des miniatures de 240 px ; charger les grandes images complémentaires au clic.
+- [x] Adapter les formats et descriptions aux produits représentés, documenter les sources dans `docs/visuels-catalogue.json`.
+- [x] Versionner les 165 prompts des 33 séries intégrées dans `docs/visuels/prompts/`.
+- [x] Mettre à jour les anciens chemins enregistrés sans écraser les prix, stocks, mouvements ni photos personnalisées.
+- [x] Corriger l’invalidation d’une miniature après remplacement de photo et le cadrage sur petit écran.
+- [x] Vérifier les 330 fichiers des nouvelles galeries, les migrations en mémoire et la compilation Vite ; contrôler des fiches dans le navigateur.
+- [x] Versionner le contrôle reproductible : `node scripts/verify-product-galleries.mjs --all` depuis `frontend/`.
+- [x] Exécuter `npm audit` : aucune vulnérabilité détectée le 16/11/2026.
+
+Branche de livraison : [`rezki` sur GitHub](https://github.com/GSBPRO/gsb-projet/tree/rezki). Cette livraison ne constitue pas un branchement au back-end : le catalogue utilise toujours les mocks et le stockage du navigateur. Le plan initial ci-dessous conserve ses anciens chemins ; l’état du front actuel, organisé par fonctionnalité, est suivi dans [`AVANCEMENT_FRONT.md`](AVANCEMENT_FRONT.md).
+
 ---
 
 ## Phase A — Front-end (mock)
