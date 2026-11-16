@@ -8,15 +8,29 @@ import './ProductCard.css';
 // index : position dans la grille, pour faire apparaître les cartes les unes après les autres.
 export default function ProductCard({ product, laboratory, categoryName, index }) {
   const isOutOfStock = product.stock === 0;
+  // Sans photo d'ambiance, certains produits réutilisent leur photo, très floutée, comme fond coloré au survol.
+  const isBlurred = !product.ambiance && product.blurredAmbiance;
+  const ambianceSrc = product.ambiance ?? (isBlurred ? product.image : null);
 
   return (
     <article className="product-card" style={{ '--card-index': Math.min(index, 12) }}>
       {/* Un vrai lien : atteignable au clavier, il porte le nom du produit pour les lecteurs d'écran. */}
       <Link
         to={`/catalogue/${product.id}`}
-        className="product-card__button"
+        className={`product-card__button${ambianceSrc ? ' product-card__button--ambiance' : ''}`}
         aria-label={`${product.name} : voir la fiche`}
       >
+        {/* Photo d'ambiance révélée au survol. Décorative : alt vide, le nom est déjà sur la carte. */}
+        {ambianceSrc && (
+          <img
+            className={`product-card__ambiance${isBlurred ? ' product-card__ambiance--blur' : ''}`}
+            src={ambianceSrc}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        )}
+
         <span className="product-card__tag">{categoryName}</span>
         {isOutOfStock && <span className="product-card__soldout">Rupture</span>}
 

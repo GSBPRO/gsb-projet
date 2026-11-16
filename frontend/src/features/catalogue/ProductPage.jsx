@@ -37,11 +37,17 @@ function Rotation360({ product }) {
   );
 }
 
+// Fond d'ambiance derrière le produit. Décoratif : alt vide, la photo du produit (avec alt) est posée dessus.
+function Backdrop({ src, blur = false }) {
+  return <img className={`product-page__backdrop${blur ? ' product-page__backdrop--blur' : ''}`} src={src} alt="" />;
+}
+
 // Page détail d'un produit : miniatures à gauche, grande image au centre, infos et achat à droite (F09).
 export default function ProductPage() {
   const { productId } = useParams();
   const { status, data, reload } = useCatalogue();
-  const [selected, setSelected] = useState('main');
+  // null = la première miniature (l'ambiance si le produit en a une, comme la 1re image chez POUCH).
+  const [selected, setSelected] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [confirmation, setConfirmation] = useState('');
   const { items, addItem } = useCart();
@@ -90,8 +96,33 @@ export default function ProductPage() {
   // Miniatures : la photo principale ; pour les produits qui ont un rendu 3D, la vue à 360° et trois angles fixes.
   // Un produit proposé par un fournisseur n'a qu'une photo.
   const frame = (index) => `${product.views360}vue_${String(index).padStart(3, '0')}.webp`;
+  // Ambiance en premier, comme la 1re image chez POUCH : le produit posé sur un fond coloré qui remplit le cadre.
+  // Le fond = la photo d'ambiance ; à défaut (même règle que la carte), la photo du produit floutée.
+  const isBlurred = !product.ambiance && product.blurredAmbiance;
+  const ambianceThumb =
+    product.ambiance || isBlurred
+      ? { key: 'ambiance', src: product.image, label: 'Photo d’ambiance', backdrop: product.ambiance ?? product.image, blur: isBlurred }
+      : null;
+  // Visuels en plus (avis, comparatif…) : avant la photo du produit, sauf ceux marqués afterMain.
+  const extraThumbs = (product.extraImages ?? []).map((extra, index) => ({
+    key: `extra-${index}`,
+    src: extra.src,
+    label: extra.label,
+    afterMain: extra.afterMain,
+    replacesMain: extra.replacesMain,
+    fill: true,
+  }));
+  // Un visuel marqué replacesMain prend la place de la photo du produit.
+  const mainThumb = extraThumbs.find((thumb) => thumb.replacesMain) ?? {
+    key: 'main',
+    src: product.image,
+    label: 'Photo principale',
+  };
   const thumbs = [
-    { key: 'main', src: product.image, label: 'Photo principale' },
+    ...(ambianceThumb ? [ambianceThumb] : []),
+    ...extraThumbs.filter((thumb) => !thumb.afterMain && !thumb.replacesMain),
+    mainThumb,
+    ...extraThumbs.filter((thumb) => thumb.afterMain),
     ...(product.views360
       ? [
           { key: 'rotate', src: frame(0), label: 'Vue à 360°', badge: '360°' },
@@ -129,11 +160,12 @@ export default function ProductPage() {
             <li key={thumb.key}>
               <button
                 type="button"
-                className={`product-page__thumb${thumb.key === current.key ? ' is-active' : ''}`}
+                className={`product-page__thumb${thumb.key === current.key ? ' is-active' : ''}${thumb.backdrop ? ' product-page__thumb--ambiance' : ''}${thumb.fill ? ' product-page__thumb--fill' : ''}`}
                 onClick={() => setSelected(thumb.key)}
                 aria-label={thumb.label}
                 aria-pressed={thumb.key === current.key}
               >
+                {thumb.backdrop && <Backdrop src={thumb.backdrop} blur={thumb.blur} />}
                 <img src={thumb.src} alt="" loading="lazy" decoding="async" />
                 {thumb.badge && <span className="product-page__thumb-badge">{thumb.badge}</span>}
               </button>
@@ -144,8 +176,12 @@ export default function ProductPage() {
         {current.key === 'rotate' ? (
           <Rotation360 product={product} />
         ) : (
-          <div className="product-page__stage">
-            <img src={current.src} alt={product.name} />
+          <div
+            className={`product-page__stage${current.backdrop ? ' product-page__stage--ambiance' : ''}${current.fill ? ' product-page__stage--fill' : ''}`}
+          >
+            {current.backdrop && <Backdrop src={current.backdrop} blur={current.blur} />}
+            {/* Un visuel en plus (ex. avis client) a son propre alt ; les photos du produit portent son nom. */}
+            <img src={current.src} alt={current.fill ? current.label : product.name} />
           </div>
         )}
 
@@ -193,7 +229,7 @@ export default function ProductPage() {
             </p>
           </div>
 
-          <p className="product-page__note">Rendu 3D illustratif (reconstitution pédagogique non officielle).</p>
+          <p className="product-page__note">Visuels illustratifs (reconstitution pédagogique non officielle).</p>
         </section>
       </div>
     </div>

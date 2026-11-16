@@ -87,22 +87,72 @@
   font-weight: 800;
 }
 
-/* Grande image */
+/* Comme chez POUCH : miniatures et grande image restent visibles pendant qu'on lit les infos. */
+.product-page__thumbs,
 .product-page__stage {
-  position: relative;
+  position: sticky;
+  top: var(--space-3);
+}
+
+/* Grande image : un cadre carré, quelle que soit la photo. */
+.product-page__stage {
   display: grid;
   place-items: center;
-  min-height: 520px;
+  aspect-ratio: 1;
   padding: var(--space-3);
+  overflow: hidden;
   border-radius: var(--radius-lg);
   background: linear-gradient(160deg, var(--color-glacier), var(--color-white) 70%);
 }
 
 .product-page__stage img {
   max-width: 100%;
-  max-height: 560px;
+  max-height: 100%;
   object-fit: contain;
   user-select: none;
+}
+
+/* Ambiance : le fond remplit tout le cadre, bord à bord (object-fit: cover rogne ce qui dépasse),
+   et le produit net est posé dessus. isolation + z-index négatif : le fond reste DANS le cadre, derrière. */
+.product-page__stage--ambiance,
+.product-page__thumb--ambiance {
+  isolation: isolate;
+  background: var(--color-deep);
+}
+
+.product-page__stage .product-page__backdrop,
+.product-page__thumb .product-page__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+}
+
+/* Visuel en plus (ex. avis client) : il remplit tout le carré, bord à bord.
+   object-fit: cover rogne ce qui dépasse si l'image n'est pas carrée. */
+.product-page__stage--fill {
+  padding: 0;
+}
+
+.product-page__stage--fill img,
+.product-page__thumb--fill img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sans photo d'ambiance : la photo du produit agrandie et très floutée sert de fond. */
+.product-page__backdrop--blur {
+  filter: blur(40px) saturate(1.6);
+  transform: scale(1.8);
+}
+
+.product-page__stage--ambiance img:not(.product-page__backdrop) {
+  filter: drop-shadow(0 30px 40px rgba(10, 20, 35, 0.4));
 }
 
 .product-page__stage--360 {
@@ -251,6 +301,13 @@
 @media (max-width: 960px) {
   .product-page__layout {
     grid-template-columns: 1fr;
+  }
+
+  /* Sur une seule colonne, une image collée en haut masquerait le texte en dessous. */
+  .product-page__thumbs,
+  .product-page__stage {
+    position: relative;
+    top: auto;
   }
 
   .product-page__thumbs {

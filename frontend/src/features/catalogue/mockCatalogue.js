@@ -21,13 +21,13 @@ export const laboratories = [
 // Les images sont dans public/produits/<dossier>/ : principal.webp et 360/vue_000.webp à vue_035.webp.
 const rows = [
   // Produits pharmaceutiques (catégorie 3)
-  ['p01-paracetamol-500-mg', 'Paracétamol 500 mg', 'Boîte de 16 comprimés', 'Antalgique et antipyrétique pour les douleurs légères à modérées et la fièvre. Ne pas dépasser 3 g par jour.', 3, 1, 1.9, 10, 120],
-  ['p02-ibuprofene-400-mg', 'Ibuprofène 400 mg', 'Boîte de 20 comprimés', 'Anti-inflammatoire non stéroïdien contre la douleur, la fièvre et les états inflammatoires.', 3, 2, 2.8, 10, 84],
-  ['p03-aspirine-500-mg', 'Aspirine 500 mg', 'Boîte de 20 comprimés', 'Acide acétylsalicylique pour soulager les maux de tête, les douleurs dentaires et les états grippaux.', 3, 3, 2.4, 10, 63],
-  ['p04-sels-de-rehydratation', 'Sels de réhydratation', 'Boîte de 10 sachets', "Solution de réhydratation orale pour compenser les pertes d'eau et de sels minéraux lors de diarrhées.", 3, 1, 4.9, 10, 45],
-  ['p05-antiacide', 'Antiacide', 'Flacon de 250 ml', "Suspension buvable contre les brûlures d'estomac et les remontées acides.", 3, 2, 5.2, 10, 38],
-  ['p06-pastilles-pour-la-gorge', 'Pastilles pour la gorge', 'Boîte de 24 pastilles', 'Pastilles à sucer pour apaiser les maux de gorge et les irritations de la bouche.', 3, 3, 3.6, 10, 90],
-  ['p07-sirop-contre-la-toux', 'Sirop contre la toux', 'Flacon de 125 ml', 'Sirop adoucissant pour calmer la toux sèche et irritative.', 3, 1, 4.7, 10, 52],
+  ['p01-paracetamol-500-mg', 'Paracétamol 500 mg', 'Boîte de 16 poches unidoses', 'Antalgique et antipyrétique en solution buvable, à prendre sans eau, pour les douleurs légères à modérées et la fièvre. Adulte et enfant de plus de 27 kg. Ne pas dépasser 3 g par jour.', 3, 1, 1.9, 10, 120],
+  ['p02-ibuprofene-400-mg', 'Ibuprofène 400 mg', 'Boîte de 20 poches unidoses', 'Anti-inflammatoire non stéroïdien en solution buvable, à prendre sans eau, contre la douleur, la fièvre et les états inflammatoires. Adulte et enfant de plus de 30 kg. Ne pas dépasser 1 200 mg par jour.', 3, 2, 2.8, 10, 84],
+  ['p03-aspirine-500-mg', 'Aspirine 500 mg', 'Boîte de 20 poches unidoses', 'Acide acétylsalicylique en solution buvable, à prendre sans eau, pour soulager les maux de tête, les douleurs dentaires et les états grippaux. Adulte et enfant de plus de 50 kg. Ne pas dépasser 3 g par jour.', 3, 3, 2.4, 10, 63],
+  ['p04-sels-de-rehydratation', 'Sels de réhydratation', 'Boîte de 10 poches', "Poudre de réhydratation orale à diluer (glucose et électrolytes), pour compenser les pertes d'eau et de sels minéraux lors de diarrhées aiguës. Respecter les proportions de la notice.", 3, 1, 4.9, 10, 45],
+  ['p05-antiacide', 'Antiacide', 'Boîte de 24 poches', "Suspension buvable antiacide et antireflux contre les brûlures d'estomac et les remontées acides. Bien agiter la poche avant de boire.", 3, 2, 5.2, 10, 38],
+  ['p06-pastilles-pour-la-gorge', 'Solution pour la gorge', 'Boîte de 24 poches unidoses', 'Solution buvable miel citron à boire lentement, avec deux antiseptiques locaux, pour les maux de gorge peu intenses et sans fièvre.', 3, 3, 3.6, 10, 90],
+  ['p07-sirop-contre-la-toux', 'Solution contre la toux sèche', 'Poche souple de 150 ml', "Solution buvable sans sucre à l'oxomémazine (0,33 mg/ml), arôme caramel, contre les toux sèches gênantes. Avec gobelet doseur. Peut provoquer une somnolence.", 3, 1, 4.7, 10, 52],
   ['p08-solution-saline-nasale', 'Solution saline nasale', 'Flacon de 100 ml', 'Solution isotonique pour nettoyer et hydrater les fosses nasales.', 3, 2, 3.9, 10, 77],
   ['p09-spray-nasal-decongestionnant', 'Spray nasal décongestionnant', 'Flacon de 15 ml', 'Spray pour dégager rapidement le nez en cas de rhume. Utilisation limitée à 5 jours.', 3, 3, 5.8, 10, 8],
   ['p10-antihistaminique', 'Antihistaminique', 'Boîte de 15 comprimés', "Soulage les symptômes de l'allergie : rhinite, éternuements, larmoiement, démangeaisons.", 3, 1, 6.4, 10, 41],
@@ -67,6 +67,147 @@ const rows = [
   ['p40-boite-de-rangement-pour-medicaments', 'Boîte de rangement pour médicaments', 'Unité', 'Boîte compartimentée pour ranger et organiser les médicaments de la semaine.', 2, 1, 12.9, 20, 42],
 ];
 
+// Produits qui ont déjà leur photo d'ambiance (public/produits/<dossier>/ambiance.webp),
+// affichée en fond de la carte au survol. On les ajoute un par un quand le visuel est prêt.
+const foldersWithAmbiance = new Set(['p01-paracetamol-500-mg']);
+
+// Produits sans photo d'ambiance dont la photo, très floutée, sert de fond (au survol de la carte et en 1re image).
+const foldersWithBlurredAmbiance = new Set(['p02-ibuprofene-400-mg', 'p03-aspirine-500-mg', 'p04-sels-de-rehydratation', 'p05-antiacide', 'p06-pastilles-pour-la-gorge', 'p07-sirop-contre-la-toux']);
+
+// Produits sans vue 360° : passés en poche buvable, leur rendu 3D montre encore l'ancienne boîte.
+const foldersWithout360 = new Set([
+  'p01-paracetamol-500-mg',
+  'p02-ibuprofene-400-mg',
+  'p03-aspirine-500-mg',
+  'p04-sels-de-rehydratation',
+  'p05-antiacide',
+  'p06-pastilles-pour-la-gorge',
+  'p07-sirop-contre-la-toux',
+]);
+
+// Visuels en plus dans la galerie de la fiche produit (après la photo d'ambiance), comme chez POUCH.
+// Ils remplissent tout le cadre ; alt = ce que l'image montre, pour les lecteurs d'écran.
+const extraImagesByFolder = {
+  'p01-paracetamol-500-mg': [
+    { file: 'avis.webp', label: 'Avis client 5 étoiles' },
+    { file: 'sans-eau.webp', label: 'Sans eau, sans pause : 2 étapes avec la solution buvable contre 5 avec un comprimé' },
+    // replacesMain : prend la place de la photo du produit dans la galerie
+    // (principal.webp reste l'image des cartes du catalogue et du panier).
+    {
+      file: 'pourquoi.webp',
+      label: 'Pourquoi choisir Doliprane : sans eau, 500 mg de paracétamol, facile à avaler, poche unidose',
+      replacesMain: true,
+    },
+    // afterMain : placé juste après la photo du produit au lieu d'avant.
+    {
+      file: 'comparatif.webp',
+      label: 'Comparatif solution buvable et comprimé classique : sans eau, facile à avaler, sans plaquette, dose précise de 500 mg, transportable',
+      afterMain: true,
+    },
+  ],
+  'p02-ibuprofene-400-mg': [
+    { file: 'avis.webp', label: 'Avis client 5 étoiles : un très bon produit que je garde toujours dans mon sac' },
+    {
+      file: 'a-portee-de-main.webp',
+      label: 'Nurofen, à portée de main : la poche glissée dans un sac, format compact avec bouchon à vis',
+    },
+    {
+      file: 'essentiels.webp',
+      label: 'Nurofen, les essentiels : ibuprofène 400 mg, douleurs et fièvre en traitement court, anti-inflammatoire non stéroïdien, lire la notice',
+    },
+    {
+      file: 'comparatif.webp',
+      label: 'Comparatif poche et comprimé : même contenu, ibuprofène 400 mg contre douleurs et fièvre ; la poche a un bouchon à vis',
+      // Prend la place de la photo de la poche, déjà visible en 1re image (ambiance).
+      replacesMain: true,
+    },
+  ],
+  'p03-aspirine-500-mg': [
+    { file: 'avis.webp', label: 'Avis client 5 étoiles : un très bon produit à un prix raisonnable' },
+    {
+      file: 'a-portee-de-main.webp',
+      label: 'Aspirine, à portée de main : la poche glissée dans un sac, format compact avec bouchon à vis',
+    },
+    {
+      file: 'essentiels.webp',
+      label: 'Aspirine, les essentiels : 500 mg par poche, douleurs et fièvre, précautions en cas d’ulcère, de grossesse ou d’anticoagulant, lire la notice',
+    },
+    {
+      file: 'comparatif.webp',
+      label: 'Comparatif poche et comprimé : même dosage de 500 mg contre douleurs et fièvre ; la poche a un bouchon à vis',
+      // Prend la place de la photo de la poche, déjà visible en 1re image (comme pour le Nurofen).
+      replacesMain: true,
+    },
+  ],
+  'p04-sels-de-rehydratation': [
+    { file: 'avis.webp', label: 'Avis client 4 étoiles sur 5 : « Bien »' },
+    {
+      file: 'a-portee-de-main.webp',
+      label: 'Viatol, à portée de main : la poche glissée dans un sac, format compact avec bouchon à vis',
+    },
+    {
+      file: 'essentiels.webp',
+      label: 'Viatol, les essentiels : réhydratation orale en cas de diarrhée aiguë, glucose et électrolytes, poudre à diluer selon la notice',
+    },
+    {
+      file: 'comparatif.webp',
+      label: 'Comparatif poche et sachet : même poudre à diluer, même usage en cas de diarrhée aiguë ; la poche a un bouchon à vis',
+      replacesMain: true,
+    },
+  ],
+  'p05-antiacide': [
+    { file: 'avis.webp', label: 'Avis client 5 étoiles : « très bien »' },
+    {
+      file: 'a-portee-de-main.webp',
+      label: 'Gaviscon, à portée de main : la poche glissée dans un sac, format compact avec bouchon à vis',
+    },
+    {
+      file: 'essentiels.webp',
+      label: 'Gaviscon, les essentiels : action antireflux et antiacide, suspension buvable à agiter avant de boire, lire la notice',
+    },
+    {
+      file: 'comparatif.webp',
+      label: 'Comparatif poche et comprimé : la poche se boit, le comprimé se croque, même usage selon la notice',
+      replacesMain: true,
+    },
+  ],
+  'p06-pastilles-pour-la-gorge': [
+    { file: 'avis.webp', label: 'Avis client 5 étoiles : « Parfait »' },
+    {
+      file: 'a-portee-de-main.webp',
+      label: 'Strepsils, à portée de main : la poche glissée dans un sac, format compact avec bouchon à vis',
+    },
+    {
+      file: 'essentiels.webp',
+      label: 'Strepsils, les essentiels : mal de gorge peu intense et sans fièvre, deux antiseptiques locaux, solution buvable à boire lentement, lire la notice',
+    },
+    {
+      file: 'comparatif.webp',
+      label: 'Comparatif poche et pastille : la solution se boit lentement, la pastille se suce, même usage selon la notice',
+      replacesMain: true,
+    },
+  ],
+  'p07-sirop-contre-la-toux': [
+    {
+      file: 'reperes.webp',
+      label: 'Repères produit : oxomémazine 0,33 mg/ml, solution buvable sans sucre arôme caramel, poche souple de 150 ml avec gobelet doseur',
+    },
+    {
+      file: 'a-portee-de-main.webp',
+      label: 'Humex, à portée de main : la poche glissée dans un sac, format compact avec bouchon à vis',
+    },
+    {
+      file: 'essentiels.webp',
+      label: 'Humex, les essentiels : oxomémazine 0,33 mg/ml, toux sèche gênante, quantité à mesurer au gobelet doseur, risque de somnolence',
+    },
+    {
+      file: 'comparatif.webp',
+      label: 'Comparatif poche et flacon : même solution à 0,33 mg/ml, mesurée au gobelet doseur, même usage selon la notice',
+      replacesMain: true,
+    },
+  ],
+};
+
 export const products = rows.map(
   ([folder, name, format, description, categoryId, laboratoryId, priceHt, vatRate, stock], index) => ({
     id: index + 1,
@@ -81,6 +222,14 @@ export const products = rows.map(
     validationStatus: 'Accepté',
     active: true,
     image: `/produits/${folder}/principal.webp`,
-    views360: `/produits/${folder}/360/`,
+    views360: foldersWithout360.has(folder) ? null : `/produits/${folder}/360/`,
+    ambiance: foldersWithAmbiance.has(folder) ? `/produits/${folder}/ambiance.webp` : null,
+    blurredAmbiance: !foldersWithAmbiance.has(folder) && foldersWithBlurredAmbiance.has(folder),
+    extraImages: (extraImagesByFolder[folder] ?? []).map(({ file, label, afterMain = false, replacesMain = false }) => ({
+      src: `/produits/${folder}/${file}`,
+      label,
+      afterMain,
+      replacesMain,
+    })),
   }),
 );
