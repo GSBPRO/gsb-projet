@@ -114,8 +114,10 @@ export async function updateProduct(productId, input, actor) {
     if (!product || (!isAdmin && product.laboratoryId !== actor.supplierId)) return;
 
     const next = cleanFields(input);
-    const isMajorChange = Object.keys(next).some((key) => key !== 'image' && next[key] !== product[key]) || (next.image && next.image !== product.image);
+    const imageChanged = Boolean(next.image && next.image !== product.image);
+    const isMajorChange = Object.keys(next).some((key) => key !== 'image' && next[key] !== product[key]) || imageChanged;
     Object.assign(product, next, { image: next.image ?? product.image });
+    if (imageChanged) delete product.imageThumb;
     if (isAdmin && input.laboratoryId) product.laboratoryId = Number(input.laboratoryId);
     if (!isAdmin && isMajorChange) {
       product.validationStatus = 'En attente';

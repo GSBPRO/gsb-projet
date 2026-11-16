@@ -1,0 +1,12 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: D.Plantes Vitamine D3++ huile 1000 UI. Verified format: Flacon compte-gouttes de 20 ml.
+PACKAGING: a real small amber-glass D.Plantes oil-drop bottle with white ribbed screw cap and built-in dropper (not a spray), white and sunshine-yellow label bearing green D.Plantes brand, 'Vitamine D3++', 'HUILE', '1000 UI', '20 ml', matching narrow rectangular white-yellow carton beside it. This is D.Plantes genuine type of 20ml supplement; replace the generic D-Vitamine mock branding. No pouch.
+PALETTE: sunshine yellow, clean white, forest green and deep navy.
+INPUT1: exact product identity reference generated for this series; reproduce its packaging. INPUT2: composition/style reference, replace its brand and facts entirely. Premium factual product-card layout. Brand-colored textured rubber surface with diagonal fence shadows, product partly visible diagonally along left edge. Large translucent white rectangular card with subtly rounded corners center-right. Small uppercase 'REPÈRES PRODUIT' and 'D.Plantes'. Large dark-navy sans-serif title 'D.Plantes Vitamine D3++ huile 1000 UI'. Under it four spacious short factual lines:
+Complément alimentaire
+Vitamine D3 issue de la lanoline
+Formule huileuse
+Compte-gouttes de 20 ml.
+Then smaller footer 'Informations : Laboratoire D.Plantes.' and 'Complément alimentaire. Respecter l’étiquette. Demander conseil avant de cumuler les apports en vitamine D.'. All card text French. No star ratings or customer review. All copy within card, clean hierarchy, card must not hide brand of the product entirely.

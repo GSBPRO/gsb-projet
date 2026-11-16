@@ -107,6 +107,7 @@ export default function ProductPage() {
   const extraThumbs = (product.extraImages ?? []).map((extra, index) => ({
     key: `extra-${index}`,
     src: extra.src,
+    thumbSrc: extra.thumbSrc,
     label: extra.label,
     afterMain: extra.afterMain,
     replacesMain: extra.replacesMain,
@@ -116,6 +117,7 @@ export default function ProductPage() {
   const mainThumb = extraThumbs.find((thumb) => thumb.replacesMain) ?? {
     key: 'main',
     src: product.image,
+    thumbSrc: product.imageThumb,
     label: 'Photo principale',
   };
   const thumbs = [
@@ -166,7 +168,7 @@ export default function ProductPage() {
                 aria-pressed={thumb.key === current.key}
               >
                 {thumb.backdrop && <Backdrop src={thumb.backdrop} blur={thumb.blur} />}
-                <img src={thumb.src} alt="" loading="lazy" decoding="async" />
+                <img src={thumb.thumbSrc ?? thumb.src} alt="" loading="lazy" decoding="async" />
                 {thumb.badge && <span className="product-page__thumb-badge">{thumb.badge}</span>}
               </button>
             </li>

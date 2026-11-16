@@ -1,4 +1,4 @@
-import { categories as mockCategories, laboratories, products as mockProducts } from './mockCatalogue.js';
+import { baseProducts, categories as mockCategories, laboratories, products as mockProducts } from './mockCatalogue.js';
 
 // La « base de données » du catalogue pour la démonstration : produits, catégories et historique de stock.
 // Elle part des données fictives, puis les modifications (admin, fournisseur, commandes) sont gardées dans le
@@ -35,6 +35,22 @@ function addMissingVisuals(saved) {
     }
     // Les visuels en plus ne se modifient pas dans l'appli : on reprend toujours la liste à jour des données fictives.
     const mock = mockProducts.find((item) => item.id === product.id);
+    const original = baseProducts.find((item) => item.id === product.id);
+    if (mock?.galleryVersion) {
+      // Mettre à jour les images livrées sans écraser une photo importée par l'administrateur.
+      const deliveredFolder = mock.image.slice(0, mock.image.lastIndexOf('/') + 1);
+      if (product.image === original?.image || (typeof product.image === 'string' && product.image.startsWith(deliveredFolder))) {
+        product.image = mock.image;
+        product.imageThumb = mock.imageThumb;
+      } else {
+        product.imageThumb = undefined;
+      }
+      // Corriger un ancien format fictif uniquement s'il n'a pas été modifié dans l'application.
+      if (product.format === original?.format) product.format = mock.format;
+      if (product.description === original?.description) product.description = mock.description;
+      product.galleryVersion = mock.galleryVersion;
+      product.ambiance = null;
+    }
     product.extraImages = mock?.extraImages ?? product.extraImages ?? [];
     // Pareil pour la vue 360° : elle peut avoir été retirée d'un produit depuis l'enregistrement.
     if (mock) product.views360 = mock.views360;

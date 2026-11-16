@@ -27,8 +27,26 @@ Données **fictives** pour l'instant : `productService.js` sera branché sur l'A
 | `useTilt.js` | incline une carte vers la souris |
 | `productService.js` | renvoie les produits vendables (actifs et validés) ; futur appel à l'API |
 | `mockCatalogue.js` | les catégories, laboratoires et produits fictifs |
+| `productGalleries.js` | applique une galerie livrée à un produit, en conservant les sept premières galeries existantes |
+| `productGalleryData.js` | les chemins des cinq visuels et de leurs miniatures, avec le format correspondant au produit représenté |
 
 La page lit aussi les filtres dans l'adresse : `/catalogue?categorie=2` ou `/catalogue?stock=1`.
 Les données sont gardées en mémoire après le premier chargement (menu et page partagent la même réponse).
 
 Le calcul du prix TTC et l'affichage en euros sont dans `src/utils/price.js`, partagé avec le futur panier.
+
+Les nouvelles galeries utilisent cinq visuels : présentation sur fond blanc, carte d’informations,
+mise en situation, caractéristiques et tableau de repères. Les grandes images sont en WebP ;
+les miniatures de 240 pixels évitent de télécharger les cinq grandes images pour afficher les boutons.
+Les anciens fichiers sont conservés. Une rotation montrant un ancien emballage n’est pas mélangée à la nouvelle galerie.
+
+Les sources et formats sont documentés dans `docs/visuels-catalogue.json`. Les 165 prompts des
+33 séries intégrées sont conservés dans `docs/visuels/prompts/`, classés par dossier produit.
+
+Le catalogue déjà enregistré dans le navigateur reçoit les nouveaux chemins d’images. Les stocks,
+les prix et les photos personnalisées restent conservés. Les anciens formats et descriptions ne
+sont corrigés que s’ils correspondent encore aux valeurs initiales de la démonstration.
+
+Pour vérifier les chemins d’images et la conservation des données lors des migrations, lancer
+`node scripts/verify-product-galleries.mjs --all` depuis `frontend/`. Ce contrôle utilise un
+stockage simulé en mémoire et ne lit pas les données du navigateur.

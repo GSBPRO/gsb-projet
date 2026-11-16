@@ -1,0 +1,19 @@
+Use case: product-mockup. Create ONE high-resolution SQUARE 1:1 premium RHINARIS gallery image. Reference1 is the exact nasal spray identity: rigid white cylindrical100ml container, genuine angled WHITE NASAL APPLICATOR under a smooth white protective cap, royal-blue header with WHITE Rhinaris, cyan water-gradient band, WHITE label, ORANGE HYGIÈNE QUOTIDIENNE band, Solution saline douce,100ml and USAGE NASAL UNIQUEMENT. Preserve shape and label artwork, using the cap fitted on the container for this scene. NO flexible pouch, no drink-spout, no oral cap, no medicine pour or administration, no person taking it, no extra loose cap, no invented clinical benefit or other brand. This is a recreated product-presentation visual, not an official manufacturer photograph.
+IMAGE2: reference2 (Humex information-card photo) is ONLY the compositional and typography reference. Deep ROYAL/COBALT-BLUE lightly textured surface, soft diagonal lattice shadows and restrained natural directional light. Lay the CLOSED RHINARIS nasal spray diagonally, cap upper left, base lower right, visible around a centered slightly translucent off-white rounded rectangular card. Balanced padding, dark-NAVY clean sans-serif type, premium realistic photography. No exposure to heat or intense sunshine, no water spray, not a drinking product.
+This is a FACTUAL PRODUCT-INFORMATION CARD, NOT a review. No stars, quote marks, customer author, rating or date.
+Exact text on card:
+Upper-left small "REPÈRES PRODUIT"
+Upper-right "RHINARIS"
+Main elegant large two-line heading:
+"Solution saline"
+"douce isotonique"
+Secondary lines:
+"Hygiène nasale quotidienne"
+"Chlorure de sodium : 0,9 %"
+"Format : 100 ml"
+Smaller readable footer:
+"Usage nasal uniquement."
+"Source : fabricant Rhinaris."
+Facts checked on the exact official manufacturer page:
+https://www.rhinaris.com/fr/produits/solution-saline-douce-rhinaris
+Do not print URL. Do not claim100percent undiluted seawater, no dependency as an invented testimonial, medication, allergy treatment or any other Rhinaris formulation. Remove all Humex, oral solution, oxomémazine, sugar-free, caramel and pouch wording. No watermark, extra objects or browser UI.

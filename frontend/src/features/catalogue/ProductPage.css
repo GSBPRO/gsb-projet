@@ -300,7 +300,7 @@
 
 @media (max-width: 960px) {
   .product-page__layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   /* Sur une seule colonne, une image collée en haut masquerait le texte en dessous. */
@@ -321,7 +321,9 @@
   }
 
   .product-page__stage {
-    min-height: 340px;
+    /* Le carré suit la largeur disponible, même sur un petit téléphone. */
+    min-width: 0;
+    min-height: 0;
   }
 
   .product-page__info {

@@ -1,0 +1,11 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: Magne B6 48 mg/5 mg. Verified format: Boîte de 60 comprimés enrobés.
+PACKAGING: a real white rectangular MAGNE B6 carton with blue gradient lower panel and golden-yellow curve, navy brand 'MAGNE B6', clearly '48 mg / 5 mg', 'Magnésium / Vitamine B6', '60 comprimés enrobés'. Commercial pharmaceutical carton, not supplement gum, no pouch.
+PALETTE: royal blue, sky blue, white and deep navy with small golden yellow accents.
+INPUT1: exact product identity reference generated for this series; reproduce its packaging. INPUT2: composition/style reference, replace its brand and facts entirely. Premium factual product-card layout. Brand-colored textured rubber surface with diagonal fence shadows, product partly visible diagonally along left edge. Large translucent white rectangular card with subtly rounded corners center-right. Small uppercase 'REPÈRES PRODUIT' and 'Magne B6'. Large dark-navy sans-serif title 'Magne B6 48 mg/5 mg'. Under it four spacious short factual lines:
+Magnésium et vitamine B6
+60 comprimés enrobés
+Pour les carences en magnésium confirmées par un médecin.
+Then smaller footer 'Informations : notice ANSM.' and 'Ceci est un médicament. Lire la notice. Demander conseil au pharmacien.'. All card text French. No star ratings or customer review. All copy within card, clean hierarchy, card must not hide brand of the product entirely.

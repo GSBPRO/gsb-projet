@@ -1,0 +1,14 @@
+Tool: built-in image_gen
+
+Create ONE individual square 1:1 high-resolution commercial healthcare catalogue image. Built-in image generation. Premium photorealistic product, perfectly legible French typography, generous margins, exact factual text below only. No invented review, testimonial, star rating, author, claims, posology, extra doses or fake certification. Do not show taking/applying the product, children, symptoms or medical professionals. Do not confuse product forms. This is an unofficial AI reconstruction for an educational catalogue, not an official brand asset. The reference product is an approximate mock: follow the corrected real form and name in the written brief. Keep the same product identity through this five-image series.
+PRODUCT: Magne B6 48 mg/5 mg. Verified format: Boîte de 60 comprimés enrobés.
+PACKAGING: a real white rectangular MAGNE B6 carton with blue gradient lower panel and golden-yellow curve, navy brand 'MAGNE B6', clearly '48 mg / 5 mg', 'Magnésium / Vitamine B6', '60 comprimés enrobés'. Commercial pharmaceutical carton, not supplement gum, no pouch.
+PALETTE: royal blue, sky blue, white and deep navy with small golden yellow accents.
+INPUT1: product identity/palette reference only, no need for package photograph in this chart. INPUT2: match the frosted-glass table art direction closely. Square premium factual reference matrix on softly blurred royal blue, sky blue, white and deep navy with small golden yellow accents gradient background. Three columns, header left 'REPÈRES', header centered 'Magne B6\n48 mg/5 mg', header right 'À RETENIR'. The middle column is one tall translucent frosted-glass panel with fine white outline and rounded corners. Thin straight white horizontal separators span the table; all text white, elegant serif column headers, clean sans labels, perfectly aligned, spacious. SIX rows only; each triple means left/center/right:
+FORMAT | 60 comprimés | SOUS PLAQUETTES
+FORME | Enrobée | COMPRIMÉS
+ASSOCIATION | Magnésium | VITAMINE B6
+VARIANTE | 48 mg / 5 mg | IDENTITÉ DU PRODUIT
+INDICATION | Carence confirmée | PAR UN MÉDECIN
+STATUT | Médicament | LIRE LA NOTICE
+Footer below table 'Informations : notice ANSM.'. This is a single-product facts table, not a comparison or a rating. French accents and exact wording. No stars, ticks, cross icons or implied superiority.
