@@ -9,8 +9,11 @@ import './SlideTabs.css';
 export default function SlideTabs({ links, label, openMenuId = null, onToggleMenu }) {
   const { pathname } = useLocation();
   const activeIndex = links.findIndex((link) => pathname.startsWith(link.to));
+  // Tant qu'un menu est ouvert, la pastille reste sur son onglet : sinon elle retournait sur « Accueil »
+  // dès que le focus partait dans le menu ou que la souris quittait les onglets pour descendre dedans.
+  const openMenuIndex = links.findIndex((link) => link.menuId && link.menuId === openMenuId);
   const { setItemRef, highlightedIndex, pageChangeCount, cursorStyle, highlight, resetHighlight } =
-    useSlidingCursor(activeIndex);
+    useSlidingCursor(activeIndex, openMenuIndex);
   const hasChangedPage = pageChangeCount > 0;
 
   return (

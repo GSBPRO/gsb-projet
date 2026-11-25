@@ -1,12 +1,14 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-// Calcule où placer la pastille glissante : sous l'onglet survolé, sinon sous l'onglet de la page en cours.
-export default function useSlidingCursor(activeIndex) {
+// Calcule où placer la pastille glissante : sous l'onglet survolé, sinon sous l'onglet dont le menu est ouvert,
+// sinon sous l'onglet de la page en cours.
+// openMenuIndex : -1 quand aucun menu n'est ouvert.
+export default function useSlidingCursor(activeIndex, openMenuIndex = -1) {
   const itemRefs = useRef([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [cursor, setCursor] = useState({ left: 0, width: 0, visible: false });
 
-  const highlightedIndex = hoveredIndex ?? activeIndex;
+  const highlightedIndex = hoveredIndex ?? (openMenuIndex >= 0 ? openMenuIndex : activeIndex);
 
   // Compte les changements de page : chaque nouvelle valeur relance l'animation de la gélule.
   // On ne compte pas le premier affichage, sinon la gélule s'animerait dès l'arrivée sur le site.
