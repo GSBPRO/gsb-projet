@@ -105,7 +105,7 @@
   animation: catalogue-menu-shine 1.4s ease-in-out infinite;
 }
 
-/* Vignette : une gélule aux couleurs de la catégorie */
+/* Vignette : la photo d'un produit de la catégorie (ou une gélule si la catégorie est vide) */
 .catalogue-menu__thumb {
   display: grid;
   flex-shrink: 0;
@@ -128,6 +128,21 @@
 }
 
 .catalogue-menu__card:hover .catalogue-menu__capsule {
+  transform: rotate(0deg) scale(1.08);
+}
+
+/* Photo produit détourée (fond transparent) posée sur la vignette, légèrement inclinée comme la gélule */
+.catalogue-menu__photo {
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 8px rgba(49, 81, 107, 0.2));
+  transform: rotate(-6deg);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.catalogue-menu__card:hover .catalogue-menu__photo {
   transform: rotate(0deg) scale(1.08);
 }
 

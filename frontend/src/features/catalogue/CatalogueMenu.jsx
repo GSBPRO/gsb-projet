@@ -58,7 +58,13 @@ export default function CatalogueMenu({ id, onClose }) {
           <li key={card.key} style={{ '--card-index': index }}>
             <Link to={card.to} className="catalogue-menu__card">
               <span className="catalogue-menu__thumb" style={{ '--thumb-color': card.color }} aria-hidden="true">
-                <span className="catalogue-menu__capsule" />
+                {/* Photo d'un produit de la catégorie ; la gélule reste en secours si la catégorie est vide.
+                    alt vide : décoratif, le nom de la catégorie est juste à côté. */}
+                {card.image ? (
+                  <img className="catalogue-menu__photo" src={card.image.src} alt="" loading="lazy" decoding="async" />
+                ) : (
+                  <span className="catalogue-menu__capsule" />
+                )}
               </span>
               <span className="catalogue-menu__text">
                 <span className="catalogue-menu__name">{card.title}</span>
