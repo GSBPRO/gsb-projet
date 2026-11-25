@@ -10,7 +10,9 @@ export function withProductGallery(product) {
     ...product,
     ...gallery,
     ambiance: null,
-    blurredAmbiance: false,
+    // Pas encore de vraie photo d'ambiance : comme pour p02 à p07, la photo du produit,
+    // très floutée, sert de fond coloré (au survol de la carte et en 1re image de la fiche).
+    blurredAmbiance: true,
     // Les anciennes rotations montrent un autre emballage : on conserve les fichiers,
     // mais on ne les mélange pas avec les cinq nouveaux visuels.
     views360: null,

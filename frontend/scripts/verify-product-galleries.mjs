@@ -13,7 +13,8 @@ for (const product of delivered) {
   assert.ok(product.description.trim(), `Description produit manquante : ${product.name}`);
   assert.equal(product.extraImages.length, 4, product.name);
   assert.equal(product.ambiance, null);
-  assert.equal(product.blurredAmbiance, false);
+  // Photos détourées (fond transparent) : la photo floutée sert de fond, comme pour p02 à p07.
+  assert.equal(product.blurredAmbiance, true);
   assert.equal(product.views360, null);
   const urls = [product.image, product.imageThumb];
   for (const image of product.extraImages) {
