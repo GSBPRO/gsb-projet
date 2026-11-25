@@ -54,11 +54,3 @@
     opacity: 0.45;
   }
 }
-
-/* Moins d'animations demandées : la molécule s'affiche directement, déjà formée. */
-@media (prefers-reduced-motion: reduce) {
-  .dot-molecule__dot {
-    opacity: 1;
-    transform: none;
-  }
-}

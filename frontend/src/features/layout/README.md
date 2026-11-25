@@ -10,3 +10,4 @@ Ce qui entoure toutes les pages connectées : professionnel, fournisseur et admi
 | `SlideTabs.jsx` + `.css` | les onglets avec la gélule animée au changement de page |
 | `useSlidingCursor.js` | calcule où placer la gélule et quand relancer son animation |
 | `useMenuToggle.js` | ouvre / ferme le menu du catalogue, le referme au changement de page et rend le focus à l'onglet |
+| `usePageTransition.js` | relance l'animation d'entrée à chaque nouvelle page (pas au premier affichage) et remonte en haut |

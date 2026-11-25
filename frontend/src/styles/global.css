@@ -71,9 +71,13 @@ a {
   border: 0;
 }
 
-/* Respecte le réglage « réduire les animations » du système */
+/* Respecte le réglage « réduire les animations » du système.
+   Exceptions voulues : la pluie de gélules, l'écran de chargement (assemblage de la molécule + fondu)
+   la pastille de la navbar (glissement + saut) et l'entrée des pages, car Windows active ce réglage
+   sur certains postes sans que l'utilisateur l'ait demandé, et le site perdait ses effets principaux.
+   .page-transition seul (sans « * ») : le contenu de la page garde la règle. */
 @media (prefers-reduced-motion: reduce) {
-  *:not(.falling-pills, .falling-pills *) {
+  *:not(.falling-pills, .falling-pills *, .page-loader, .page-loader *, .slide-tabs, .slide-tabs *, .page-transition) {
     transition: none !important;
     animation: none !important;
   }

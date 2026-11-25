@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import loadGlassMolecule from '../home/molecule/loadGlassMolecule.js';
 import Header from './Header.jsx';
+import usePageTransition from './usePageTransition.js';
 import './AppLayout.css';
 
 // Mise en page commune à toutes les pages connectées (professionnel, fournisseur, administrateur) :
@@ -11,6 +12,7 @@ const HERO_PAGES = ['/catalogue', '/accueil'];
 
 export default function AppLayout() {
   const hasHero = HERO_PAGES.includes(useLocation().pathname);
+  const transition = usePageTransition();
   // Si on arrive directement sur une autre page (session retrouvée), on précharge quand même l'accueil 3D.
   useEffect(() => {
     loadGlassMolecule();
@@ -20,7 +22,10 @@ export default function AppLayout() {
     <div className={`app-layout${hasHero ? ' app-layout--hero' : ''}`}>
       <Header overHero={hasHero} />
       <main className="app-layout__main">
-        <Outlet />
+        {/* L'en-tête reste en place ; seule la page entre en douceur. */}
+        <div key={transition.key} className={transition.shouldAnimate ? 'page-transition' : undefined}>
+          <Outlet />
+        </div>
       </main>
     </div>
   );
