@@ -12,6 +12,7 @@ export default function ChangePasswordPage() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
+  // Pas connecté : cette page n'a aucun sens, retour à la connexion.
   if (!user) {
     return <Navigate to="/connexion" replace />;
   }
@@ -33,6 +34,7 @@ export default function ChangePasswordPage() {
             mot de passe.
           </h1>
         </header>
+        {/* onDone : une fois le mot de passe changé, on envoie l'utilisateur sur la page d'accueil de son profil. */}
         <PasswordForm onDone={() => navigate(homePathFor(user.role), { replace: true })} submitLabel="Enregistrer et continuer" />
         <footer className="login__footer">
           <button

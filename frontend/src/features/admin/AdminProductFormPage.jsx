@@ -11,6 +11,7 @@ import StockPanel from './StockPanel.jsx';
 // Création (/admin/produits/nouveau) et modification (/admin/produits/:productId) d'un produit (F23).
 // En modification, le stock ne se change pas dans le formulaire : on passe par un ajustement motivé (F26).
 export default function AdminProductFormPage() {
+  // useParams lit l'id dans l'adresse (/admin/produits/12). Pas d'id (page « nouveau ») = création.
   const { productId } = useParams();
   const isNew = !productId;
   const { user } = useAuth();
@@ -18,6 +19,7 @@ export default function AdminProductFormPage() {
 
   const load = useCallback(async () => {
     const { categories, laboratories } = await listAllProducts();
+    // Création : un produit vide ({}). Modification : on charge le produit existant pour pré-remplir le formulaire.
     const product = isNew ? {} : await getProductForEdit(productId);
     return { categories, laboratories, product };
   }, [isNew, productId]);
@@ -29,7 +31,7 @@ export default function AdminProductFormPage() {
     } else {
       await updateProduct(productId, values, user);
     }
-    navigate('/admin/produits');
+    navigate('/admin/produits'); // retour à la liste une fois enregistré (si une erreur est lancée avant, on reste ici)
   }
 
   return (
@@ -42,7 +44,7 @@ export default function AdminProductFormPage() {
               initial={data.product}
               categories={data.categories}
               laboratories={data.laboratories}
-              showStock={isNew}
+              showStock={isNew} // le stock se saisit à la création ; ensuite on passe par StockPanel (ajustement motivé)
               onSubmit={handleSubmit}
               cancelTo="/admin/produits"
               submitLabel={isNew ? 'Créer le produit' : 'Enregistrer'}

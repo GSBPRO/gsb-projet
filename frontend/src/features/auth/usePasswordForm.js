@@ -38,9 +38,10 @@ export default function usePasswordForm(onDone) {
     setIsSubmitting(true);
     try {
       await changePassword(values.current, values.next);
-      setValues({ current: '', next: '', confirm: '' });
-      onDone?.();
+      setValues({ current: '', next: '', confirm: '' }); // on vide les champs : un mot de passe ne doit pas rester affiché
+      onDone?.(); // « ?. » : on appelle onDone seulement s'il a été fourni
     } catch (error) {
+      // Les erreurs prévues (AccountError) vont sous le bon champ ; toute autre erreur reçoit un message général.
       if (error instanceof AccountError && error.code === 'CURRENT') {
         setErrors({ current: error.message });
       } else if (error instanceof AccountError) {

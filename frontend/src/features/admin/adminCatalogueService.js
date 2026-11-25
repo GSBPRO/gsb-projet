@@ -13,6 +13,7 @@ export class AdminError extends Error {
   }
 }
 
+// Cherche un produit par son id ; Number() car l'id peut arriver en texte depuis l'URL. Erreur s'il n'existe pas.
 function findProduct(catalogue, productId) {
   const product = catalogue.products.find((candidate) => candidate.id === Number(productId));
   if (!product) throw new AdminError('NOT_FOUND', 'Produit introuvable.');
@@ -34,7 +35,8 @@ export async function deleteProduct(productId) {
     throw new AdminError('HAS_ORDERS', 'Ce produit figure dans des commandes : désactivez-le au lieu de le supprimer.');
   }
   updateCatalogue((catalogue) => {
-    findProduct(catalogue, productId);
+    findProduct(catalogue, productId); // vérifie d'abord qu'il existe
+    // filter garde tous les produits SAUF celui à supprimer.
     catalogue.products = catalogue.products.filter((product) => product.id !== Number(productId));
   });
 }
@@ -56,6 +58,7 @@ export async function adjustStock(productId, delta, reason, adminId) {
 
   updateCatalogue((catalogue) => {
     const product = findProduct(catalogue, productId);
+    // Vérifié à l'intérieur de updateCatalogue : si on lance l'erreur ici, rien n'est enregistré.
     if (product.stock + amount < 0) {
       throw new AdminError('DELTA', `Le stock ne peut pas être négatif (stock actuel : ${product.stock}).`);
     }
@@ -77,7 +80,7 @@ export async function listStockMovements(productId) {
   await delay();
   return readCatalogue()
     .stockMovements.filter((movement) => movement.productId === Number(productId))
-    .sort((a, b) => b.date.localeCompare(a.date));
+    .sort((a, b) => b.date.localeCompare(a.date)); // du plus récent au plus ancien (dates ISO, triables comme du texte)
 }
 
 // Validation d'un produit proposé par un fournisseur (F31). Un refus doit être motivé.
@@ -107,6 +110,7 @@ function checkCategoryName(catalogue, name, ignoredId = null) {
   if (!clean || clean.length > CATEGORY_NAME_MAX) {
     throw new AdminError('NAME', `Le nom est obligatoire (${CATEGORY_NAME_MAX} caractères maximum).`);
   }
+  // ignoredId : en renommant, la catégorie ne doit pas être comparée à elle-même. toLowerCase : « Vitamines » = « vitamines ».
   const exists = catalogue.categories.some((category) => category.id !== ignoredId && category.name.toLowerCase() === clean.toLowerCase());
   if (exists) throw new AdminError('NAME', 'Une catégorie porte déjà ce nom.');
   return clean;
@@ -114,7 +118,7 @@ function checkCategoryName(catalogue, name, ignoredId = null) {
 
 export async function listCategories() {
   await delay();
-  return [...readCatalogue().categories];
+  return [...readCatalogue().categories]; // copie du tableau : l'interface ne modifie pas les données d'origine par erreur
 }
 
 export async function createCategory(name) {

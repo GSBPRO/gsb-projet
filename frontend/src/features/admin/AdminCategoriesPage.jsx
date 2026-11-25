@@ -12,11 +12,14 @@ import './AdminPages.css';
 // Gestion des catégories : ajout, renommage, activation / désactivation (F22).
 // Désactiver une catégorie la retire du catalogue avec ses produits, sans rien supprimer.
 export default function AdminCategoriesPage() {
+  // « data: categories » : on renomme data en categories pour que la suite soit plus lisible.
   const { status, data: categories, reload } = useLoader(listCategories);
-  const [newName, setNewName] = useState('');
+  const [newName, setNewName] = useState(''); // texte du champ « Ajouter une catégorie »
+  // editing : la catégorie en cours de renommage (id null = aucune) et le nom en train d'être tapé.
   const [editing, setEditing] = useState({ id: null, name: '' });
   const [message, setMessage] = useState('');
 
+  // Lance une action, recharge la liste, et renvoie true si ça a marché, false sinon (message affiché).
   async function run(action) {
     setMessage('');
     try {
@@ -31,7 +34,7 @@ export default function AdminCategoriesPage() {
 
   async function handleCreate(event) {
     event.preventDefault();
-    if (await run(() => createCategory(newName))) setNewName('');
+    if (await run(() => createCategory(newName))) setNewName(''); // on vide le champ seulement si l'ajout a réussi
   }
 
   async function handleRename(event) {
@@ -71,6 +74,7 @@ export default function AdminCategoriesPage() {
               {categories.map((category) => (
                 <tr key={category.id}>
                   <td>
+                    {/* Cette ligne est en cours de renommage : on affiche un champ à la place du nom. */}
                     {editing.id === category.id ? (
                       <form className="admin-inline" onSubmit={handleRename}>
                         <input
@@ -91,6 +95,7 @@ export default function AdminCategoriesPage() {
                     )}
                   </td>
                   <td>
+                    {/* « === false » : une catégorie sans champ « active » est considérée comme active. */}
                     <StatusBadge tone={category.active === false ? 'neutral' : 'success'}>{category.active === false ? 'Désactivée' : 'Active'}</StatusBadge>
                   </td>
                   <td>

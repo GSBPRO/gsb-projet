@@ -15,9 +15,11 @@ import './LoginPage.css';
 export default function LoginPage() {
   const { user } = useAuth();
   const { values, errors, formError, isSubmitting, handleChange, handleSubmit } = useLoginForm();
+  // showPassword : true = on voit le mot de passe en clair (bouton œil), false = points masqués.
   const [showPassword, setShowPassword] = useState(false);
 
   // Préchargement : la molécule 3D de l'accueil se télécharge pendant qu'on tape son mot de passe.
+  // Le tableau vide [] veut dire : une seule fois, quand la page s'affiche.
   useEffect(() => {
     loadGlassMolecule();
   }, []);
@@ -56,7 +58,7 @@ export default function LoginPage() {
           />
           <Input
             label="Mot de passe"
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? 'text' : 'password'} // le type du champ décide s'il est masqué ou non
             name="password"
             autoComplete="current-password"
             required
@@ -65,7 +67,7 @@ export default function LoginPage() {
             error={errors.password}
             endAdornment={
               <button
-                type="button"
+                type="button" // « button » et pas « submit » : cliquer sur l'œil ne doit pas envoyer le formulaire
                 className="field__adornment"
                 onClick={() => setShowPassword(!showPassword)}
                 aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}

@@ -1,5 +1,6 @@
 // Vérifications côté navigateur pour aider l'utilisateur.
 // Elles ne protègent rien : le serveur devra refaire ces contrôles (NF03).
+// Regex : du texte sans espace ni @, puis un @, puis du texte, un point et du texte (ex. nom@site.fr).
 export function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
@@ -12,6 +13,7 @@ export function passwordError(value) {
   if (value.length < PASSWORD_MIN) {
     return `Le mot de passe doit contenir au moins ${PASSWORD_MIN} caractères.`;
   }
+  // Une regex par type de caractère : [a-z] minuscule, [A-Z] majuscule, \d chiffre, [^A-Za-z0-9] tout le reste (spécial).
   if (!/[a-z]/.test(value) || !/[A-Z]/.test(value) || !/\d/.test(value) || !/[^A-Za-z0-9]/.test(value)) {
     return 'Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial.';
   }

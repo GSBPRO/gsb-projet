@@ -12,15 +12,18 @@ const SESSION_KEY = 'gsb.userId';
 
 // On ne renvoie jamais le mot de passe au reste de l'application.
 function toPublicUser(user) {
+  // « ...publicUser » = tout le reste de l'objet : on sort « password » et on garde les autres champs.
   const { password: _password, ...publicUser } = user;
   return publicUser;
 }
 
 // Plus tard : un appel POST /api/auth/login vers Express. Les composants n'auront pas à changer.
 export async function login(email, password) {
-  await delay();
+  await delay(); // imite le temps de réponse d'un vrai serveur
 
+  // trim + minuscules : « Lina.Martin@... » et « lina.martin@... » désignent le même compte.
   const user = users.find((candidate) => candidate.email === email.trim().toLowerCase());
+  // Un seul test pour les trois cas (inconnu, mauvais mot de passe, compte désactivé) : même message d'erreur.
   if (!user || user.password !== password || !user.active) {
     throw new Error(LOGIN_ERROR);
   }
@@ -104,6 +107,7 @@ export async function updateProfile(userId, { phone, profession }) {
   if (!user) {
     throw new AccountError('NOT_FOUND', 'Compte introuvable.');
   }
+  // String + trim + slice : on force un texte propre et on coupe à la taille maximale (même si le formulaire est contourné).
   user.phone = String(phone ?? '').trim().slice(0, 20);
   user.profession = String(profession ?? '').trim().slice(0, 80);
   return toPublicUser(user);

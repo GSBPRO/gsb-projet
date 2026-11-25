@@ -11,7 +11,8 @@ const TITLES = ['M.', 'Mme', 'Dr', 'Pr'];
 // Formulaire de création (user = null) ou de modification d'un compte (F01, F21).
 // À la création, l'administrateur donne un mot de passe provisoire : la personne devra le changer (F04).
 export default function UserForm({ user, laboratories, onSaved, onCancel }) {
-  const isNew = !user;
+  const isNew = !user; // pas de compte reçu = création ; sinon = modification
+  // « user?.email ?? '' » : si user est null (création) on prend '', sinon la valeur actuelle du compte.
   const [values, setValues] = useState({
     email: user?.email ?? '',
     firstName: user?.firstName ?? '',
@@ -41,9 +42,10 @@ export default function UserForm({ user, laboratories, onSaved, onCancel }) {
 
     setIsSaving(true);
     try {
-      await (isNew ? createUser(values) : updateUser(user.id, values));
-      await onSaved();
+      await (isNew ? createUser(values) : updateUser(user.id, values)); // le même formulaire sert aux deux cas
+      await onSaved(); // prévient la page parente : elle ferme le formulaire et recharge la liste
     } catch (error) {
+      // Même vérification côté « serveur » : le front peut être contourné, donc le service revalide.
       if (error instanceof UserError && error.code === 'VALIDATION') setErrors(error.fields);
       else setFormError('Le compte n’a pas pu être enregistré. Réessayez dans un instant.');
       setIsSaving(false);
@@ -66,7 +68,7 @@ export default function UserForm({ user, laboratories, onSaved, onCancel }) {
           type="email"
           name="email"
           required
-          disabled={!isNew}
+          disabled={!isNew} // l'email sert d'identifiant : modifiable à la création seulement
           value={values.email}
           onChange={handleChange}
           error={errors.email}
@@ -76,6 +78,7 @@ export default function UserForm({ user, laboratories, onSaved, onCancel }) {
             <option key={role}>{role}</option>
           ))}
         </SelectField>
+        {/* Ce champ n'apparaît que si le profil choisi est « Fournisseur » (RG01). */}
         {values.role === ROLES.supplier && (
           <SelectField label="Fournisseur" name="supplierId" value={values.supplierId} onChange={handleChange} error={errors.supplierId} placeholder="Choisir…">
             {laboratories.map((laboratory) => (
@@ -89,7 +92,7 @@ export default function UserForm({ user, laboratories, onSaved, onCancel }) {
         {isNew && (
           <Input
             label="Mot de passe provisoire"
-            type="text"
+            type="text" // en clair exprès : l'admin doit pouvoir le lire pour le transmettre à la personne
             name="temporaryPassword"
             autoComplete="off"
             required

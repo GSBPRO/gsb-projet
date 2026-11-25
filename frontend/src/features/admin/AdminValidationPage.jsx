@@ -13,6 +13,7 @@ import './AdminPages.css';
 // Les produits proposés par les fournisseurs, en attente de décision : accepter ou refuser avec un motif (F31).
 export default function AdminValidationPage() {
   const { status, data, reload } = useLoader(listAllProducts);
+  // On ne garde que les produits dont la décision n'a pas encore été prise.
   const pending = data?.products.filter((product) => product.validationStatus === 'En attente');
 
   return (
@@ -33,12 +34,15 @@ export default function AdminValidationPage() {
   );
 }
 
+// Une carte par produit : chacune garde son propre état (motif saisi, refus en cours).
 function ReviewCard({ product, categoryName, laboratory, onDone }) {
+  // isRefusing : true quand l'admin a cliqué sur « Refuser… » ; le champ « Motif » apparaît alors.
   const [isRefusing, setIsRefusing] = useState(false);
   const [reason, setReason] = useState('');
   const [error, setError] = useState('');
   const [isSaving, setIsSaving] = useState(false);
 
+  // decision vaut 'accept' ou 'refuse'. Le service exige un motif pour un refus (F31) et le revérifie.
   async function decide(decision) {
     if (isSaving) return;
     setIsSaving(true);

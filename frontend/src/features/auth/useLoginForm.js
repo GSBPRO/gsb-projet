@@ -16,6 +16,7 @@ export default function useLoginForm() {
 
   function handleChange(event) {
     const { name, value } = event.target;
+    // On recopie les anciennes valeurs et on remplace seulement le champ modifié ([name] = « email » ou « password »).
     setValues((previous) => ({ ...previous, [name]: value }));
   }
 
@@ -31,7 +32,7 @@ export default function useLoginForm() {
   }
 
   async function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault(); // sans ça, le navigateur recharge la page à l'envoi du formulaire
     if (isSubmitting) return; // évite un double envoi si on clique deux fois
 
     const found = validate();
@@ -43,6 +44,8 @@ export default function useLoginForm() {
     try {
       const loggedUser = await login(values.email, values.password);
       // Première connexion : le mot de passe doit être changé avant tout (F04, RG04).
+      // replace: true remplace la page de connexion dans l'historique : « Retour » ne la ré-affiche pas.
+      // Pas de setIsSubmitting(false) ici : on quitte la page, il n'y a plus rien à réactiver.
       navigate(loggedUser.mustChangePassword ? '/mot-de-passe' : homePathFor(loggedUser.role), { replace: true });
     } catch (error) {
       setFormError(error.message);

@@ -24,17 +24,20 @@ const TITLES = ['M.', 'Mme', 'Dr', 'Pr'];
 // Vérifie les champs d'un compte. temporaryPassword n'est demandé qu'à la création.
 export function validateUser(input, { isNew, existingId = null }) {
   const found = {};
+  // Petite fonction qui transforme n'importe quelle valeur en texte sans espaces autour (null devient '').
   const text = (value) => String(value ?? '').trim();
 
   if (!text(input.firstName)) found.firstName = 'Saisissez le prénom.';
   if (!text(input.lastName)) found.lastName = 'Saisissez le nom.';
   if (!TITLES.includes(input.title)) found.title = 'Choisissez une civilité.';
   if (!Object.values(ROLES).includes(input.role)) found.role = 'Choisissez un profil.';
+  // RG01 : un compte Fournisseur doit être rattaché à un laboratoire qui existe vraiment.
   if (input.role === ROLES.supplier && !laboratories.some((laboratory) => laboratory.id === Number(input.supplierId))) {
     found.supplierId = 'Un compte fournisseur doit être rattaché à un fournisseur (RG01).';
   }
   if (isNew) {
     if (!isValidEmail(text(input.email))) found.email = 'Saisissez une adresse email valide.';
+    // else if : on ne cherche un doublon que si le format est bon. L'email sert d'identifiant, il doit être unique.
     else if (users.some((user) => user.id !== existingId && user.email === text(input.email).toLowerCase())) {
       found.email = 'Un compte utilise déjà cette adresse.';
     }
@@ -44,6 +47,7 @@ export function validateUser(input, { isNew, existingId = null }) {
   return found;
 }
 
+// Erreur propre aux comptes : « fields » porte les messages à afficher sous chaque champ.
 export class UserError extends AdminError {
   constructor(code, message, fields = {}) {
     super(code, message);
@@ -58,6 +62,7 @@ export async function createUser(input) {
   if (Object.keys(fields).length > 0) throw new UserError('VALIDATION', 'Le formulaire contient des erreurs.', fields);
 
   const user = {
+    // Nouvel id = le plus grand id existant + 1 (la base de données le fera toute seule plus tard).
     id: users.reduce((max, existing) => Math.max(max, existing.id), 0) + 1,
     email: String(input.email).trim().toLowerCase(),
     password: input.temporaryPassword,
@@ -88,6 +93,7 @@ export async function updateUser(userId, input) {
   user.title = input.title;
   user.profession = String(input.profession ?? '').trim().slice(0, 80);
   user.role = input.role;
+  // Seul un Fournisseur a un laboratoire : si le rôle change, on retire l'ancien rattachement.
   if (input.role === ROLES.supplier) user.supplierId = Number(input.supplierId);
   else delete user.supplierId;
   return toPublic(user);

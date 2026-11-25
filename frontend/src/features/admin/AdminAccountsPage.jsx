@@ -15,7 +15,9 @@ import './AdminPages.css';
 // Gestion des comptes (F01, F21) : création, modification, activation et désactivation.
 // Il n'y a pas d'inscription sur le site : seul l'administrateur crée des comptes (F02).
 export default function AdminAccountsPage() {
+  // « user: currentAdmin » : on renomme pour ne pas confondre l'admin connecté avec les comptes de la liste.
   const { user: currentAdmin } = useAuth();
+  // useLoader charge les comptes et donne l'état (chargement, erreur, succès), les données et reload pour recharger.
   const { status, data, reload } = useLoader(listUsers);
   // editing : null (rien), 'new' (création) ou le compte en cours de modification.
   const [editing, setEditing] = useState(null);
@@ -24,8 +26,8 @@ export default function AdminAccountsPage() {
   async function handleToggle(user) {
     setMessage('');
     try {
-      await setUserActive(user.id, !user.active, currentAdmin.id);
-      await reload();
+      await setUserActive(user.id, !user.active, currentAdmin.id); // !user.active : on inverse l'état actuel
+      await reload(); // on recharge la liste pour afficher le nouveau statut
     } catch (error) {
       setMessage(error.message);
     }
@@ -46,7 +48,7 @@ export default function AdminAccountsPage() {
 
       {editing && data && (
         <UserForm
-          key={editing === 'new' ? 'new' : editing.id}
+          key={editing === 'new' ? 'new' : editing.id} // une clé différente par compte : le formulaire repart de zéro quand on en change
           user={editing === 'new' ? null : editing}
           laboratories={data.laboratories}
           onSaved={handleSaved}
@@ -94,6 +96,7 @@ export default function AdminAccountsPage() {
                       <Button variant="secondary" className="btn--small" onClick={() => setEditing(user)}>
                         Modifier<span className="visually-hidden"> {user.firstName} {user.lastName}</span>
                       </Button>
+                      {/* Pas de bouton sur son propre compte : un admin ne peut pas se désactiver lui-même. */}
                       {user.id !== currentAdmin.id && (
                         <Button variant={user.active ? 'danger' : 'secondary'} className="btn--small" onClick={() => handleToggle(user)}>
                           {user.active ? 'Désactiver' : 'Activer'}

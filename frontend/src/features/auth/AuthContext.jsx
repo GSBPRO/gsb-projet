@@ -1,6 +1,8 @@
 import { createContext, useState } from 'react';
 import * as authService from './authService.js';
 
+// Le « contexte » est une boîte partagée : tout composant de l'appli peut y lire l'utilisateur connecté
+// sans qu'on le passe de composant en composant. null = valeur par défaut hors de <AuthProvider>.
 export const AuthContext = createContext(null);
 
 // Garde l'utilisateur connecté pour toute l'application.
@@ -29,5 +31,6 @@ export function AuthProvider({ children }) {
     setUser(null);
   }
 
+  // Tout ce qui est dans « value » devient lisible via useAuth() par les composants enfants.
   return <AuthContext.Provider value={{ user, login, logout, changePassword, updateProfile }}>{children}</AuthContext.Provider>;
 }

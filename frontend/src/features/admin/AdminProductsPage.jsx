@@ -26,6 +26,8 @@ export default function AdminProductsPage() {
     setFilters((previous) => ({ ...previous, [event.target.name]: event.target.value }));
   }
 
+  // run : une seule fonction pour toutes les actions (activer, supprimer) : elle les lance, recharge la liste
+  // si ça marche, et affiche le message d'erreur sinon. action = la fonction à exécuter, passée en paramètre.
   const run = useCallback(
     async (action) => {
       setMessage('');
@@ -45,6 +47,7 @@ export default function AdminProductsPage() {
     const text = filters.text.trim().toLowerCase();
     return (!text || product.name.toLowerCase().includes(text)) && (!filters.categoryId || product.categoryId === Number(filters.categoryId));
   });
+  // Un produit ne garde que l'id de sa catégorie et de son fournisseur : on retrouve le nom dans la liste ('—' si absent).
   const nameOf = (list, id) => list.find((item) => item.id === id)?.name ?? '—';
 
   return (
@@ -115,10 +118,12 @@ export default function AdminProductsPage() {
                       <ButtonLink to={`/admin/produits/${product.id}`} variant="secondary" className="btn--small">
                         Modifier<span className="visually-hidden"> {product.name}</span>
                       </ButtonLink>
+                      {/* () => ... : l'action ne se lance qu'au clic, pas à l'affichage de la page. */}
                       <Button variant="secondary" className="btn--small" onClick={() => run(() => setProductActive(product.id, !product.active))}>
                         {product.active ? 'Désactiver' : 'Activer'}
                         <span className="visually-hidden"> {product.name}</span>
                       </Button>
+                      {/* Suppression en deux clics : « Supprimer » demande confirmation, « Confirmer » supprime vraiment. */}
                       {pendingDeleteId === product.id ? (
                         <>
                           <Button variant="danger" className="btn--small" onClick={() => run(() => deleteProduct(product.id))}>

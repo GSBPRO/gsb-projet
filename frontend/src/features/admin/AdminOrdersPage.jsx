@@ -15,7 +15,9 @@ import './AdminPages.css';
 
 // Toutes les commandes de tous les comptes, avec filtre (F24) et mise à jour du statut et de la livraison (F25, F36).
 export default function AdminOrdersPage() {
+  // useCallback : garde la même fonction entre deux affichages, sinon useLoader recharge en boucle.
   const load = useCallback(async () => {
+    // Promise.all : on lance les deux chargements en même temps et on attend que les deux soient finis.
     const [orders, directory] = await Promise.all([listAllOrders(), listUsers()]);
     return { orders, users: directory.users };
   }, []);
@@ -26,11 +28,14 @@ export default function AdminOrdersPage() {
     setFilters((previous) => ({ ...previous, [event.target.name]: event.target.value }));
   }
 
+  // Une commande ne garde que le numéro du compte : on retrouve le nom du client dans la liste des comptes.
   const customerName = (userId) => {
     const user = data.users.find((candidate) => candidate.id === userId);
     return user ? `${user.firstName} ${user.lastName}` : `Compte n° ${userId}`;
   };
 
+  // Filtre (F24) : on garde les commandes qui contiennent le texte tapé ET qui ont le statut choisi.
+  // « data?. » : data est vide tant que le chargement n'est pas fini.
   const visible = data?.orders.filter((order) => {
     const text = filters.text.trim().toLowerCase();
     const matchesText = !text || order.reference.toLowerCase().includes(text) || customerName(order.userId).toLowerCase().includes(text);
@@ -74,6 +79,7 @@ export default function AdminOrdersPage() {
             </thead>
             <tbody>
               {visible.map((order) => (
+                // Clé = compte + commande : deux comptes peuvent avoir une commande de même numéro.
                 <OrderRow key={`${order.userId}-${order.id}`} order={order} customer={customerName(order.userId)} onSaved={reload} />
               ))}
             </tbody>
@@ -89,7 +95,7 @@ function OrderRow({ order, customer, onSaved }) {
   const [form, setForm] = useState({ status: order.status, deliveryStep: order.deliveryStep ?? DELIVERY_STEPS[0] });
   const [message, setMessage] = useState('');
   const [isSaving, setIsSaving] = useState(false);
-  const isLocked = order.status === 'Annulée';
+  const isLocked = order.status === 'Annulée'; // une commande annulée est définitive : plus de modification (RG17)
 
   async function handleSave() {
     setIsSaving(true);
@@ -129,12 +135,14 @@ function OrderRow({ order, customer, onSaved }) {
             aria-label={`Statut de la commande ${order.reference}`}
             value={form.status}
             disabled={isLocked}
+            // On copie le formulaire (...form) et on remplace seulement le statut.
             onChange={(event) => setForm({ ...form, status: event.target.value })}
           >
             {Object.keys(ORDER_STATUSES).map((orderStatus) => (
               <option key={orderStatus}>{orderStatus}</option>
             ))}
           </select>
+          {/* L'étape de livraison n'a de sens que pour une commande validée. */}
           {form.status === 'Validée' && (
             <select
               aria-label={`Livraison de la commande ${order.reference}`}

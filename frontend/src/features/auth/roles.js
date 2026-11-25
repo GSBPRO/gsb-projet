@@ -11,6 +11,8 @@ const HOME_PATHS = {
   [ROLES.admin]: '/admin/commandes',
 };
 
+// [ROLES.admin] entre crochets : la clé est la valeur « Administrateur », pas le mot « ROLES.admin ».
+// ?? '/connexion' : si le rôle est inconnu, on renvoie vers la connexion plutôt que vers une page cassée.
 export function homePathFor(role) {
   return HOME_PATHS[role] ?? '/connexion';
 }

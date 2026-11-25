@@ -17,6 +17,7 @@ export default function ProtectedRoute({ children = <Outlet />, roles = null }) 
   if (user.mustChangePassword) {
     return <Navigate to="/mot-de-passe" replace />;
   }
+  // roles = liste des profils autorisés sur cette page ; null veut dire « tous les profils connectés ».
   if (roles && !roles.includes(user.role)) {
     return <Navigate to={homePathFor(user.role)} replace />;
   }

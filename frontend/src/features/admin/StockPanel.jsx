@@ -16,6 +16,7 @@ export default function StockPanel({ product, onChanged }) {
   const [message, setMessage] = useState({ type: '', text: '' });
   const [isSaving, setIsSaving] = useState(false);
 
+  // Le tableau de la fin : l'historique est rechargé quand le produit ou son stock change (donc après chaque ajustement).
   const load = useCallback(() => listStockMovements(product.id), [product.id, product.stock]);
   const { data: movements } = useLoader(load);
 
@@ -29,6 +30,7 @@ export default function StockPanel({ product, onChanged }) {
     setIsSaving(true);
     setMessage({ type: '', text: '' });
     try {
+      // user.id : on garde qui a fait l'ajustement, pour la traçabilité (F27).
       await adjustStock(product.id, values.delta, values.reason, user.id);
       setValues({ delta: '', reason: '' });
       setMessage({ type: 'success', text: 'Stock mis à jour.' });
@@ -73,6 +75,7 @@ export default function StockPanel({ product, onChanged }) {
             {movements.map((movement) => (
               <tr key={movement.id}>
                 <td>{formatDateTime(movement.date)}</td>
+                {/* On ajoute « + » devant les entrées ; les sorties ont déjà leur « − ». */}
                 <td className="is-number">{movement.delta > 0 ? `+${movement.delta}` : movement.delta}</td>
                 <td className="is-number">{movement.stockAfter}</td>
                 <td>{movement.reason}</td>
